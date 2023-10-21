@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/openMenu">
+    <fragment
+        android:id="@+id/openMenu"
+        android:name="ru.dvteam.itcollabhub.OpenMenu"
+        android:label="OpenMenu" >
+        <action
+            android:id="@+id/action_openMenu_to_registration"
+            app:destination="@id/registration" />
+    </fragment>
+    <fragment
+        android:id="@+id/registration"
+        android:name="ru.dvteam.itcollabhub.Registration"
+        android:label="Registration" >
+        <action
+            android:id="@+id/action_registration_to_confirm_code2"
+            app:destination="@id/confirm_code2" />
+    </fragment>
+    <fragment
+        android:id="@+id/confirm_code2"
+        android:name="ru.dvteam.itcollabhub.confirm_code"
+        android:label="fragment_confirm_code"
+        tools:layout="@layout/fragment_confirm_code" />
+</navigation>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Registration">
+
+
+    <TextView
+        android:id="@+id/collaborotory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ITCollabHub"
+        android:textSize="50dp"
+        android:layout_marginTop="60dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <LinearLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:context=".MainActivity"
+        tools:layout_editor_absoluteX="0dp">
+
+        <EditText
+            android:id="@+id/nameu"
+            android:layout_width="232dp"
+            android:layout_height="58dp"
+            android:hint="Имя пользователя" />
+
+        <EditText
+            android:id="@+id/mailu"
+            android:layout_width="232dp"
+            android:layout_height="58dp"
+            android:hint="Почта" />
+
+        <EditText
+            android:id="@+id/passu"
+            android:layout_width="232dp"
+            android:layout_height="58dp"
+            android:hint="Пароль" />
+
+        <EditText
+            android:id="@+id/passuagain"
+            android:layout_width="232dp"
+            android:layout_height="58dp"
+            android:hint="Повторите пароль"/>
+
+        <Button
+            android:id="@+id/Reg"
+            android:layout_width="wrap_content"
+            android:layout_height="74dp"
+            android:backgroundTint="#00C6A2"
+            android:insetTop="20dp"
+            android:text="Зарегистрироваться"
+            tools:visibility="visible" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
