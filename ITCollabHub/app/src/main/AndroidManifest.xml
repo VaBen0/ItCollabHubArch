@@ -14,6 +14,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ITCollabHub"
         tools:targetApi="31">
+        <activity
+            android:name=".Confirm"
+            android:exported="false" />
+        <activity
+            android:name=".Register"
+            android:exported="false"/>
+
         <meta-data
             android:name="com.google.android.actions"
             android:resource="@drawable/rounded" />
