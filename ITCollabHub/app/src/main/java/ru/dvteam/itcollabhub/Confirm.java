@@ -49,7 +49,6 @@ public class Confirm extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 postData(finalMail, User_code.getText().toString(), null, null,  "CheckerCode", "Проверка почты прошла успешно");
-                postData(finalMail, User_code.getText().toString(), finalPass, finalName, "RegNewUser", "Успешная регистрация");
             }
         });
     }
