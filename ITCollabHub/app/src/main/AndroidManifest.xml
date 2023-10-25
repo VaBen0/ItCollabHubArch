@@ -15,11 +15,14 @@
         android:theme="@style/Theme.ITCollabHub"
         tools:targetApi="31">
         <activity
+            android:name=".MainActivity2"
+            android:exported="false" />
+        <activity
             android:name=".Confirm"
             android:exported="false" />
         <activity
             android:name=".Register"
-            android:exported="false"/>
+            android:exported="false" />
 
         <meta-data
             android:name="com.google.android.actions"

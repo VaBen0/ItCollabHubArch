@@ -1,8 +1,8 @@
 package ru.dvteam.itcollabhub;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.Navigation;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -48,20 +48,20 @@ public class Confirm extends AppCompatActivity {
         conf.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                postData(finalMail, User_code.getText().toString(), null, null,  "CheckerCode");
-                if(res.equals("Проверка почты прошла успешно")) {
-                    postData(finalMail, User_code.getText().toString(), finalName, finalPass, "RegNewUser");
-                }
+                postData(finalMail, User_code.getText().toString(), null, null,  "CheckerCode", "Проверка почты прошла успешно");
+                postData(finalMail, User_code.getText().toString(), finalPass, finalName, "RegNewUser", "Успешная регистрация");
             }
         });
     }
 
-    public void postData(String mail, String code, String pass, String name, String req){
+    public void postData(String mail, String code, String pass, String name, String req, String s){
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
         StringRequest stringRequest = new StringRequest(Request.Method.POST, "https://serveritcollabhub.development-team.ru/", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                res = response;
+                if(response.equals(s)){
+                    change(mail, code, pass, name, response);
+                }
             }
         }, new Response.ErrorListener() {
             @Override
@@ -85,5 +85,15 @@ public class Confirm extends AppCompatActivity {
         };
 
         requestQueue.add(stringRequest);
+    }
+
+    public void change(String mail, String code, String pass, String name, String res){
+        if(res.equals("Проверка почты прошла успешно")){
+            postData(mail, code, name, pass, "RegNewUser", "Успешная регистрация");
+        }
+        else if(res.equals("Успешная регистрация")){
+            Intent intent = new Intent(Confirm.this, MainActivity2.class);
+            startActivity(intent);
+        }
     }
 }
