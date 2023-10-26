@@ -15,6 +15,9 @@
         android:theme="@style/Theme.ITCollabHub"
         tools:targetApi="31">
         <activity
+            android:name=".LogIn"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity2"
             android:exported="false" />
         <activity

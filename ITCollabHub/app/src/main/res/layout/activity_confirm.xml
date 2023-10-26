@@ -70,13 +70,13 @@
         app:layout_constraintRight_toRightOf="parent"
         tools:ignore="TextSizeCheck" />
 
-    <Button
+    <TextView
         android:id="@+id/enterBut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="2dp"
-        android:layout_marginStart="-23dp"
-        android:background="?android:attr/selectableItemBackground"
+        android:layout_marginBottom="16dp"
+        android:layout_marginStart="2dp"
+        android:clickable="true"
         android:text="Войти"
         android:textColor="#1f57db"
         app:layout_constraintBottom_toTopOf="@id/confirmBut"

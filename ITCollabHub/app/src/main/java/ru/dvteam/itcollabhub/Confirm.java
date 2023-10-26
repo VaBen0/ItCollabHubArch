@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -20,7 +21,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Confirm extends AppCompatActivity {
-    String res = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,10 +40,19 @@ public class Confirm extends AppCompatActivity {
 
         Button conf = findViewById(R.id.confirmBut);
         EditText User_code = findViewById(R.id.code);
+        TextView Enter_But = findViewById(R.id.enterBut);
 
         String finalMail = mail;
         String finalName = name;
         String finalPass = pass;
+
+        Enter_But.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Confirm.this, LogIn.class);
+                startActivity(intent);
+            }
+        });
 
         conf.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,13 +68,14 @@ public class Confirm extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 if(response.equals(s)){
-                    change(mail, code, pass, name, response);
+                    change(mail, pass, name, response);
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                Intent intent = new Intent(Confirm.this, LogIn.class);
+                startActivity(intent);
             }
         }) {
 
@@ -86,9 +96,9 @@ public class Confirm extends AppCompatActivity {
         requestQueue.add(stringRequest);
     }
 
-    public void change(String mail, String code, String pass, String name, String res){
+    public void change(String mail, String pass, String name, String res){
         if(res.equals("Проверка почты прошла успешно")){
-            postData(mail, code, name, pass, "RegNewUser", "Успешная регистрация");
+            postData(mail, null, pass, name, "RegNewUser", "Успешная регистрация");
         }
         else if(res.equals("Успешная регистрация")){
             Intent intent = new Intent(Confirm.this, MainActivity2.class);
