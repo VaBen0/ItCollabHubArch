@@ -1,8 +1,10 @@
 package ru.dvteam.itcollabhub;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity2 extends AppCompatActivity {
 
@@ -10,5 +12,9 @@ public class MainActivity2 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+        SharedPreferences sPref = getSharedPreferences("MyPref", MODE_PRIVATE);
+        String savedText = sPref.getString("UserName", "");
+        TextView txt = findViewById(R.id.collaborotory);
+        txt.setText("Добрый вечер, " + savedText + "!");
     }
 }

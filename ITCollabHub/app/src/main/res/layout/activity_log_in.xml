@@ -38,6 +38,18 @@
             android:layout_width="232dp"
             android:layout_height="58dp"
             android:hint="Пароль" />
+
+        <TextView
+            android:id="@+id/forgotbut"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:clickable="true"
+            android:text="Забыли пароль?"
+            android:textColor="#1f57db"
+            app:layout_constraintBottom_toTopOf="@+id/enterBut"
+            app:layout_constraintLeft_toRightOf="@+id/enter"
+            tools:ignore="TouchTargetSizeCheck" />
     </LinearLayout>
 
     <TextView

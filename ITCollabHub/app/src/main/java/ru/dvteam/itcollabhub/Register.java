@@ -28,12 +28,10 @@ public class Register extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        EditText user_name = findViewById(R.id.nameu);
         EditText user_pass = findViewById(R.id.passu);
         EditText user_second_pass = findViewById(R.id.passuagain);
         EditText user_mail = findViewById(R.id.mailu);
 
-        String second_pass = user_second_pass.getText().toString();
         Button conf = findViewById(R.id.Reg);
 
         conf.setOnClickListener(new View.OnClickListener() {
@@ -53,12 +51,13 @@ public class Register extends AppCompatActivity {
     }
 
     public void postData(String mail){
-        String h;
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
         StringRequest stringRequest = new StringRequest(Request.Method.POST, "https://serveritcollabhub.development-team.ru/", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 if(response.equals("Код отправлен")){
+                    TextView u = findViewById(R.id.collaborotory);
+                    u.setText(response);
                     change();
                 }
             }
@@ -84,8 +83,8 @@ public class Register extends AppCompatActivity {
     public void change(){
         EditText user_name = findViewById(R.id.nameu);
         EditText user_pass = findViewById(R.id.passu);
-        EditText user_second_pass = findViewById(R.id.passuagain);
         EditText user_mail = findViewById(R.id.mailu);
+
         Intent intent = new Intent(Register.this, Confirm.class);
         intent.putExtra("name", user_name.getText().toString());
         intent.putExtra("pass", user_pass.getText().toString());

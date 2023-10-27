@@ -2,7 +2,6 @@ package ru.dvteam.itcollabhub;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -23,31 +22,21 @@ import com.android.volley.toolbox.Volley;
 import java.util.HashMap;
 import java.util.Map;
 
-public class LogIn extends AppCompatActivity {
+public class Forgot extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_log_in);
+        setContentView(R.layout.activity_forgot);
 
-        Button conf = findViewById(R.id.enterBut);
-        EditText User_mail = findViewById(R.id.mailu);
-        EditText User_pass = findViewById(R.id.passu);
-        TextView Reg_But = findViewById(R.id.lllllll);
-        TextView forgotBut = findViewById(R.id.forgotbut);
+        Button conf = findViewById(R.id.confirmBut);
+        EditText User_code = findViewById(R.id.code);
+        TextView Or_Enter = findViewById(R.id.enterBut);
 
-        forgotBut.setOnClickListener(new View.OnClickListener() {
+        Or_Enter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LogIn.this, Forgot.class);
-                startActivity(intent);
-            }
-        });
-
-        Reg_But.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(LogIn.this, Register.class);
+                Intent intent = new Intent(Forgot.this, LogIn.class);
                 startActivity(intent);
             }
         });
@@ -55,18 +44,18 @@ public class LogIn extends AppCompatActivity {
         conf.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                postData(User_mail.getText().toString(), User_pass.getText().toString());
+                postData2(User_code.getText().toString());
             }
         });
     }
 
-    public void postData(String mail, String pass){
+    public void postData2(String mail){
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
         StringRequest stringRequest = new StringRequest(Request.Method.POST, "https://serveritcollabhub.development-team.ru/", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                if(response.equals("Успешный вход")){
-                    change(response);
+                if(response.equals("Код отправлен")){
+                    change(mail, response);
                 }
             }
         }, new Response.ErrorListener() {
@@ -80,26 +69,22 @@ public class LogIn extends AppCompatActivity {
             public Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> map = new HashMap<>();
 
-                map.put("Request", "UserLogIn");
+                map.put("Request", "UserLogInMail");
                 map.put("UserMail", mail);
-                map.put("UserPass", pass);
 
                 return map;
             }
         };
+
         requestQueue.add(stringRequest);
     }
 
-    public void change(String res){
+    public void change(String mail, String res){
         Toast toast = Toast.makeText(this, res, Toast.LENGTH_LONG);
         toast.show();
 
-        SharedPreferences sPref = getSharedPreferences("MyPref", MODE_PRIVATE);
-        SharedPreferences.Editor ed = sPref.edit();
-        ed.putString("UserReg", "true");
-        ed.apply();
-
-        Intent intent = new Intent(LogIn.this, MainActivity2.class);
+        Intent intent = new Intent(Forgot.this, confirm_forgot_pass.class);
+        intent.putExtra("mail", mail);
         startActivity(intent);
     }
 }
