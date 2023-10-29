@@ -45,7 +45,7 @@ public class confirm_forgot_pass extends AppCompatActivity {
         Or_Enter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(confirm_forgot_pass.this, LogIn.class);
+                Intent intent = new Intent(confirm_forgot_pass.this, log_in.class);
                 startActivity(intent);
             }
         });
@@ -95,7 +95,7 @@ public class confirm_forgot_pass extends AppCompatActivity {
         Toast toast = Toast.makeText(this, res, Toast.LENGTH_LONG);
         toast.show();
 
-        Intent intent = new Intent(confirm_forgot_pass.this, LogIn.class);
+        Intent intent = new Intent(confirm_forgot_pass.this, log_in.class);
         startActivity(intent);
     }
 }

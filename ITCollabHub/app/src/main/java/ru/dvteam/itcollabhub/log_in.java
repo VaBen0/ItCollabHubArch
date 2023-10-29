@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -23,40 +22,39 @@ import com.android.volley.toolbox.Volley;
 import java.util.HashMap;
 import java.util.Map;
 
-public class LogIn extends AppCompatActivity {
+public class log_in extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
 
-        Button conf = findViewById(R.id.enterBut);
-        EditText User_mail = findViewById(R.id.mailu);
-        EditText User_pass = findViewById(R.id.passu);
-        TextView Reg_But = findViewById(R.id.lllllll);
-        TextView forgotBut = findViewById(R.id.forgotbut);
+        EditText UserMail = findViewById(R.id.mailu);
+        EditText UserPass = findViewById(R.id.passu);
+        TextView RegBut = findViewById(R.id.regBut);
+        TextView ForgotBut = findViewById(R.id.forgotBut);
+        Button EnterBut = findViewById(R.id.enterBut);
 
-        forgotBut.setOnClickListener(new View.OnClickListener() {
+        RegBut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LogIn.this, Forgot.class);
+                Intent intent = new Intent(log_in.this, Register.class);
                 startActivity(intent);
             }
         });
 
-        Reg_But.setOnClickListener(new View.OnClickListener() {
+        ForgotBut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LogIn.this, Register.class);
+                Intent intent = new Intent(log_in.this, Forgot.class);
                 startActivity(intent);
             }
         });
 
-        conf.setOnClickListener(new View.OnClickListener() {
+        EnterBut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                postData(User_mail.getText().toString(), User_pass.getText().toString());
+                postData(UserMail.getText().toString(), UserPass.getText().toString());
             }
         });
     }
@@ -83,7 +81,7 @@ public class LogIn extends AppCompatActivity {
 
                 map.put("Request", "UserLogIn");
                 map.put("UserMail", mail);
-                map.put("UserPasss", pass);
+                map.put("UserPasswordd", pass);
 
                 return map;
             }
@@ -100,7 +98,7 @@ public class LogIn extends AppCompatActivity {
         ed.putString("UserReg", "true");
         ed.apply();
 
-        Intent intent = new Intent(LogIn.this, MainActivity2.class);
+        Intent intent = new Intent(log_in.this, MainActivity2.class);
         startActivity(intent);
     }
 }

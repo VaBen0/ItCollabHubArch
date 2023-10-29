@@ -38,7 +38,7 @@ public class Forgot extends AppCompatActivity {
         Or_Enter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Forgot.this, LogIn.class);
+                Intent intent = new Intent(Forgot.this, log_in.class);
                 startActivity(intent);
             }
         });
