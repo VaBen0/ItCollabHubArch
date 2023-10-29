@@ -2,9 +2,9 @@ package ru.dvteam.itcollabhub;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -27,6 +27,7 @@ public class LogIn extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
 
@@ -82,7 +83,7 @@ public class LogIn extends AppCompatActivity {
 
                 map.put("Request", "UserLogIn");
                 map.put("UserMail", mail);
-                map.put("UserPass", pass);
+                map.put("UserPasss", pass);
 
                 return map;
             }

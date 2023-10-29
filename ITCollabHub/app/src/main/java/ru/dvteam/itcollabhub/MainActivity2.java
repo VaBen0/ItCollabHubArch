@@ -1,6 +1,7 @@
 package ru.dvteam.itcollabhub;
 
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -10,6 +11,7 @@ public class MainActivity2 extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
         SharedPreferences sPref = getSharedPreferences("MyPref", MODE_PRIVATE);
