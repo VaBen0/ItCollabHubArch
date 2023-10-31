@@ -3,7 +3,6 @@ package ru.dvteam.itcollabhub;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
@@ -23,7 +22,7 @@ import com.android.volley.toolbox.Volley;
 import java.util.HashMap;
 import java.util.Map;
 
-public class confirm_forgot_pass extends AppCompatActivity {
+public class ConfirmForgotPassword extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +44,7 @@ public class confirm_forgot_pass extends AppCompatActivity {
         Or_Enter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(confirm_forgot_pass.this, log_in.class);
+                Intent intent = new Intent(ConfirmForgotPassword.this, LogIn.class);
                 startActivity(intent);
             }
         });
@@ -95,7 +94,7 @@ public class confirm_forgot_pass extends AppCompatActivity {
         Toast toast = Toast.makeText(this, res, Toast.LENGTH_LONG);
         toast.show();
 
-        Intent intent = new Intent(confirm_forgot_pass.this, log_in.class);
+        Intent intent = new Intent(ConfirmForgotPassword.this, LogIn.class);
         startActivity(intent);
     }
 }

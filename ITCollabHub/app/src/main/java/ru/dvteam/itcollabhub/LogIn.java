@@ -22,7 +22,7 @@ import com.android.volley.toolbox.Volley;
 import java.util.HashMap;
 import java.util.Map;
 
-public class log_in extends AppCompatActivity {
+public class LogIn extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +38,7 @@ public class log_in extends AppCompatActivity {
         RegBut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(log_in.this, Register.class);
+                Intent intent = new Intent(LogIn.this, Register.class);
                 startActivity(intent);
             }
         });
@@ -46,7 +46,7 @@ public class log_in extends AppCompatActivity {
         ForgotBut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(log_in.this, Forgot.class);
+                Intent intent = new Intent(LogIn.this, Forgot.class);
                 startActivity(intent);
             }
         });
@@ -98,7 +98,7 @@ public class log_in extends AppCompatActivity {
         ed.putString("UserReg", "true");
         ed.apply();
 
-        Intent intent = new Intent(log_in.this, MainActivity2.class);
+        Intent intent = new Intent(LogIn.this, MainActivity2.class);
         startActivity(intent);
     }
 }

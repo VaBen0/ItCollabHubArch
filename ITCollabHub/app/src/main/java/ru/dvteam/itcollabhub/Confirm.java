@@ -49,7 +49,7 @@ public class Confirm extends AppCompatActivity {
         enterBut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Confirm.this, log_in.class);
+                Intent intent = new Intent(Confirm.this, LogIn.class);
                 startActivity(intent);
             }
         });

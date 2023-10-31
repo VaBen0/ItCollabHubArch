@@ -38,7 +38,7 @@ public class Forgot extends AppCompatActivity {
         Or_Enter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Forgot.this, log_in.class);
+                Intent intent = new Intent(Forgot.this, LogIn.class);
                 startActivity(intent);
             }
         });
@@ -85,7 +85,7 @@ public class Forgot extends AppCompatActivity {
         Toast toast = Toast.makeText(this, res, Toast.LENGTH_LONG);
         toast.show();
 
-        Intent intent = new Intent(Forgot.this, confirm_forgot_pass.class);
+        Intent intent = new Intent(Forgot.this, ConfirmForgotPassword.class);
         intent.putExtra("mail", mail);
         startActivity(intent);
     }

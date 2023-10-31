@@ -22,7 +22,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Register extends AppCompatActivity {
-    String res = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
