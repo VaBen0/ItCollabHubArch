@@ -81,7 +81,7 @@ public class log_in extends AppCompatActivity {
 
                 map.put("Request", "UserLogIn");
                 map.put("UserMail", mail);
-                map.put("UserPasswordd", pass);
+                map.put("UserPassword", pass);
 
                 return map;
             }
