@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
                 else {
-                    Intent intent = new Intent(MainActivity.this, AcyivityRetrofit.class);
+                    Intent intent = new Intent(MainActivity.this, ActivityRetrofit.class);
                     startActivity(intent);
                 }
             }

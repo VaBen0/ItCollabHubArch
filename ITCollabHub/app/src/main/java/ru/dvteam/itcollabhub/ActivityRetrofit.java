@@ -3,7 +3,6 @@ package ru.dvteam.itcollabhub;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -11,7 +10,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class AcyivityRetrofit extends AppCompatActivity {
+public class ActivityRetrofit extends AppCompatActivity {
     APIInterface aPIInterface;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +25,7 @@ public class AcyivityRetrofit extends AppCompatActivity {
                @Override
                public void onResponse(Call<User> call, Response<User> response) {
                    User createdUser = response.body();
-                   Toast.makeText(AcyivityRetrofit.this, createdUser.KHP, Toast.LENGTH_SHORT).show();
+                   Toast.makeText(ActivityRetrofit.this, createdUser.KHP, Toast.LENGTH_SHORT).show();
                }
 
                @Override
