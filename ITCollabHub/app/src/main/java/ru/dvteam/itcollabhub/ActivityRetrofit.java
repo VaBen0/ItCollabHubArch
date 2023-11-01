@@ -15,7 +15,7 @@ public class ActivityRetrofit extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_acyivity_retrofit);
+        setContentView(R.layout.activity_activity_retrofit);
         aPIInterface = APIClient.getClient().create(APIInterface.class);
         Button check = findViewById(R.id.check);
         User user = new User("TestRetrofit", 100, 101, 200, 200);
