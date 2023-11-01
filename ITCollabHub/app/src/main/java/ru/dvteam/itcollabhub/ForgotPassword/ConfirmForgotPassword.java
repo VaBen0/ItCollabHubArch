@@ -11,16 +11,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-
-import java.util.HashMap;
-import java.util.Map;
+import retrofit2.Call;
+import retrofit2.Callback;
 
 public class ConfirmForgotPassword extends AppCompatActivity {
 
@@ -28,7 +20,7 @@ public class ConfirmForgotPassword extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_confirm_forgot_pass);
+        setContentView(R.layout.activity_confirm_forgot_password);
         Bundle arguments = getIntent().getExtras();
 
         String mail = "";
@@ -54,40 +46,36 @@ public class ConfirmForgotPassword extends AppCompatActivity {
         conf.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                postData2(finalMail, User_code.getText().toString());
+                if(User_code.getText().toString().equals("")){
+                    User_code.setHint("Введите ваш логин");
+                }
+                else {
+                    postData(finalMail, User_code.getText().toString());
+                }
             }
         });
     }
 
-    public void postData2(String mail, String code){
-        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, "https://serveritcollabhub.development-team.ru/", new Response.Listener<String>() {
+    public void postData(String mail, String code){
+        Methods methods = RetrofitClient.getRetrofitInstance().create(Methods.class);
+        Call<Model> call = methods.confirm("UserLogInMai2l", mail, code);
+
+        call.enqueue(new Callback<Model>() {
             @Override
-            public void onResponse(String response) {
-                if(response.equals("Правильный код")){
-                    change(response);
+            public void onResponse(Call<Model> call, retrofit2.Response<Model> response) {
+                if(response.body().getReturn().equals("Правильный код")) {
+                    change(response.body().getReturn());
+                }
+                else{
+                    Toast.makeText(ConfirmForgotPassword.this, response.body().getReturn(), Toast.LENGTH_SHORT).show();
                 }
             }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-            }
-        }) {
 
             @Override
-            public Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> map = new HashMap<>();
-
-                map.put("Request", "UserLogInMai2l");
-                map.put("UserMail", mail);
-                map.put("UserCode", code);
-
-                return map;
+            public void onFailure(Call<Model> call, Throwable t) {
+                Toast.makeText(ConfirmForgotPassword.this, "Error Occurred", Toast.LENGTH_SHORT).show();
             }
-        };
-
-        requestQueue.add(stringRequest);
+        });
     }
 
     public void change(String res){

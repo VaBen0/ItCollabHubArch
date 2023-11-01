@@ -15,6 +15,9 @@
         android:theme="@style/Theme.ITCollabHub"
         tools:targetApi="31">
         <activity
+            android:name=".ConfirmForgotPassword"
+            android:exported="false" />
+        <activity
             android:name=".ActivityRetrofit"
             android:exported="false" />
         <activity
@@ -33,7 +36,7 @@
             android:name=".MainActivity2"
             android:exported="false" />
         <activity
-            android:name=".Confirm"
+            android:name=".ConfirmReg"
             android:exported="false" />
         <activity
             android:name=".Register"

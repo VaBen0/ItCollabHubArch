@@ -30,6 +30,13 @@ android {
         exclude 'META-INF/DEPENDENCIES'
         exclude 'mozilla/public-suffix-list.txt'
     }
+    sourceSets {
+        main {
+            java {
+                srcDirs 'src\\main\\java', 'src\\main\\java\\ru.dvteam.itcollabhub'
+            }
+        }
+    }
 
 }
 

@@ -14,13 +14,16 @@ import android.widget.Toast;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class LogIn extends AppCompatActivity {
 
@@ -54,50 +57,48 @@ public class LogIn extends AppCompatActivity {
         EnterBut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //postData(UserMail.getText().toString(), UserPass.getText().toString());
+                if(UserMail.getText().toString().equals("")){
+                    UserMail.setHint("Введите ваш логин");
+                }
+                else if(UserPass.getText().toString().equals("")){
+                    UserPass.setHint("Введите пароль");
+                }
+                else{
+                    postData(UserMail.getText().toString(), UserPass.getText().toString());
+                }
             }
         });
     }
 
-    /*public void postData(String mail, String pass){
-        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, "https://serveritcollabhub.development-team.ru/", new Response.Listener<String>() {
+    public void postData(String mail, String pass) {
+        Methods methods = RetrofitClient.getRetrofitInstance().create(Methods.class);
+        Call<Model> call = methods.login("UserLogIn", mail, pass);
+
+        call.enqueue(new Callback<Model>() {
             @Override
-            public void onResponse(String response) {
-                if(response.equals("Успешный вход")){
-                    change(response);
+            public void onResponse(Call<Model> call, Response<Model> response) {
+                if(response.body().getReturn().equals("Успешный вход")) {
+                    changeToReg(response.body().getReturn(), response.body().getName());
                 }
             }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-            }
-        }) {
 
             @Override
-            public Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> map = new HashMap<>();
-
-                map.put("Request", "UserLogIn");
-                map.put("UserMail", mail);
-                map.put("UserPassword", pass);
-
-                return map;
+            public void onFailure(Call<Model> call, Throwable t) {
+                Toast.makeText(LogIn.this, "Error Occurred", Toast.LENGTH_SHORT).show();
             }
-        };
-        requestQueue.add(stringRequest);
-    }*/
+        });
+    }
 
 
 
-    public void change(String res){
+    public void changeToReg(String res, String name){
         Toast toast = Toast.makeText(this, res, Toast.LENGTH_LONG);
         toast.show();
 
         SharedPreferences sPref = getSharedPreferences("MyPref", MODE_PRIVATE);
         SharedPreferences.Editor ed = sPref.edit();
         ed.putString("UserReg", "true");
+        ed.putString("UserName", name);
         ed.apply();
 
         Intent intent = new Intent(LogIn.this, MainActivity2.class);

@@ -15,13 +15,16 @@ import android.widget.Toast;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class Forgot extends AppCompatActivity {
 
@@ -32,7 +35,7 @@ public class Forgot extends AppCompatActivity {
         setContentView(R.layout.activity_forgot);
 
         Button conf = findViewById(R.id.confirmBut);
-        EditText User_code = findViewById(R.id.code);
+        EditText User_mail = findViewById(R.id.mailu);
         TextView Or_Enter = findViewById(R.id.enterBut);
 
         Or_Enter.setOnClickListener(new View.OnClickListener() {
@@ -46,42 +49,39 @@ public class Forgot extends AppCompatActivity {
         conf.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                postData2(User_code.getText().toString());
+                if(User_mail.getText().toString().equals("")){
+                    User_mail.setHint("Введите ваш логин");
+                }
+                else{
+                    postData(User_mail.getText().toString());
+                }
             }
         });
     }
 
-    public void postData2(String mail){
-        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, "https://serveritcollabhub.development-team.ru/", new Response.Listener<String>() {
+    public void postData(String mail){
+        Methods methods = RetrofitClient.getRetrofitInstance().create(Methods.class);
+        Call<Model> call = methods.postCodeMail("UserLogInMail", mail);
+
+        call.enqueue(new Callback<Model>() {
             @Override
-            public void onResponse(String response) {
-                if(response.equals("Код отправлен")){
-                    change(mail, response);
+            public void onResponse(Call<Model> call, Response<Model> response) {
+                if(response.body().getReturn().equals("Код отправлен")) {
+                    changeToConfFor(mail, response.body().getReturn());
+                }
+                else{
+                    Toast.makeText(Forgot.this, response.body().getReturn(), Toast.LENGTH_SHORT).show();
                 }
             }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-            }
-        }) {
 
             @Override
-            public Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> map = new HashMap<>();
-
-                map.put("Request", "UserLogInMail");
-                map.put("UserMail", mail);
-
-                return map;
+            public void onFailure(Call<Model> call, Throwable t) {
+                Toast.makeText(Forgot.this, "Error Occurred", Toast.LENGTH_SHORT).show();
             }
-        };
-
-        requestQueue.add(stringRequest);
+        });
     }
 
-    public void change(String mail, String res){
+    public void changeToConfFor(String mail, String res){
         Toast toast = Toast.makeText(this, res, Toast.LENGTH_LONG);
         toast.show();
 
