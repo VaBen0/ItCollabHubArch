@@ -15,6 +15,9 @@
         android:theme="@style/Theme.ITCollabHub"
         tools:targetApi="31">
         <activity
+            android:name=".AcyivityRetrofit"
+            android:exported="false" />
+        <activity
             android:name=".log_in"
             android:exported="false" />
         <activity

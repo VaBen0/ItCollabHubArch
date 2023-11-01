@@ -54,12 +54,12 @@ public class LogIn extends AppCompatActivity {
         EnterBut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                postData(UserMail.getText().toString(), UserPass.getText().toString());
+                //postData(UserMail.getText().toString(), UserPass.getText().toString());
             }
         });
     }
 
-    public void postData(String mail, String pass){
+    /*public void postData(String mail, String pass){
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
         StringRequest stringRequest = new StringRequest(Request.Method.POST, "https://serveritcollabhub.development-team.ru/", new Response.Listener<String>() {
             @Override
@@ -87,7 +87,9 @@ public class LogIn extends AppCompatActivity {
             }
         };
         requestQueue.add(stringRequest);
-    }
+    }*/
+
+
 
     public void change(String res){
         Toast toast = Toast.makeText(this, res, Toast.LENGTH_LONG);
