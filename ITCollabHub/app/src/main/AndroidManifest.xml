@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -15,19 +16,13 @@
         android:theme="@style/Theme.ITCollabHub"
         tools:targetApi="31">
         <activity
+            android:name=".CreateAccount"
+            android:exported="false" />
+        <activity
             android:name=".ConfirmForgotPassword"
             android:exported="false" />
         <activity
-            android:name=".ActivityRetrofit"
-            android:exported="false" />
-        <activity
-            android:name=".log_in"
-            android:exported="false" />
-        <activity
             android:name=".Forgot"
-            android:exported="false" />
-        <activity
-            android:name=".confirm_forgot_pass"
             android:exported="false" />
         <activity
             android:name=".LogIn"

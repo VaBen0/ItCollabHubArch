@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -32,6 +33,14 @@ public class ConfirmForgotPassword extends AppCompatActivity {
         Button conf = findViewById(R.id.confirmBut);
         EditText User_code = findViewById(R.id.code);
         TextView Or_Enter = findViewById(R.id.enterBut);
+        TextView col = findViewById(R.id.collaborotory);
+        TextView it = findViewById(R.id.it);
+        TextView hub = findViewById(R.id.hub);
+
+        Typeface face=Typeface.createFromAsset(getAssets(),"font/ArchitectsDaughter-Regular.ttf");
+        it.setTypeface(face);
+        hub.setTypeface(face);
+        col.setTypeface(face);
 
         Or_Enter.setOnClickListener(new View.OnClickListener() {
             @Override

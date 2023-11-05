@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -37,6 +38,14 @@ public class LogIn extends AppCompatActivity {
         TextView RegBut = findViewById(R.id.regBut);
         TextView ForgotBut = findViewById(R.id.forgotBut);
         Button EnterBut = findViewById(R.id.enterBut);
+        TextView col = findViewById(R.id.collaborotory);
+        TextView it = findViewById(R.id.it);
+        TextView hub = findViewById(R.id.hub);
+
+        Typeface face=Typeface.createFromAsset(getAssets(),"font/ArchitectsDaughter-Regular.ttf");
+        it.setTypeface(face);
+        hub.setTypeface(face);
+        col.setTypeface(face);
 
         RegBut.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,44 +73,43 @@ public class LogIn extends AppCompatActivity {
                     UserPass.setHint("Введите пароль");
                 }
                 else{
-                    postData(UserMail.getText().toString(), UserPass.getText().toString());
+                    PostDatas post = new PostDatas();
+                    post.postDataLogIn("UserLogIn", UserMail.getText().toString(), UserPass.getText().toString());
+                    String res = post.res;
+                    UserMail.setText(res);
+                    /*SharedPreferences sPref = getSharedPreferences("MyPref", MODE_PRIVATE);
+                    String savedText = sPref.getString("UserChange", "");
+                    Intent intent = new Intent(LogIn.this, MainActivity2.class);
+                    if(savedText.equals("true")){
+                        startActivity(intent);
+                    }*/
+
+                    //Toast.makeText(LogIn.this, res, Toast.LENGTH_SHORT).show();
+
+                    /*if(res.equals("Успешный вход")){
+                        SharedPreferences sPref = getSharedPreferences("MyPref", MODE_PRIVATE);
+                        SharedPreferences.Editor ed = sPref.edit();
+                        ed.putString("UserReg", "true");
+                        //ed.putString("UserName", post.getName());
+                        ed.apply();
+
+                        Intent intent = new Intent(LogIn.this, MainActivity2.class);
+                        startActivity(intent);
+                    }*/
                 }
             }
         });
     }
+    public void change(){
+        //Toast.makeText(LogIn.this, res, Toast.LENGTH_SHORT).show();
 
-    public void postData(String mail, String pass) {
-        Methods methods = RetrofitClient.getRetrofitInstance().create(Methods.class);
-        Call<Model> call = methods.login("UserLogIn", mail, pass);
-
-        call.enqueue(new Callback<Model>() {
-            @Override
-            public void onResponse(Call<Model> call, Response<Model> response) {
-                if(response.body().getReturn().equals("Успешный вход")) {
-                    changeToReg(response.body().getReturn(), response.body().getName());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Model> call, Throwable t) {
-                Toast.makeText(LogIn.this, "Error Occurred", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-
-
-    public void changeToReg(String res, String name){
-        Toast toast = Toast.makeText(this, res, Toast.LENGTH_LONG);
-        toast.show();
-
-        SharedPreferences sPref = getSharedPreferences("MyPref", MODE_PRIVATE);
+        /*SharedPreferences sPref = getSharedPreferences("MyPref", MODE_PRIVATE);
         SharedPreferences.Editor ed = sPref.edit();
         ed.putString("UserReg", "true");
         ed.putString("UserName", name);
-        ed.apply();
+        ed.apply();*/
 
-        Intent intent = new Intent(LogIn.this, MainActivity2.class);
-        startActivity(intent);
+        //Intent intent = new Intent(LogIn.this, MainActivity2.class);
+        //startActivity(intent);
     }
 }

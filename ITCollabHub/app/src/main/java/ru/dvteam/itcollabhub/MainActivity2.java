@@ -16,7 +16,7 @@ public class MainActivity2 extends AppCompatActivity {
         setContentView(R.layout.activity_main2);
         SharedPreferences sPref = getSharedPreferences("MyPref", MODE_PRIVATE);
         String savedText = sPref.getString("UserName", "");
-        TextView txt = findViewById(R.id.collaborotory);
-        txt.setText("Добрый вечер, " + savedText + "!");
+        //TextView txt = findViewById(R.id.collaborotory);
+        //txt.setText("Добрый вечер, " + savedText + "!");
     }
 }

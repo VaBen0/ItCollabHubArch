@@ -4,10 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import retrofit2.Call;
@@ -26,6 +28,14 @@ public class Register extends AppCompatActivity {
         EditText user_pass = findViewById(R.id.passu);
         EditText user_second_pass = findViewById(R.id.passuagain);
         EditText user_mail = findViewById(R.id.mailu);
+        TextView col = findViewById(R.id.collaborotory);
+        TextView it = findViewById(R.id.it);
+        TextView hub = findViewById(R.id.hub);
+
+        Typeface face=Typeface.createFromAsset(getAssets(),"font/ArchitectsDaughter-Regular.ttf");
+        it.setTypeface(face);
+        hub.setTypeface(face);
+        col.setTypeface(face);
 
         Button conf = findViewById(R.id.Reg);
 
@@ -43,7 +53,10 @@ public class Register extends AppCompatActivity {
                 }
                 else{
                     if(user_pass.getText().toString().equals(user_second_pass.getText().toString())) {
-                        postData(user_mail.getText().toString());
+                        PostDatas post = new PostDatas();
+                        post.postDataPostCodeMail("PostToNewUserCode" ,user_mail.getText().toString());
+                        String res = post.res;
+                        user_name.setText(res);
                     }
                     else{
                         user_second_pass.setHint("Пароли не совпадают");
@@ -56,7 +69,7 @@ public class Register extends AppCompatActivity {
 
     }
 
-    public void postData(String mail){
+    /*public void postData(String mail){
         Methods methods = RetrofitClient.getRetrofitInstance().create(Methods.class);
         Call<Model> call = methods.postCodeMail("PostToNewUserCode", mail);
 
@@ -90,5 +103,5 @@ public class Register extends AppCompatActivity {
         intent.putExtra("pass", user_pass.getText().toString());
         intent.putExtra("mail", user_mail.getText().toString());
         startActivity(intent);
-    }
+    }*/
 }
