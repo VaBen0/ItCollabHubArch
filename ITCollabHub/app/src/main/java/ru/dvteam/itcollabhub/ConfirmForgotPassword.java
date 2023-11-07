@@ -24,48 +24,53 @@ public class ConfirmForgotPassword extends AppCompatActivity {
         setContentView(R.layout.activity_confirm_forgot_password);
         Bundle arguments = getIntent().getExtras();
 
-        String mail = "";
+        if(arguments!=null) {
+            String mail = arguments.getString("mail");
 
-        if(arguments!=null){
-            mail = arguments.getString("mail");
+
+            Button conf = findViewById(R.id.confirmBut);
+            EditText User_code = findViewById(R.id.code);
+            TextView Or_Enter = findViewById(R.id.enterBut);
+            TextView col = findViewById(R.id.collaborotory);
+            TextView it = findViewById(R.id.it);
+            TextView hub = findViewById(R.id.hub);
+
+            Typeface face = Typeface.createFromAsset(getAssets(), "font/ArchitectsDaughter-Regular.ttf");
+            it.setTypeface(face);
+            hub.setTypeface(face);
+            col.setTypeface(face);
+
+            Or_Enter.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(ConfirmForgotPassword.this, LogIn.class);
+                    startActivity(intent);
+                }
+            });
+
+            conf.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (User_code.getText().toString().equals("")) {
+                        User_code.setHint("Введите ваш логин");
+                    } else {
+                        PostDatas post = new PostDatas();
+                        post.postDataConfirm("UserLogInMai2l", mail, User_code.getText().toString(), new CallBackInt() {
+                            @Override
+                            public void invoke(String res) {
+                                Toast.makeText(ConfirmForgotPassword.this, res, Toast.LENGTH_SHORT).show();
+
+                                Intent intent = new Intent(ConfirmForgotPassword.this, LogIn.class);
+                                startActivity(intent);
+                            }
+                        });
+                    }
+                }
+            });
         }
-
-        Button conf = findViewById(R.id.confirmBut);
-        EditText User_code = findViewById(R.id.code);
-        TextView Or_Enter = findViewById(R.id.enterBut);
-        TextView col = findViewById(R.id.collaborotory);
-        TextView it = findViewById(R.id.it);
-        TextView hub = findViewById(R.id.hub);
-
-        Typeface face=Typeface.createFromAsset(getAssets(),"font/ArchitectsDaughter-Regular.ttf");
-        it.setTypeface(face);
-        hub.setTypeface(face);
-        col.setTypeface(face);
-
-        Or_Enter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ConfirmForgotPassword.this, LogIn.class);
-                startActivity(intent);
-            }
-        });
-
-        String finalMail = mail;
-
-        conf.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(User_code.getText().toString().equals("")){
-                    User_code.setHint("Введите ваш логин");
-                }
-                else {
-                    postData(finalMail, User_code.getText().toString());
-                }
-            }
-        });
     }
 
-    public void postData(String mail, String code){
+    /*public void postData(String mail, String code){
         Methods methods = RetrofitClient.getRetrofitInstance().create(Methods.class);
         Call<Model> call = methods.confirm("UserLogInMai2l", mail, code);
 
@@ -93,5 +98,5 @@ public class ConfirmForgotPassword extends AppCompatActivity {
 
         Intent intent = new Intent(ConfirmForgotPassword.this, LogIn.class);
         startActivity(intent);
-    }
+    }*/
 }

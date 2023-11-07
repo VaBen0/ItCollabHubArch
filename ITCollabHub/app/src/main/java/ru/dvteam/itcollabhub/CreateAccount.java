@@ -21,6 +21,7 @@ import android.widget.Toast;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Objects;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -73,18 +74,25 @@ public class CreateAccount extends AppCompatActivity {
             btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    postData(selectedImage);
+                    EditText UserName = findViewById(R.id.nameu);
+                    File file = new File(getRealPathFromURI(selectedImage));
+
+                    RequestBody requestFile = RequestBody.create(MediaType.parse(getContentResolver().getType(selectedImage)), file);
+                    PostDatas post = new PostDatas();
+                    post.postDataCreateAccount(UserName.getText().toString(), requestFile, new CallBackInt() {
+                        @Override
+                        public void invoke(String res) {
+                            Toast.makeText(CreateAccount.this, res, Toast.LENGTH_SHORT).show();
+                        }
+                    });
                 }
             });
 
         }
     }
 
-    public void postData(Uri selectedImage){
-        EditText UserName = findViewById(R.id.nameu);
-        File file = new File(getRealPathFromURI(selectedImage));
+    /*public void postData(Uri selectedImage){
 
-        RequestBody requestFile = RequestBody.create(MediaType.parse(getContentResolver().getType(selectedImage)), file);
         RequestBody requestName = RequestBody.create(MediaType.parse("text/plain"), UserName.getText().toString());
 
         Methods methods = RetrofitClient.getRetrofitInstance().create(Methods.class);
@@ -115,6 +123,7 @@ public class CreateAccount extends AppCompatActivity {
                 else{
                     Toast.makeText(CreateAccount.this, response.body().getReturn(), Toast.LENGTH_SHORT).show();
                 }
+
             }
 
             @Override
@@ -136,7 +145,7 @@ public class CreateAccount extends AppCompatActivity {
 
         Intent intent = new Intent(CreateAccount.this, MainActivity2.class);
         startActivity(intent);
-    }
+    }*/
 
     private String getRealPathFromURI(Uri contentUri) {
         String[] proj = {MediaStore.Images.Media.DATA};

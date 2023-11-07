@@ -74,28 +74,19 @@ public class LogIn extends AppCompatActivity {
                 }
                 else{
                     PostDatas post = new PostDatas();
-                    post.postDataLogIn("UserLogIn", UserMail.getText().toString(), UserPass.getText().toString());
-                    String res = post.res;
-                    UserMail.setText(res);
-                    /*SharedPreferences sPref = getSharedPreferences("MyPref", MODE_PRIVATE);
-                    String savedText = sPref.getString("UserChange", "");
-                    Intent intent = new Intent(LogIn.this, MainActivity2.class);
-                    if(savedText.equals("true")){
-                        startActivity(intent);
-                    }*/
+                    post.postDataLogIn("UserLogIn", UserMail.getText().toString(), UserPass.getText().toString(), new CallBackInt(){
+                        @Override
+                        public void invoke(String result){
+                            SharedPreferences sPref = getSharedPreferences("MyPref", MODE_PRIVATE);
+                            SharedPreferences.Editor ed = sPref.edit();
+                            ed.putString("UserReg", "true");
+                            ed.putString("UserName", result);
+                            ed.apply();
 
-                    //Toast.makeText(LogIn.this, res, Toast.LENGTH_SHORT).show();
-
-                    /*if(res.equals("Успешный вход")){
-                        SharedPreferences sPref = getSharedPreferences("MyPref", MODE_PRIVATE);
-                        SharedPreferences.Editor ed = sPref.edit();
-                        ed.putString("UserReg", "true");
-                        //ed.putString("UserName", post.getName());
-                        ed.apply();
-
-                        Intent intent = new Intent(LogIn.this, MainActivity2.class);
-                        startActivity(intent);
-                    }*/
+                            Intent intent = new Intent(LogIn.this, MainActivity2.class);
+                            startActivity(intent);
+                        }
+                    });
                 }
             }
         });

@@ -62,13 +62,23 @@ public class Forgot extends AppCompatActivity {
                     User_mail.setHint("Введите ваш логин");
                 }
                 else{
-                    postData(User_mail.getText().toString());
+                    PostDatas post = new PostDatas();
+                    post.postDataPostCodeMail("UserLogInMail", User_mail.getText().toString(), new CallBackInt() {
+                        @Override
+                        public void invoke(String res) {
+                            Toast.makeText(Forgot.this, res, Toast.LENGTH_SHORT).show();
+
+                            Intent intent = new Intent(Forgot.this, ConfirmForgotPassword.class);
+                            intent.putExtra("mail", User_mail.getText().toString());
+                            startActivity(intent);
+                        }
+                    });
                 }
             }
         });
     }
 
-    public void postData(String mail){
+    /*public void postData(String mail){
         Methods methods = RetrofitClient.getRetrofitInstance().create(Methods.class);
         Call<Model> call = methods.postCodeMail("UserLogInMail", mail);
 
@@ -97,5 +107,5 @@ public class Forgot extends AppCompatActivity {
         Intent intent = new Intent(Forgot.this, ConfirmForgotPassword.class);
         intent.putExtra("mail", mail);
         startActivity(intent);
-    }
+    }*/
 }

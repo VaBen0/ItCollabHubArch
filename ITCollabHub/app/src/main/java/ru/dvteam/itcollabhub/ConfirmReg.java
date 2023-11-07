@@ -59,14 +59,34 @@ public class ConfirmReg extends AppCompatActivity {
                     if (User_code.getText().toString().equals("")) {
                         User_code.setHint("Введите ваш логин");
                     } else {
-                        postData(mail, User_code.getText().toString(), pass, name);
+                        PostDatas post = new PostDatas();
+                        post.postDataConfirm("CheckerCode", mail, User_code.getText().toString(), new CallBackInt() {
+                            @Override
+                            public void invoke(String res) {
+                                post.postDataRegUser("RegNewUser", mail, pass, name, new CallBackInt() {
+                                    @Override
+                                    public void invoke(String res1) {
+                                        Toast.makeText(ConfirmReg.this, res1, Toast.LENGTH_SHORT).show();
+
+                                        SharedPreferences sPref = getSharedPreferences("MyPref", MODE_PRIVATE);
+                                        SharedPreferences.Editor ed = sPref.edit();
+                                        ed.putString("UserReg", "true");
+                                        ed.putString("UserName", name);
+                                        ed.apply();
+
+                                        Intent intent = new Intent(ConfirmReg.this, MainActivity2.class);
+                                        startActivity(intent);
+                                    }
+                                });
+                            }
+                        });
                     }
                 }
             });
         }
     }
 
-    public void postData(String mail, String code, String pass, String name){
+    /*public void postData(String mail, String code, String pass, String name){
         Methods methods = RetrofitClient.getRetrofitInstance().create(Methods.class);
         Call<Model> call = methods.confirm("CheckerCode", mail, code);
 
@@ -128,5 +148,5 @@ public class ConfirmReg extends AppCompatActivity {
             Intent intent = new Intent(ConfirmReg.this, MainActivity2.class);
             startActivity(intent);
         }
-    }
+    }*/
 }

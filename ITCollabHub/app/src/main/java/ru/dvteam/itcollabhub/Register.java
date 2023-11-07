@@ -54,9 +54,19 @@ public class Register extends AppCompatActivity {
                 else{
                     if(user_pass.getText().toString().equals(user_second_pass.getText().toString())) {
                         PostDatas post = new PostDatas();
-                        post.postDataPostCodeMail("PostToNewUserCode" ,user_mail.getText().toString());
-                        String res = post.res;
-                        user_name.setText(res);
+                        post.postDataPostCodeMail("PostToNewUserCode", user_mail.getText().toString(), new CallBackInt() {
+                            @Override
+                            public void invoke(String res) {
+                                Toast.makeText(Register.this, res, Toast.LENGTH_SHORT).show();
+
+                                Intent intent = new Intent(Register.this, ConfirmReg.class);
+                                intent.putExtra("name", user_name.getText().toString());
+                                intent.putExtra("pass", user_pass.getText().toString());
+                                intent.putExtra("mail", user_mail.getText().toString());
+                                startActivity(intent);
+                            }
+                        });
+
                     }
                     else{
                         user_second_pass.setHint("Пароли не совпадают");
