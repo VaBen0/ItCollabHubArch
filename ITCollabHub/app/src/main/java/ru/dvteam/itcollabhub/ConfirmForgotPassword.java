@@ -59,9 +59,10 @@ public class ConfirmForgotPassword extends AppCompatActivity {
                             @Override
                             public void invoke(String res) {
                                 Toast.makeText(ConfirmForgotPassword.this, res, Toast.LENGTH_SHORT).show();
-
-                                Intent intent = new Intent(ConfirmForgotPassword.this, LogIn.class);
-                                startActivity(intent);
+                                if(res.equals("Проверка почты прошла успешно")) {
+                                    Intent intent = new Intent(ConfirmForgotPassword.this, LogIn.class);
+                                    startActivity(intent);
+                                }
                             }
                         });
                     }

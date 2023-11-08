@@ -22,21 +22,19 @@ import retrofit2.Response;
 
 public class PostDatas {
 
-    public void postDataLogIn(String req, String mail, String pass, CallBackInt result){
+    public void postDataLogIn(String req, String mail, String pass, CallBackInt1 result){
         Methods methods = RetrofitClient.getRetrofitInstance().create(Methods.class);
         Call<Model> call = methods.login(req, mail, pass);
 
         call.enqueue(new Callback<Model>() {
             @Override
             public void onResponse(Call<Model> call, Response<Model> response) {
-                if(response.body().getReturn().equals("Успешный вход")){
-                    result.invoke(response.body().getName());
-                }
+                result.invoke(response.body().getReturn(), response.body().getName());
             }
 
             @Override
             public void onFailure(Call<Model> call, Throwable t) {
-                result.invoke("Ошибка сервера");
+                result.invoke("Ошибка сервера", "");
             }
         });
     }
@@ -47,9 +45,7 @@ public class PostDatas {
         call.enqueue(new Callback<Model>() {
             @Override
             public void onResponse(Call<Model> call, retrofit2.Response<Model> response) {
-                if (response.body().getReturn().equals("Проверка почты прошла успешно")){
-                    result.invoke(response.body().getReturn());
-                }
+                result.invoke(response.body().getReturn());
             }
 
             @Override
@@ -65,9 +61,7 @@ public class PostDatas {
         call.enqueue(new Callback<Model>() {
             @Override
             public void onResponse(Call<Model> call, retrofit2.Response<Model> response) {
-                if (response.body().getReturn().equals("Успешная регистрация")){
-                    result.invoke(response.body().getReturn());
-                }
+                result.invoke(response.body().getReturn());
             }
 
             @Override
@@ -83,9 +77,7 @@ public class PostDatas {
         call.enqueue(new Callback<Model>() {
             @Override
             public void onResponse(Call<Model> call, retrofit2.Response<Model> response) {
-                if (response.body().getReturn().equals("Код отправлен")){
-                    result.invoke(response.body().getReturn());
-                }
+                result.invoke(response.body().getReturn());
             }
 
             @Override
@@ -109,6 +101,23 @@ public class PostDatas {
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
 
+            }
+        });
+    }
+
+    public void postDataGetUserData(String mail, CallBackInt2 result){
+        Methods methods = RetrofitClient.getRetrofitInstance().create(Methods.class);
+        Call<Model> call = methods.getUserInformation("GetUserInformation", mail);
+
+        call.enqueue(new Callback<Model>() {
+            @Override
+            public void onResponse(Call<Model> call, retrofit2.Response<Model> response) {
+                result.invoke(response.body().getName(), response.body().getTopScore(), response.body().getTopStatus());
+            }
+
+            @Override
+            public void onFailure(Call<Model> call, Throwable t) {
+                result.invoke("", "", "");
             }
         });
     }

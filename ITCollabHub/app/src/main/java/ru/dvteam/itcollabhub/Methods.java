@@ -22,6 +22,10 @@ public interface Methods {
 
     @FormUrlEncoded
     @POST("/")
+    Call<Model> getUserInformation(@Field("Request")String req, @Field("UserMail")String mail);
+
+    @FormUrlEncoded
+    @POST("/")
     Call<Model> confirm(@Field("Request")String req, @Field("UserMail")String mail, @Field("UserCode")String code);
 
     @FormUrlEncoded

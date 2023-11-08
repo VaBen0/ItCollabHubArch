@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
                     intent = new Intent(MainActivity.this, MainActivity2.class);
                 }
                 else {
-                    intent = new Intent(MainActivity.this, CreateAccount.class);
+                    intent = new Intent(MainActivity.this, LogIn.class);
                 }
 
                 startActivity(intent);

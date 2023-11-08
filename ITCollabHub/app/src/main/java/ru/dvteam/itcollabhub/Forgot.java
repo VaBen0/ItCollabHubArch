@@ -68,9 +68,11 @@ public class Forgot extends AppCompatActivity {
                         public void invoke(String res) {
                             Toast.makeText(Forgot.this, res, Toast.LENGTH_SHORT).show();
 
-                            Intent intent = new Intent(Forgot.this, ConfirmForgotPassword.class);
-                            intent.putExtra("mail", User_mail.getText().toString());
-                            startActivity(intent);
+                            if(res.equals("Код отправлен")) {
+                                Intent intent = new Intent(Forgot.this, ConfirmForgotPassword.class);
+                                intent.putExtra("mail", User_mail.getText().toString());
+                                startActivity(intent);
+                            }
                         }
                     });
                 }

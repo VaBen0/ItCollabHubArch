@@ -42,14 +42,14 @@ public class Register extends AppCompatActivity {
         conf.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(user_mail.getText().toString().equals("")){
+                if(user_name.getText().toString().equals("")){
+                    user_name.setHint("Введите ваше имя");
+                }
+                else if(user_mail.getText().toString().equals("")){
                     user_mail.setHint("Введите вашу почту");
                 }
                 else if(user_pass.getText().toString().equals("")){
                     user_pass.setHint("Введите пароль");
-                }
-                else if(user_name.getText().toString().equals("")){
-                    user_name.setHint("Введите ваше имя");
                 }
                 else{
                     if(user_pass.getText().toString().equals(user_second_pass.getText().toString())) {
@@ -59,11 +59,13 @@ public class Register extends AppCompatActivity {
                             public void invoke(String res) {
                                 Toast.makeText(Register.this, res, Toast.LENGTH_SHORT).show();
 
-                                Intent intent = new Intent(Register.this, ConfirmReg.class);
-                                intent.putExtra("name", user_name.getText().toString());
-                                intent.putExtra("pass", user_pass.getText().toString());
-                                intent.putExtra("mail", user_mail.getText().toString());
-                                startActivity(intent);
+                                if(res.equals("Код отправлен")) {
+                                    Intent intent = new Intent(Register.this, ConfirmReg.class);
+                                    intent.putExtra("name", user_name.getText().toString());
+                                    intent.putExtra("pass", user_pass.getText().toString());
+                                    intent.putExtra("mail", user_mail.getText().toString());
+                                    startActivity(intent);
+                                }
                             }
                         });
 

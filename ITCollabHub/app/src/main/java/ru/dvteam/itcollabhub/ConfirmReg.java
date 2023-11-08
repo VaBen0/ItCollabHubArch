@@ -63,21 +63,28 @@ public class ConfirmReg extends AppCompatActivity {
                         post.postDataConfirm("CheckerCode", mail, User_code.getText().toString(), new CallBackInt() {
                             @Override
                             public void invoke(String res) {
-                                post.postDataRegUser("RegNewUser", mail, pass, name, new CallBackInt() {
-                                    @Override
-                                    public void invoke(String res1) {
-                                        Toast.makeText(ConfirmReg.this, res1, Toast.LENGTH_SHORT).show();
+                                if(res.equals("Проверка почты прошла успешно")) {
+                                    post.postDataRegUser("RegNewUser", mail, pass, name, new CallBackInt() {
+                                        @Override
+                                        public void invoke(String res1) {
+                                            Toast.makeText(ConfirmReg.this, res1, Toast.LENGTH_SHORT).show();
+                                            if (res1.equals("Успешная регистрация")) {
+                                                SharedPreferences sPref = getSharedPreferences("MyPref", MODE_PRIVATE);
+                                                SharedPreferences.Editor ed = sPref.edit();
+                                                ed.putString("UserReg", "true");
+                                                ed.putString("UserName", name);
+                                                ed.putString("UserMail", mail);
+                                                ed.apply();
 
-                                        SharedPreferences sPref = getSharedPreferences("MyPref", MODE_PRIVATE);
-                                        SharedPreferences.Editor ed = sPref.edit();
-                                        ed.putString("UserReg", "true");
-                                        ed.putString("UserName", name);
-                                        ed.apply();
-
-                                        Intent intent = new Intent(ConfirmReg.this, MainActivity2.class);
-                                        startActivity(intent);
-                                    }
-                                });
+                                                Intent intent = new Intent(ConfirmReg.this, MainActivity2.class);
+                                                startActivity(intent);
+                                            }
+                                        }
+                                    });
+                                }
+                                else{
+                                    Toast.makeText(ConfirmReg.this, res, Toast.LENGTH_SHORT).show();
+                                }
                             }
                         });
                     }

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
@@ -30,6 +31,7 @@ public class LogIn extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
 
@@ -74,17 +76,22 @@ public class LogIn extends AppCompatActivity {
                 }
                 else{
                     PostDatas post = new PostDatas();
-                    post.postDataLogIn("UserLogIn", UserMail.getText().toString(), UserPass.getText().toString(), new CallBackInt(){
+                    post.postDataLogIn("UserLogIn", UserMail.getText().toString(), UserPass.getText().toString(), new CallBackInt1(){
                         @Override
-                        public void invoke(String result){
-                            SharedPreferences sPref = getSharedPreferences("MyPref", MODE_PRIVATE);
-                            SharedPreferences.Editor ed = sPref.edit();
-                            ed.putString("UserReg", "true");
-                            ed.putString("UserName", result);
-                            ed.apply();
+                        public void invoke(String result, String name){
+                            Toast.makeText(LogIn.this, result, Toast.LENGTH_SHORT).show();
 
-                            Intent intent = new Intent(LogIn.this, MainActivity2.class);
-                            startActivity(intent);
+                            if(result.equals("Успешный вход")) {
+                                SharedPreferences sPref = getSharedPreferences("MyPref", MODE_PRIVATE);
+                                SharedPreferences.Editor ed = sPref.edit();
+                                ed.putString("UserReg", "true");
+                                ed.putString("UserName", result);
+                                ed.putString("UserMail", UserMail.getText().toString());
+                                ed.apply();
+
+                                Intent intent = new Intent(LogIn.this, MainActivity2.class);
+                                startActivity(intent);
+                            }
                         }
                     });
                 }
