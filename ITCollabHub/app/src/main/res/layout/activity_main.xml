@@ -73,7 +73,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Collab"
-            android:textColor="#00C6A2"
+            android:textColor="@color/main_green"
             android:textSize="33sp" />
 
         <TextView
@@ -114,7 +114,7 @@
         android:layout_height="70dp"
         android:layout_marginTop="25dp"
         android:text="Продолжить"
-        android:backgroundTint="#00C6A2"
+        android:backgroundTint="@color/main_green"
         app:layout_constraintTop_toBottomOf="@+id/sill"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>

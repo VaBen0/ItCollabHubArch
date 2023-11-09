@@ -4,11 +4,14 @@ import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+
+import com.bumptech.glide.Glide;
 
 public class MainActivity2 extends AppCompatActivity {
     private NavController navController;
@@ -28,15 +31,19 @@ public class MainActivity2 extends AppCompatActivity {
         TextView rating = findViewById(R.id.rating);
         TextView UserName = findViewById(R.id.nameu);
         TextView UserScore = findViewById(R.id.score);
-
+        ImageView loadedImg = findViewById(R.id.loadImg);
         UserName.setText(name);
 
         PostDatas post = new PostDatas();
         post.postDataGetUserData(mail, new CallBackInt2() {
             @Override
-            public void invoke(String name, String topScore, String topStatus) {
+            public void invoke(String name, String urlImage, String topScore, String topStatus) {
                 UserName.setText(name);
                 UserScore.setText(topScore);
+                Glide
+                        .with(MainActivity2.this)
+                        .load("https://serveritcollabhub.development-team.ru/file_uploads/Images/lol.png")
+                        .into(loadedImg);
             }
         });
 

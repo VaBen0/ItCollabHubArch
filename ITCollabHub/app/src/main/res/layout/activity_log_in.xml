@@ -29,7 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Collab"
-            android:textColor="#00C6A2"
+            android:textColor="@color/main_green"
             android:textSize="50sp" />
 
         <TextView
@@ -104,7 +104,7 @@
         android:layout_width="316dp"
         android:layout_height="62dp"
         android:layout_marginBottom="48dp"
-        android:backgroundTint="#00C6A2"
+        android:backgroundTint="@color/main_green"
         android:text="Войти в аккаунт"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"

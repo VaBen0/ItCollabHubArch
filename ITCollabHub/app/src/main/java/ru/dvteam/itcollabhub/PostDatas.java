@@ -112,12 +112,12 @@ public class PostDatas {
         call.enqueue(new Callback<Model>() {
             @Override
             public void onResponse(Call<Model> call, retrofit2.Response<Model> response) {
-                result.invoke(response.body().getName(), response.body().getTopScore(), response.body().getTopStatus());
+                result.invoke(response.body().getName(), response.body().getUrlImg(), response.body().getTopScore(), response.body().getTopStatus());
             }
 
             @Override
             public void onFailure(Call<Model> call, Throwable t) {
-                result.invoke("", "", "");
+                result.invoke("","", "", "");
             }
         });
     }
