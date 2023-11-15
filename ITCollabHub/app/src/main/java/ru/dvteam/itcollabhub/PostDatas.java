@@ -87,11 +87,13 @@ public class PostDatas {
         });
     }
 
-    public void postDataCreateAccount(String name, RequestBody requestFile, CallBackInt result){
+    public void postDataCreateAccount(String name, RequestBody requestFile, String mail, CallBackInt result){
         RequestBody requestName = RequestBody.create(MediaType.parse("text/plain"), name);
+        RequestBody requestMail = RequestBody.create(MediaType.parse("text/plain"), mail);
+        RequestBody requestReq = RequestBody.create(MediaType.parse("text/plain"), "CreateNameLog");
 
         Methods methods = RetrofitClient.getRetrofitInstance().create(Methods.class);
-        Call<ResponseBody> call = methods.uploadImage(requestFile, requestName);
+        Call<ResponseBody> call = methods.uploadImage(requestFile, requestName, requestReq, requestMail);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, retrofit2.Response<ResponseBody> response) {
@@ -117,7 +119,7 @@ public class PostDatas {
 
             @Override
             public void onFailure(Call<Model> call, Throwable t) {
-                result.invoke("","", "", "");
+                result.invoke("","", 0, "");
             }
         });
     }

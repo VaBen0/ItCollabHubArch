@@ -36,8 +36,7 @@ public interface Methods {
     @POST("/")
     Call<Model> changeName(@Field("Request")String req, @Field("UserName")String name);
 
-
     @Multipart
-    @POST("/file_uploads/")
-    Call<ResponseBody> uploadImage(@Part("image\"; filename=\"myfile.jpg\" ") RequestBody file, @Part("UserName") RequestBody name);
+    @POST("/")
+    Call<ResponseBody> uploadImage(@Part("image\"; filename=\"myfile.jpg\" ") RequestBody file, @Part("UserName") RequestBody name, @Part("Request") RequestBody req, @Part("UserMail") RequestBody mail);
 }

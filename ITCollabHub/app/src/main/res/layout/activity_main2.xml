@@ -7,21 +7,46 @@
     tools:context=".MainActivity2">
 
     <ImageView
-        android:id="@+id/imageView2"
-        android:layout_marginTop="28dp"
-        android:layout_width="168dp"
-        android:layout_height="168dp"
+        android:id="@+id/bguser"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/gradient_blue"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toTopOf="@id/linearLayout2"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_default="spread"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/circle" />
+        app:layout_constraintWidth_default="spread" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:textSize="30sp"
+        android:text="←"
+        android:textColor="@color/white"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Профиль"
+        android:textSize="28sp"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/log"
-        android:layout_width="157dp"
-        android:layout_height="157dp"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
         android:layout_gravity="center"
-        android:layout_marginTop="34dp"
+        android:layout_marginTop="87dp"
         app:cardCornerRadius="200dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -37,14 +62,23 @@
 
     </androidx.cardview.widget.CardView>
 
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="82dp"
+        android:background="@drawable/circle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/nameu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
+        android:layout_marginTop="6dp"
         android:gravity="center"
         android:text="Имя пользователя"
-        android:textSize="26sp"
+        android:textSize="23sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/log" />
@@ -53,9 +87,11 @@
         android:id="@+id/score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
         android:gravity="center|top"
-        android:text="0 itStars"
-        android:textSize="17sp"
+        android:textColor="#0000FF"
+        android:text="Ваши очки: 0"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nameu" />
@@ -63,75 +99,98 @@
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
-        android:layout_height="86dp"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/round_intarface"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/score">
 
-        <TextView
-            android:id="@+id/projects"
-            android:layout_width="50dp"
-            android:layout_height="39dp"
-            android:layout_gravity="top"
-            android:layout_marginTop="15dp"
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:clickable="true"
-            android:gravity="center"
-            android:text="Мои проекты"
-            android:textColor="#000000"
-            android:textSize="17sp"
-            tools:ignore="TouchTargetSizeCheck" />
+            android:orientation="vertical">
 
-        <View
-            android:layout_width="3dp"
-            android:layout_height="36dp"
-            android:layout_gravity="center|top"
-            android:layout_marginTop="21dp"
-            android:background="#00BFFF" />
+            <TextView
+                android:id="@+id/projects"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:clickable="true"
+                android:gravity="center"
+                android:text="Мои проекты"
+                android:textSize="16sp"
+                tools:ignore="TouchTargetSizeCheck" />
 
-        <TextView
-            android:id="@+id/rating"
-            android:layout_width="20dp"
-            android:layout_height="42dp"
-            android:layout_gravity="top"
-            android:layout_marginTop="15dp"
+            <View
+                android:id="@+id/linear_projects"
+                android:layout_width="85dp"
+                android:layout_height="3dp"
+                android:layout_gravity="center" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:clickable="true"
-            android:gravity="center"
-            android:text="Рейтинг"
-            android:textColor="#000000"
-            android:textSize="17sp"
-            tools:ignore="TouchTargetSizeCheck" />
+            android:orientation="vertical">
 
-        <View
-            android:layout_width="3dp"
-            android:layout_height="36dp"
-            android:layout_gravity="center|top"
-            android:layout_marginTop="21dp"
-            android:background="#00BFFF" />
+            <TextView
+                android:id="@+id/rating"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:clickable="true"
+                android:gravity="center"
+                android:text="Рейтинг"
+                android:textSize="16sp"
+                tools:ignore="TouchTargetSizeCheck" />
 
-        <TextView
-            android:id="@+id/friends"
-            android:layout_width="50dp"
-            android:layout_height="48dp"
-            android:layout_gravity="top"
-            android:layout_marginTop="15dp"
+            <View
+                android:id="@+id/linear_rating"
+                android:layout_width="85dp"
+                android:layout_height="3dp"
+                android:layout_gravity="center" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:clickable="true"
-            android:gravity="center"
-            android:text="Друзья"
-            android:textColor="#000000"
-            android:textSize="17sp" />
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/friends"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:clickable="true"
+                android:gravity="center"
+                android:text="Друзья"
+                android:textSize="16sp"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <View
+                android:id="@+id/linear_friends"
+                android:layout_width="85dp"
+                android:layout_height="3dp"
+                android:layout_gravity="center" />
+
+        </LinearLayout>
     </LinearLayout>
 
-    <fragment
+    <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView"
         android:name="androidx.navigation.fragment.NavHostFragment"
-        android:layout_width="411dp"
-        android:layout_height="359dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_default="spread"
+        app:layout_constraintWidth_default="spread"
         app:defaultNavHost="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

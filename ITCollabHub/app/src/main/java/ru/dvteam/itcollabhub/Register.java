@@ -24,7 +24,6 @@ public class Register extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        EditText user_name = findViewById(R.id.nameu);
         EditText user_pass = findViewById(R.id.passu);
         EditText user_second_pass = findViewById(R.id.passuagain);
         EditText user_mail = findViewById(R.id.mailu);
@@ -42,10 +41,7 @@ public class Register extends AppCompatActivity {
         conf.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(user_name.getText().toString().equals("")){
-                    user_name.setHint("Введите ваше имя");
-                }
-                else if(user_mail.getText().toString().equals("")){
+                if(user_mail.getText().toString().equals("")){
                     user_mail.setHint("Введите вашу почту");
                 }
                 else if(user_pass.getText().toString().equals("")){
@@ -61,7 +57,6 @@ public class Register extends AppCompatActivity {
 
                                 if(res.equals("Код отправлен")) {
                                     Intent intent = new Intent(Register.this, ConfirmReg.class);
-                                    intent.putExtra("name", user_name.getText().toString());
                                     intent.putExtra("pass", user_pass.getText().toString());
                                     intent.putExtra("mail", user_mail.getText().toString());
                                     startActivity(intent);

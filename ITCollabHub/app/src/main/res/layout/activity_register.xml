@@ -52,12 +52,6 @@
         tools:layout_editor_absoluteX="0dp">
 
         <EditText
-            android:id="@+id/nameu"
-            android:layout_width="232dp"
-            android:layout_height="58dp"
-            android:hint="Имя пользователя" />
-
-        <EditText
             android:id="@+id/mailu"
             android:layout_width="232dp"
             android:layout_height="58dp"

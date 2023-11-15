@@ -35,7 +35,6 @@ public class ConfirmReg extends AppCompatActivity {
         Bundle arguments = getIntent().getExtras();
 
         if(arguments!=null) {
-            String name = arguments.getString("name");
             String mail = arguments.getString("mail");
             String pass = arguments.getString("pass");
 
@@ -64,7 +63,7 @@ public class ConfirmReg extends AppCompatActivity {
                             @Override
                             public void invoke(String res) {
                                 if(res.equals("Проверка почты прошла успешно")) {
-                                    post.postDataRegUser("RegNewUser", mail, pass, name, new CallBackInt() {
+                                    post.postDataRegUser("RegNewUser", mail, pass, "", new CallBackInt() {
                                         @Override
                                         public void invoke(String res1) {
                                             Toast.makeText(ConfirmReg.this, res1, Toast.LENGTH_SHORT).show();
@@ -72,11 +71,10 @@ public class ConfirmReg extends AppCompatActivity {
                                                 SharedPreferences sPref = getSharedPreferences("MyPref", MODE_PRIVATE);
                                                 SharedPreferences.Editor ed = sPref.edit();
                                                 ed.putString("UserReg", "true");
-                                                ed.putString("UserName", name);
                                                 ed.putString("UserMail", mail);
                                                 ed.apply();
 
-                                                Intent intent = new Intent(ConfirmReg.this, MainActivity2.class);
+                                                Intent intent = new Intent(ConfirmReg.this, CreateAccount.class);
                                                 startActivity(intent);
                                             }
                                         }
