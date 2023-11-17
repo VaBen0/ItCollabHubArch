@@ -63,10 +63,11 @@
     </androidx.cardview.widget.CardView>
 
     <ImageView
+        android:id="@+id/userCircle"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginTop="82dp"
-        android:background="@drawable/circle"
+        android:background="@drawable/circle_blue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

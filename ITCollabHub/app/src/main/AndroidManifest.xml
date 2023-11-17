@@ -14,7 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ITCollabHub"
-        tools:targetApi="31">
+        tools:targetApi="26">
         <activity
             android:name=".Test"
             android:exported="false" />

@@ -88,6 +88,7 @@ public class PostDatas {
     }
 
     public void postDataCreateAccount(String name, RequestBody requestFile, String mail, CallBackInt result){
+
         RequestBody requestName = RequestBody.create(MediaType.parse("text/plain"), name);
         RequestBody requestMail = RequestBody.create(MediaType.parse("text/plain"), mail);
         RequestBody requestReq = RequestBody.create(MediaType.parse("text/plain"), "CreateNameLog");
@@ -102,7 +103,7 @@ public class PostDatas {
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-
+                result.invoke("All bad");
             }
         });
     }
@@ -120,6 +121,23 @@ public class PostDatas {
             @Override
             public void onFailure(Call<Model> call, Throwable t) {
                 result.invoke("","", 0, "");
+            }
+        });
+    }
+
+    public void postDataCreateLog(String req, String mail, String name,String img, CallBackInt result){
+        Methods methods = RetrofitClient.getRetrofitInstance().create(Methods.class);
+        Call<Model> call = methods.uploadLog(req, mail, name, img);
+
+        call.enqueue(new Callback<Model>() {
+            @Override
+            public void onResponse(Call<Model> call, retrofit2.Response<Model> response) {
+                result.invoke(response.body().getReturn());
+            }
+
+            @Override
+            public void onFailure(Call<Model> call, Throwable t) {
+                result.invoke("Ошибка сервера");
             }
         });
     }

@@ -11,12 +11,18 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import ru.dvteam.itcollabhub.databinding.ActivityMainBinding;
+
 public class MainActivity extends AppCompatActivity {
+
+    ActivityMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
         super.onCreate(savedInstanceState);
+
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
 
         SharedPreferences sPref = getSharedPreferences("MyPref", MODE_PRIVATE);
         String savedText = sPref.getString("UserReg", "");
@@ -27,18 +33,14 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         }
         else {
-            setContentView(R.layout.activity_main);
-            Button btn = findViewById(R.id.nextBut);
-            TextView col = findViewById(R.id.collaborotory);
-            TextView it = findViewById(R.id.it);
-            TextView hub = findViewById(R.id.hub);
+            setContentView(binding.getRoot());
 
             Typeface face=Typeface.createFromAsset(getAssets(),"font/ArchitectsDaughter-Regular.ttf");
-            it.setTypeface(face);
-            hub.setTypeface(face);
-            col.setTypeface(face);
+            binding.collaborotory.setTypeface(face);
+            binding.it.setTypeface(face);
+            binding.hub.setTypeface(face);
 
-            btn.setOnClickListener(new View.OnClickListener() {
+            binding.nextBut.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent;

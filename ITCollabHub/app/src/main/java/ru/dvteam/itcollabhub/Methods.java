@@ -36,6 +36,10 @@ public interface Methods {
     @POST("/")
     Call<Model> changeName(@Field("Request")String req, @Field("UserName")String name);
 
+    @FormUrlEncoded
+    @POST("/")
+    Call<Model> uploadLog(@Field("Request")String req, @Field("UserMail")String mail, @Field("UserName")String name, @Field("UserImage")String img);
+
     @Multipart
     @POST("/")
     Call<ResponseBody> uploadImage(@Part("image\"; filename=\"myfile.jpg\" ") RequestBody file, @Part("UserName") RequestBody name, @Part("Request") RequestBody req, @Part("UserMail") RequestBody mail);

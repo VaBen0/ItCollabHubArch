@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -20,11 +21,14 @@ import com.bumptech.glide.Glide;
 
 import org.w3c.dom.Text;
 
+import ru.dvteam.itcollabhub.databinding.ActivityMain2Binding;
+import ru.dvteam.itcollabhub.databinding.ActivityMainBinding;
+
 public class MainActivity2 extends AppCompatActivity {
-    private NavController navController;
     View projects_lin;
     View rating_lin;
     View friends_lin;
+    int selectedColor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +42,9 @@ public class MainActivity2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
         String s = "Ваши очки: " + score;
+        ImageView userCircle = findViewById(R.id.userCircle);
+        ImageView bguser = findViewById(R.id.bguser);
         TextView projects = findViewById(R.id.projects);
-        ImageView bgUser = findViewById(R.id.bguser);
         TextView friends = findViewById(R.id.friends);
         TextView rating = findViewById(R.id.rating);
         TextView UserName = findViewById(R.id.nameu);
@@ -53,31 +58,67 @@ public class MainActivity2 extends AppCompatActivity {
         UserScore.setText(s);
 
         if(score < 100){
-            bgUser.setBackgroundResource(R.drawable.gradient_blue);
+            bguser.setBackgroundResource(R.drawable.gradient_blue);
+            userCircle.setBackgroundResource(R.drawable.circle_blue);
+            UserScore.setTextColor(Color.parseColor("#B20000FF"));
+            selectedColor = Color.parseColor("#B20000FF");
+            projects_lin.setBackgroundColor(selectedColor);
         }
         else if(score < 300){
-            bgUser.setBackgroundResource(R.drawable.gradient_green);
+            bguser.setBackgroundResource(R.drawable.gradient_green);
+            userCircle.setBackgroundResource(R.drawable.circle_green);
+            UserScore.setTextColor(Color.parseColor("#B21AFF00"));
+            selectedColor = Color.parseColor("#B21AFF00");
+            projects_lin.setBackgroundColor(selectedColor);
         }
         else if(score < 1000){
-            bgUser.setBackgroundResource(R.drawable.gradient_brown);
+            bguser.setBackgroundResource(R.drawable.gradient_brown);
+            userCircle.setBackgroundResource(R.drawable.circle_brown);
+            UserScore.setTextColor(Color.parseColor("#FFCC7722"));
+            selectedColor = Color.parseColor("#FFCC7722");
+            projects_lin.setBackgroundColor(selectedColor);
         }
         else if(score < 2500){
-            bgUser.setBackgroundResource(R.drawable.gradient_light_gray);
+            bguser.setBackgroundResource(R.drawable.gradient_light_gray);
+            userCircle.setBackgroundResource(R.drawable.circle_light_gray);
+            UserScore.setTextColor(Color.parseColor("#B2B5B5B5"));
+            selectedColor = Color.parseColor("#B2B5B5B5");
+            projects_lin.setBackgroundColor(selectedColor);
         }
         else if(score < 7000){
-            bgUser.setBackgroundResource(R.drawable.gradient_ohra);
+            bguser.setBackgroundResource(R.drawable.gradient_ohra);
+            userCircle.setBackgroundResource(R.drawable.circle_ohra);
+            UserScore.setTextColor(Color.parseColor("#FFE8AA0E"));
+            selectedColor = Color.parseColor("#FFE8AA0E");
+            projects_lin.setBackgroundColor(selectedColor);
         }
         else if(score < 17000){
-            bgUser.setBackgroundResource(R.drawable.gradient_red);
+            bguser.setBackgroundResource(R.drawable.gradient_red);
+            userCircle.setBackgroundResource(R.drawable.circle_red);
+            UserScore.setTextColor(Color.parseColor("#FF0000"));
+            selectedColor = Color.parseColor("#FF0000");
+            projects_lin.setBackgroundColor(selectedColor);
         }
         else if(score < 30000){
-            bgUser.setBackgroundResource(R.drawable.gradient_orange);
+            bguser.setBackgroundResource(R.drawable.gradient_orange);
+            userCircle.setBackgroundResource(R.drawable.circle_orange);
+            UserScore.setTextColor(Color.parseColor("#FFCC7722"));
+            selectedColor = Color.parseColor("#FFCC7722");
+            projects_lin.setBackgroundColor(selectedColor);
         }
         else if(score < 50000){
-            bgUser.setBackgroundResource(R.drawable.gradient_violete);
+            bguser.setBackgroundResource(R.drawable.gradient_violete);
+            userCircle.setBackgroundResource(R.drawable.circle_violete);
+            UserScore.setTextColor(Color.parseColor("#4F0070"));
+            selectedColor = Color.parseColor("#4F0070");
+            projects_lin.setBackgroundColor(selectedColor);
         }
         else{
-            bgUser.setBackgroundResource(R.drawable.gradient_blue_green);
+            bguser.setBackgroundResource(R.drawable.gradient_blue_green);
+            userCircle.setBackgroundResource(R.drawable.circle_blue_green);
+            UserScore.setTextColor(Color.parseColor("#FF00C6A2"));
+            selectedColor = Color.parseColor("#FF00C6A2");
+            projects_lin.setBackgroundColor(selectedColor);
         }
 
 
@@ -94,31 +135,67 @@ public class MainActivity2 extends AppCompatActivity {
                         .into(loadedImg);
 
                 if(topScore < 100){
-                    bgUser.setBackgroundResource(R.drawable.gradient_blue);
+                    bguser.setBackgroundResource(R.drawable.gradient_blue);
+                    userCircle.setBackgroundResource(R.drawable.circle_blue);
+                    UserScore.setTextColor(Color.parseColor("#B20000FF"));
+                    selectedColor = Color.parseColor("#B20000FF");
+                    projects_lin.setBackgroundColor(selectedColor);
                 }
                 else if(topScore < 300){
-                    bgUser.setBackgroundResource(R.drawable.gradient_green);
+                    bguser.setBackgroundResource(R.drawable.gradient_green);
+                    userCircle.setBackgroundResource(R.drawable.circle_green);
+                    UserScore.setTextColor(Color.parseColor("#B21AFF00"));
+                    selectedColor = Color.parseColor("#B21AFF00");
+                    projects_lin.setBackgroundColor(selectedColor);
                 }
                 else if(topScore < 1000){
-                    bgUser.setBackgroundResource(R.drawable.gradient_brown);
+                    bguser.setBackgroundResource(R.drawable.gradient_brown);
+                    userCircle.setBackgroundResource(R.drawable.circle_brown);
+                    UserScore.setTextColor(Color.parseColor("#FFCC7722"));
+                    selectedColor = Color.parseColor("#FFCC7722");
+                    projects_lin.setBackgroundColor(selectedColor);
                 }
                 else if(topScore < 2500){
-                    bgUser.setBackgroundResource(R.drawable.gradient_light_gray);
+                    bguser.setBackgroundResource(R.drawable.gradient_light_gray);
+                    userCircle.setBackgroundResource(R.drawable.circle_light_gray);
+                    UserScore.setTextColor(Color.parseColor("#B2B5B5B5"));
+                    selectedColor = Color.parseColor("#B2B5B5B5");
+                    projects_lin.setBackgroundColor(selectedColor);
                 }
                 else if(topScore < 7000){
-                    bgUser.setBackgroundResource(R.drawable.gradient_ohra);
+                    bguser.setBackgroundResource(R.drawable.gradient_ohra);
+                    userCircle.setBackgroundResource(R.drawable.circle_ohra);
+                    UserScore.setTextColor(Color.parseColor("#FFE8AA0E"));
+                    selectedColor = Color.parseColor("#FFE8AA0E");
+                    projects_lin.setBackgroundColor(selectedColor);
                 }
                 else if(topScore < 17000){
-                    bgUser.setBackgroundResource(R.drawable.gradient_red);
+                    bguser.setBackgroundResource(R.drawable.gradient_red);
+                    userCircle.setBackgroundResource(R.drawable.circle_red);
+                    UserScore.setTextColor(Color.parseColor("#FF0000"));
+                    selectedColor = Color.parseColor("#FF0000");
+                    projects_lin.setBackgroundColor(selectedColor);
                 }
                 else if(topScore < 30000){
-                    bgUser.setBackgroundResource(R.drawable.gradient_orange);
+                    bguser.setBackgroundResource(R.drawable.gradient_orange);
+                    userCircle.setBackgroundResource(R.drawable.circle_orange);
+                    UserScore.setTextColor(Color.parseColor("#FFCC7722"));
+                    selectedColor = Color.parseColor("#FFCC7722");
+                    projects_lin.setBackgroundColor(selectedColor);
                 }
                 else if(topScore < 50000){
-                    bgUser.setBackgroundResource(R.drawable.gradient_violete);
+                    bguser.setBackgroundResource(R.drawable.gradient_violete);
+                    userCircle.setBackgroundResource(R.drawable.circle_violete);
+                    UserScore.setTextColor(Color.parseColor("#4F0070"));
+                    selectedColor = Color.parseColor("#4F0070");
+                    projects_lin.setBackgroundColor(selectedColor);
                 }
                 else{
-                    bgUser.setBackgroundResource(R.drawable.gradient_blue_green);
+                    bguser.setBackgroundResource(R.drawable.gradient_blue_green);
+                    userCircle.setBackgroundResource(R.drawable.circle_blue_green);
+                    UserScore.setTextColor(Color.parseColor("#FF00C6A2"));
+                    selectedColor = Color.parseColor("#FF00C6A2");
+                    projects_lin.setBackgroundColor(selectedColor);
                 }
 
                 SharedPreferences.Editor ed = sPref.edit();
@@ -133,7 +210,7 @@ public class MainActivity2 extends AppCompatActivity {
         projects.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                projects_lin.setBackgroundColor(Color.BLUE);
+                projects_lin.setBackgroundColor(selectedColor);
                 friends_lin.setBackgroundColor(0);
                 rating_lin.setBackgroundColor(0);
 
@@ -145,7 +222,7 @@ public class MainActivity2 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 projects_lin.setBackgroundColor(0);
-                friends_lin.setBackgroundColor(Color.BLUE);
+                friends_lin.setBackgroundColor(selectedColor);
                 rating_lin.setBackgroundColor(0);
 
                 //navController.navigate(R.id.friends);
@@ -157,7 +234,7 @@ public class MainActivity2 extends AppCompatActivity {
             public void onClick(View v) {
                 projects_lin.setBackgroundColor(0);
                 friends_lin.setBackgroundColor(0);
-                rating_lin.setBackgroundColor(Color.BLUE);
+                rating_lin.setBackgroundColor(selectedColor);
 
                 //navController.navigate(R.id.rating);
             }
