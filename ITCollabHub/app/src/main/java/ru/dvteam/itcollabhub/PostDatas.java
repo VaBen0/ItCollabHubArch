@@ -14,6 +14,7 @@ import androidx.loader.content.CursorLoader;
 import java.io.File;
 
 import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -89,20 +90,21 @@ public class PostDatas {
 
     public void postDataCreateAccount(String name, RequestBody requestFile, String mail, CallBackInt result){
 
+        MultipartBody.Part fileToUpload = MultipartBody.Part.createFormData("file", "lol", requestFile);
         RequestBody requestName = RequestBody.create(MediaType.parse("text/plain"), name);
         RequestBody requestMail = RequestBody.create(MediaType.parse("text/plain"), mail);
         RequestBody requestReq = RequestBody.create(MediaType.parse("text/plain"), "CreateNameLog");
 
         Methods methods = RetrofitClient.getRetrofitInstance().create(Methods.class);
-        Call<ResponseBody> call = methods.uploadImage(requestFile, requestName, requestReq, requestMail);
-        call.enqueue(new Callback<ResponseBody>() {
+        Call<Model> call = methods.uploadImage(fileToUpload, requestName, requestReq, requestMail);
+        call.enqueue(new Callback<Model>() {
             @Override
-            public void onResponse(Call<ResponseBody> call, retrofit2.Response<ResponseBody> response) {
-                result.invoke("All ok");
+            public void onResponse(Call<Model> call, retrofit2.Response<Model> response) {
+                result.invoke(response.body().getReturn());
             }
 
             @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
+            public void onFailure(Call<Model> call, Throwable t) {
                 result.invoke("All bad");
             }
         });

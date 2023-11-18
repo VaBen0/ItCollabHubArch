@@ -1,5 +1,6 @@
 package ru.dvteam.itcollabhub;
 
+import okhttp3.MultipartBody;
 import okhttp3.ResponseBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
@@ -42,5 +43,5 @@ public interface Methods {
 
     @Multipart
     @POST("/")
-    Call<ResponseBody> uploadImage(@Part("image\"; filename=\"myfile.jpg\" ") RequestBody file, @Part("UserName") RequestBody name, @Part("Request") RequestBody req, @Part("UserMail") RequestBody mail);
+    Call<Model> uploadImage(@Part MultipartBody.Part file, @Part("UserName") RequestBody name, @Part("Request") RequestBody req, @Part("UserMail") RequestBody mail);
 }
