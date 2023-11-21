@@ -28,4 +28,5 @@ public class Model {
     public String getTopStatus(){return topStatus;}
 
     public String getUrlImg(){return urlImg;}
+
 }

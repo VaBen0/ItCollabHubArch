@@ -44,4 +44,12 @@ public interface Methods {
     @Multipart
     @POST("/")
     Call<Model> uploadImage(@Part MultipartBody.Part file, @Part("UserName") RequestBody name, @Part("Request") RequestBody req, @Part("UserMail") RequestBody mail);
+
+    @FormUrlEncoded
+    @POST("/")
+    Call<Model> getUserFriends(@Field("Request")String req, @Field("UserMail")String mail);
+
+    @FormUrlEncoded
+    @POST("/")
+    Call<Model> getFindFriends(@Field("Request")String req, @Field("UserName")String name);
 }

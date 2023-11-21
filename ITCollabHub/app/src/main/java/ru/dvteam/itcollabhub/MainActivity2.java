@@ -1,6 +1,7 @@
 package ru.dvteam.itcollabhub;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
@@ -14,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.NavHostController;
 import androidx.navigation.Navigation;
@@ -22,7 +24,10 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.bumptech.glide.Glide;
 
+import org.json.JSONArray;
 import org.w3c.dom.Text;
+
+import java.util.ArrayList;
 
 import ru.dvteam.itcollabhub.databinding.ActivityMain2Binding;
 import ru.dvteam.itcollabhub.databinding.ActivityMainBinding;
@@ -48,8 +53,34 @@ public class MainActivity2 extends AppCompatActivity {
         score = sPref.getInt("UserScore", 0);
 
         super.onCreate(savedInstanceState);
+        if(score < 100){
+            setTheme(R.style.Theme_ITCollabHub_Blue);
+        }
+        else if(score < 300){
+            setTheme(R.style.Theme_ITCollabHub_Green);
+        }
+        else if(score < 1000){
+            setTheme(R.style.Theme_ITCollabHub_Brown);
+        }
+        else if(score < 2500){
+            setTheme(R.style.Theme_ITCollabHub_Gray);
+        }
+        else if(score < 7000){
+            setTheme(R.style.Theme_ITCollabHub_Ohra);
+        }
+        else if(score < 17000){
+            setTheme(R.style.Theme_ITCollabHub_Red);
+        }
+        else if(score < 30000){
+            setTheme(R.style.Theme_ITCollabHub_Orange);
+        }
+        else if(score < 50000){
+            setTheme(R.style.Theme_ITCollabHub_Violete);
+        }
+        else{
+            setTheme(R.style.Theme_ITCollabHub_Green1);
+        }
         setContentView(R.layout.activity_main2);
-
 
         String s = "Ваши очки: " + score;
         ImageView userCircle = findViewById(R.id.userCircle);
@@ -60,10 +91,12 @@ public class MainActivity2 extends AppCompatActivity {
         TextView UserName = findViewById(R.id.nameu);
         TextView UserScore = findViewById(R.id.score);
         ImageView loadedImg = findViewById(R.id.loadImg);
+        ImageView restartLine = findViewById(R.id.restart);
         projects_lin = findViewById(R.id.linear_projects);
         rating_lin = findViewById(R.id.linear_rating);
         friends_lin = findViewById(R.id.linear_friends);
         projects_lin.setBackgroundColor(Color.BLUE);
+        View fragment = findViewById(R.id.nav_host_fragment);
         UserName.setText(name);
         UserScore.setText(s);
 
@@ -186,7 +219,7 @@ public class MainActivity2 extends AppCompatActivity {
                     userCircle.setBackgroundResource(R.drawable.circle_red);
                     UserScore.setTextColor(Color.parseColor("#FF0000"));
                     selectedColor = Color.parseColor("#FF0000");
-                    projects_lin.setBackgroundColor(selectedColor);
+                    projects_lin.setBackgroundColor(selectedColor);;
                 }
                 else if(score < 30000){
                     bguser.setBackgroundResource(R.drawable.gradient_orange);
@@ -213,6 +246,7 @@ public class MainActivity2 extends AppCompatActivity {
                 SharedPreferences.Editor ed = sPref.edit();
                 ed.putString("UserName", name);
                 ed.putInt("UserScore", topScore);
+                ed.putString("UrlImg", urlImage);
                 ed.apply();
             }
         });
@@ -225,7 +259,6 @@ public class MainActivity2 extends AppCompatActivity {
                 projects_lin.setBackgroundColor(selectedColor);
                 friends_lin.setBackgroundColor(0);
                 rating_lin.setBackgroundColor(0);
-                //Navigation.findNavController(v).navigate(R.id.projects);
                 navController.navigate(R.id.projects);
             }
         });
@@ -236,7 +269,14 @@ public class MainActivity2 extends AppCompatActivity {
                 projects_lin.setBackgroundColor(0);
                 friends_lin.setBackgroundColor(selectedColor);
                 rating_lin.setBackgroundColor(0);
-                navController.navigate(R.id.friends);
+                fragment.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+                int height = fragment.getMeasuredHeight();
+
+                Bundle bundle = new Bundle();
+                bundle.putString("mail", mail);
+                bundle.putInt("height", height);
+
+                navController.navigate(R.id.friends, bundle);
             }
         });
 
@@ -255,5 +295,16 @@ public class MainActivity2 extends AppCompatActivity {
 
             }
         });
+
+        restartLine.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(getIntent());
+                finish();
+            }
+        });
     }
+
+
+
 }

@@ -42,6 +42,7 @@ public class Rating extends Fragment {
         if(score < 100){
             selectedColor = Color.parseColor("#B20000FF");
             nextScore.setTextColor(selectedColor);
+            nextStatus.setText("Следующая цель: Активный пользователь");
             nextStatus.setTextColor(selectedColor);
             Drawable progressDrawable = getResources().getDrawable(R.drawable.circular_progress_bar_green);
             lvl.setBackgroundResource(R.drawable.progress_circle_blue);
@@ -52,6 +53,7 @@ public class Rating extends Fragment {
         else if(score < 300){
             selectedColor = Color.parseColor("#FFCC7722");
             nextScore.setTextColor(selectedColor);
+            nextStatus.setText("Следующая цель: Бронзовый пользователь");
             nextStatus.setTextColor(selectedColor);
             Drawable progressDrawable = getResources().getDrawable(R.drawable.circular_progress_bar_brown);
             lvl.setBackgroundResource(R.drawable.progress_circle_green);
@@ -62,6 +64,7 @@ public class Rating extends Fragment {
         else if(score < 1000){
             selectedColor = Color.parseColor("#B2B5B5B5");
             nextScore.setTextColor(selectedColor);
+            nextStatus.setText("Следующая цель: Серебряный пользователь");
             nextStatus.setTextColor(selectedColor);
             Drawable progressDrawable = getResources().getDrawable(R.drawable.circular_progress_bar_light_gray);
             lvl.setBackgroundResource(R.drawable.progress_circle_brown);
@@ -72,6 +75,7 @@ public class Rating extends Fragment {
         else if(score < 2500){
             selectedColor = Color.parseColor("#FFE8AA0E");
             nextScore.setTextColor(selectedColor);
+            nextStatus.setText("Следующая цель: Золотой пользователь");
             nextStatus.setTextColor(selectedColor);
             Drawable progressDrawable = getResources().getDrawable(R.drawable.circular_progress_bar_ohra);
             lvl.setBackgroundResource(R.drawable.progress_circle_light_gray);
@@ -82,16 +86,18 @@ public class Rating extends Fragment {
         else if(score < 7000){
             selectedColor = Color.parseColor("#FF0000");
             nextScore.setTextColor(selectedColor);
+            nextStatus.setText("Следующая цель: Гранд-пользователь I");
             nextStatus.setTextColor(selectedColor);
             Drawable progressDrawable = getResources().getDrawable(R.drawable.circular_progress_bar_red);
             lvl.setBackgroundResource(R.drawable.progress_circle_ohra);
             lvl.setProgressDrawable(progressDrawable);
             max = 7000;
-            min = 1000;
+            min = 2500;
         }
         else if(score < 17000){
             selectedColor = Color.parseColor("#FFCC7722");
             nextScore.setTextColor(selectedColor);
+            nextStatus.setText("Следующая цель: Гранд-пользователь II");
             nextStatus.setTextColor(selectedColor);
             Drawable progressDrawable = getResources().getDrawable(R.drawable.circular_progress_bar_orange);
             lvl.setBackgroundResource(R.drawable.progress_circle_red);
@@ -102,6 +108,7 @@ public class Rating extends Fragment {
         else if(score < 30000){
             selectedColor = Color.parseColor("#4F0070");
             nextScore.setTextColor(selectedColor);
+            nextStatus.setText("Следующая цель: Гранд-пользователь III");
             nextStatus.setTextColor(selectedColor);
             Drawable progressDrawable = getResources().getDrawable(R.drawable.circular_progress_bar_violete);
             lvl.setBackgroundResource(R.drawable.progress_circle_orange);
@@ -112,6 +119,7 @@ public class Rating extends Fragment {
         else if(score < 50000){
             selectedColor = Color.parseColor("#FF00C6A2");
             nextScore.setTextColor(selectedColor);
+            nextStatus.setText("Следующая цель: Бриллиантовый пользователь");
             nextStatus.setTextColor(selectedColor);
             Drawable progressDrawable = getResources().getDrawable(R.drawable.circular_progress_bar_blue_green);
             lvl.setBackgroundResource(R.drawable.progress_circle_violete);
@@ -123,6 +131,7 @@ public class Rating extends Fragment {
             selectedColor = Color.parseColor("#FF00C6A2");
             nextScore.setTextColor(selectedColor);
             nextStatus.setTextColor(selectedColor);
+            nextStatus.setText("Вы достигли предела");
             Drawable progressDrawable = getResources().getDrawable(R.drawable.circular_progress_bar_blue_green);
             lvl.setBackgroundResource(R.drawable.progress_circle_blue_green);
             lvl.setProgressDrawable(progressDrawable);

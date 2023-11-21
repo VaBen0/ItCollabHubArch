@@ -5,6 +5,36 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
-    <style name="Theme.ITCollabHub" parent="Base.Theme.ITCollabHub" />
+    <style name="Theme.ITCollabHub" parent="Base.Theme.ITCollabHub">
+        <item name="colorPrimary">@color/white1</item>
+    </style>
+
+    <style name="Theme.ITCollabHub.Blue" parent="Base.Theme.ITCollabHub">
+        <item name="colorPrimary">@color/blue</item>
+    </style>
+    <style name="Theme.ITCollabHub.Green" parent="Base.Theme.ITCollabHub">
+        <item name="colorPrimary">@color/green</item>
+    </style>
+    <style name="Theme.ITCollabHub.Brown" parent="Base.Theme.ITCollabHub">
+        <item name="colorPrimary">@color/brown</item>
+    </style>
+    <style name="Theme.ITCollabHub.Gray" parent="Base.Theme.ITCollabHub">
+        <item name="colorPrimary">@color/light_gray</item>
+    </style>
+    <style name="Theme.ITCollabHub.Ohra" parent="Base.Theme.ITCollabHub">
+        <item name="colorPrimary">@color/ohra</item>
+    </style>
+    <style name="Theme.ITCollabHub.Red" parent="Base.Theme.ITCollabHub">
+        <item name="colorPrimary">@color/red</item>
+    </style>
+    <style name="Theme.ITCollabHub.Orange" parent="Base.Theme.ITCollabHub">
+        <item name="colorPrimary">@color/orange</item>
+    </style>
+    <style name="Theme.ITCollabHub.Violete" parent="Base.Theme.ITCollabHub">
+        <item name="colorPrimary">@color/violete</item>
+    </style>
+    <style name="Theme.ITCollabHub.Green1" parent="Base.Theme.ITCollabHub">
+        <item name="colorPrimary">@color/main_green</item>
+    </style>
 
 </resources>
