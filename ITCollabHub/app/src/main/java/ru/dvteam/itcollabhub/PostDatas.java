@@ -161,9 +161,9 @@ public class PostDatas {
         });
     }
 
-    public void postDataGetFindFriends(String req, String name, CallBackInt result){
+    public void postDataGetFindFriends(String req, String name, String mail, CallBackInt result){
         Methods methods = RetrofitClient.getRetrofitInstance().create(Methods.class);
-        Call<Model> call = methods.getFindFriends(req, name);
+        Call<Model> call = methods.getFindFriends(req, name, mail);
 
         call.enqueue(new Callback<Model>() {
             @Override
@@ -173,8 +173,27 @@ public class PostDatas {
 
             @Override
             public void onFailure(Call<Model> call, Throwable t) {
-
+                result.invoke("Failure");
             }
         });
     }
+
+    public void postDataAddFriend(String req, String mail, String id, CallBackInt result){
+        Methods methods = RetrofitClient.getRetrofitInstance().create(Methods.class);
+        Call<Model> call = methods.addFriends(req, mail, id);
+
+        call.enqueue(new Callback<Model>() {
+            @Override
+            public void onResponse(Call<Model> call, retrofit2.Response<Model> response) {
+                result.invoke(response.body().getReturn());
+            }
+
+            @Override
+            public void onFailure(Call<Model> call, Throwable t) {
+                result.invoke("Failure");
+            }
+        });
+    }
+
+
 }

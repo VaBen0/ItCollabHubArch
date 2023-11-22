@@ -1,38 +1,23 @@
 package ru.dvteam.itcollabhub;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
-import android.media.Image;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
+import androidx.core.content.ContextCompat;
 import androidx.navigation.NavController;
-import androidx.navigation.NavHostController;
 import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
-import androidx.navigation.ui.NavigationUI;
 
 import com.bumptech.glide.Glide;
 
-import org.json.JSONArray;
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
-
-import ru.dvteam.itcollabhub.databinding.ActivityMain2Binding;
-import ru.dvteam.itcollabhub.databinding.ActivityMainBinding;
-
-public class MainActivity2 extends AppCompatActivity {
+public class Profile extends AppCompatActivity {
     View projects_lin;
     View rating_lin;
     View friends_lin;
@@ -80,7 +65,7 @@ public class MainActivity2 extends AppCompatActivity {
         else{
             setTheme(R.style.Theme_ITCollabHub_Green1);
         }
-        setContentView(R.layout.activity_main2);
+        setContentView(R.layout.activity_profile);
 
         String s = "Ваши очки: " + score;
         ImageView userCircle = findViewById(R.id.userCircle);
@@ -97,6 +82,9 @@ public class MainActivity2 extends AppCompatActivity {
         friends_lin = findViewById(R.id.linear_friends);
         projects_lin.setBackgroundColor(Color.BLUE);
         View fragment = findViewById(R.id.nav_host_fragment);
+        LinearLayout projectMenu = findViewById(R.id.project_menu);
+        LinearLayout profileMenu = findViewById(R.id.profile_menu);
+        LinearLayout forumMenu = findViewById(R.id.forum_menu);
         UserName.setText(name);
         UserScore.setText(s);
 
@@ -175,7 +163,7 @@ public class MainActivity2 extends AppCompatActivity {
                 UserName.setText(name);
                 UserScore.setText(s);
                 Glide
-                        .with(MainActivity2.this)
+                        .with(Profile.this)
                         .load(urlImage)
                         .into(loadedImg);
 
@@ -185,6 +173,7 @@ public class MainActivity2 extends AppCompatActivity {
                     UserScore.setTextColor(Color.parseColor("#B20000FF"));
                     selectedColor = Color.parseColor("#B20000FF");
                     projects_lin.setBackgroundColor(selectedColor);
+                    getWindow().setStatusBarColor(ContextCompat.getColor(Profile.this,R.color.blue));
                 }
                 else if(score < 300){
                     bguser.setBackgroundResource(R.drawable.gradient_green);
@@ -192,6 +181,7 @@ public class MainActivity2 extends AppCompatActivity {
                     UserScore.setTextColor(Color.parseColor("#B21AFF00"));
                     selectedColor = Color.parseColor("#B21AFF00");
                     projects_lin.setBackgroundColor(selectedColor);
+                    getWindow().setStatusBarColor(ContextCompat.getColor(Profile.this,R.color.green));
                 }
                 else if(score < 1000){
                     bguser.setBackgroundResource(R.drawable.gradient_brown);
@@ -199,6 +189,7 @@ public class MainActivity2 extends AppCompatActivity {
                     UserScore.setTextColor(Color.parseColor("#FFCC7722"));
                     selectedColor = Color.parseColor("#FFCC7722");
                     projects_lin.setBackgroundColor(selectedColor);
+                    getWindow().setStatusBarColor(ContextCompat.getColor(Profile.this,R.color.brown));
                 }
                 else if(score < 2500){
                     bguser.setBackgroundResource(R.drawable.gradient_light_gray);
@@ -206,6 +197,7 @@ public class MainActivity2 extends AppCompatActivity {
                     UserScore.setTextColor(Color.parseColor("#B2B5B5B5"));
                     selectedColor = Color.parseColor("#B2B5B5B5");
                     projects_lin.setBackgroundColor(selectedColor);
+                    getWindow().setStatusBarColor(ContextCompat.getColor(Profile.this,R.color.light_gray));
                 }
                 else if(score < 7000){
                     bguser.setBackgroundResource(R.drawable.gradient_ohra);
@@ -213,13 +205,15 @@ public class MainActivity2 extends AppCompatActivity {
                     UserScore.setTextColor(Color.parseColor("#FFE8AA0E"));
                     selectedColor = Color.parseColor("#FFE8AA0E");
                     projects_lin.setBackgroundColor(selectedColor);
+                    getWindow().setStatusBarColor(ContextCompat.getColor(Profile.this,R.color.ohra));
                 }
                 else if(score < 17000){
                     bguser.setBackgroundResource(R.drawable.gradient_red);
                     userCircle.setBackgroundResource(R.drawable.circle_red);
                     UserScore.setTextColor(Color.parseColor("#FF0000"));
                     selectedColor = Color.parseColor("#FF0000");
-                    projects_lin.setBackgroundColor(selectedColor);;
+                    projects_lin.setBackgroundColor(selectedColor);
+                    getWindow().setStatusBarColor(ContextCompat.getColor(Profile.this,R.color.red));
                 }
                 else if(score < 30000){
                     bguser.setBackgroundResource(R.drawable.gradient_orange);
@@ -227,6 +221,7 @@ public class MainActivity2 extends AppCompatActivity {
                     UserScore.setTextColor(Color.parseColor("#FFCC7722"));
                     selectedColor = Color.parseColor("#FFCC7722");
                     projects_lin.setBackgroundColor(selectedColor);
+                    getWindow().setStatusBarColor(ContextCompat.getColor(Profile.this,R.color.orange));
                 }
                 else if(score < 50000){
                     bguser.setBackgroundResource(R.drawable.gradient_violete);
@@ -234,6 +229,7 @@ public class MainActivity2 extends AppCompatActivity {
                     UserScore.setTextColor(Color.parseColor("#4F0070"));
                     selectedColor = Color.parseColor("#4F0070");
                     projects_lin.setBackgroundColor(selectedColor);
+                    getWindow().setStatusBarColor(ContextCompat.getColor(Profile.this,R.color.violete));
                 }
                 else{
                     bguser.setBackgroundResource(R.drawable.gradient_blue_green);
@@ -241,6 +237,7 @@ public class MainActivity2 extends AppCompatActivity {
                     UserScore.setTextColor(Color.parseColor("#FF00C6A2"));
                     selectedColor = Color.parseColor("#FF00C6A2");
                     projects_lin.setBackgroundColor(selectedColor);
+                    getWindow().setStatusBarColor(ContextCompat.getColor(Profile.this,R.color.main_green));
                 }
 
                 SharedPreferences.Editor ed = sPref.edit();
@@ -301,6 +298,19 @@ public class MainActivity2 extends AppCompatActivity {
             public void onClick(View v) {
                 startActivity(getIntent());
                 finish();
+            }
+        });
+        projectMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Profile.this, Project.class);
+                startActivity(intent);
+            }
+        });
+        forumMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
     }

@@ -8,10 +8,9 @@ import androidx.core.content.ContextCompat;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -19,6 +18,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import java.io.File;
@@ -26,33 +26,43 @@ import java.io.File;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 
-
-public class CreateAccount extends AppCompatActivity {
-    ImageView Img;
+public class CreateProject extends AppCompatActivity {
+    private ImageView loadImg;
     private static final int PICK_IMAGES_CODE = 0;
     private String mediaPath;
     private static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_account);
+        setContentView(R.layout.activity_create_project);
 
-        SharedPreferences sPref = getSharedPreferences("MyPref", MODE_PRIVATE);
-        String mail = sPref.getString("UserMail", "");
+        LinearLayout profileMenu = findViewById(R.id.profile_menu);
+        LinearLayout forumMenu = findViewById(R.id.forum_menu);
+        loadImg = findViewById(R.id.loadImg);
+        Button btn = findViewById(R.id.create);
 
-        Img = findViewById(R.id.loadImg);
-        EditText UserName = findViewById(R.id.nameu);
-        Button btn = findViewById(R.id.saveBut);
-
-        Img.setOnClickListener(new View.OnClickListener() {
+        profileMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (ContextCompat.checkSelfPermission(CreateAccount.this, Manifest.permission.READ_EXTERNAL_STORAGE)
+                Intent intent = new Intent(CreateProject.this, Profile.class);
+                startActivity(intent);
+            }
+        });
+        forumMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        loadImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (ContextCompat.checkSelfPermission(CreateProject.this, android.Manifest.permission.READ_EXTERNAL_STORAGE)
                         != PackageManager.PERMISSION_GRANTED) {
                     // Permission is not granted, request it
-                    ActivityCompat.requestPermissions(CreateAccount.this,
+                    ActivityCompat.requestPermissions(CreateProject.this,
                             new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
                             MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
                 } else {
@@ -67,21 +77,7 @@ public class CreateAccount extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditText UserName = findViewById(R.id.nameu);
-                File file = new File(mediaPath);
-
-                RequestBody requestBody = RequestBody.create(MediaType.parse("*/*"), file);
-                PostDatas post = new PostDatas();
-                post.postDataCreateAccount(UserName.getText().toString(), requestBody, mail, new CallBackInt() {
-                    @Override
-                    public void invoke(String res) {
-                        Toast.makeText(CreateAccount.this, res, Toast.LENGTH_SHORT).show();
-                        if(res.equals("Сохранено")) {
-                            Intent intent = new Intent(CreateAccount.this, Profile.class);
-                            startActivity(intent);
-                        }
-                    }
-                });
+                Toast.makeText(CreateProject.this, "lol,  ты не можешь ничего отправить, так как это появится позже)", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -98,7 +94,7 @@ public class CreateAccount extends AppCompatActivity {
                 intent.setAction(Intent.ACTION_PICK);
                 startActivityForResult(Intent.createChooser(intent, "Select Image(s)"), PICK_IMAGES_CODE);
             } else {
-                Toast.makeText(CreateAccount.this, "You loser", Toast.LENGTH_LONG).show();
+                Toast.makeText(CreateProject.this, "You loser", Toast.LENGTH_LONG).show();
             }
         }
     }
@@ -119,7 +115,7 @@ public class CreateAccount extends AppCompatActivity {
 
                 int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
                 mediaPath = cursor.getString(columnIndex);
-                Img.setImageURI(imageUri);
+                loadImg.setImageURI(imageUri);
                 cursor.close();
             }
 

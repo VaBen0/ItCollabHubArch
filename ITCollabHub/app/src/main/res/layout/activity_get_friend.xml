@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".GEtFriend">
+    tools:context=".GetFriend">
 
     <ImageView
         android:id="@+id/bguser"
@@ -241,12 +241,14 @@
             android:orientation="vertical" >
 
             <TextView
+                android:id="@+id/noReq"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Запросов нет"
                 android:layout_gravity="center"
                 android:layout_marginTop="100dp"
                 android:textSize="30sp"
+                android:textColor="@color/transparent"
                 android:textStyle="bold|italic"/>
 
         </LinearLayout>

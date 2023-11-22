@@ -17,7 +17,13 @@
         android:theme="@style/Theme.ITCollabHub"
         tools:targetApi="26">
         <activity
-            android:name=".GEtFriend"
+            android:name=".CreateProject"
+            android:exported="false" />
+        <activity
+            android:name=".Project"
+            android:exported="false" />
+        <activity
+            android:name=".GetFriend"
             android:exported="false" />
         <activity
             android:name=".Friend"
@@ -38,7 +44,7 @@
             android:name=".LogIn"
             android:exported="false" />
         <activity
-            android:name=".MainActivity2"
+            android:name=".Profile"
             android:exported="false" />
         <activity
             android:name=".ConfirmReg"

@@ -11,9 +11,11 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -30,9 +32,6 @@ import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
-import ru.dvteam.itcollabhub.databinding.ActivityMain2Binding;
-import ru.dvteam.itcollabhub.databinding.ActivityMainBinding;
-
 public class Friend extends AppCompatActivity {
 
     private int selectedColor;
@@ -43,10 +42,14 @@ public class Friend extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
         setContentView(R.layout.activity_friend);
 
+        SharedPreferences sPref = getSharedPreferences("MyPref", MODE_PRIVATE);
+        String mail = sPref.getString("UserMail", "");
+
         Bundle arguments = getIntent().getExtras();
 
         if(arguments!=null) {
 
+            String id = arguments.getString("id");
             String name = arguments.getString("name");
             String urlImage = arguments.getString("image_url");
             String scoreStr = arguments.getString("score");
@@ -65,6 +68,7 @@ public class Friend extends AppCompatActivity {
             TextView project1 = findViewById(R.id.textView4);
             ImageView restartLine = findViewById(R.id.restart);
             View projects_lin = findViewById(R.id.linear_rating);
+            Button delBut = findViewById(R.id.deleteButton);
             UserScore.setText(s);
             project1.setText(project);
 
@@ -146,6 +150,30 @@ public class Friend extends AppCompatActivity {
                 projects_lin.setBackgroundColor(selectedColor);
                 getWindow().setStatusBarColor(ContextCompat.getColor(this,R.color.main_green));
             }
+
+            restartLine.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(getIntent());
+                    finish();
+                }
+            });
+            delBut.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    PostDatas post = new PostDatas();
+                    post.postDataAddFriend("DeleteFriend", mail, id, new CallBackInt() {
+                        @Override
+                        public void invoke(String res) {
+                            Toast.makeText(Friend.this, res + id, Toast.LENGTH_SHORT).show();
+                            if(res.equals("Друг удалён")){
+                                Intent intent = new Intent(Friend.this, Profile.class);
+                                startActivity(intent);
+                            }
+                        }
+                    });
+                }
+            });
         }
     }
 }

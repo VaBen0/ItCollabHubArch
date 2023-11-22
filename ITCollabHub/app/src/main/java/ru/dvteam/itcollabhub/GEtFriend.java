@@ -1,41 +1,24 @@
 package ru.dvteam.itcollabhub;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
-import android.media.Image;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
-import androidx.navigation.NavController;
-import androidx.navigation.NavHostController;
-import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
-import androidx.navigation.ui.NavigationUI;
 
 import com.bumptech.glide.Glide;
 
-import org.json.JSONArray;
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
-
-import ru.dvteam.itcollabhub.databinding.ActivityMain2Binding;
-import ru.dvteam.itcollabhub.databinding.ActivityMainBinding;
-
-public class GEtFriend extends AppCompatActivity {
+public class GetFriend extends AppCompatActivity {
 
     private int selectedColor;
 
@@ -65,7 +48,7 @@ public class GEtFriend extends AppCompatActivity {
         UserScore.setText(s);
 
         Glide
-                .with(GEtFriend.this)
+                .with(GetFriend.this)
                 .load(urlImage)
                 .into(loadedImage);
         nameu.setText(name);
@@ -169,7 +152,7 @@ public class GEtFriend extends AppCompatActivity {
                         plus.setBackgroundResource(R.drawable.ad);
 
                         Glide
-                                .with(GEtFriend.this)
+                                .with(GetFriend.this)
                                 .load(photo[i])
                                 .into(loadImage);
                         nameu.setText(names[i]);
@@ -203,13 +186,12 @@ public class GEtFriend extends AppCompatActivity {
                             userCircle.setBackgroundResource(R.drawable.circle_blue_green2);
                         }
 
-
-                        custom.setId(i);
+                        custom.setId(Integer.parseInt(id[i]));
                         int finalI = i;
                         loadImage.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                Intent intent = new Intent(GEtFriend.this, Friend.class);
+                                Intent intent = new Intent(GetFriend.this, Friend.class);
                                 intent.putExtra("id", id[finalI]);
                                 intent.putExtra("name", names[finalI]);
                                 intent.putExtra("score", score[finalI]);
@@ -221,7 +203,7 @@ public class GEtFriend extends AppCompatActivity {
                         nameu.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                Intent intent = new Intent(GEtFriend.this, Friend.class);
+                                Intent intent = new Intent(GetFriend.this, Friend.class);
                                 intent.putExtra("id", id[finalI]);
                                 intent.putExtra("name", names[finalI]);
                                 intent.putExtra("score", score[finalI]);
@@ -230,10 +212,28 @@ public class GEtFriend extends AppCompatActivity {
                                 startActivity(intent);
                             }
                         });
+                        plus.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                post.postDataAddFriend("AddFriend", mail, id[finalI], new CallBackInt() {
+                                    @Override
+                                    public void invoke(String res) {
+                                        Toast.makeText(v.getContext(), res, Toast.LENGTH_SHORT).show();
+                                        if(res.equals("Друг добавлен")){
+                                            main.removeView(custom);
+                                        }
+                                    }
+                                });
+                            }
+                        });
                         main.addView(custom);
                     }
                     View empty = inflater.inflate(R.layout.emty_obj, null);
                     main.addView(empty);
+                }
+                else{
+                    TextView noRequests = findViewById(R.id.noReq);
+                    noRequests.setTextColor(Color.BLACK);
                 }
             }
         });

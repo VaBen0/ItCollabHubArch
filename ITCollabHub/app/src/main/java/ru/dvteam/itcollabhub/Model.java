@@ -7,6 +7,7 @@ public class Model {
     private String topStatus;
     private String urlImg;
 
+
     public Model(String name, String urlImg, String ret, String topStatus, int topScore) {
         this.name = name;
         this.ret = ret;
@@ -16,17 +17,18 @@ public class Model {
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public String getReturn() {
-        return ret;
+        return this.ret;
     }
 
-    public int getTopScore(){return topScore;}
+    public int getTopScore(){return this.topScore;}
 
-    public String getTopStatus(){return topStatus;}
+    public String getTopStatus(){return this.topStatus;}
 
-    public String getUrlImg(){return urlImg;}
+    public String getUrlImg(){return this.urlImg;}
+
 
 }

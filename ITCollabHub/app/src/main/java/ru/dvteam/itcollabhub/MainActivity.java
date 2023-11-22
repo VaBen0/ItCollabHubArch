@@ -6,8 +6,6 @@ import android.content.pm.ActivityInfo;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -29,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
         if(savedText.equals("true")){
             Intent intent;
-            intent = new Intent(MainActivity.this, MainActivity2.class);
+            intent = new Intent(MainActivity.this, Profile.class);
             startActivity(intent);
         }
         else {

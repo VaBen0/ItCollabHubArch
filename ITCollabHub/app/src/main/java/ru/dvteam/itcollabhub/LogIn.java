@@ -13,20 +13,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-
-import java.util.HashMap;
-import java.util.Map;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
 public class LogIn extends AppCompatActivity {
 
     @Override
@@ -89,7 +75,7 @@ public class LogIn extends AppCompatActivity {
                                 ed.putString("UserMail", UserMail.getText().toString());
                                 ed.apply();
 
-                                Intent intent = new Intent(LogIn.this, MainActivity2.class);
+                                Intent intent = new Intent(LogIn.this, Profile.class);
                                 startActivity(intent);
                             }
                         }

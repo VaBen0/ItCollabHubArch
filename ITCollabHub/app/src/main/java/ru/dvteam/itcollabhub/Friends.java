@@ -1,9 +1,7 @@
 package ru.dvteam.itcollabhub;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.media.Image;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -36,6 +34,7 @@ public class Friends extends Fragment {
         ImageView find_but = v.findViewById(R.id.find);
         ImageView notifications = (ImageView) v.findViewById(R.id.notification);
 
+        assert getArguments() != null;
         String mail = getArguments().getString("mail");
 
         PostDatas post = new PostDatas();
@@ -122,11 +121,14 @@ public class Friends extends Fragment {
                                 startActivity(intent);
                             }
                         });
-
                         main.addView(custom);
                     }
                     View empty = inflater.inflate(R.layout.emty_obj, null);
                     main.addView(empty);
+                }
+                else{
+                    TextView noFriends = v.findViewById(R.id.textView5);
+                    noFriends.setTextColor(Color.BLACK);
                 }
             }
         });
@@ -136,7 +138,7 @@ public class Friends extends Fragment {
         notifications.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), GEtFriend.class);
+                Intent intent = new Intent(v.getContext(), GetFriend.class);
                 startActivity(intent);
             }
         });
@@ -146,10 +148,10 @@ public class Friends extends Fragment {
             public void onClick(View v) {
                 String UserName = name.getText().toString();
                 PostDatas post = new PostDatas();
-                post.postDataGetFindFriends("GetUsers", UserName, new CallBackInt() {
+                post.postDataGetFindFriends("GetUsers", UserName, mail, new CallBackInt() {
                     @Override
                     public void invoke(String info) {
-                        String[] inf = info.split(";");
+                        /*String[] inf = info.split(";");
 
                         if(!inf[0].equals("Нет1друзей564")) {
                             main.removeAllViews();
@@ -166,7 +168,7 @@ public class Friends extends Fragment {
                                 ImageView userCircle = (ImageView) custom.findViewById(R.id.user_circle);
                                 TextView project1 = (TextView) custom.findViewById(R.id.projects1);
                                 ImageView messege = (ImageView) custom.findViewById(R.id.imageView2);
-                                messege.setBackgroundResource(R.drawable.message);
+                                messege.setBackgroundResource(R.drawable.ad);
 
                                 Glide
                                         .with(Friends.this)
@@ -237,7 +239,7 @@ public class Friends extends Fragment {
                         }
                         else{
                             name.setText("Человека с таким именем не существует");
-                        }
+                        }*/
                     }
                 });
             }
