@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
@@ -34,7 +35,6 @@ public class Friends extends Fragment {
         ImageView find_but = v.findViewById(R.id.find);
         ImageView notifications = (ImageView) v.findViewById(R.id.notification);
 
-        assert getArguments() != null;
         String mail = getArguments().getString("mail");
 
         PostDatas post = new PostDatas();
@@ -147,11 +147,12 @@ public class Friends extends Fragment {
             @Override
             public void onClick(View v) {
                 String UserName = name.getText().toString();
+
                 PostDatas post = new PostDatas();
-                post.postDataGetFindFriends("GetUsers", UserName, mail, new CallBackInt() {
+                post.postDataGetFindFriend("GetUsers", UserName, mail, new CallBackInt() {
                     @Override
                     public void invoke(String info) {
-                        /*String[] inf = info.split(";");
+                        String[] inf = info.split(";");
 
                         if(!inf[0].equals("Нет1друзей564")) {
                             main.removeAllViews();
@@ -231,15 +232,26 @@ public class Friends extends Fragment {
                                         startActivity(intent);
                                     }
                                 });
-
+                                messege.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        post.postDataAddFriend("SendRequestToAddFriend", mail, id[finalI], new CallBackInt() {
+                                            @Override
+                                            public void invoke(String res) {
+                                                Toast.makeText(v.getContext(), res, Toast.LENGTH_SHORT).show();
+                                                main.removeView(custom);
+                                            }
+                                        });
+                                    }
+                                });
                                 main.addView(custom);
                             }
                             View empty = inflater.inflate(R.layout.emty_obj, null);
                             main.addView(empty);
                         }
                         else{
-                            name.setText("Человека с таким именем не существует");
-                        }*/
+                            Toast.makeText(v.getContext(), "Результаты не найдены", Toast.LENGTH_SHORT).show();;
+                        }
                     }
                 });
             }

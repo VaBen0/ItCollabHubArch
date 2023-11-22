@@ -7,7 +7,6 @@ public class Model {
     private String topStatus;
     private String urlImg;
 
-
     public Model(String name, String urlImg, String ret, String topStatus, int topScore) {
         this.name = name;
         this.ret = ret;

@@ -1,5 +1,10 @@
 package ru.dvteam.itcollabhub;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContract;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -32,12 +37,14 @@ public class CreateAccount extends AppCompatActivity {
     private static final int PICK_IMAGES_CODE = 0;
     private String mediaPath;
     private static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 1;
+    ActivityResultLauncher<Intent> resultLauncher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_account);
+        registerResult();
 
         SharedPreferences sPref = getSharedPreferences("MyPref", MODE_PRIVATE);
         String mail = sPref.getString("UserMail", "");
@@ -46,23 +53,27 @@ public class CreateAccount extends AppCompatActivity {
         EditText UserName = findViewById(R.id.nameu);
         Button btn = findViewById(R.id.saveBut);
 
-        Img.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (ContextCompat.checkSelfPermission(CreateAccount.this, Manifest.permission.READ_EXTERNAL_STORAGE)
-                        != PackageManager.PERMISSION_GRANTED) {
-                    // Permission is not granted, request it
-                    ActivityCompat.requestPermissions(CreateAccount.this,
-                            new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
-                            MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
-                } else {
-                    Intent intent = new Intent();
-                    intent.setType("image/*");
-                    intent.setAction(Intent.ACTION_PICK);
-                    startActivityForResult(Intent.createChooser(intent, "Select Image(s)"), PICK_IMAGES_CODE);
+        if(android.os.Build.VERSION.SDK_INT >= 33) {
+            Img.setOnClickListener(view -> pickImage());
+        }
+        else{
+            Img.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (ContextCompat.checkSelfPermission(CreateAccount.this, Manifest.permission.READ_EXTERNAL_STORAGE)
+                            != PackageManager.PERMISSION_GRANTED) {
+                        ActivityCompat.requestPermissions(CreateAccount.this,
+                                new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                                MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
+                    } else {
+                        Intent intent = new Intent();
+                        intent.setType("image/*");
+                        intent.setAction(Intent.ACTION_PICK);
+                        startActivityForResult(Intent.createChooser(intent, "Select Image(s)"), PICK_IMAGES_CODE);
+                    }
                 }
-            }
-        });
+            });
+        }
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,6 +95,11 @@ public class CreateAccount extends AppCompatActivity {
                 });
             }
         });
+    }
+
+    private void pickImage(){
+        Intent intent = new Intent(MediaStore.ACTION_PICK_IMAGES);
+        resultLauncher.launch(intent);
     }
 
     @Override
@@ -124,5 +140,31 @@ public class CreateAccount extends AppCompatActivity {
             }
 
         }
+    }
+
+    private void registerResult(){
+        resultLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                new ActivityResultCallback<ActivityResult>() {
+                    @Override
+                    public void onActivityResult(ActivityResult result) {
+                        try{
+                            Uri imageUri = result.getData().getData();
+                            String[] filePathColumn = {MediaStore.Images.Media.DATA};
+
+                            Cursor cursor = getContentResolver().query(imageUri, filePathColumn, null, null, null);
+                            assert cursor != null;
+                            cursor.moveToFirst();
+
+                            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+                            mediaPath = cursor.getString(columnIndex);
+                            Img.setImageURI(imageUri);
+                            cursor.close();
+                        }catch (Exception e){
+                            Toast.makeText(CreateAccount.this, "LOSER", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }
+        );
     }
 }

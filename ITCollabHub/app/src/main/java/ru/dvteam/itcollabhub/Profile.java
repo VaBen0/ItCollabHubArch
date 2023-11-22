@@ -6,6 +6,7 @@ import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -85,6 +86,7 @@ public class Profile extends AppCompatActivity {
         LinearLayout projectMenu = findViewById(R.id.project_menu);
         LinearLayout profileMenu = findViewById(R.id.profile_menu);
         LinearLayout forumMenu = findViewById(R.id.forum_menu);
+        Button changeLog = findViewById(R.id.button6);
         UserName.setText(name);
         UserScore.setText(s);
 
