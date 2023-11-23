@@ -6,7 +6,6 @@ import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -86,7 +85,7 @@ public class Profile extends AppCompatActivity {
         LinearLayout projectMenu = findViewById(R.id.project_menu);
         LinearLayout profileMenu = findViewById(R.id.profile_menu);
         LinearLayout forumMenu = findViewById(R.id.forum_menu);
-        Button changeLog = findViewById(R.id.button6);
+        ImageView editProfile = findViewById(R.id.edit);
         UserName.setText(name);
         UserScore.setText(s);
 
@@ -95,63 +94,63 @@ public class Profile extends AppCompatActivity {
             userCircle.setBackgroundResource(R.drawable.circle_blue);
             UserScore.setTextColor(Color.parseColor("#B20000FF"));
             selectedColor = Color.parseColor("#B20000FF");
-            projects_lin.setBackgroundColor(selectedColor);
+            projects_lin.setBackgroundResource(R.drawable.blue_line);
         }
         else if(score < 300){
             bguser.setBackgroundResource(R.drawable.gradient_green);
             userCircle.setBackgroundResource(R.drawable.circle_green);
             UserScore.setTextColor(Color.parseColor("#B21AFF00"));
             selectedColor = Color.parseColor("#B21AFF00");
-            projects_lin.setBackgroundColor(selectedColor);
+            projects_lin.setBackgroundResource(R.drawable.green_line);
         }
         else if(score < 1000){
             bguser.setBackgroundResource(R.drawable.gradient_brown);
             userCircle.setBackgroundResource(R.drawable.circle_brown);
             UserScore.setTextColor(Color.parseColor("#FFCC7722"));
             selectedColor = Color.parseColor("#FFCC7722");
-            projects_lin.setBackgroundColor(selectedColor);
+            projects_lin.setBackgroundResource(R.drawable.brown_line);
         }
         else if(score < 2500){
             bguser.setBackgroundResource(R.drawable.gradient_light_gray);
             userCircle.setBackgroundResource(R.drawable.circle_light_gray);
             UserScore.setTextColor(Color.parseColor("#B2B5B5B5"));
             selectedColor = Color.parseColor("#B2B5B5B5");
-            projects_lin.setBackgroundColor(selectedColor);
+            projects_lin.setBackgroundResource(R.drawable.light_gray_line);
         }
         else if(score < 7000){
             bguser.setBackgroundResource(R.drawable.gradient_ohra);
             userCircle.setBackgroundResource(R.drawable.circle_ohra);
             UserScore.setTextColor(Color.parseColor("#FFE8AA0E"));
             selectedColor = Color.parseColor("#FFE8AA0E");
-            projects_lin.setBackgroundColor(selectedColor);
+            projects_lin.setBackgroundResource(R.drawable.ohra_line);
         }
         else if(score < 17000){
             bguser.setBackgroundResource(R.drawable.gradient_red);
             userCircle.setBackgroundResource(R.drawable.circle_red);
             UserScore.setTextColor(Color.parseColor("#FF0000"));
             selectedColor = Color.parseColor("#FF0000");
-            projects_lin.setBackgroundColor(selectedColor);
+            projects_lin.setBackgroundResource(R.drawable.red_line);
         }
         else if(score < 30000){
             bguser.setBackgroundResource(R.drawable.gradient_orange);
             userCircle.setBackgroundResource(R.drawable.circle_orange);
             UserScore.setTextColor(Color.parseColor("#FFCC7722"));
             selectedColor = Color.parseColor("#FFCC7722");
-            projects_lin.setBackgroundColor(selectedColor);
+            projects_lin.setBackgroundResource(R.drawable.orange_line);
         }
         else if(score < 50000){
             bguser.setBackgroundResource(R.drawable.gradient_violete);
             userCircle.setBackgroundResource(R.drawable.circle_violete);
             UserScore.setTextColor(Color.parseColor("#4F0070"));
             selectedColor = Color.parseColor("#4F0070");
-            projects_lin.setBackgroundColor(selectedColor);
+            projects_lin.setBackgroundResource(R.drawable.violete_line);
         }
         else{
             bguser.setBackgroundResource(R.drawable.gradient_blue_green);
             userCircle.setBackgroundResource(R.drawable.circle_blue_green);
             UserScore.setTextColor(Color.parseColor("#FF00C6A2"));
             selectedColor = Color.parseColor("#FF00C6A2");
-            projects_lin.setBackgroundColor(selectedColor);
+            projects_lin.setBackgroundResource(R.drawable.blue_green_line);
         }
 
 
@@ -174,7 +173,7 @@ public class Profile extends AppCompatActivity {
                     userCircle.setBackgroundResource(R.drawable.circle_blue);
                     UserScore.setTextColor(Color.parseColor("#B20000FF"));
                     selectedColor = Color.parseColor("#B20000FF");
-                    projects_lin.setBackgroundColor(selectedColor);
+                    projects_lin.setBackgroundResource(R.drawable.blue_line);
                     getWindow().setStatusBarColor(ContextCompat.getColor(Profile.this,R.color.blue));
                 }
                 else if(score < 300){
@@ -182,7 +181,7 @@ public class Profile extends AppCompatActivity {
                     userCircle.setBackgroundResource(R.drawable.circle_green);
                     UserScore.setTextColor(Color.parseColor("#B21AFF00"));
                     selectedColor = Color.parseColor("#B21AFF00");
-                    projects_lin.setBackgroundColor(selectedColor);
+                    projects_lin.setBackgroundResource(R.drawable.green_line);
                     getWindow().setStatusBarColor(ContextCompat.getColor(Profile.this,R.color.green));
                 }
                 else if(score < 1000){
@@ -190,7 +189,7 @@ public class Profile extends AppCompatActivity {
                     userCircle.setBackgroundResource(R.drawable.circle_brown);
                     UserScore.setTextColor(Color.parseColor("#FFCC7722"));
                     selectedColor = Color.parseColor("#FFCC7722");
-                    projects_lin.setBackgroundColor(selectedColor);
+                    projects_lin.setBackgroundResource(R.drawable.brown_line);
                     getWindow().setStatusBarColor(ContextCompat.getColor(Profile.this,R.color.brown));
                 }
                 else if(score < 2500){
@@ -198,7 +197,7 @@ public class Profile extends AppCompatActivity {
                     userCircle.setBackgroundResource(R.drawable.circle_light_gray);
                     UserScore.setTextColor(Color.parseColor("#B2B5B5B5"));
                     selectedColor = Color.parseColor("#B2B5B5B5");
-                    projects_lin.setBackgroundColor(selectedColor);
+                    projects_lin.setBackgroundResource(R.drawable.light_gray_line);
                     getWindow().setStatusBarColor(ContextCompat.getColor(Profile.this,R.color.light_gray));
                 }
                 else if(score < 7000){
@@ -206,7 +205,7 @@ public class Profile extends AppCompatActivity {
                     userCircle.setBackgroundResource(R.drawable.circle_ohra);
                     UserScore.setTextColor(Color.parseColor("#FFE8AA0E"));
                     selectedColor = Color.parseColor("#FFE8AA0E");
-                    projects_lin.setBackgroundColor(selectedColor);
+                    projects_lin.setBackgroundResource(R.drawable.ohra_line);
                     getWindow().setStatusBarColor(ContextCompat.getColor(Profile.this,R.color.ohra));
                 }
                 else if(score < 17000){
@@ -214,7 +213,7 @@ public class Profile extends AppCompatActivity {
                     userCircle.setBackgroundResource(R.drawable.circle_red);
                     UserScore.setTextColor(Color.parseColor("#FF0000"));
                     selectedColor = Color.parseColor("#FF0000");
-                    projects_lin.setBackgroundColor(selectedColor);
+                    projects_lin.setBackgroundResource(R.drawable.red_line);
                     getWindow().setStatusBarColor(ContextCompat.getColor(Profile.this,R.color.red));
                 }
                 else if(score < 30000){
@@ -222,7 +221,7 @@ public class Profile extends AppCompatActivity {
                     userCircle.setBackgroundResource(R.drawable.circle_orange);
                     UserScore.setTextColor(Color.parseColor("#FFCC7722"));
                     selectedColor = Color.parseColor("#FFCC7722");
-                    projects_lin.setBackgroundColor(selectedColor);
+                    projects_lin.setBackgroundResource(R.drawable.orange_line);
                     getWindow().setStatusBarColor(ContextCompat.getColor(Profile.this,R.color.orange));
                 }
                 else if(score < 50000){
@@ -230,7 +229,7 @@ public class Profile extends AppCompatActivity {
                     userCircle.setBackgroundResource(R.drawable.circle_violete);
                     UserScore.setTextColor(Color.parseColor("#4F0070"));
                     selectedColor = Color.parseColor("#4F0070");
-                    projects_lin.setBackgroundColor(selectedColor);
+                    projects_lin.setBackgroundResource(R.drawable.violete_line);
                     getWindow().setStatusBarColor(ContextCompat.getColor(Profile.this,R.color.violete));
                 }
                 else{
@@ -238,7 +237,7 @@ public class Profile extends AppCompatActivity {
                     userCircle.setBackgroundResource(R.drawable.circle_blue_green);
                     UserScore.setTextColor(Color.parseColor("#FF00C6A2"));
                     selectedColor = Color.parseColor("#FF00C6A2");
-                    projects_lin.setBackgroundColor(selectedColor);
+                    projects_lin.setBackgroundResource(R.drawable.blue_green_line);
                     getWindow().setStatusBarColor(ContextCompat.getColor(Profile.this,R.color.main_green));
                 }
 
@@ -255,9 +254,51 @@ public class Profile extends AppCompatActivity {
         projects.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                projects_lin.setBackgroundColor(selectedColor);
-                friends_lin.setBackgroundColor(0);
-                rating_lin.setBackgroundColor(0);
+                if(score < 100){
+                    friends_lin.setBackgroundColor(0);
+                    rating_lin.setBackgroundColor(0);
+                    projects_lin.setBackgroundResource(R.drawable.blue_line);
+                }
+                else if(score < 300){
+                    friends_lin.setBackgroundColor(0);
+                    rating_lin.setBackgroundColor(0);
+                    projects_lin.setBackgroundResource(R.drawable.green_line);
+                }
+                else if(score < 1000){
+                    friends_lin.setBackgroundColor(0);
+                    rating_lin.setBackgroundColor(0);
+                    projects_lin.setBackgroundResource(R.drawable.brown_line);
+                }
+                else if(score < 2500){
+                    friends_lin.setBackgroundColor(0);
+                    rating_lin.setBackgroundColor(0);
+                    projects_lin.setBackgroundResource(R.drawable.light_gray_line);
+                }
+                else if(score < 7000){
+                    friends_lin.setBackgroundColor(0);
+                    rating_lin.setBackgroundColor(0);
+                    projects_lin.setBackgroundResource(R.drawable.ohra_line);
+                }
+                else if(score < 17000){
+                    friends_lin.setBackgroundColor(0);
+                    rating_lin.setBackgroundColor(0);
+                    projects_lin.setBackgroundResource(R.drawable.red_line);
+                }
+                else if(score < 30000){
+                    friends_lin.setBackgroundColor(0);
+                    rating_lin.setBackgroundColor(0);
+                    projects_lin.setBackgroundResource(R.drawable.orange_line);
+                }
+                else if(score < 50000){
+                    friends_lin.setBackgroundColor(0);
+                    rating_lin.setBackgroundColor(0);
+                    projects_lin.setBackgroundResource(R.drawable.violete_line);
+                }
+                else{
+                    friends_lin.setBackgroundColor(0);
+                    rating_lin.setBackgroundColor(0);
+                    projects_lin.setBackgroundResource(R.drawable.blue_green_line);
+                }
                 navController.navigate(R.id.projects);
             }
         });
@@ -265,15 +306,54 @@ public class Profile extends AppCompatActivity {
         friends.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                projects_lin.setBackgroundColor(0);
-                friends_lin.setBackgroundColor(selectedColor);
-                rating_lin.setBackgroundColor(0);
-                fragment.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
-                int height = fragment.getMeasuredHeight();
+                if(score < 100){
+                    projects_lin.setBackgroundColor(0);
+                    rating_lin.setBackgroundColor(0);
+                    friends_lin.setBackgroundResource(R.drawable.blue_line);
+                }
+                else if(score < 300){
+                    projects_lin.setBackgroundColor(0);
+                    rating_lin.setBackgroundColor(0);
+                    friends_lin.setBackgroundResource(R.drawable.green_line);
+                }
+                else if(score < 1000){
+                    projects_lin.setBackgroundColor(0);
+                    rating_lin.setBackgroundColor(0);
+                    friends_lin.setBackgroundResource(R.drawable.brown_line);
+                }
+                else if(score < 2500){
+                    projects_lin.setBackgroundColor(0);
+                    rating_lin.setBackgroundColor(0);
+                    friends_lin.setBackgroundResource(R.drawable.light_gray_line);
+                }
+                else if(score < 7000){
+                    projects_lin.setBackgroundColor(0);
+                    rating_lin.setBackgroundColor(0);
+                    friends_lin.setBackgroundResource(R.drawable.ohra_line);
+                }
+                else if(score < 17000){
+                    projects_lin.setBackgroundColor(0);
+                    rating_lin.setBackgroundColor(0);
+                    friends_lin.setBackgroundResource(R.drawable.red_line);
+                }
+                else if(score < 30000){
+                    projects_lin.setBackgroundColor(0);
+                    rating_lin.setBackgroundColor(0);
+                    friends_lin.setBackgroundResource(R.drawable.orange_line);
+                }
+                else if(score < 50000){
+                    projects_lin.setBackgroundColor(0);
+                    rating_lin.setBackgroundColor(0);
+                    friends_lin.setBackgroundResource(R.drawable.violete_line);
+                }
+                else{
+                    projects_lin.setBackgroundColor(0);
+                    rating_lin.setBackgroundColor(0);
+                    friends_lin.setBackgroundResource(R.drawable.blue_green_line);
+                }
 
                 Bundle bundle = new Bundle();
                 bundle.putString("mail", mail);
-                bundle.putInt("height", height);
 
                 navController.navigate(R.id.friends, bundle);
             }
@@ -282,9 +362,51 @@ public class Profile extends AppCompatActivity {
         rating.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                projects_lin.setBackgroundColor(0);
-                friends_lin.setBackgroundColor(0);
-                rating_lin.setBackgroundColor(selectedColor);
+                if(score < 100){
+                    projects_lin.setBackgroundColor(0);
+                    friends_lin.setBackgroundColor(0);
+                    rating_lin.setBackgroundResource(R.drawable.blue_line);
+                }
+                else if(score < 300){
+                    projects_lin.setBackgroundColor(0);
+                    friends_lin.setBackgroundColor(0);
+                    rating_lin.setBackgroundResource(R.drawable.green_line);
+                }
+                else if(score < 1000){
+                    projects_lin.setBackgroundColor(0);
+                    friends_lin.setBackgroundColor(0);
+                    rating_lin.setBackgroundResource(R.drawable.brown_line);
+                }
+                else if(score < 2500){
+                    friends_lin.setBackgroundColor(0);
+                    projects_lin.setBackgroundColor(0);
+                    rating_lin.setBackgroundResource(R.drawable.light_gray_line);
+                }
+                else if(score < 7000){
+                    projects_lin.setBackgroundColor(0);
+                    rating_lin.setBackgroundColor(0);
+                    friends_lin.setBackgroundResource(R.drawable.ohra_line);
+                }
+                else if(score < 17000){
+                    projects_lin.setBackgroundColor(0);
+                    friends_lin.setBackgroundColor(0);
+                    rating_lin.setBackgroundResource(R.drawable.red_line);
+                }
+                else if(score < 30000){
+                    projects_lin.setBackgroundColor(0);
+                    rating_lin.setBackgroundColor(0);
+                    friends_lin.setBackgroundResource(R.drawable.orange_line);
+                }
+                else if(score < 50000){
+                    projects_lin.setBackgroundColor(0);
+                    friends_lin.setBackgroundColor(0);
+                    rating_lin.setBackgroundResource(R.drawable.violete_line);
+                }
+                else{
+                    projects_lin.setBackgroundColor(0);
+                    friends_lin.setBackgroundColor(0);
+                    rating_lin.setBackgroundResource(R.drawable.blue_green_line);
+                }
 
                 Bundle bundle = new Bundle();
                 bundle.putInt("score", score);
@@ -313,6 +435,13 @@ public class Profile extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+            }
+        });
+        editProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Profile.this, EditProfile.class);
+                startActivity(intent);
             }
         });
     }

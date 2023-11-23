@@ -36,7 +36,7 @@
             android:layout_alignParentBottom="true"
             android:layout_marginStart="5dp"
             android:layout_toEndOf="@+id/textView"
-            android:background="@color/light_gray"
+            android:background="@drawable/vertical_gray_line"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textView"
             app:layout_constraintTop_toTopOf="parent" />

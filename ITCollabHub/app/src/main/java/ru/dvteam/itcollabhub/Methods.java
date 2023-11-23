@@ -56,4 +56,8 @@ public interface Methods {
     @FormUrlEncoded
     @POST("/")
     Call<Model> addFriends(@Field("Request")String req, @Field("UserMail")String mail, @Field("Id")String id);
+
+    @FormUrlEncoded
+    @POST("/")
+    Call<Model> editName(@Field("Request")String req, @Field("UserName")String name, @Field("UserMail")String mail);
 }

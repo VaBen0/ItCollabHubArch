@@ -36,6 +36,7 @@ public class CreateAccount extends AppCompatActivity {
     ImageView Img;
     private static final int PICK_IMAGES_CODE = 0;
     private String mediaPath;
+    private Boolean acces = false;
     private static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 1;
     ActivityResultLauncher<Intent> resultLauncher;
 
@@ -78,21 +79,29 @@ public class CreateAccount extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditText UserName = findViewById(R.id.nameu);
-                File file = new File(mediaPath);
-
-                RequestBody requestBody = RequestBody.create(MediaType.parse("*/*"), file);
-                PostDatas post = new PostDatas();
-                post.postDataCreateAccount(UserName.getText().toString(), requestBody, mail, new CallBackInt() {
-                    @Override
-                    public void invoke(String res) {
-                        Toast.makeText(CreateAccount.this, res, Toast.LENGTH_SHORT).show();
-                        if(res.equals("Сохранено")) {
-                            Intent intent = new Intent(CreateAccount.this, Profile.class);
-                            startActivity(intent);
+                if(acces) {
+                    EditText UserName = findViewById(R.id.nameu);
+                    File file = new File(mediaPath);
+                    RequestBody requestBody = RequestBody.create(MediaType.parse("*/*"), file);
+                    PostDatas post = new PostDatas();
+                    post.postDataCreateAccount("CreateNameLog", UserName.getText().toString(), requestBody, mail, new CallBackInt() {
+                        @Override
+                        public void invoke(String res) {
+                            Toast.makeText(CreateAccount.this, res, Toast.LENGTH_SHORT).show();
+                            if (res.equals("Сохранено")) {
+                                Intent intent = new Intent(CreateAccount.this, Profile.class);
+                                SharedPreferences sPref = getSharedPreferences("MyPref", MODE_PRIVATE);
+                                SharedPreferences.Editor ed = sPref.edit();
+                                ed.putString("MediaPath", mediaPath);
+                                ed.apply();
+                                startActivity(intent);
+                            }
                         }
-                    }
-                });
+                    });
+                }
+                else{
+                    Toast.makeText(CreateAccount.this, "Изображение не выбрано", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
@@ -137,6 +146,7 @@ public class CreateAccount extends AppCompatActivity {
                 mediaPath = cursor.getString(columnIndex);
                 Img.setImageURI(imageUri);
                 cursor.close();
+                acces = true;
             }
 
         }
@@ -160,6 +170,7 @@ public class CreateAccount extends AppCompatActivity {
                             mediaPath = cursor.getString(columnIndex);
                             Img.setImageURI(imageUri);
                             cursor.close();
+                            acces = true;
                         }catch (Exception e){
                             Toast.makeText(CreateAccount.this, "LOSER", Toast.LENGTH_SHORT).show();
                         }

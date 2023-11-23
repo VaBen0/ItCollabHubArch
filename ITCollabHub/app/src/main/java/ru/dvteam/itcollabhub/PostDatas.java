@@ -88,12 +88,12 @@ public class PostDatas {
         });
     }
 
-    public void postDataCreateAccount(String name, RequestBody requestFile, String mail, CallBackInt result){
+    public void postDataCreateAccount(String req, String name, RequestBody requestFile, String mail, CallBackInt result){
 
         MultipartBody.Part fileToUpload = MultipartBody.Part.createFormData("file", "lol", requestFile);
         RequestBody requestName = RequestBody.create(MediaType.parse("text/plain"), name);
         RequestBody requestMail = RequestBody.create(MediaType.parse("text/plain"), mail);
-        RequestBody requestReq = RequestBody.create(MediaType.parse("text/plain"), "CreateNameLog");
+        RequestBody requestReq = RequestBody.create(MediaType.parse("text/plain"), req);
 
         Methods methods = RetrofitClient.getRetrofitInstance().create(Methods.class);
         Call<Model> call = methods.uploadImage(fileToUpload, requestName, requestReq, requestMail);
@@ -181,6 +181,24 @@ public class PostDatas {
     public void postDataGetFindFriend(String req, String name, String mail, CallBackInt result){
         Methods methods = RetrofitClient.getRetrofitInstance().create(Methods.class);
         Call<Model> call = methods.getFindFriends(req, name, mail);
+
+        call.enqueue(new Callback<Model>() {
+            @Override
+            public void onResponse(Call<Model> call, retrofit2.Response<Model> response) {
+                result.invoke(response.body().getReturn());
+            }
+
+            @Override
+            public void onFailure(Call<Model> call, Throwable t) {
+
+            }
+
+        });
+    }
+
+    public void postDataEditName(String req, String mail, String name, CallBackInt result){
+        Methods methods = RetrofitClient.getRetrofitInstance().create(Methods.class);
+        Call<Model> call = methods.editName(req, name, mail);
 
         call.enqueue(new Callback<Model>() {
             @Override
