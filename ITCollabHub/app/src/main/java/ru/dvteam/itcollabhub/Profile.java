@@ -27,6 +27,7 @@ public class Profile extends AppCompatActivity {
     private int score;
     private int min;
     private String status;
+    private boolean rFr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -157,7 +158,7 @@ public class Profile extends AppCompatActivity {
         PostDatas post = new PostDatas();
         post.postDataGetUserData(mail, new CallBackInt2() {
             @Override
-            public void invoke(String name, String urlImage, int topScore, String topStatus) {
+            public void invoke(String name, String urlImage, int topScore, String topStatus, String rfr) {
                 String s = "Ваши очки: " + topScore;
                 score = topScore;
                 status = topStatus;
@@ -167,6 +168,9 @@ public class Profile extends AppCompatActivity {
                         .with(Profile.this)
                         .load(urlImage)
                         .into(loadedImg);
+
+                if(rfr.equals("0")){rFr = false;}
+                else{rFr = true;}
 
                 if(score < 100){
                     bguser.setBackgroundResource(R.drawable.gradient_blue);
@@ -354,6 +358,7 @@ public class Profile extends AppCompatActivity {
 
                 Bundle bundle = new Bundle();
                 bundle.putString("mail", mail);
+                bundle.putBoolean("rFr", rFr);
 
                 navController.navigate(R.id.friends, bundle);
             }
@@ -427,7 +432,7 @@ public class Profile extends AppCompatActivity {
         projectMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Profile.this, Project.class);
+                Intent intent = new Intent(Profile.this, ActivityProject.class);
                 startActivity(intent);
             }
         });

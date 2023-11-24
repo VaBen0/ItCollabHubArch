@@ -117,12 +117,13 @@ public class PostDatas {
         call.enqueue(new Callback<Model>() {
             @Override
             public void onResponse(Call<Model> call, retrofit2.Response<Model> response) {
-                result.invoke(response.body().getName(), response.body().getUrlImg(), response.body().getTopScore(), response.body().getTopStatus());
+                result.invoke(response.body().getName(), response.body().getUrlImg(),
+                        response.body().getTopScore(), response.body().getTopStatus(), response.body().getrFr());
             }
 
             @Override
             public void onFailure(Call<Model> call, Throwable t) {
-                result.invoke("","", 0, "");
+                result.invoke("","", 0, "", "");
             }
         });
     }
@@ -211,6 +212,33 @@ public class PostDatas {
 
             }
 
+        });
+    }
+
+    public void postDataCreateProject(String req, String name, RequestBody requestFile, String mail, String purposes, String tasks,
+                                      String description, String id, CallBackInt result){
+
+        MultipartBody.Part fileToUpload = MultipartBody.Part.createFormData("file", "lol", requestFile);
+        RequestBody requestName = RequestBody.create(MediaType.parse("text/plain"), name);
+        RequestBody requestMail = RequestBody.create(MediaType.parse("text/plain"), mail);
+        RequestBody requestReq = RequestBody.create(MediaType.parse("text/plain"), req);
+        RequestBody requestDes = RequestBody.create(MediaType.parse("text/plain"), description);
+        RequestBody requestPur = RequestBody.create(MediaType.parse("text/plain"), purposes);
+        RequestBody requestTasks = RequestBody.create(MediaType.parse("text/plain"), tasks);
+        RequestBody requestId = RequestBody.create(MediaType.parse("text/plain"), id);
+
+        Methods methods = RetrofitClient.getRetrofitInstance().create(Methods.class);
+        Call<Model> call = methods.createProject(fileToUpload, requestName, requestReq, requestPur, requestMail, requestTasks, requestId,requestDes);
+        call.enqueue(new Callback<Model>() {
+            @Override
+            public void onResponse(Call<Model> call, retrofit2.Response<Model> response) {
+                result.invoke(response.body().getReturn());
+            }
+
+            @Override
+            public void onFailure(Call<Model> call, Throwable t) {
+                result.invoke("All bad");
+            }
         });
     }
 }

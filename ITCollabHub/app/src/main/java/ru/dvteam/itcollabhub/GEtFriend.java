@@ -220,10 +220,6 @@ public class GetFriend extends AppCompatActivity {
                                         Toast.makeText(v.getContext(), res, Toast.LENGTH_SHORT).show();
                                         if(res.equals("Друг добавлен")){
                                             main.removeView(custom);
-                                            if(main.getChildCount() == 0){
-                                                Intent intent = new Intent(GetFriend.this, Profile.class);
-                                                startActivity(intent);
-                                            }
                                         }
                                     }
                                 });

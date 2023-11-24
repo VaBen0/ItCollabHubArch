@@ -68,7 +68,7 @@ public class Friend extends AppCompatActivity {
             TextView project1 = findViewById(R.id.textView4);
             ImageView restartLine = findViewById(R.id.restart);
             View projects_lin = findViewById(R.id.linear_rating);
-            Button delBut = findViewById(R.id.deleteButton);
+            ImageView delBut = findViewById(R.id.deleteButton);
             UserScore.setText(s);
             project1.setText(project);
 

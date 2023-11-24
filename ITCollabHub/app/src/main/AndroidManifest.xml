@@ -26,7 +26,7 @@
             android:name=".CreateProject"
             android:exported="false" />
         <activity
-            android:name=".Project"
+            android:name=".ActivityProject"
             android:exported="false" />
         <activity
             android:name=".GetFriend"

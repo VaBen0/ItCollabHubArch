@@ -15,4 +15,6 @@
     <color name="white1">#FFFBFF</color>
     <color name="white2">#C2F8F6F6</color>
     <color name="transparent">#00FFFFFF</color>
+    <color name="white_transparent">#66FFFFFF</color>
+    <color name="light_black">#2C2C2C</color>
 </resources>

@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Project">
+    tools:context=".ActivityProject">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/bguser"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:background="@drawable/gradient_blue"
@@ -59,7 +59,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/projects"
+                android:id="@+id/my_projects"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -72,7 +72,7 @@
                 tools:ignore="TouchTargetSizeCheck" />
 
             <View
-                android:id="@+id/linear_projects"
+                android:id="@+id/linear_my_projects"
                 android:layout_width="85dp"
                 android:layout_height="3dp"
                 android:layout_gravity="right"
@@ -86,7 +86,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/rating"
+                android:id="@+id/end_projects"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -99,7 +99,7 @@
                 tools:ignore="TouchTargetSizeCheck" />
 
             <View
-                android:id="@+id/linear_rating"
+                android:id="@+id/linear_end_projects"
                 android:layout_width="85dp"
                 android:layout_height="3dp"
                 android:layout_gravity="start"
@@ -127,8 +127,8 @@
 
     <ImageButton
         android:id="@+id/plus"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
         android:background="@color/transparent"

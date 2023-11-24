@@ -8,7 +8,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import androidx.navigation.Navigation;
 
 import android.Manifest;
 import android.app.Activity;
@@ -159,7 +158,7 @@ public class EditProfile extends AppCompatActivity {
         projectMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(EditProfile.this, Project.class);
+                Intent intent = new Intent(EditProfile.this, ActivityProject.class);
                 startActivity(intent);
             }
         });
