@@ -20,6 +20,12 @@
         android:theme="@style/Theme.ITCollabHub"
         tools:targetApi="26">
         <activity
+            android:name=".EditProject"
+            android:exported="false" />
+        <activity
+            android:name=".UsersProject"
+            android:exported="false" />
+        <activity
             android:name=".EditProfile"
             android:exported="false" />
         <activity

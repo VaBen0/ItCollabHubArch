@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 public class Purposes extends Fragment {
 
@@ -22,12 +23,46 @@ public class Purposes extends Fragment {
         EditText purp1 = v.findViewById(R.id.name_friend);
         EditText purp2 = v.findViewById(R.id.name_friend2);
 
+        CreateProject createProject = (CreateProject) getActivity();
+        int score = createProject.getScore();
+
+        if(score < 100){
+            addPurp.setBackgroundResource(R.drawable.ad);
+        }
+        else if(score < 300){
+            addPurp.setBackgroundResource(R.drawable.green_add);
+        }
+        else if(score < 1000){
+            addPurp.setBackgroundResource(R.drawable.brown_add);
+        }
+        else if(score < 2500){
+            addPurp.setBackgroundResource(R.drawable.light_gray_add);
+        }
+        else if(score < 7000){
+            addPurp.setBackgroundResource(R.drawable.ohra_add);
+        }
+        else if(score < 17000){
+            addPurp.setBackgroundResource(R.drawable.red_add);
+        }
+        else if(score < 30000){
+            addPurp.setBackgroundResource(R.drawable.brown_add);
+        }
+        else if(score < 50000){
+            addPurp.setBackgroundResource(R.drawable.violete_add);
+        }
+        else{
+            addPurp.setBackgroundResource(R.drawable.blue_green_add);
+        }
+
         addPurp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String purpName = purp1.getText().toString();
                 String purp = purp2.getText().toString();
                 CreateProject createProject = (CreateProject) getActivity();
+                purp1.setText("");
+                purp2.setText("");
+                Toast.makeText(v.getContext(), "Цель добавлена", Toast.LENGTH_SHORT).show();
                 createProject.setPurp(purpName, purp);
             }
         });

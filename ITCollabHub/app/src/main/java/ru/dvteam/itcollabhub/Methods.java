@@ -65,4 +65,17 @@ public interface Methods {
     @POST("/")
     Call<Model> createProject(@Part MultipartBody.Part file, @Part("ProjectName") RequestBody name, @Part("Request") RequestBody req, @Part("ProjectPurposes") RequestBody purpose,
                                 @Part("UserMail") RequestBody mail, @Part("ProjectTasks") RequestBody task, @Part("UsersId") RequestBody id, @Part("ProjectDescription") RequestBody description);
+
+    @FormUrlEncoded
+    @POST("/")
+    Call<Model> getUserProjects(@Field("Request")String req, @Field("UserMail")String mail);
+
+    @FormUrlEncoded
+    @POST("/")
+    Call<Model> createProjectWithoutImage(@Field("ProjectName") String name, @Field("Request") String req, @Field("ProjectPurposes") String purpose,
+                              @Field("UserMail") String mail, @Field("ProjectTasks") String task, @Field("UsersId") String id, @Field("ProjectDescription") String description);
+
+    @FormUrlEncoded
+    @POST("/")
+    Call<Model> getProjectInformation(@Field("Request")String req, @Field("ProjectId")String id);
 }

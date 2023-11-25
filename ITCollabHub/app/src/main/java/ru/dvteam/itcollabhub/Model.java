@@ -7,14 +7,16 @@ public class Model {
     private String topStatus;
     private String urlImg;
     private String rFr;
+    private String description;
 
-    public Model(String name, String urlImg, String ret, String topStatus, int topScore, String rFr) {
+    public Model(String name, String urlImg, String ret, String topStatus, int topScore, String rFr, String description) {
         this.name = name;
         this.ret = ret;
         this.urlImg = urlImg;
         this.topStatus = topStatus;
         this.topScore = topScore;
         this.rFr = rFr;
+        this.description = description;
     }
 
     public String getName() {
@@ -33,4 +35,5 @@ public class Model {
 
     public String getrFr(){return this.rFr;}
 
+    public String getDescription() {return this.description;}
 }

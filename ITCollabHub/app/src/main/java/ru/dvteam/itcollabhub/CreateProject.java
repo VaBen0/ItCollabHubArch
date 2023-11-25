@@ -8,7 +8,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
@@ -18,8 +17,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
-import android.media.Image;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
@@ -30,8 +29,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import org.w3c.dom.Text;
 
 import java.io.File;
 
@@ -45,49 +42,116 @@ public class CreateProject extends AppCompatActivity {
     private static final int PICK_IMAGES_CODE = 0;
     private String purposes_name = "", purposes = "", tasks_name = "", tasks = "";
     private String id1 = "";
-    private String mediaPath;
+    private String mediaPath = "";
     private Boolean acces = false;
     private static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 1;
     ActivityResultLauncher<Intent> resultLauncher;
+    int score;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        SharedPreferences sPref = getSharedPreferences("MyPref", MODE_PRIVATE);
+        String mail = sPref.getString("UserMail", "");
+        score = sPref.getInt("UserScore", 0);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_project);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
                 WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         registerResult();
 
-        SharedPreferences sPref = getSharedPreferences("MyPref", MODE_PRIVATE);
-        String mail = sPref.getString("UserMail", "");
 
-        LinearLayout profileMenu = findViewById(R.id.profile_menu);
-        LinearLayout forumMenu = findViewById(R.id.forum_menu);
+        //LinearLayout profileMenu = findViewById(R.id.profile_menu);
+        //LinearLayout forumMenu = findViewById(R.id.forum_menu);
         TextView adParticip = findViewById(R.id.ad_participiant);
         TextView adActivity = findViewById(R.id.ad_activity);
         Img = findViewById(R.id.pr_logo);
-        EditText nameu = findViewById(R.id.textView14);
+        EditText nameu = findViewById(R.id.projectName);
         EditText description  = findViewById(R.id.description);
         Button sendProject = findViewById(R.id.send);
+        View activity_line = findViewById(R.id.linear_projects);
+        View particip_line = findViewById(R.id.linear_friends);
+
+        if(score < 100){
+            activity_line.setBackgroundResource(R.drawable.blue_line);
+            sendProject.setBackgroundTintList(ContextCompat.getColorStateList(CreateProject.this, R.color.blue));
+        }
+        else if(score < 300){
+            activity_line.setBackgroundResource(R.drawable.green_line);
+            sendProject.setBackgroundTintList(ContextCompat.getColorStateList(CreateProject.this, R.color.green));
+        }
+        else if(score < 1000){
+            activity_line.setBackgroundResource(R.drawable.brown_line);
+            sendProject.setBackgroundTintList(ContextCompat.getColorStateList(CreateProject.this, R.color.brown));
+        }
+        else if(score < 2500){
+            activity_line.setBackgroundResource(R.drawable.light_gray_line);
+            sendProject.setBackgroundTintList(ContextCompat.getColorStateList(CreateProject.this, R.color.light_gray));
+        }
+        else if(score < 7000){
+            activity_line.setBackgroundResource(R.drawable.ohra_line);
+            sendProject.setBackgroundTintList(ContextCompat.getColorStateList(CreateProject.this, R.color.ohra));
+        }
+        else if(score < 17000){
+            activity_line.setBackgroundResource(R.drawable.red_line);
+            sendProject.setBackgroundTintList(ContextCompat.getColorStateList(CreateProject.this, R.color.red));
+        }
+        else if(score < 30000){
+            activity_line.setBackgroundResource(R.drawable.orange_line);
+            sendProject.setBackgroundTintList(ContextCompat.getColorStateList(CreateProject.this, R.color.orange));
+        }
+        else if(score < 50000){
+            activity_line.setBackgroundResource(R.drawable.violete_line);
+            sendProject.setBackgroundTintList(ContextCompat.getColorStateList(CreateProject.this, R.color.violete));
+        }
+        else{
+            activity_line.setBackgroundResource(R.drawable.blue_green_line);
+            sendProject.setBackgroundTintList(ContextCompat.getColorStateList(CreateProject.this, R.color.main_green));
+        }
 
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
 
-        profileMenu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(CreateProject.this, Profile.class);
-                startActivity(intent);
-            }
-        });
-        forumMenu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
         adParticip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                if(score < 100){
+                    activity_line.setBackgroundColor(0);
+                    particip_line.setBackgroundResource(R.drawable.blue_line);
+                }
+                else if(score < 300){
+                    activity_line.setBackgroundColor(0);
+                    particip_line.setBackgroundResource(R.drawable.green_line);
+                }
+                else if(score < 1000){
+                    activity_line.setBackgroundColor(0);
+                    particip_line.setBackgroundResource(R.drawable.brown_line);
+                }
+                else if(score < 2500){
+                    activity_line.setBackgroundColor(0);
+                    particip_line.setBackgroundResource(R.drawable.light_gray_line);
+                }
+                else if(score < 7000){
+                    activity_line.setBackgroundColor(0);
+                    particip_line.setBackgroundResource(R.drawable.ohra_line);
+                }
+                else if(score < 17000){
+                    activity_line.setBackgroundColor(0);
+                    particip_line.setBackgroundResource(R.drawable.red_line);
+                }
+                else if(score < 30000){
+                    activity_line.setBackgroundColor(0);
+                    particip_line.setBackgroundResource(R.drawable.orange_line);
+                }
+                else if(score < 50000){
+                    activity_line.setBackgroundColor(0);
+                    particip_line.setBackgroundResource(R.drawable.violete_line);
+                }
+                else{
+                    activity_line.setBackgroundColor(0);
+                    particip_line.setBackgroundResource(R.drawable.blue_green_line);
+                }
+
                 Bundle bundle = new Bundle();
                 bundle.putString("mail", mail);
                 navController.navigate(R.id.participant, bundle);
@@ -96,11 +160,48 @@ public class CreateProject extends AppCompatActivity {
         adActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                if(score < 100){
+                    particip_line.setBackgroundColor(0);
+                    activity_line.setBackgroundResource(R.drawable.blue_line);
+                }
+                else if(score < 300){
+                    particip_line.setBackgroundColor(0);
+                    activity_line.setBackgroundResource(R.drawable.green_line);
+                }
+                else if(score < 1000){
+                    particip_line.setBackgroundColor(0);
+                    activity_line.setBackgroundResource(R.drawable.brown_line);
+                }
+                else if(score < 2500){
+                    particip_line.setBackgroundColor(0);
+                    activity_line.setBackgroundResource(R.drawable.light_gray_line);
+                }
+                else if(score < 7000){
+                    particip_line.setBackgroundColor(0);
+                    activity_line.setBackgroundResource(R.drawable.ohra_line);
+                }
+                else if(score < 17000){
+                    particip_line.setBackgroundColor(0);
+                    activity_line.setBackgroundResource(R.drawable.red_line);
+                }
+                else if(score < 30000){
+                    particip_line.setBackgroundColor(0);
+                    activity_line.setBackgroundResource(R.drawable.orange_line);
+                }
+                else if(score < 50000){
+                    particip_line.setBackgroundColor(0);
+                    activity_line.setBackgroundResource(R.drawable.violete_line);
+                }
+                else{
+                    particip_line.setBackgroundColor(0);
+                    activity_line.setBackgroundResource(R.drawable.blue_green_line);
+                }
                 navController.navigate(R.id.differentActivity);
             }
         });
 
-        if(android.os.Build.VERSION.SDK_INT >= 33) {
+        if(Build.VERSION.SDK_INT >= 33) {
             Img.setOnClickListener(view -> pickImage());
         }
         else{
@@ -127,54 +228,91 @@ public class CreateProject extends AppCompatActivity {
                 //Toast.makeText(CreateProject.this, purposes_name + " " + purposes + " " + tasks_name + " " + tasks + ", " + id1, Toast.LENGTH_SHORT).show();
                 String purposeMain = "";
                 String taskMain = "";
-                String idMain = "";
+                String mainId;
+                String mainDescription;
+                String mainName;
+                if(nameu.getText().toString().isEmpty()){
+                    mainName = "Отсутствует наименование проекта";
+                } else{
+                    mainName = nameu.getText().toString();
+                }
+                if(description.getText().toString().isEmpty()){
+                    mainDescription = "Без названия";
+                } else{
+                    mainDescription = description.getText().toString();
+                }
+                if(id1.isEmpty()){
+                    mainId = "Пользователи были не выбраны";
+                }else{
+                    mainId = id1;
+                }
                 String[] purpose1 = purposes_name.split(",");
                 String[] purpose2 = purposes.split(",");
                 String[] task1 = tasks_name.split(",");
                 String[] task2 = tasks.split(",");
-                String[] id = id1.split(",");
-                for(int i = 0; i < purpose1.length; i++){
-                    if(i != purpose1.length - 1){
-                        if(i > 1){
-                            purposeMain = purposeMain + "," + (i+1) + ":{" + purpose1[i] + "}{" + purpose2[i] + "}";
+                if (!purposes_name.isEmpty()) {
+                    for (int i = 0; i < purpose1.length; i++) {
+                        if (i != purpose1.length - 1) {
+                            if (i > 1) {
+                                purposeMain = purposeMain + "," + (i + 1) + ":{" + purpose1[i] + "}{" + purpose2[i] + "}";
+                            } else {
+                                purposeMain = purposeMain + (i + 1) + ":{" + purpose1[i] + "}{" + purpose2[i] + "}";
+                            }
+                        } else {
+                            purposeMain = purposeMain + (i + 1) + ":{" + purpose1[i] + "}{" + purpose2[i] + "}";
                         }
-                        else{
-                            purposeMain = purposeMain + (i+1) + ":{" + purpose1[i] + "}{" + purpose2[i] + "}";
-                        }
-                    }
-                    else{
-                        purposeMain = purposeMain + (i+1) + ":{" + purpose1[i] + "}{" + purpose2[i] + "}";
                     }
                 }
-                for(int i = 0; i < task1.length; i++){
-                    if(i != task1.length - 1){
-                        if(i > 1){
-                            taskMain = taskMain + "," + (i+1) + ":{" + task1[i] + "}{" + task2[i] + "}";
+                else{
+                    purposeMain = "Нет";
+                }
+                if (!tasks_name.isEmpty()) {
+                    for (int i = 0; i < task1.length; i++) {
+                        if (i != task1.length - 1) {
+                            if (i > 1) {
+                                taskMain = taskMain + "," + (i + 1) + ":{" + task1[i] + "}{" + task2[i] + "}";
+                            } else {
+                                taskMain = taskMain + (i + 1) + ":{" + task1[i] + "}{" + task2[i] + "}";
+                            }
+                        } else {
+                            taskMain = taskMain + (i + 1) + ":{" + task1[i] + "}{" + task2[i] + "}";
                         }
-                        else{
-                            taskMain = taskMain + (i+1) + ":{" + task1[i] + "}{" + task2[i] + "}";
-                        }
-                    }
-                    else{
-                        taskMain = taskMain + (i+1) + ":{" + task1[i] + "}{" + task2[i] + "}";
                     }
                 }
-                Toast.makeText(CreateProject.this, purposeMain + " | " +taskMain + " | " + id1, Toast.LENGTH_SHORT).show();
+                else{
+                    taskMain = "Нет";
+                }
+                //Toast.makeText(CreateProject.this, mainId, Toast.LENGTH_SHORT).show();
+                if(mediaPath.isEmpty()){
+                    PostDatas post = new PostDatas();
+                    post.postDataCreateProjectWithoutImage("CreateNewProject", mainName, mail, purposeMain, taskMain,
+                            mainDescription, mainId, new CallBackInt() {
+                                @Override
+                                public void invoke(String res) {
+                                    Toast.makeText(CreateProject.this, res, Toast.LENGTH_SHORT).show();
+                                    if (res.equals("Успешно")) {
+                                        Intent intent = new Intent(CreateProject.this, ActivityProject.class);
+                                        startActivity(intent);
+                                    }
+                                }
+                            });
+                }else{
+                    File file = new File(mediaPath);
+                    RequestBody requestBody = RequestBody.create(MediaType.parse("*/*"), file);
+                    PostDatas post = new PostDatas();
+                    post.postDataCreateProject("CreateNewProject", mainName, requestBody, mail, purposeMain, taskMain,
+                            mainDescription, mainId, new CallBackInt() {
+                            @Override
+                            public void invoke(String res) {
+                                Toast.makeText(CreateProject.this, res, Toast.LENGTH_SHORT).show();
+                                if (res.equals("Успешно")) {
+                                    Intent intent = new Intent(CreateProject.this, ActivityProject.class);
+                                    startActivity(intent);
+                                }
+                            }
+                        });
+                }
 
-                File file = new File(mediaPath);
-                RequestBody requestBody = RequestBody.create(MediaType.parse("*/*"), file);
-                PostDatas post = new PostDatas();
-                post.postDataCreateProject("CreateNewProject", nameu.getText().toString(), requestBody, mail, purposeMain, taskMain,
-                        description.getText().toString(), id1, new CallBackInt() {
-                    @Override
-                    public void invoke(String res) {
-                        Toast.makeText(CreateProject.this, res, Toast.LENGTH_SHORT).show();
-                        if (res.equals("Сохранено")) {
-                            Intent intent = new Intent(CreateProject.this, ActivityProject.class);
-                            startActivity(intent);
-                        }
-                    }
-                });
             }
         });
     }
@@ -292,5 +430,9 @@ public class CreateProject extends AppCompatActivity {
                     }
                 }
         );
+    }
+
+    public int getScore(){
+        return score;
     }
 }

@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 public class Tasks extends Fragment {
 
@@ -21,11 +22,45 @@ public class Tasks extends Fragment {
         EditText task1 = v.findViewById(R.id.name_friend);
         EditText task2 = v.findViewById(R.id.name_friend2);
 
+        CreateProject createProject = (CreateProject) getActivity();
+        int score = createProject.getScore();
+
+        if(score < 100){
+            addTask.setBackgroundResource(R.drawable.ad);
+        }
+        else if(score < 300){
+            addTask.setBackgroundResource(R.drawable.green_add);
+        }
+        else if(score < 1000){
+            addTask.setBackgroundResource(R.drawable.brown_add);
+        }
+        else if(score < 2500){
+            addTask.setBackgroundResource(R.drawable.light_gray_add);
+        }
+        else if(score < 7000){
+            addTask.setBackgroundResource(R.drawable.ohra_add);
+        }
+        else if(score < 17000){
+            addTask.setBackgroundResource(R.drawable.red_add);
+        }
+        else if(score < 30000){
+            addTask.setBackgroundResource(R.drawable.brown_add);
+        }
+        else if(score < 50000){
+            addTask.setBackgroundResource(R.drawable.violete_add);
+        }
+        else{
+            addTask.setBackgroundResource(R.drawable.blue_green_add);
+        }
+
         addTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String purpName = task1.getText().toString();
                 String purp = task2.getText().toString();
+                task1.setText("");
+                task2.setText("");
+                Toast.makeText(v.getContext(), "Задача добавлена", Toast.LENGTH_SHORT).show();
                 CreateProject createProject = (CreateProject) getActivity();
                 createProject.setTask(purpName, purp);
             }

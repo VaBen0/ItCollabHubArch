@@ -18,15 +18,16 @@ public class ActivityProject extends AppCompatActivity {
 
     int selectedColor;
     private NavController navController;
+    String mail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        SharedPreferences sPref = getSharedPreferences("MyPref", MODE_PRIVATE);
+        mail = sPref.getString("UserMail", "");
+        int score = sPref.getInt("UserScore", 0);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_project);
-
-        SharedPreferences sPref = getSharedPreferences("MyPref", MODE_PRIVATE);
-        String mail = sPref.getString("UserMail", "");
-        int score = sPref.getInt("UserScore", 0);
 
         LinearLayout profileMenu = findViewById(R.id.profile_menu);
         LinearLayout forumMenu = findViewById(R.id.forum_menu);
@@ -116,5 +117,8 @@ public class ActivityProject extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+    public String getMail(){
+        return mail;
     }
 }
