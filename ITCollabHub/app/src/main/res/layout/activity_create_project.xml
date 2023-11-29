@@ -9,7 +9,7 @@
     <ImageView
         android:id="@+id/pr_logo"
         android:layout_width="wrap_content"
-        android:layout_height="250dp"
+        android:layout_height="300dp"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -167,7 +167,7 @@
         android:id="@+id/send"
         android:layout_width="170dp"
         android:layout_height="45dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="40dp"
         android:backgroundTint="@color/blue"
         android:textSize="12sp"
         android:textStyle="bold|italic"

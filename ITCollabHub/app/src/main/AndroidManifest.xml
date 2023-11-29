@@ -24,7 +24,7 @@
             android:exported="false" />
         <activity
             android:name=".UsersProject"
-            android:exported="false" />
+            android:exported="false"/>
         <activity
             android:name=".EditProfile"
             android:exported="false" />

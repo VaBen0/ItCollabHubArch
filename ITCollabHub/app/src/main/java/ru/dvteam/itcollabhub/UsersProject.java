@@ -1,8 +1,13 @@
 package ru.dvteam.itcollabhub;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.WindowCompat;
 
+import android.app.ActionBar;
 import android.os.Bundle;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -13,7 +18,12 @@ public class UsersProject extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+
         setContentView(R.layout.activity_users_project);
+
         Bundle arguments = getIntent().getExtras();
 
         String id = arguments.getString("projectId");
@@ -35,4 +45,5 @@ public class UsersProject extends AppCompatActivity {
             }
         });
     }
+
 }

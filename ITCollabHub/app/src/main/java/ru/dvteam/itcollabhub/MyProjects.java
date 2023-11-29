@@ -38,7 +38,6 @@ public class MyProjects extends Fragment {
                     String[] names = inf[0].split(",");
                     String[] photo = inf[1].split(",");
                     String[] id = inf[2].split(",");
-                    String[] descriptions = inf[3].split(",");
                     String userName = inf[4];
                     String userImg = inf[5];
                     String userScore = inf[6];
@@ -49,7 +48,6 @@ public class MyProjects extends Fragment {
                         ImageView loadImage = (ImageView) custom.findViewById(R.id.loadImg);
                         ImageView user = (ImageView) custom.findViewById(R.id.userImage);
                         ImageView userCircle = (ImageView) custom.findViewById(R.id.user_circle);
-                        TextView description = (TextView) custom.findViewById(R.id.textView15);
                         TextView nameOfUser = (TextView) custom.findViewById(R.id.textView13);
 
                         nameOfUser.setText(userName);
@@ -95,7 +93,6 @@ public class MyProjects extends Fragment {
                                 .load(photo[i])
                                 .into(loadImage);
                         nameu.setText(names[i]);
-                        description.setText(descriptions[i]);
 
                         int finalI = i;
                         /*loadImage.setOnClickListener(new View.OnClickListener() {

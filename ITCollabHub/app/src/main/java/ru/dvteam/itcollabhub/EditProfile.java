@@ -8,6 +8,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentManager;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import android.Manifest;
 import android.app.Activity;
@@ -29,6 +32,8 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
+import org.w3c.dom.Text;
+
 import java.io.File;
 
 import okhttp3.MediaType;
@@ -42,6 +47,7 @@ public class EditProfile extends AppCompatActivity {
     private int selectedColor, score;
     private static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 1;
     ActivityResultLauncher<Intent> resultLauncher;
+    private NavController navController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +73,8 @@ public class EditProfile extends AppCompatActivity {
         LinearLayout profileMenu = findViewById(R.id.profile_menu);
         LinearLayout forumMenu = findViewById(R.id.forum_menu);
         TextView quitProfile = findViewById(R.id.quit);
+        TextView aboApp = findViewById(R.id.second_menu);
+        TextView links = findViewById(R.id.first_menu);
         UserName.setHint(name);
         UserScore.setText(s);
 
@@ -255,6 +263,22 @@ public class EditProfile extends AppCompatActivity {
                         }
                     });
                 }
+            }
+        });
+
+        links.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController = Navigation.findNavController(EditProfile.this, R.id.nav_host_fragment);
+                navController.navigate(R.id.accountLinks);
+            }
+        });
+
+        aboApp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController = Navigation.findNavController(EditProfile.this, R.id.nav_host_fragment);
+                navController.navigate(R.id.aboutApp);
             }
         });
     }
