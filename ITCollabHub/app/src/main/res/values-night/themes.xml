@@ -2,6 +2,16 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.ITCollabHub" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <!-- <item name="colorPrimary">@color/darkColorPrimary</item> -->
+        <item name="colorPrimary">@color/dark_theme</item>
+        <item name="colorPrimaryVariant">@color/green</item>
+        <item name="colorOnPrimary">@color/light_gray</item>
+        <item name="android:windowBackground">@color/dark_theme</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textColorHint">@color/white</item>
+    </style>
+
+    <style name="Theme.ITCollabHub" parent="Base.Theme.ITCollabHub">
+        <item name="colorPrimary">@color/dark_theme</item>
     </style>
 </resources>

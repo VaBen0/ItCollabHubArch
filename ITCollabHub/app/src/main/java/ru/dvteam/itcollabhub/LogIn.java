@@ -84,16 +84,4 @@ public class LogIn extends AppCompatActivity {
             }
         });
     }
-    public void change(){
-        //Toast.makeText(LogIn.this, res, Toast.LENGTH_SHORT).show();
-
-        /*SharedPreferences sPref = getSharedPreferences("MyPref", MODE_PRIVATE);
-        SharedPreferences.Editor ed = sPref.edit();
-        ed.putString("UserReg", "true");
-        ed.putString("UserName", name);
-        ed.apply();*/
-
-        //Intent intent = new Intent(LogIn.this, MainActivity2.class);
-        //startActivity(intent);
-    }
 }

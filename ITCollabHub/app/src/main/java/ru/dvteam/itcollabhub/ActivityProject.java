@@ -38,7 +38,7 @@ public class ActivityProject extends AppCompatActivity {
         TextView endProjects = findViewById(R.id.end_projects);
         View fragment = findViewById(R.id.nav_host_fragment);
         LinearLayout projectMenu = findViewById(R.id.project_menu);
-        ImageView editProfile = findViewById(R.id.edit);
+        ImageView editProfile = findViewById(R.id.notifications);
         View my_projects_lin = findViewById(R.id.linear_my_projects);
         View end_projects_lin = findViewById(R.id.linear_end_projects);
 
@@ -47,61 +47,69 @@ public class ActivityProject extends AppCompatActivity {
             selectedColor = Color.parseColor("#B20000FF");
             my_projects_lin.setBackgroundResource(R.drawable.blue_line);
             getWindow().setStatusBarColor(ContextCompat.getColor(ActivityProject.this,R.color.blue));
+            plus.setBackgroundResource(R.drawable.ad);
         }
         else if(score < 300){
             bguser.setBackgroundResource(R.drawable.gradient_green);
             selectedColor = Color.parseColor("#B21AFF00");
             my_projects_lin.setBackgroundResource(R.drawable.green_line);
             getWindow().setStatusBarColor(ContextCompat.getColor(ActivityProject.this,R.color.green));
+            plus.setBackgroundResource(R.drawable.green_add);
         }
         else if(score < 1000){
             bguser.setBackgroundResource(R.drawable.gradient_brown);
             selectedColor = Color.parseColor("#FFCC7722");
             my_projects_lin.setBackgroundResource(R.drawable.brown_line);
             getWindow().setStatusBarColor(ContextCompat.getColor(ActivityProject.this,R.color.brown));
+            plus.setBackgroundResource(R.drawable.brown_add);
         }
         else if(score < 2500){
             bguser.setBackgroundResource(R.drawable.gradient_light_gray);
             selectedColor = Color.parseColor("#B2B5B5B5");
             my_projects_lin.setBackgroundResource(R.drawable.light_gray_line);
             getWindow().setStatusBarColor(ContextCompat.getColor(ActivityProject.this,R.color.light_gray));
+            plus.setBackgroundResource(R.drawable.light_gray_add);
         }
         else if(score < 7000){
             bguser.setBackgroundResource(R.drawable.gradient_ohra);
             selectedColor = Color.parseColor("#FFE8AA0E");
             my_projects_lin.setBackgroundResource(R.drawable.ohra_line);
             getWindow().setStatusBarColor(ContextCompat.getColor(ActivityProject.this,R.color.ohra));
-        }
+            plus.setBackgroundResource(R.drawable.ohra_add);        }
         else if(score < 17000){
             bguser.setBackgroundResource(R.drawable.gradient_red);
             selectedColor = Color.parseColor("#FF0000");
             my_projects_lin.setBackgroundResource(R.drawable.red_line);
             getWindow().setStatusBarColor(ContextCompat.getColor(ActivityProject.this,R.color.red));
+            plus.setBackgroundResource(R.drawable.red_add);
         }
         else if(score < 30000){
             bguser.setBackgroundResource(R.drawable.gradient_orange);
             selectedColor = Color.parseColor("#FFCC7722");
             my_projects_lin.setBackgroundResource(R.drawable.orange_line);
             getWindow().setStatusBarColor(ContextCompat.getColor(ActivityProject.this,R.color.orange));
+            plus.setBackgroundResource(R.drawable.brown_add);
         }
         else if(score < 50000){
             bguser.setBackgroundResource(R.drawable.gradient_violete);
             selectedColor = Color.parseColor("#4F0070");
             my_projects_lin.setBackgroundResource(R.drawable.violete_line);
             getWindow().setStatusBarColor(ContextCompat.getColor(ActivityProject.this,R.color.violete));
+            plus.setBackgroundResource(R.drawable.violete_add);
         }
         else{
             bguser.setBackgroundResource(R.drawable.gradient_blue_green);
             selectedColor = Color.parseColor("#FF00C6A2");
             my_projects_lin.setBackgroundResource(R.drawable.blue_green_line);
             getWindow().setStatusBarColor(ContextCompat.getColor(ActivityProject.this,R.color.main_green));
+            plus.setBackgroundResource(R.drawable.blue_green_add);
         }
 
         profileMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ActivityProject.this, Profile.class);
-                startActivity(intent);
+                startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
             }
         });
         forumMenu.setOnClickListener(new View.OnClickListener() {

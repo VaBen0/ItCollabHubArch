@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -25,7 +26,7 @@ public class Profile extends AppCompatActivity {
     NavController navController;
     private int max;
     private int score;
-    private int min;
+    private int min, color;
     private String status;
     private boolean rFr;
 
@@ -37,6 +38,10 @@ public class Profile extends AppCompatActivity {
         String name = sPref.getString("UserName", "");
         String mail = sPref.getString("UserMail", "");
         score = sPref.getInt("UserScore", 0);
+
+        TypedValue typedValue = new TypedValue();
+        getTheme().resolveAttribute(androidx.appcompat.R.attr.colorPrimary, typedValue, true);
+        color = typedValue.data;
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
@@ -59,7 +64,7 @@ public class Profile extends AppCompatActivity {
         LinearLayout projectMenu = findViewById(R.id.project_menu);
         LinearLayout profileMenu = findViewById(R.id.profile_menu);
         LinearLayout forumMenu = findViewById(R.id.forum_menu);
-        ImageView editProfile = findViewById(R.id.edit);
+        ImageView editProfile = findViewById(R.id.notifications);
         UserName.setText(name);
         UserScore.setText(s);
 
@@ -371,8 +376,8 @@ public class Profile extends AppCompatActivity {
                 }
                 else if(score < 7000){
                     projects_lin.setBackgroundColor(0);
-                    rating_lin.setBackgroundColor(0);
-                    friends_lin.setBackgroundResource(R.drawable.ohra_line);
+                    friends_lin.setBackgroundColor(0);
+                    rating_lin.setBackgroundResource(R.drawable.ohra_line);
                 }
                 else if(score < 17000){
                     projects_lin.setBackgroundColor(0);
@@ -381,8 +386,8 @@ public class Profile extends AppCompatActivity {
                 }
                 else if(score < 30000){
                     projects_lin.setBackgroundColor(0);
-                    rating_lin.setBackgroundColor(0);
-                    friends_lin.setBackgroundResource(R.drawable.orange_line);
+                    friends_lin.setBackgroundColor(0);
+                    rating_lin.setBackgroundResource(R.drawable.orange_line);
                 }
                 else if(score < 50000){
                     projects_lin.setBackgroundColor(0);
@@ -407,7 +412,7 @@ public class Profile extends AppCompatActivity {
         restartLine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(getIntent());
+                startActivity(getIntent().addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
                 finish();
             }
         });
@@ -415,7 +420,7 @@ public class Profile extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Profile.this, ActivityProject.class);
-                startActivity(intent);
+                startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
             }
         });
         forumMenu.setOnClickListener(new View.OnClickListener() {
@@ -432,7 +437,9 @@ public class Profile extends AppCompatActivity {
             }
         });
     }
-
+    public int sendColor(){
+        return color;
+    }
 
 
 }

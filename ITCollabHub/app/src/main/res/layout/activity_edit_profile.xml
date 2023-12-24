@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".EditProfile">
 
-
     <ImageView
         android:id="@+id/bguser"
         android:layout_width="0dp"
@@ -122,6 +121,7 @@
         android:layout_height="wrap_content"
         android:backgroundTint="@color/blue"
         android:text="Сохранить изменения"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/bottom_menu"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -150,7 +150,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:clickable="true"
-                android:gravity="center"
+                android:paddingStart="10dp"
                 android:text="Ссылки на соцсети"
                 android:textSize="16sp"
                 tools:ignore="TouchTargetSizeCheck" />
@@ -173,7 +173,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:clickable="true"
-                android:gravity="center"
+                android:gravity="right"
+                android:paddingEnd="10dp"
                 android:text="О приложении"
                 android:textSize="16sp"
                 tools:ignore="TouchTargetSizeCheck" />

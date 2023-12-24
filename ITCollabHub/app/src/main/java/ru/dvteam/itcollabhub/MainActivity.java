@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
         super.onCreate(savedInstanceState);
 
+
         binding = ActivityMainBinding.inflate(getLayoutInflater());
 
         SharedPreferences sPref = getSharedPreferences("MyPref", MODE_PRIVATE);

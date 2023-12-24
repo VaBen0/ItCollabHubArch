@@ -3,4 +3,7 @@
     <style name="mystyle">
         <item name="android:layout_marginBottom">-50dp</item>
     </style>
+    <style name="noAnimTheme" parent="android:Theme">
+        <item name="android:windowAnimationStyle">@null</item>
+    </style>
 </resources>

@@ -24,12 +24,33 @@ public class Register extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        String tg, vk, web;
+
         EditText user_pass = findViewById(R.id.passu);
         EditText user_second_pass = findViewById(R.id.passuagain);
         EditText user_mail = findViewById(R.id.mailu);
         TextView col = findViewById(R.id.collaborotory);
         TextView it = findViewById(R.id.it);
         TextView hub = findViewById(R.id.hub);
+        EditText tg_link = findViewById(R.id.tg_link);
+        EditText vk_link = findViewById(R.id.vk_link);
+        EditText web_link = findViewById(R.id.web_link);
+
+        if(tg_link.getText().toString().isEmpty()){
+            tg = "non";
+        }else{
+            tg = tg_link.getText().toString();
+        }
+        if(vk_link.getText().toString().isEmpty()){
+            vk = "non";
+        }else{
+            vk = vk_link.getText().toString();
+        }
+        if(web_link.getText().toString().isEmpty()){
+            web = "non";
+        }else{
+            web = web_link.getText().toString();
+        }
 
         Typeface face=Typeface.createFromAsset(getAssets(),"font/ArchitectsDaughter-Regular.ttf");
         it.setTypeface(face);
@@ -59,6 +80,9 @@ public class Register extends AppCompatActivity {
                                     Intent intent = new Intent(Register.this, ConfirmReg.class);
                                     intent.putExtra("pass", user_pass.getText().toString());
                                     intent.putExtra("mail", user_mail.getText().toString());
+                                    intent.putExtra("tg_link", tg);
+                                    intent.putExtra("vk_link", vk);
+                                    intent.putExtra("web_link", web);
                                     startActivity(intent);
                                 }
                             }
@@ -73,42 +97,5 @@ public class Register extends AppCompatActivity {
 
             }
         });
-
     }
-
-    /*public void postData(String mail){
-        Methods methods = RetrofitClient.getRetrofitInstance().create(Methods.class);
-        Call<Model> call = methods.postCodeMail("PostToNewUserCode", mail);
-
-        call.enqueue(new Callback<Model>() {
-            @Override
-            public void onResponse(Call<Model> call, Response<Model> response) {
-                if(response.body().getReturn().equals("Код отправлен")) {
-                    changeToConf(response.body().getReturn());
-                }
-                else{
-                    Toast.makeText(Register.this, response.body().getReturn(), Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Model> call, Throwable t) {
-                Toast.makeText(Register.this, "Error Occurred", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-    public void changeToConf(String res){
-        Toast toast = Toast.makeText(this, res, Toast.LENGTH_LONG);
-        toast.show();
-
-        EditText user_name = findViewById(R.id.nameu);
-        EditText user_pass = findViewById(R.id.passu);
-        EditText user_mail = findViewById(R.id.mailu);
-
-        Intent intent = new Intent(Register.this, ConfirmReg.class);
-        intent.putExtra("name", user_name.getText().toString());
-        intent.putExtra("pass", user_pass.getText().toString());
-        intent.putExtra("mail", user_mail.getText().toString());
-        startActivity(intent);
-    }*/
 }

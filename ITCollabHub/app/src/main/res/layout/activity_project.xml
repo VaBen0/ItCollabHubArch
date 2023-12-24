@@ -29,13 +29,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/edit"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:src="@drawable/white_notification"
+        android:id="@+id/notifications"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="30dp"
-        android:layout_marginTop="24dp"
         android:clickable="true"
+        android:src="@drawable/white_notification"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -133,9 +133,8 @@
         android:layout_height="50dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
-        android:background="@color/transparent"
         android:scaleType="fitXY"
-        android:src="@drawable/ad"
+        android:background="@drawable/red_add"
         app:layout_constraintBottom_toTopOf="@+id/bottom_menu"
         app:layout_constraintEnd_toEndOf="parent" />
 

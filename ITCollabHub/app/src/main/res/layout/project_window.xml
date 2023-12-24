@@ -104,6 +104,7 @@
         android:layout_marginEnd="5dp"
         android:gravity="center|left"
         android:text="Имя пользователя"
+        android:textColor="@color/black"
         android:textSize="13sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/lvl"
@@ -116,6 +117,7 @@
         android:layout_height="wrap_content"
         android:text="0.0%"
         android:textSize="16sp"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/lvl"
         app:layout_constraintStart_toStartOf="@+id/lvl"
@@ -143,6 +145,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
+                android:textColor="@color/black"
                 android:text="Первый проект"
                 android:textStyle="bold|italic" />
         </LinearLayout>

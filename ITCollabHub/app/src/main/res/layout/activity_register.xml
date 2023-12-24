@@ -52,21 +52,37 @@
 
         <EditText
             android:id="@+id/mailu"
-            android:layout_width="232dp"
+            android:layout_width="236dp"
             android:layout_height="58dp"
             android:hint="Почта" />
 
         <EditText
             android:id="@+id/passu"
-            android:layout_width="232dp"
+            android:layout_width="236dp"
             android:layout_height="58dp"
             android:hint="Пароль" />
 
         <EditText
             android:id="@+id/passuagain"
-            android:layout_width="232dp"
+            android:layout_width="236dp"
             android:layout_height="58dp"
             android:hint="Повторите пароль"/>
+
+        <EditText
+            android:id="@+id/tg_link"
+            android:layout_width="236dp"
+            android:layout_height="58dp"
+            android:hint="Ваш ник в телеграмм"/>
+        <EditText
+            android:id="@+id/vk_link"
+            android:layout_width="236dp"
+            android:layout_height="58dp"
+            android:hint="Ваш ник в Вк"/>
+        <EditText
+            android:id="@+id/web_link"
+            android:layout_width="236dp"
+            android:layout_height="58dp"
+            android:hint="Ссылка на ваш сайт"/>
 
         <Button
             android:id="@+id/Reg"

@@ -190,7 +190,7 @@ public class GetFriend extends AppCompatActivity {
                         loadImage.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                Intent intent = new Intent(GetFriend.this, Friend.class);
+                                Intent intent = new Intent(GetFriend.this, FriendProfile.class);
                                 intent.putExtra("id", id[finalI]);
                                 intent.putExtra("name", names[finalI]);
                                 intent.putExtra("score", score[finalI]);
@@ -202,7 +202,7 @@ public class GetFriend extends AppCompatActivity {
                         nameu.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                Intent intent = new Intent(GetFriend.this, Friend.class);
+                                Intent intent = new Intent(GetFriend.this, FriendProfile.class);
                                 intent.putExtra("id", id[finalI]);
                                 intent.putExtra("name", names[finalI]);
                                 intent.putExtra("score", score[finalI]);
@@ -231,8 +231,7 @@ public class GetFriend extends AppCompatActivity {
                     main.addView(empty);
                 }
                 else{
-                    TextView noRequests = findViewById(R.id.noReq);
-                    noRequests.setTextColor(Color.BLACK);
+                    Toast.makeText(GetFriend.this, "У вас нет запросов", Toast.LENGTH_SHORT).show();
                 }
             }
         });

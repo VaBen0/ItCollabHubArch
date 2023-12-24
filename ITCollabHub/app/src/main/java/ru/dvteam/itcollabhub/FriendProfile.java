@@ -1,46 +1,35 @@
 package ru.dvteam.itcollabhub;
 
-import android.annotation.SuppressLint;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
-import android.media.Image;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
-import androidx.navigation.NavController;
-import androidx.navigation.NavHostController;
-import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
-import androidx.navigation.ui.NavigationUI;
 
 import com.bumptech.glide.Glide;
 
-import org.json.JSONArray;
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
-
-public class Friend extends AppCompatActivity {
+public class FriendProfile extends AppCompatActivity {
 
     private int selectedColor;
+    private String tgl, vkl, webl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
-        setContentView(R.layout.activity_friend);
+        setContentView(R.layout.activity_friend_profile);
 
         SharedPreferences sPref = getSharedPreferences("MyPref", MODE_PRIVATE);
         String mail = sPref.getString("UserMail", "");
@@ -56,6 +45,28 @@ public class Friend extends AppCompatActivity {
             String project = arguments.getString("project");
             int score = Integer.parseInt(scoreStr);
 
+            PostDatas post = new PostDatas();
+            post.postDataGetFriendLinks("GetFriendAllLinks", id, new CallBackInt4() {
+                @Override
+                public void invoke(String tg, String vk, String web) {
+                    if(tg.equals("null")){
+                        tgl = "Нет Телеграмма";
+                    }else{
+                        tgl = tg;
+                    }
+                    if(vk.equals("null")){
+                        vkl = "Нет Вк";
+                    }else{
+                        vkl = vk;
+                    }
+                    if(web.equals("null")){
+                        webl = "Нет сайта";
+                    }else{
+                        webl = web;
+                    }
+                }
+            });
+
             String s = "Очки пользователя: " + score;
             TextView nameu = findViewById(R.id.nameu);
             ImageView loadedImage = findViewById(R.id.loadImg);
@@ -69,11 +80,14 @@ public class Friend extends AppCompatActivity {
             ImageView restartLine = findViewById(R.id.restart);
             View projects_lin = findViewById(R.id.linear_rating);
             ImageView delBut = findViewById(R.id.deleteButton);
+            ImageView tgBut = findViewById(R.id.tg);
+            ImageView vkBut = findViewById(R.id.vk);
+            ImageView webBut = findViewById(R.id.web);
             UserScore.setText(s);
             project1.setText(project);
 
             Glide
-                    .with(Friend.this)
+                    .with(FriendProfile.this)
                     .load(urlImage)
                     .into(loadedImage);
             nameu.setText(name);
@@ -158,6 +172,38 @@ public class Friend extends AppCompatActivity {
                     finish();
                 }
             });
+            tgBut.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(tgl.equals("Нет телеграмма")){
+                        Toast.makeText(FriendProfile.this, tgl, Toast.LENGTH_LONG).show();
+                    }
+                    else{
+                        Toast.makeText(FriendProfile.this, "Ник в Тг: " + tgl, Toast.LENGTH_LONG).show();
+                    }
+                }
+            });
+            vkBut.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(vkl.equals("Нет Вк")) {
+                        Toast.makeText(FriendProfile.this, vkl, Toast.LENGTH_LONG).show();
+                    }else{
+                        Toast.makeText(FriendProfile.this, "Ник в Вк: " + vkl, Toast.LENGTH_LONG).show();
+                    }
+                }
+            });
+            webBut.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(webl.equals("Нет сайта")){
+                        Toast.makeText(FriendProfile.this, webl, Toast.LENGTH_LONG).show();
+                    }
+                    else{
+                        Toast.makeText(FriendProfile.this, "Ссылка на сайт: " + webl, Toast.LENGTH_LONG).show();
+                    }
+                }
+            });
             delBut.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -165,9 +211,9 @@ public class Friend extends AppCompatActivity {
                     post.postDataAddFriend("DeleteFriend", mail, id, new CallBackInt() {
                         @Override
                         public void invoke(String res) {
-                            Toast.makeText(Friend.this, res, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(FriendProfile.this, res, Toast.LENGTH_SHORT).show();
                             if(res.equals("Друг удалён")){
-                                Intent intent = new Intent(Friend.this, Profile.class);
+                                Intent intent = new Intent(FriendProfile.this, Profile.class);
                                 startActivity(intent);
                                 finish();
                             }

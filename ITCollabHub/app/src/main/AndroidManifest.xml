@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission
         android:name="android.permission.READ_EXTERNAL_STORAGE"
         android:maxSdkVersion="32" />
@@ -38,7 +40,7 @@
             android:name=".GetFriend"
             android:exported="false" />
         <activity
-            android:name=".Friend"
+            android:name=".FriendProfile"
             android:exported="false" />
         <activity
             android:name=".Test"

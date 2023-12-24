@@ -48,18 +48,19 @@ public class EditProfile extends AppCompatActivity {
     private static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 1;
     ActivityResultLauncher<Intent> resultLauncher;
     private NavController navController;
+    private String mail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_profile);
-        registerResult();
-
         SharedPreferences sPref = getSharedPreferences("MyPref", MODE_PRIVATE);
-        String mail = sPref.getString("UserMail", "");
+        mail = sPref.getString("UserMail", "");
         String name = sPref.getString("UserName", "");
         score = sPref.getInt("UserScore", 0);
         String imgUrl = sPref.getString("UrlImg", "");
+
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_edit_profile);
+        registerResult();
 
         Img = findViewById(R.id.loadImg);
         EditText UserName = findViewById(R.id.nameu);
@@ -167,7 +168,7 @@ public class EditProfile extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(EditProfile.this, ActivityProject.class);
-                startActivity(intent);
+                startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
             }
         });
         forumMenu.setOnClickListener(new View.OnClickListener() {
@@ -352,5 +353,9 @@ public class EditProfile extends AppCompatActivity {
                     }
                 }
         );
+    }
+
+    public String getMail(){
+        return mail;
     }
 }

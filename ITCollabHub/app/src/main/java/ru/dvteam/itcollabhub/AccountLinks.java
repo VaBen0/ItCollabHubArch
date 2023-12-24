@@ -7,62 +7,66 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link AccountLinks#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class AccountLinks extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public AccountLinks() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment AccountLinks.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static AccountLinks newInstance(String param1, String param2) {
-        AccountLinks fragment = new AccountLinks();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_account_links, container, false);
+        View v = inflater.inflate(R.layout.fragment_account_links, container, false);
+
+        EditProfile editProfile = (EditProfile) getActivity();
+        String mail = editProfile.getMail();
+
+        EditText tg_link = v.findViewById(R.id.tg);
+        EditText vk_link = v.findViewById(R.id.vk);
+        EditText web_link = v.findViewById(R.id.web);
+        Button save = v.findViewById(R.id.update);
+
+        PostDatas post = new PostDatas();
+        post.postDataGetLinks("GetAllLinks", mail, new CallBackInt4() {
+            @Override
+            public void invoke(String tg, String vk, String web) {
+                if(tg.equals("null")){
+                    tg_link.setHint("Ваш ник в Телеграмм");
+                }else{
+                    tg_link.setHint(tg);
+                }
+                if(vk.equals("null")){
+                    vk_link.setHint("Ваш ник в Вк");
+                }else{
+                    vk_link.setHint(vk);
+                }
+                if(web.equals("null")){
+                    web_link.setHint("Ссылка на ваш сайт");
+                }else{
+                    web_link.setHint(web);
+                }
+            }
+        });
+
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!tg_link.getText().toString().isEmpty()){
+                    PostDatas post = new PostDatas();
+                    post.postDataSendLink("SendUserLinkTg", mail, tg_link.getText().toString());
+                }
+                if(!vk_link.getText().toString().isEmpty()){
+                    PostDatas post = new PostDatas();
+                    post.postDataSendLink("SendUserLinkVk", mail, vk_link.getText().toString());
+                }
+                if(!web_link.getText().toString().isEmpty()){
+                    PostDatas post = new PostDatas();
+                    post.postDataSendLink("SendUserLinkWeb", mail, web_link.getText().toString());
+                }
+            }
+        });
+
+        return v;
     }
 
-    public String getStr(){
-        return "lol";
-    }
 }

@@ -37,7 +37,9 @@ public class ConfirmReg extends AppCompatActivity {
         if(arguments!=null) {
             String mail = arguments.getString("mail");
             String pass = arguments.getString("pass");
-
+            String tg = arguments.getString("tg_link");
+            String vk = arguments.getString("vk_link");
+            String web = arguments.getString("web_link");
 
             TextView enterBut = findViewById(R.id.enterBut);
 
@@ -68,6 +70,17 @@ public class ConfirmReg extends AppCompatActivity {
                                         public void invoke(String res1) {
                                             Toast.makeText(ConfirmReg.this, res1, Toast.LENGTH_SHORT).show();
                                             if (res1.equals("Успешная регистрация")) {
+
+                                                if(!tg.equals("non")){
+                                                    post.postDataSendLink("SendUserLinkTg", mail, tg);
+                                                }
+                                                if(!vk.equals("non")){
+                                                    post.postDataSendLink("SendUserLinkVk", mail, vk);
+                                                }
+                                                if(!web.equals("non")){
+                                                    post.postDataSendLink("SendUserLinkWeb", mail, web);
+                                                }
+
                                                 SharedPreferences sPref = getSharedPreferences("MyPref", MODE_PRIVATE);
                                                 SharedPreferences.Editor ed = sPref.edit();
                                                 ed.putString("UserReg", "true");
@@ -90,68 +103,4 @@ public class ConfirmReg extends AppCompatActivity {
             });
         }
     }
-
-    /*public void postData(String mail, String code, String pass, String name){
-        Methods methods = RetrofitClient.getRetrofitInstance().create(Methods.class);
-        Call<Model> call = methods.confirm("CheckerCode", mail, code);
-
-        call.enqueue(new Callback<Model>() {
-            @Override
-            public void onResponse(Call<Model> call, retrofit2.Response<Model> response) {
-                if(response.body().getReturn().equals("Проверка почты прошла успешно")) {
-                    change(mail, code, pass, name, response.body().getReturn());
-                }
-                else{
-                    Toast.makeText(ConfirmReg.this, response.body().getReturn(), Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Model> call, Throwable t) {
-                Toast.makeText(ConfirmReg.this, "Error Occurred", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-    public void postData2(String mail, String code, String pass, String name){
-        Methods methods = RetrofitClient.getRetrofitInstance().create(Methods.class);
-        Call<Model> call = methods.regEnd("RegNewUser", mail, pass, name);
-
-        call.enqueue(new Callback<Model>() {
-            @Override
-            public void onResponse(Call<Model> call, retrofit2.Response<Model> response) {
-                if(response.body().getReturn().equals("Успешная регистрация")) {
-                    change(mail, code, pass, name, response.body().getReturn());
-                }
-                else{
-                    Toast.makeText(ConfirmReg.this, response.body().getReturn(), Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Model> call, Throwable t) {
-                Toast.makeText(ConfirmReg.this, "Error Occurred", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-    public void change(String mail, String code, String pass, String name, String res){
-        Toast toast = Toast.makeText(this, res, Toast.LENGTH_LONG);
-        toast.show();
-
-        EditText User_code = findViewById(R.id.code);
-        User_code.setText(res);
-        if(res.equals("Проверка почты прошла успешно")){
-            postData2(mail, code, pass, name);
-        }
-        else if(res.equals("Успешная регистрация")){
-            SharedPreferences sPref = getSharedPreferences("MyPref", MODE_PRIVATE);
-            SharedPreferences.Editor ed = sPref.edit();
-            ed.putString("UserReg", "true");
-            ed.putString("UserName", name);
-            ed.apply();
-            Intent intent = new Intent(ConfirmReg.this, MainActivity2.class);
-            startActivity(intent);
-        }
-    }*/
 }

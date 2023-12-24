@@ -30,6 +30,7 @@ public class PostDatas {
         call.enqueue(new Callback<Model>() {
             @Override
             public void onResponse(Call<Model> call, Response<Model> response) {
+                assert response.body() != null;
                 result.invoke(response.body().getReturn(), response.body().getName());
             }
 
@@ -46,6 +47,7 @@ public class PostDatas {
         call.enqueue(new Callback<Model>() {
             @Override
             public void onResponse(Call<Model> call, retrofit2.Response<Model> response) {
+                assert response.body() != null;
                 result.invoke(response.body().getReturn());
             }
 
@@ -62,6 +64,7 @@ public class PostDatas {
         call.enqueue(new Callback<Model>() {
             @Override
             public void onResponse(Call<Model> call, retrofit2.Response<Model> response) {
+                assert response.body() != null;
                 result.invoke(response.body().getReturn());
             }
 
@@ -78,6 +81,7 @@ public class PostDatas {
         call.enqueue(new Callback<Model>() {
             @Override
             public void onResponse(Call<Model> call, retrofit2.Response<Model> response) {
+                assert response.body() != null;
                 result.invoke(response.body().getReturn());
             }
 
@@ -100,6 +104,7 @@ public class PostDatas {
         call.enqueue(new Callback<Model>() {
             @Override
             public void onResponse(Call<Model> call, retrofit2.Response<Model> response) {
+                assert response.body() != null;
                 result.invoke(response.body().getReturn());
             }
 
@@ -117,6 +122,7 @@ public class PostDatas {
         call.enqueue(new Callback<Model>() {
             @Override
             public void onResponse(Call<Model> call, retrofit2.Response<Model> response) {
+                assert response.body() != null;
                 result.invoke(response.body().getName(), response.body().getUrlImg(),
                         response.body().getTopScore(), response.body().getTopStatus(), response.body().getrFr());
             }
@@ -135,6 +141,7 @@ public class PostDatas {
         call.enqueue(new Callback<Model>() {
             @Override
             public void onResponse(Call<Model> call, retrofit2.Response<Model> response) {
+                assert response.body() != null;
                 result.invoke(response.body().getReturn());
             }
 
@@ -152,6 +159,7 @@ public class PostDatas {
         call.enqueue(new Callback<Model>() {
             @Override
             public void onResponse(Call<Model> call, retrofit2.Response<Model> response) {
+                assert response.body() != null;
                 result.invoke(response.body().getReturn());
             }
 
@@ -169,6 +177,7 @@ public class PostDatas {
         call.enqueue(new Callback<Model>() {
             @Override
             public void onResponse(Call<Model> call, retrofit2.Response<Model> response) {
+                assert response.body() != null;
                 result.invoke(response.body().getReturn());
             }
 
@@ -186,6 +195,7 @@ public class PostDatas {
         call.enqueue(new Callback<Model>() {
             @Override
             public void onResponse(Call<Model> call, retrofit2.Response<Model> response) {
+                assert response.body() != null;
                 result.invoke(response.body().getReturn());
             }
 
@@ -204,6 +214,7 @@ public class PostDatas {
         call.enqueue(new Callback<Model>() {
             @Override
             public void onResponse(Call<Model> call, retrofit2.Response<Model> response) {
+                assert response.body() != null;
                 result.invoke(response.body().getReturn());
             }
 
@@ -232,6 +243,7 @@ public class PostDatas {
         call.enqueue(new Callback<Model>() {
             @Override
             public void onResponse(Call<Model> call, retrofit2.Response<Model> response) {
+                assert response.body() != null;
                 result.invoke(response.body().getReturn());
             }
 
@@ -249,6 +261,7 @@ public class PostDatas {
         call.enqueue(new Callback<Model>() {
             @Override
             public void onResponse(Call<Model> call, retrofit2.Response<Model> response) {
+                assert response.body() != null;
                 result.invoke(response.body().getReturn());
             }
 
@@ -266,6 +279,7 @@ public class PostDatas {
         call.enqueue(new Callback<Model>() {
             @Override
             public void onResponse(Call<Model> call, retrofit2.Response<Model> response) {
+                assert response.body() != null;
                 result.invoke(response.body().getReturn());
             }
 
@@ -283,7 +297,59 @@ public class PostDatas {
         call.enqueue(new Callback<Model>() {
             @Override
             public void onResponse(Call<Model> call, retrofit2.Response<Model> response) {
+                assert response.body() != null;
                 result.invoke(response.body().getName(), response.body().getUrlImg(), response.body().getDescription());
+            }
+
+            @Override
+            public void onFailure(Call<Model> call, Throwable t) {
+                //result.invoke("lol");
+            }
+        });
+    }
+
+    public void postDataSendLink(String req, String mail, String link){
+        Methods methods = RetrofitClient.getRetrofitInstance().create(Methods.class);
+        Call<Model> call = methods.sendUserLink(req, mail, link);
+
+        call.enqueue(new Callback<Model>() {
+            @Override
+            public void onResponse(Call<Model> call, retrofit2.Response<Model> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<Model> call, Throwable t) {
+                //result.invoke("lol");
+            }
+        });
+    }
+
+    public void postDataGetLinks(String req, String mail, CallBackInt4 result){
+        Methods methods = RetrofitClient.getRetrofitInstance().create(Methods.class);
+        Call<Model> call = methods.getUserLinks(req, mail);
+
+        call.enqueue(new Callback<Model>() {
+            @Override
+            public void onResponse(Call<Model> call, retrofit2.Response<Model> response) {
+                result.invoke(response.body().getTgLink(), response.body().getVkLink(), response.body().getWebLink());
+            }
+
+            @Override
+            public void onFailure(Call<Model> call, Throwable t) {
+                //result.invoke("lol");
+            }
+        });
+    }
+
+    public void postDataGetFriendLinks(String req, String id, CallBackInt4 result){
+        Methods methods = RetrofitClient.getRetrofitInstance().create(Methods.class);
+        Call<Model> call = methods.getFriendLinks(req, id);
+
+        call.enqueue(new Callback<Model>() {
+            @Override
+            public void onResponse(Call<Model> call, retrofit2.Response<Model> response) {
+                result.invoke(response.body().getTgLink(), response.body().getVkLink(), response.body().getWebLink());
             }
 
             @Override
