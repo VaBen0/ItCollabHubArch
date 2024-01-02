@@ -76,6 +76,8 @@ public class EditProfile extends AppCompatActivity {
         TextView quitProfile = findViewById(R.id.quit);
         TextView aboApp = findViewById(R.id.second_menu);
         TextView links = findViewById(R.id.first_menu);
+        View about = findViewById(R.id.linear_about);
+        View links_lin = findViewById(R.id.linear_links);
         UserName.setHint(name);
         UserScore.setText(s);
 
@@ -91,6 +93,7 @@ public class EditProfile extends AppCompatActivity {
             selectedColor = Color.parseColor("#B20000FF");
             btn.setBackgroundColor(selectedColor);
             getWindow().setStatusBarColor(ContextCompat.getColor(EditProfile.this,R.color.blue));
+            links_lin.setBackgroundResource(R.drawable.blue_line);
         }
         else if(score < 300){
             bguser.setBackgroundResource(R.drawable.gradient_green);
@@ -99,6 +102,7 @@ public class EditProfile extends AppCompatActivity {
             selectedColor = Color.parseColor("#B21AFF00");
             btn.setBackgroundColor(selectedColor);
             getWindow().setStatusBarColor(ContextCompat.getColor(EditProfile.this,R.color.green));
+            links_lin.setBackgroundResource(R.drawable.green_line);
         }
         else if(score < 1000){
             bguser.setBackgroundResource(R.drawable.gradient_brown);
@@ -107,6 +111,7 @@ public class EditProfile extends AppCompatActivity {
             selectedColor = Color.parseColor("#FFCC7722");
             btn.setBackgroundColor(selectedColor);
             getWindow().setStatusBarColor(ContextCompat.getColor(EditProfile.this,R.color.brown));
+            links_lin.setBackgroundResource(R.drawable.brown_line);
         }
         else if(score < 2500){
             bguser.setBackgroundResource(R.drawable.gradient_light_gray);
@@ -115,6 +120,7 @@ public class EditProfile extends AppCompatActivity {
             selectedColor = Color.parseColor("#B2B5B5B5");
             btn.setBackgroundColor(selectedColor);
             getWindow().setStatusBarColor(ContextCompat.getColor(EditProfile.this,R.color.light_gray));
+            links_lin.setBackgroundResource(R.drawable.light_gray_line);
         }
         else if(score < 7000){
             bguser.setBackgroundResource(R.drawable.gradient_ohra);
@@ -123,6 +129,7 @@ public class EditProfile extends AppCompatActivity {
             selectedColor = Color.parseColor("#FFE8AA0E");
             btn.setBackgroundColor(selectedColor);
             getWindow().setStatusBarColor(ContextCompat.getColor(EditProfile.this,R.color.ohra));
+            links_lin.setBackgroundResource(R.drawable.ohra_line);
         }
         else if(score < 17000){
             bguser.setBackgroundResource(R.drawable.gradient_red);
@@ -131,6 +138,7 @@ public class EditProfile extends AppCompatActivity {
             selectedColor = Color.parseColor("#FF0000");
             btn.setBackgroundColor(selectedColor);
             getWindow().setStatusBarColor(ContextCompat.getColor(EditProfile.this,R.color.red));
+            links_lin.setBackgroundResource(R.drawable.red_line);
         }
         else if(score < 30000){
             bguser.setBackgroundResource(R.drawable.gradient_orange);
@@ -139,6 +147,7 @@ public class EditProfile extends AppCompatActivity {
             selectedColor = Color.parseColor("#FFCC7722");
             btn.setBackgroundColor(selectedColor);
             getWindow().setStatusBarColor(ContextCompat.getColor(EditProfile.this,R.color.orange));
+            links_lin.setBackgroundResource(R.drawable.orange_line);
         }
         else if(score < 50000){
             bguser.setBackgroundResource(R.drawable.gradient_violete);
@@ -147,6 +156,7 @@ public class EditProfile extends AppCompatActivity {
             selectedColor = Color.parseColor("#4F0070");
             btn.setBackgroundColor(selectedColor);
             getWindow().setStatusBarColor(ContextCompat.getColor(EditProfile.this,R.color.violete));
+            links_lin.setBackgroundResource(R.drawable.violete_line);
         }
         else{
             bguser.setBackgroundResource(R.drawable.gradient_blue_green);
@@ -155,6 +165,7 @@ public class EditProfile extends AppCompatActivity {
             selectedColor = Color.parseColor("#FF00C6A2");
             btn.setBackgroundColor(selectedColor);
             getWindow().setStatusBarColor(ContextCompat.getColor(EditProfile.this,R.color.main_green));
+            links_lin.setBackgroundResource(R.drawable.blue_green_line);
         }
 
         restartLine.setOnClickListener(new View.OnClickListener() {
@@ -270,6 +281,42 @@ public class EditProfile extends AppCompatActivity {
         links.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(score < 100){
+                    about.setBackgroundColor(0);
+                    links_lin.setBackgroundResource(R.drawable.blue_line);
+                }
+                else if(score < 300){
+                    about.setBackgroundColor(0);
+                    links_lin.setBackgroundResource(R.drawable.green_line);
+                }
+                else if(score < 1000){
+                    about.setBackgroundColor(0);
+                    links_lin.setBackgroundResource(R.drawable.brown_line);
+                }
+                else if(score < 2500){
+                    about.setBackgroundColor(0);
+                    links_lin.setBackgroundResource(R.drawable.light_gray_line);
+                }
+                else if(score < 7000){
+                    about.setBackgroundColor(0);
+                    links_lin.setBackgroundResource(R.drawable.ohra_line);
+                }
+                else if(score < 17000){
+                    about.setBackgroundColor(0);
+                    links_lin.setBackgroundResource(R.drawable.red_line);
+                }
+                else if(score < 30000){
+                    about.setBackgroundColor(0);
+                    links_lin.setBackgroundResource(R.drawable.orange_line);
+                }
+                else if(score < 50000){
+                    about.setBackgroundColor(0);
+                    links_lin.setBackgroundResource(R.drawable.violete_line);
+                }
+                else{
+                    about.setBackgroundColor(0);
+                    links_lin.setBackgroundResource(R.drawable.blue_green_line);
+                }
                 navController = Navigation.findNavController(EditProfile.this, R.id.nav_host_fragment);
                 navController.navigate(R.id.accountLinks);
             }
@@ -278,6 +325,42 @@ public class EditProfile extends AppCompatActivity {
         aboApp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(score < 100){
+                    links_lin.setBackgroundColor(0);
+                    about.setBackgroundResource(R.drawable.blue_line);
+                }
+                else if(score < 300){
+                    links_lin.setBackgroundColor(0);
+                    about.setBackgroundResource(R.drawable.green_line);
+                }
+                else if(score < 1000){
+                    links_lin.setBackgroundColor(0);
+                    about.setBackgroundResource(R.drawable.brown_line);
+                }
+                else if(score < 2500){
+                    links_lin.setBackgroundColor(0);
+                    about.setBackgroundResource(R.drawable.light_gray_line);
+                }
+                else if(score < 7000){
+                    links_lin.setBackgroundColor(0);
+                    about.setBackgroundResource(R.drawable.ohra_line);
+                }
+                else if(score < 17000){
+                    links_lin.setBackgroundColor(0);
+                    about.setBackgroundResource(R.drawable.red_line);
+                }
+                else if(score < 30000){
+                    links_lin.setBackgroundColor(0);
+                    about.setBackgroundResource(R.drawable.orange_line);
+                }
+                else if(score < 50000){
+                    links_lin.setBackgroundColor(0);
+                    about.setBackgroundResource(R.drawable.violete_line);
+                }
+                else{
+                    links_lin.setBackgroundColor(0);
+                    about.setBackgroundResource(R.drawable.blue_green_line);
+                }
                 navController = Navigation.findNavController(EditProfile.this, R.id.nav_host_fragment);
                 navController.navigate(R.id.aboutApp);
             }
@@ -358,4 +441,5 @@ public class EditProfile extends AppCompatActivity {
     public String getMail(){
         return mail;
     }
+    public int getScore(){return score;}
 }

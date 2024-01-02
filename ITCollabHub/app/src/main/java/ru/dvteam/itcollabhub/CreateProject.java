@@ -70,7 +70,6 @@ public class CreateProject extends AppCompatActivity {
         Button sendProject = findViewById(R.id.send);
         View activity_line = findViewById(R.id.linear_projects);
         View particip_line = findViewById(R.id.linear_friends);
-        TextView back_button = findViewById(R.id.back);
 
         if(score < 100){
             activity_line.setBackgroundResource(R.drawable.blue_line);
@@ -313,13 +312,6 @@ public class CreateProject extends AppCompatActivity {
                         });
                 }
 
-            }
-        });
-        back_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(CreateProject.this, ActivityProject.class);
-                startActivity(intent);
             }
         });
     }

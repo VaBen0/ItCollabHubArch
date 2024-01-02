@@ -28,6 +28,8 @@ public class Profile extends AppCompatActivity {
     private int score;
     private int min, color;
     private String status;
+
+    private String mail;
     private boolean rFr;
 
     @Override
@@ -36,7 +38,7 @@ public class Profile extends AppCompatActivity {
 
         SharedPreferences sPref = getSharedPreferences("MyPref", MODE_PRIVATE);
         String name = sPref.getString("UserName", "");
-        String mail = sPref.getString("UserMail", "");
+        mail = sPref.getString("UserMail", "");
         score = sPref.getInt("UserScore", 0);
 
         TypedValue typedValue = new TypedValue();
@@ -440,6 +442,6 @@ public class Profile extends AppCompatActivity {
     public int sendColor(){
         return color;
     }
-
+    public String getMail(){return mail;}
 
 }
