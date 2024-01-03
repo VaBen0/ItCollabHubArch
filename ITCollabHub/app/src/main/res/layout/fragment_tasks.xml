@@ -54,6 +54,7 @@
             android:layout_toEndOf="@+id/line"
             android:background="@color/transparent"
             android:inputType="text"
+            android:textColorHint="@color/black"
             android:textSize="11sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

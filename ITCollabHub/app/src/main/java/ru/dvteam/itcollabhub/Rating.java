@@ -1,10 +1,13 @@
 package ru.dvteam.itcollabhub;
 
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -12,6 +15,7 @@ import androidx.navigation.Navigation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -24,7 +28,7 @@ import java.util.zip.Inflater;
 
 public class Rating extends Fragment {
     private int max, min;
-    private int selectedColor;
+    private int selectedColor, num;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -138,19 +142,44 @@ public class Rating extends Fragment {
             max = 50000;
             min = 0;
         }
-        String res = "";
+
         String chast = "До следующей цели: " + (max - score);
         float med = (float)(score - min)/(float)(max - min);
-        if(med <= 0.99) {
-            res = new DecimalFormat("#0.0%").format(med);
-        }
-        else {res = "99.9%";}
-        statusView.setText(status);
-        percents.setText(res);
-        nextScore.setText(chast);
+        med = Math.round(med * 1000);
+        med /= 10.0;
 
         lvl.setMax(max - min);
-        lvl.setProgress(score - min);
+
+        statusView.setText(status);
+        nextScore.setText(chast);
+
+        final ValueAnimator anim = ValueAnimator.ofFloat(0, med);
+        anim.setStartDelay(300);
+        anim.setDuration(1500);
+        anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(@NonNull ValueAnimator animation) {
+                String res = anim.getAnimatedValue().toString();
+                if(res.length() >= 4){
+                    res = res.substring(0, 4) + "%";
+                }
+                else{
+                    res = res.substring(0, 2) + ".0%";
+                }
+
+                percents.setText(res);
+            }
+        });
+        anim.setInterpolator(new DecelerateInterpolator());
+        anim.start();
+
+        ObjectAnimator animation = ObjectAnimator.ofInt(lvl, "progress", lvl.getProgress(), score - min);
+        animation.setStartDelay(300);
+        animation.setDuration(1500);
+        animation.setAutoCancel(true);
+        animation.setInterpolator(new DecelerateInterpolator());
+        animation.start();
+
         return v;
     }
 }

@@ -1,6 +1,5 @@
 package ru.dvteam.itcollabhub;
 
-import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.core.content.ContextCompat;
@@ -30,31 +29,31 @@ public class AccountLinks extends Fragment {
         Button save = v.findViewById(R.id.update);
 
         if(score < 100){
-            save.setBackgroundTintList(ContextCompat.getColorStateList(getContext(), R.color.blue));
+            save.setBackgroundTintList(ContextCompat.getColorStateList(v.getContext(), R.color.blue));
         }
         else if(score < 300){
-            save.setBackgroundTintList(ContextCompat.getColorStateList(getContext(), R.color.green));
+            save.setBackgroundTintList(ContextCompat.getColorStateList(v.getContext(), R.color.green));
         }
         else if(score < 1000){
-            save.setBackgroundTintList(ContextCompat.getColorStateList(getContext(), R.color.brown));
+            save.setBackgroundTintList(ContextCompat.getColorStateList(v.getContext(), R.color.brown));
         }
         else if(score < 2500){
-            save.setBackgroundTintList(ContextCompat.getColorStateList(getContext(), R.color.light_gray));
+            save.setBackgroundTintList(ContextCompat.getColorStateList(v.getContext(), R.color.light_gray));
         }
         else if(score < 7000){
-            save.setBackgroundTintList(ContextCompat.getColorStateList(getContext(), R.color.ohra));
+            save.setBackgroundTintList(ContextCompat.getColorStateList(v.getContext(), R.color.ohra));
         }
         else if(score < 17000){
-            save.setBackgroundTintList(ContextCompat.getColorStateList(getContext(), R.color.red));
+            save.setBackgroundTintList(ContextCompat.getColorStateList(v.getContext(), R.color.red));
         }
         else if(score < 30000){
-            save.setBackgroundTintList(ContextCompat.getColorStateList(getContext(), R.color.orange));
+            save.setBackgroundTintList(ContextCompat.getColorStateList(v.getContext(), R.color.orange));
         }
         else if(score < 50000){
-            save.setBackgroundTintList(ContextCompat.getColorStateList(getContext(), R.color.violete));
+            save.setBackgroundTintList(ContextCompat.getColorStateList(v.getContext(), R.color.violete));
         }
         else{
-            save.setBackgroundTintList(ContextCompat.getColorStateList(getContext(), R.color.main_green));
+            save.setBackgroundTintList(ContextCompat.getColorStateList(v.getContext(), R.color.main_green));
         }
 
         PostDatas post = new PostDatas();

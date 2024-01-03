@@ -18,7 +18,7 @@ import androidx.core.content.ContextCompat;
 
 import com.bumptech.glide.Glide;
 
-public class GetFriend extends AppCompatActivity {
+public class GEtFriend extends AppCompatActivity {
 
     private int selectedColor;
 
@@ -48,7 +48,7 @@ public class GetFriend extends AppCompatActivity {
         UserScore.setText(s);
 
         Glide
-                .with(GetFriend.this)
+                .with(GEtFriend.this)
                 .load(urlImage)
                 .into(loadedImage);
         nameu.setText(name);
@@ -151,7 +151,7 @@ public class GetFriend extends AppCompatActivity {
                         plus.setBackgroundResource(R.drawable.ad);
 
                         Glide
-                                .with(GetFriend.this)
+                                .with(GEtFriend.this)
                                 .load(photo[i])
                                 .into(loadImage);
                         nameu.setText(names[i]);
@@ -190,7 +190,7 @@ public class GetFriend extends AppCompatActivity {
                         loadImage.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                Intent intent = new Intent(GetFriend.this, FriendProfile.class);
+                                Intent intent = new Intent(GEtFriend.this, FriendProfile.class);
                                 intent.putExtra("id", id[finalI]);
                                 intent.putExtra("name", names[finalI]);
                                 intent.putExtra("score", score[finalI]);
@@ -202,7 +202,7 @@ public class GetFriend extends AppCompatActivity {
                         nameu.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                Intent intent = new Intent(GetFriend.this, FriendProfile.class);
+                                Intent intent = new Intent(GEtFriend.this, FriendProfile.class);
                                 intent.putExtra("id", id[finalI]);
                                 intent.putExtra("name", names[finalI]);
                                 intent.putExtra("score", score[finalI]);
@@ -231,7 +231,7 @@ public class GetFriend extends AppCompatActivity {
                     main.addView(empty);
                 }
                 else{
-                    Toast.makeText(GetFriend.this, "У вас нет запросов", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(GEtFriend.this, "У вас нет запросов", Toast.LENGTH_SHORT).show();
                 }
             }
         });

@@ -40,7 +40,7 @@ public class Participant extends Fragment {
                     String UserName = name.getText().toString();
 
                     PostDatas post = new PostDatas();
-                    post.postDataGetFindFriend("GetUsers", UserName, mail, new CallBackInt() {
+                    post.postDataGetFindFriend("GetUsersToProject", UserName, mail, new CallBackInt() {
                         @Override
                         public void invoke(String info) {
                             String[] inf = info.split(";");

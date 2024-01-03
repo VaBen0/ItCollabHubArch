@@ -9,7 +9,10 @@
         <item name="android:windowBackground">@color/dark_theme</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:textColorHint">@color/white</item>
+        <item name="background_progress">@color/gray</item>
     </style>
+
+
 
     <style name="Theme.ITCollabHub" parent="Base.Theme.ITCollabHub">
         <item name="colorPrimary">@color/dark_theme</item>

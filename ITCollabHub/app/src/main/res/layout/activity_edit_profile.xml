@@ -156,10 +156,9 @@
                 tools:ignore="TouchTargetSizeCheck" />
 
             <View
-                android:id="@+id/linear_links"
+                android:id="@+id/linear_projects"
                 android:layout_width="150dp"
                 android:layout_height="3dp"
-                android:clickable="true"
                 android:layout_marginStart="8dp"/>
         </LinearLayout>
 
@@ -181,11 +180,11 @@
                 tools:ignore="TouchTargetSizeCheck" />
 
             <View
-                android:id="@+id/linear_about"
-                android:layout_width="115dp"
+                android:id="@+id/linear_friends"
+                android:layout_width="114dp"
                 android:layout_height="3dp"
                 android:layout_gravity="right"
-                android:layout_marginEnd="6dp" />
+                android:layout_marginEnd="6dp"/>
 
         </LinearLayout>
     </LinearLayout>

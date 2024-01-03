@@ -271,6 +271,23 @@ public class PostDatas {
             }
         });
     }
+    public void postDataGetUserProjects1(String req, String mail, CallBackInt result){
+        Methods methods = RetrofitClient.getRetrofitInstance().create(Methods.class);
+        Call<Model> call = methods.getUserProjects(req, mail);
+
+        call.enqueue(new Callback<Model>() {
+            @Override
+            public void onResponse(Call<Model> call, retrofit2.Response<Model> response) {
+                assert response.body() != null;
+                result.invoke(response.body().getReturn());
+            }
+
+            @Override
+            public void onFailure(Call<Model> call, Throwable t) {
+                //result.invoke("lol");
+            }
+        });
+    }
     public void postDataCreateProjectWithoutImage(String req, String name, String mail, String purposes, String tasks,
                                         String description, String id, CallBackInt result){
         Methods methods = RetrofitClient.getRetrofitInstance().create(Methods.class);

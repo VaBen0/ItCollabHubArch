@@ -12,8 +12,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import ru.dvteam.itcollabhub.databinding.ActivityUsersProjectBinding;
 
 public class UsersProject extends AppCompatActivity {
+
+    ActivityUsersProjectBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,9 +25,14 @@ public class UsersProject extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
                 WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 
-        setContentView(R.layout.activity_users_project);
+        binding = ActivityUsersProjectBinding.inflate(getLayoutInflater());
 
-        Bundle arguments = getIntent().getExtras();
+        setContentView(binding.getRoot());
+
+        binding.projectProgress.setMax(20);
+        binding.projectProgress.setProgress(10);
+
+        /*Bundle arguments = getIntent().getExtras();
 
         String id = arguments.getString("projectId");
 
@@ -43,7 +51,7 @@ public class UsersProject extends AppCompatActivity {
                         .into(projectLogo);
                 description.setText(descript);
             }
-        });
+        });*/
     }
 
 }

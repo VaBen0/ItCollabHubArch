@@ -9,26 +9,13 @@
     <ImageView
         android:id="@+id/pr_logo"
         android:layout_width="wrap_content"
-        android:layout_height="300dp"
+        android:layout_height="260dp"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo_second_type" />
-
-    <TextView
-        android:id="@+id/three"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
-        android:gravity="center|top"
-        android:text="..."
-        android:textColor="@color/white"
-        android:textSize="50sp"
-        android:textStyle="italic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageView6"
@@ -47,11 +34,11 @@
         android:id="@+id/projectName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="20dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="3dp"
-        android:hint="Имя проекта"
         android:backgroundTint="@color/transparent"
+        android:hint="Имя проекта"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
         android:textSize="30sp"
@@ -67,7 +54,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:gravity="center|top"
-        android:text="@string/about_projects"
+        android:text="Что-то"
         android:textSize="16sp"
         android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
@@ -85,127 +72,148 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/description" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout2"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gray_line">
-
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:layout_marginStart="10dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/purpose_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Цели"
-                android:textStyle="italic|bold"
-                android:textSize="16sp"
-                tools:ignore="TouchTargetSizeCheck" />
-
-            <View
-                android:id="@+id/linear_projects2"
-                android:layout_width="50dp"
-                android:layout_height="3dp"
-                android:layout_gravity="center"
-                android:background="@drawable/blue_line"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tasks"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Задачи"
-                android:textStyle="italic|bold"
-                android:textSize="16sp"
-                tools:ignore="TouchTargetSizeCheck" />
-
-            <View
-                android:id="@+id/linear_projects"
-                android:layout_width="50dp"
-                android:layout_height="3dp"
-                android:layout_gravity="center"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/ad_activity"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Дедлайны"
-                android:textStyle="italic|bold"
-                android:textSize="16sp"
-                tools:ignore="TouchTargetSizeCheck" />
-
-            <View
-                android:id="@+id/linear_deadline"
-                android:layout_width="50dp"
-                android:layout_height="3dp"
-                android:layout_gravity="center"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/ad_participiant"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textStyle="italic|bold"
-                android:gravity="center"
-                android:text="Задания"
-                android:textSize="16sp"
-                tools:ignore="TouchTargetSizeCheck" />
-
-            <View
-                android:id="@+id/linear_friends"
-                android:layout_width="50dp"
-                android:layout_height="3dp"
-                android:layout_gravity="center"/>
-
-        </LinearLayout>
-    </LinearLayout>
-
-    <fragment
-        android:id="@+id/nav_host_fragment"
-        android:name="androidx.navigation.fragment.NavHostFragment"
-        android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintHeight_default="spread"
-        app:layout_constraintWidth_default="spread"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-        app:defaultNavHost="true"
-        app:navGraph="@navigation/account"/>
+        app:layout_constraintTop_toBottomOf="@+id/imageView6">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center|top"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/projectPercents"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="75.0%"
+                android:textSize="25sp"
+                android:textStyle="bold|italic" />
+
+            <ProgressBar
+                android:id="@+id/projectProgress"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:progressDrawable="@drawable/custom_progress_bar_vo" />
+
+            <LinearLayout
+                android:layout_width="180dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="15dp"
+                android:gravity="center|top"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imageView5"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/tg" />
+
+                <ImageView
+                    android:id="@+id/imageView8"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/vk" />
+
+                <ImageView
+                    android:id="@+id/imageView10"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/web2" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textView20"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Выполненных целей: 2/3"
+                android:layout_marginTop="15dp"
+                android:textSize="18sp"
+                android:gravity="center"
+                android:textStyle="bold|italic"/>
+
+            <TextView
+                android:id="@+id/textView21"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Выполненных задач: 9/13"
+                android:layout_marginTop="5dp"
+                android:textSize="18sp"
+                android:gravity="center"
+                android:textStyle="bold|italic"/>
+
+            <TextView
+                android:id="@+id/textView22"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Количество участников:16"
+                android:layout_marginTop="5dp"
+                android:textSize="18sp"
+                android:gravity="center"
+                android:textStyle="bold|italic"/>
+
+            <TextView
+                android:id="@+id/textView23"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Создание проекта:"
+                android:textSize="18sp"
+                android:layout_marginTop="7dp"
+                android:gravity="center"
+                android:textStyle="bold|italic"/>
+
+            <TextView
+                android:id="@+id/textView24"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="03.09.2023 17:45"
+                android:textSize="15sp"
+                android:gravity="center"
+                android:textStyle="bold|italic"/>
+
+            <TextView
+                android:id="@+id/textView25"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Затрачено времени:"
+                android:textSize="18sp"
+                android:layout_marginTop="7dp"
+                android:gravity="center"
+                android:textStyle="bold|italic"/>
+
+            <TextView
+                android:id="@+id/textView26"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="2 месяца 5 дней 6 часов"
+                android:textSize="15sp"
+                android:layout_marginTop="2dp"
+                android:gravity="center"
+                android:textStyle="bold|italic"/>
+
+            <Button
+                android:id="@+id/button5"
+                android:layout_width="200dp"
+                android:layout_height="55dp"
+                android:layout_marginTop="35dp"
+                android:textColor="@color/white"
+                android:backgroundTint="@color/violete"
+                android:text="Панель управления"
+                app:cornerRadius="15dp"
+                android:textStyle="bold|italic"/>
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

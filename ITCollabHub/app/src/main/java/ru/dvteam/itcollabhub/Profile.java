@@ -27,9 +27,7 @@ public class Profile extends AppCompatActivity {
     private int max;
     private int score;
     private int min, color;
-    private String status;
-
-    private String mail;
+    private String status, mail;
     private boolean rFr;
 
     @Override
