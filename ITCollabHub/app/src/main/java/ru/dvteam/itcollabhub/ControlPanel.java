@@ -1,6 +1,7 @@
 package ru.dvteam.itcollabhub;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -31,6 +32,25 @@ public class ControlPanel extends AppCompatActivity {
         binding = ActivityControlPanelBinding.inflate(getLayoutInflater());
 
         setContentView(binding.getRoot());
+
+        getWindow().setStatusBarColor(ContextCompat.getColor(ControlPanel.this,R.color.blue_transperent));
+
+        Bundle arguments = getIntent().getExtras();
+
+        assert arguments != null;
+        String id = arguments.getString("projectId");
+
+        PostDatas postDatas = new PostDatas();
+        postDatas.postDataGetProjectInformation("GetProjectMainInformation", id, new CallBackInt4() {
+            @Override
+            public void invoke(String name, String photoUrl, String descript) {
+                binding.nameProject.setText(name);
+                Glide
+                        .with(ControlPanel.this)
+                        .load(photoUrl)
+                        .into(binding.prLogo);
+            }
+        });
 
         for (int i = 0; i < 5; i++) {
             View custom = getLayoutInflater().inflate(R.layout.reminder, null);

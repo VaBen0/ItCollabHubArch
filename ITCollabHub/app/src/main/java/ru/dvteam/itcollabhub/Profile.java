@@ -441,5 +441,10 @@ public class Profile extends AppCompatActivity {
         return color;
     }
     public String getMail(){return mail;}
+    public void changeActivity(){
+        Intent intent = new Intent(Profile.this, GetFriend.class);
+        startActivity(intent);
+    }
+
 
 }

@@ -1,12 +1,10 @@
 package ru.dvteam.itcollabhub;
 
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,7 +45,7 @@ public class MyProjects extends Fragment {
                         View custom = inflater.inflate(R.layout.project_window, null);
                         TextView nameu = (TextView) custom.findViewById(R.id.textView3);
                         ImageView loadImage = (ImageView) custom.findViewById(R.id.loadImg);
-                        ImageView user = (ImageView) custom.findViewById(R.id.userImage);
+                        ImageView user = (ImageView) custom.findViewById(R.id.prLogo);
                         ImageView userCircle = (ImageView) custom.findViewById(R.id.user_circle);
                         TextView nameOfUser = (TextView) custom.findViewById(R.id.textView13);
 
@@ -121,6 +119,14 @@ public class MyProjects extends Fragment {
                             }
                         });*/
                         loadImage.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(v.getContext(), UsersProject.class);
+                                intent.putExtra("projectId", id[finalI]);
+                                startActivity(intent);
+                            }
+                        });
+                        nameu.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
                                 Intent intent = new Intent(v.getContext(), UsersProject.class);

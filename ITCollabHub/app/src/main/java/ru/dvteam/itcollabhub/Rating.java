@@ -42,6 +42,7 @@ public class Rating extends Fragment {
 
         int score = getArguments().getInt("score");
         String status = getArguments().getString("status");
+        String chast = "До следующей цели: " + (max - score);
 
         if(score < 100){
             selectedColor = Color.parseColor("#B20000FF");
@@ -141,9 +142,10 @@ public class Rating extends Fragment {
             lvl.setProgressDrawable(progressDrawable);
             max = 50000;
             min = 0;
+            chast = "";
         }
 
-        String chast = "До следующей цели: " + (max - score);
+
         float med = (float)(score - min)/(float)(max - min);
         med = Math.round(med * 1000);
         med /= 10.0;
@@ -163,8 +165,11 @@ public class Rating extends Fragment {
                 if(res.length() >= 4){
                     res = res.substring(0, 4) + "%";
                 }
+                else if(res.length() == 3){
+                    res = res.substring(0, 3) + "%";
+                }
                 else{
-                    res = res.substring(0, 2) + ".0%";
+                    res = res.substring(0, 2) + "0%";
                 }
 
                 percents.setText(res);

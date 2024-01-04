@@ -10,6 +10,7 @@
         <item name="android:textColor">@color/white</item>
         <item name="android:textColorHint">@color/white</item>
         <item name="background_progress">@color/gray</item>
+        <item name="background_panel">@color/dark_panel</item>
     </style>
 
 

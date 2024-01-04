@@ -136,8 +136,9 @@ public class Friends extends Fragment {
         notifications.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), GEtFriend.class);
-                startActivity(intent);
+                Profile profile = (Profile) getActivity();
+                assert profile != null;
+                profile.changeActivity();
             }
         });
 

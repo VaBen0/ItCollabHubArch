@@ -4,6 +4,7 @@
     <color name="black">#000000</color>
     <color name="main_green">#00C6A2</color>
     <color name="blue">#0000FF</color>
+    <color name="blue_transperent">#B20000FF</color>
     <color name="brown">#FFCC7722</color>
     <color name="green">#B21AFF00</color>
     <color name="light_gray">#B2B5B5B5</color>
@@ -14,6 +15,7 @@
     <color name="violete">#4F0070</color>
     <color name="dark_theme">#000218</color>
     <color name="dark_panel">#0F252D3A</color>
+    <color name="dark_panel1">#22252D3A</color>
     <color name="gray">#4E4E4E</color>
     <color name="gray1">#8F8F8F</color>
     <color name="white1">#FFFBFF</color>

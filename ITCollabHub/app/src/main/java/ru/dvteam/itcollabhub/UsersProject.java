@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.WindowCompat;
 
 import android.app.ActionBar;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -32,26 +33,32 @@ public class UsersProject extends AppCompatActivity {
         binding.projectProgress.setMax(20);
         binding.projectProgress.setProgress(10);
 
-        /*Bundle arguments = getIntent().getExtras();
+        Bundle arguments = getIntent().getExtras();
 
+        assert arguments != null;
         String id = arguments.getString("projectId");
-
-        TextView projectName = findViewById(R.id.projectName);
-        TextView description = findViewById(R.id.description);
-        ImageView projectLogo = findViewById(R.id.pr_logo);
 
         PostDatas postDatas = new PostDatas();
         postDatas.postDataGetProjectInformation("GetProjectMainInformation", id, new CallBackInt4() {
             @Override
             public void invoke(String name, String photoUrl, String descript) {
-                projectName.setText(name);
+                binding.projectName.setText(name);
                 Glide
                         .with(UsersProject.this)
                         .load(photoUrl)
-                        .into(projectLogo);
-                description.setText(descript);
+                        .into(binding.prLogo);
+                binding.description.setText(descript);
             }
-        });*/
+        });
+
+        binding.controlPanelMove.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(UsersProject.this, ControlPanel.class);
+                intent.putExtra("projectId", id);
+                startActivity(intent);
+            }
+        });
     }
 
 }
