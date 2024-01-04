@@ -315,7 +315,10 @@ public class PostDatas {
             @Override
             public void onResponse(Call<Model> call, retrofit2.Response<Model> response) {
                 assert response.body() != null;
-                result.invoke(response.body().getName(), response.body().getUrlImg(), response.body().getDescription());
+                result.invoke(response.body().getName(), response.body().getUrlImg(), response.body().getDescription(),
+                        response.body().getIsend(), response.body().getPurposes(), response.body().getProblems(), response.body().getPeoples(),
+                        response.body().getTime(), response.body().getTime1(), response.body().getTg(), response.body().getVk(),
+                        response.body().getWebs());
             }
 
             @Override
@@ -342,7 +345,7 @@ public class PostDatas {
         });
     }
 
-    public void postDataGetLinks(String req, String mail, CallBackInt4 result){
+    public void postDataGetLinks(String req, String mail, CallBackInt5 result){
         Methods methods = RetrofitClient.getRetrofitInstance().create(Methods.class);
         Call<Model> call = methods.getUserLinks(req, mail);
 
@@ -359,7 +362,7 @@ public class PostDatas {
         });
     }
 
-    public void postDataGetFriendLinks(String req, String id, CallBackInt4 result){
+    public void postDataGetFriendLinks(String req, String id, CallBackInt5 result){
         Methods methods = RetrofitClient.getRetrofitInstance().create(Methods.class);
         Call<Model> call = methods.getFriendLinks(req, id);
 
@@ -367,6 +370,40 @@ public class PostDatas {
             @Override
             public void onResponse(Call<Model> call, retrofit2.Response<Model> response) {
                 result.invoke(response.body().getTgLink(), response.body().getVkLink(), response.body().getWebLink());
+            }
+
+            @Override
+            public void onFailure(Call<Model> call, Throwable t) {
+                //result.invoke("lol");
+            }
+        });
+    }
+
+    public void postDataGetProjectReq(String req, String mail, CallBackInt result){
+        Methods methods = RetrofitClient.getRetrofitInstance().create(Methods.class);
+        Call<Model> call = methods.getProjectRequests(req, mail);
+
+        call.enqueue(new Callback<Model>() {
+            @Override
+            public void onResponse(Call<Model> call, retrofit2.Response<Model> response) {
+                result.invoke(response.body().getReturn());
+            }
+
+            @Override
+            public void onFailure(Call<Model> call, Throwable t) {
+                //result.invoke("lol");
+            }
+        });
+    }
+
+    public void postDataAnswerProject(String req, String mail, String id,CallBackInt result){
+        Methods methods = RetrofitClient.getRetrofitInstance().create(Methods.class);
+        Call<Model> call = methods.answerOnProjectReq(req, mail, id);
+
+        call.enqueue(new Callback<Model>() {
+            @Override
+            public void onResponse(Call<Model> call, retrofit2.Response<Model> response) {
+                result.invoke(response.body().getReturn());
             }
 
             @Override

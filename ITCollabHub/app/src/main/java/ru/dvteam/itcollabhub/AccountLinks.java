@@ -57,7 +57,7 @@ public class AccountLinks extends Fragment {
         }
 
         PostDatas post = new PostDatas();
-        post.postDataGetLinks("GetAllLinks", mail, new CallBackInt4() {
+        post.postDataGetLinks("GetAllLinks", mail, new CallBackInt5() {
             @Override
             public void invoke(String tg, String vk, String web) {
                 if(tg.equals("null")){

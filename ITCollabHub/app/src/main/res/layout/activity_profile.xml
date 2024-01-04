@@ -138,7 +138,7 @@
                 android:layout_marginTop="10dp"
                 android:clickable="true"
                 android:gravity="center"
-                android:text="Мои проекты"
+                android:text="Достижения"
                 android:textSize="16sp"
                 tools:ignore="TouchTargetSizeCheck" />
 

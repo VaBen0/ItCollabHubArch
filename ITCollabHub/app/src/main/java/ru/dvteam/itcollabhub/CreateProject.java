@@ -225,91 +225,88 @@ public class CreateProject extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Toast.makeText(CreateProject.this, purposes_name + " " + purposes + " " + tasks_name + " " + tasks + ", " + id1, Toast.LENGTH_SHORT).show();
-                String purposeMain = "";
-                String taskMain = "";
-                String mainId;
-                String mainDescription;
-                String mainName;
-                if(nameu.getText().toString().isEmpty()){
-                    mainName = "Отсутствует наименование проекта";
-                } else{
-                    mainName = nameu.getText().toString();
+                if(purposes.isEmpty()){
+                    Toast.makeText(CreateProject.this, "Вы не добавили ни одной цели", Toast.LENGTH_LONG).show();
                 }
-                if(description.getText().toString().isEmpty()){
-                    mainDescription = "Без названия";
-                } else{
-                    mainDescription = description.getText().toString();
+                else if(tasks.isEmpty()){
+                    Toast.makeText(CreateProject.this, "Вы не добавили ни одной задачи", Toast.LENGTH_LONG).show();
                 }
-                if(id1.isEmpty()){
-                    mainId = "Пользователи были не выбраны";
-                }else{
-                    mainId = id1;
-                }
-                String[] purpose1 = purposes_name.split(",");
-                String[] purpose2 = purposes.split(",");
-                String[] task1 = tasks_name.split(",");
-                String[] task2 = tasks.split(",");
-                if (!purposes_name.isEmpty()) {
-                    for (int i = 0; i < purpose1.length; i++) {
-                        if (i != purpose1.length - 1) {
-                            if (i > 1) {
-                                purposeMain = purposeMain + "," + (i + 1) + ":{" + purpose1[i] + "}{" + purpose2[i] + "}";
-                            } else {
-                                purposeMain = purposeMain + (i + 1) + ":{" + purpose1[i] + "}{" + purpose2[i] + "}";
-                            }
-                        } else {
-                            purposeMain = purposeMain + (i + 1) + ":{" + purpose1[i] + "}{" + purpose2[i] + "}";
-                        }
+                else {
+                    String purposeMain = "";
+                    String taskMain = "";
+                    String mainId;
+                    String mainDescription;
+                    String mainName;
+                    if (nameu.getText().toString().isEmpty()) {
+                        mainName = "Отсутствует наименование проекта";
+                    } else {
+                        mainName = nameu.getText().toString();
                     }
-                }
-                else{
-                    purposeMain = "Нет";
-                }
-                if (!tasks_name.isEmpty()) {
-                    for (int i = 0; i < task1.length; i++) {
-                        if (i != task1.length - 1) {
-                            if (i > 1) {
-                                taskMain = taskMain + "," + (i + 1) + ":{" + task1[i] + "}{" + task2[i] + "}";
-                            } else {
-                                taskMain = taskMain + (i + 1) + ":{" + task1[i] + "}{" + task2[i] + "}";
-                            }
-                        } else {
-                            taskMain = taskMain + (i + 1) + ":{" + task1[i] + "}{" + task2[i] + "}";
-                        }
+                    if (description.getText().toString().isEmpty()) {
+                        mainDescription = "Без названия";
+                    } else {
+                        mainDescription = description.getText().toString();
                     }
-                }
-                else{
-                    taskMain = "Нет";
-                }
-                //Toast.makeText(CreateProject.this, mainId, Toast.LENGTH_SHORT).show();
-                if(mediaPath.isEmpty()){
-                    PostDatas post = new PostDatas();
-                    post.postDataCreateProjectWithoutImage("CreateNewProject", mainName, mail, purposeMain, taskMain,
-                            mainDescription, mainId, new CallBackInt() {
-                                @Override
-                                public void invoke(String res) {
-                                    Toast.makeText(CreateProject.this, res, Toast.LENGTH_SHORT).show();
-                                    if (res.equals("Успешно")) {
-                                        Intent intent = new Intent(CreateProject.this, ActivityProject.class);
-                                        startActivity(intent);
+                    if (id1.isEmpty()) {
+                        mainId = "Пользователи были не выбраны";
+                    } else {
+                        mainId = id1;
+                    }
+                    String[] purpose1 = purposes_name.split(",");
+                    String[] purpose2 = purposes.split(",");
+                    String[] task1 = tasks_name.split(",");
+                    String[] task2 = tasks.split(",");
+                    if (!purposes_name.isEmpty()) {
+                        for (int i = 0; i < purpose1.length; i++) {
+                            if (i != purpose1.length - 1) {
+                                purposeMain = purposeMain + purpose1[i] + "\uD83D\uDD70" + purpose2[i]  + "\uD83D\uDD70";
+                            } else {
+                                purposeMain = purposeMain + purpose1[i] + "\uD83D\uDD70" + purpose2[i];
+                            }
+                        }
+                    } else {
+                        purposeMain = "Нет";
+                    }
+                    if (!tasks_name.isEmpty()) {
+                        for (int i = 0; i < task1.length; i++) {
+                            if (i != task1.length - 1) {
+                                taskMain = taskMain + task1[i] + "\uD83D\uDD70" + task2[i] + "\uD83D\uDD70";
+                            } else {
+                                taskMain = taskMain + task1[i] + "\uD83D\uDD70" + task2[i];
+                            }
+                        }
+                    } else {
+                        taskMain = "Нет";
+                    }
+                    if (mediaPath.isEmpty()) {
+                        PostDatas post = new PostDatas();
+                        post.postDataCreateProjectWithoutImage("CreateNewProject", mainName, mail, purposeMain, taskMain,
+                                mainDescription, mainId, new CallBackInt() {
+                                    @Override
+                                    public void invoke(String res) {
+                                        Toast.makeText(CreateProject.this, res, Toast.LENGTH_SHORT).show();
+                                        if (res.equals("Успешно")) {
+                                            Intent intent = new Intent(CreateProject.this, ActivityProject.class);
+                                            startActivity(intent);
+                                        }
                                     }
-                                }
-                            });
-                }else{
-                    File file = new File(mediaPath);
-                    RequestBody requestBody = RequestBody.create(MediaType.parse("*/*"), file);
-                    PostDatas post = new PostDatas();
-                    post.postDataCreateProject("CreateNewProject", mainName, requestBody, mail, purposeMain, taskMain,
-                            mainDescription, mainId, new CallBackInt() {
-                            @Override
-                            public void invoke(String res) {
-                                Toast.makeText(CreateProject.this, res, Toast.LENGTH_SHORT).show();
-                                if (res.equals("Успешно")) {
-                                    Intent intent = new Intent(CreateProject.this, ActivityProject.class);
-                                    startActivity(intent);
-                                }
-                            }
-                        });
+                                });
+                    } else {
+                        File file = new File(mediaPath);
+                        RequestBody requestBody = RequestBody.create(MediaType.parse("*/*"), file);
+                        PostDatas post = new PostDatas();
+                        post.postDataCreateProject("CreateNewProject", mainName, requestBody, mail, purposeMain, taskMain,
+                                mainDescription, mainId, new CallBackInt() {
+                                    @Override
+                                    public void invoke(String res) {
+                                        Toast.makeText(CreateProject.this, res, Toast.LENGTH_SHORT).show();
+                                        if (res.equals("Успешно")) {
+                                            Intent intent = new Intent(CreateProject.this, ActivityProject.class);
+                                            startActivity(intent);
+                                        }
+                                    }
+                                });
+                    }
                 }
 
             }

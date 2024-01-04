@@ -41,14 +41,18 @@
     <TextView
         android:id="@+id/nameProject"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="14dp"
         android:layout_marginEnd="10dp"
+        android:layout_marginBottom="5dp"
         android:text="Название проекта"
+        android:gravity="center|left"
+        android:autoSizeMinTextSize="19sp"
+        android:autoSizeMaxTextSize="28sp"
+        android:autoSizeTextType="uniform"
         android:textColor="@color/white"
-        android:textSize="28sp"
         android:textStyle="bold|italic"
+        app:layout_constraintBottom_toTopOf="@+id/imageView12"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/logo"
         app:layout_constraintTop_toTopOf="parent" />
@@ -151,7 +155,7 @@
                 android:layout_marginTop="5dp">
 
                 <ProgressBar
-                    android:id="@+id/progressBar5"
+                    android:id="@+id/purpProgress"
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
@@ -193,7 +197,7 @@
                 android:layout_marginTop="5dp">
 
                 <ProgressBar
-                    android:id="@+id/progressBar6"
+                    android:id="@+id/tasksProgress"
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
@@ -236,7 +240,7 @@
                 android:layout_marginTop="5dp">
 
                 <ProgressBar
-                    android:id="@+id/progressBar7"
+                    android:id="@+id/zadaniaProgress"
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
@@ -279,7 +283,7 @@
                 android:layout_marginTop="1dp">
 
                 <Button
-                    android:id="@+id/button14"
+                    android:id="@+id/projectFiles"
                     android:layout_width="match_parent"
                     android:layout_height="43dp"
                     android:layout_marginStart="15dp"
@@ -321,7 +325,7 @@
                 android:layout_marginTop="-2dp">
 
                 <Button
-                    android:id="@+id/button15"
+                    android:id="@+id/advertisments"
                     android:layout_width="match_parent"
                     android:layout_height="43dp"
                     android:layout_marginStart="15dp"
@@ -373,7 +377,7 @@
                 android:layout_marginTop="1dp">
 
                 <Button
-                    android:id="@+id/button16"
+                    android:id="@+id/editProject"
                     android:layout_width="match_parent"
                     android:layout_height="43dp"
                     android:layout_marginStart="15dp"
@@ -382,8 +386,10 @@
                     app:cornerRadius="10dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0" />
 
                 <ImageView
                     android:id="@+id/imageView24"
@@ -416,7 +422,7 @@
                 android:layout_marginTop="-2dp">
 
                 <Button
-                    android:id="@+id/button17"
+                    android:id="@+id/projectChat"
                     android:layout_width="match_parent"
                     android:layout_height="43dp"
                     android:layout_marginStart="15dp"

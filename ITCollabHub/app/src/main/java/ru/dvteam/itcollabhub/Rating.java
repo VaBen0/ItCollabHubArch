@@ -40,9 +40,13 @@ public class Rating extends Fragment {
         TextView nextScore = v.findViewById(R.id.nextScore);
         TextView nextStatus = v.findViewById(R.id.nextstatus);
 
-        int score = getArguments().getInt("score");
-        String status = getArguments().getString("status");
-        String chast = "До следующей цели: " + (max - score);
+        Profile profile = (Profile) getActivity();
+
+        assert profile != null;
+        int score = profile.getScore();
+        String chast;
+
+        String status;
 
         if(score < 100){
             selectedColor = Color.parseColor("#B20000FF");
@@ -54,6 +58,8 @@ public class Rating extends Fragment {
             lvl.setProgressDrawable(progressDrawable);
             max = 100;
             min = 0;
+            chast = "До следующей цели: " + (max - score);
+            status = "Новый пользователь";
         }
         else if(score < 300){
             selectedColor = Color.parseColor("#FFCC7722");
@@ -65,6 +71,8 @@ public class Rating extends Fragment {
             lvl.setProgressDrawable(progressDrawable);
             max = 300;
             min = 100;
+            chast = "До следующей цели: " + (max - score);
+            status = "Активный пользователь";
         }
         else if(score < 1000){
             selectedColor = Color.parseColor("#B2B5B5B5");
@@ -76,6 +84,8 @@ public class Rating extends Fragment {
             lvl.setProgressDrawable(progressDrawable);
             max = 1000;
             min = 300;
+            chast = "До следующей цели: " + (max - score);
+            status = "Бронзовый пользователь";
         }
         else if(score < 2500){
             selectedColor = Color.parseColor("#FFE8AA0E");
@@ -87,6 +97,8 @@ public class Rating extends Fragment {
             lvl.setProgressDrawable(progressDrawable);
             max = 2500;
             min = 1000;
+            chast = "До следующей цели: " + (max - score);
+            status = "Серебряный пользователь";
         }
         else if(score < 7000){
             selectedColor = Color.parseColor("#FF0000");
@@ -98,6 +110,8 @@ public class Rating extends Fragment {
             lvl.setProgressDrawable(progressDrawable);
             max = 7000;
             min = 2500;
+            chast = "До следующей цели: " + (max - score);
+            status = "Золотой пользователь";
         }
         else if(score < 17000){
             selectedColor = Color.parseColor("#FFCC7722");
@@ -109,6 +123,8 @@ public class Rating extends Fragment {
             lvl.setProgressDrawable(progressDrawable);
             max = 17000;
             min = 7000;
+            chast = "До следующей цели: " + (max - score);
+            status = "Гранд-пользователь I";
         }
         else if(score < 30000){
             selectedColor = Color.parseColor("#4F0070");
@@ -120,6 +136,8 @@ public class Rating extends Fragment {
             lvl.setProgressDrawable(progressDrawable);
             max = 30000;
             min = 17000;
+            chast = "До следующей цели: " + (max - score);
+            status = "Гранд-пользователь II";
         }
         else if(score < 50000){
             selectedColor = Color.parseColor("#FF00C6A2");
@@ -131,6 +149,8 @@ public class Rating extends Fragment {
             lvl.setProgressDrawable(progressDrawable);
             max = 50000;
             min = 30000;
+            chast = "До следующей цели: " + (max - score);
+            status = "Гранд-пользователь III";
         }
         else{
             selectedColor = Color.parseColor("#FF00C6A2");
@@ -143,6 +163,7 @@ public class Rating extends Fragment {
             max = 50000;
             min = 0;
             chast = "";
+            status = "Бриллиантовый пользователь";
         }
 
 

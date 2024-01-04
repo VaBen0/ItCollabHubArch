@@ -1,25 +1,19 @@
 package ru.dvteam.itcollabhub;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-import androidx.core.view.WindowCompat;
-
-import android.app.ActionBar;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
 import android.view.WindowManager;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
+
 import ru.dvteam.itcollabhub.databinding.ActivityUsersProjectBinding;
 
-public class UsersProject extends AppCompatActivity {
+public class UsersProject2 extends AppCompatActivity {
 
     ActivityUsersProjectBinding binding;
 
@@ -41,58 +35,50 @@ public class UsersProject extends AppCompatActivity {
             Drawable progressDrawable = getResources().getDrawable(R.drawable.custom_progress_bar_bgreen);
             binding.projectProgress.setBackgroundResource(R.drawable.custom_progress_bar_bgreen);
             binding.projectProgress.setProgressDrawable(progressDrawable);
-            binding.controlPanelMove.setBackgroundTintList(ContextCompat.getColorStateList(UsersProject.this, R.color.blue));
         }
         else if(score < 300){
             Drawable progressDrawable = getResources().getDrawable(R.drawable.custom_progress_bar_gbrown);
             binding.projectProgress.setBackgroundResource(R.drawable.custom_progress_bar_gbrown);
             binding.projectProgress.setProgressDrawable(progressDrawable);
-            binding.controlPanelMove.setBackgroundTintList(ContextCompat.getColorStateList(UsersProject.this, R.color.green));
         }
         else if(score < 1000){
             Drawable progressDrawable = getResources().getDrawable(R.drawable.custom_progress_bar_brlg);
             binding.projectProgress.setBackgroundResource(R.drawable.custom_progress_bar_brlg);
             binding.projectProgress.setProgressDrawable(progressDrawable);
-            binding.controlPanelMove.setBackgroundTintList(ContextCompat.getColorStateList(UsersProject.this, R.color.brown));
         }
         else if(score < 2500){
             Drawable progressDrawable = getResources().getDrawable(R.drawable.custom_progress_bar_lgoh);
             binding.projectProgress.setBackgroundResource(R.drawable.custom_progress_bar_lgoh);
             binding.projectProgress.setProgressDrawable(progressDrawable);
-            binding.controlPanelMove.setBackgroundTintList(ContextCompat.getColorStateList(UsersProject.this, R.color.light_gray));
         }
         else if(score < 7000){
             Drawable progressDrawable = getResources().getDrawable(R.drawable.custom_progress_bar_ohred);
             binding.projectProgress.setBackgroundResource(R.drawable.custom_progress_bar_ohred);
             binding.projectProgress.setProgressDrawable(progressDrawable);
-            binding.controlPanelMove.setBackgroundTintList(ContextCompat.getColorStateList(UsersProject.this, R.color.ohra));
         }
         else if(score < 17000) {
             Drawable progressDrawable = getResources().getDrawable(R.drawable.custom_progress_bar_redora);
             binding.projectProgress.setBackgroundResource(R.drawable.custom_progress_bar_redora);
             binding.projectProgress.setProgressDrawable(progressDrawable);
-            binding.controlPanelMove.setBackgroundTintList(ContextCompat.getColorStateList(UsersProject.this, R.color.red));
         }
         else if(score < 30000){
             Drawable progressDrawable = getResources().getDrawable(R.drawable.custom_progress_bar_vo);
             binding.projectProgress.setBackgroundResource(R.drawable.custom_progress_bar_vo);
             binding.projectProgress.setProgressDrawable(progressDrawable);
-            binding.controlPanelMove.setBackgroundTintList(ContextCompat.getColorStateList(UsersProject.this, R.color.orange));
         }
         else if(score < 50000){
             Drawable progressDrawable = getResources().getDrawable(R.drawable.custom_progress_bar_violetbluegreen);
             binding.projectProgress.setBackgroundResource(R.drawable.custom_progress_bar_violetbluegreen);
             binding.projectProgress.setProgressDrawable(progressDrawable);
-            binding.controlPanelMove.setBackgroundTintList(ContextCompat.getColorStateList(UsersProject.this, R.color.violete));
         }
         else{
             Drawable progressDrawable = getResources().getDrawable(R.drawable.custom_progress_bar_violetbluegreen);
             binding.projectProgress.setBackgroundResource(R.drawable.custom_progress_bar_violetbluegreen);
             binding.projectProgress.setProgressDrawable(progressDrawable);
-            binding.controlPanelMove.setBackgroundTintList(ContextCompat.getColorStateList(UsersProject.this, R.color.main_green));
         }
 
         binding.projectProgress.setMax(100);
+        binding.projectProgress.setProgress(75);
 
         Bundle arguments = getIntent().getExtras();
 
@@ -106,46 +92,17 @@ public class UsersProject extends AppCompatActivity {
                                String problems, String peoples, String time, String time1, String tg, String vk, String webs) {
                 binding.projectName.setText(name);
                 Glide
-                        .with(UsersProject.this)
+                        .with(UsersProject2.this)
                         .load(photoUrl)
                         .into(binding.prLogo);
-                String percents = isend + ".0%";
-                binding.projectPercents.setText(percents);
-                binding.projectProgress.setProgress(isend);
                 binding.description.setText(descript);
-                String purpose = "Выполненных целей: " + purposes;
-                String problem = "Выполненных задач: " + problems;
-                String peopleCount = "Количество участников: " + peoples;
-                binding.completePurposes.setText(purpose);
-                binding.completeProblems.setText(problem);
-                binding.numOfPeoples.setText(peopleCount);
-                binding.date.setText(time);
-                binding.time.setText(time1);
-                binding.tgIcon.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Toast.makeText(UsersProject.this, tg, Toast.LENGTH_SHORT).show();
-                    }
-                });
-                binding.vkIcon.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Toast.makeText(UsersProject.this, vk, Toast.LENGTH_SHORT).show();
-                    }
-                });
-                binding.webIcon.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Toast.makeText(UsersProject.this, webs, Toast.LENGTH_SHORT).show();
-                    }
-                });
             }
         });
 
         binding.controlPanelMove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(UsersProject.this, ControlPanel.class);
+                Intent intent = new Intent(UsersProject2.this, ControlPanel.class);
                 intent.putExtra("projectId", id);
                 startActivity(intent);
             }

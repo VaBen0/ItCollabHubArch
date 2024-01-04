@@ -90,4 +90,11 @@ public interface Methods {
     @FormUrlEncoded
     @POST("/")
     Call<Model> getFriendLinks(@Field("Request")String req, @Field("UserId")String id);
+
+    @FormUrlEncoded
+    @POST("/")
+    Call<Model> getProjectRequests(@Field("Request")String req, @Field("UserMail")String mail);
+    @FormUrlEncoded
+    @POST("/")
+    Call<Model> answerOnProjectReq(@Field("Request")String req, @Field("UserMail")String mail, @Field("ProjectId")String id);
 }

@@ -59,11 +59,19 @@ public class Purposes extends Fragment {
             public void onClick(View v) {
                 String purpName = purp1.getText().toString();
                 String purp = purp2.getText().toString();
-                CreateProject createProject = (CreateProject) getActivity();
-                purp1.setText("");
-                purp2.setText("");
-                Toast.makeText(v.getContext(), "Цель добавлена", Toast.LENGTH_SHORT).show();
-                createProject.setPurp(purpName, purp);
+                if(purpName.isEmpty()){
+                    Toast.makeText(createProject, "Нет названия", Toast.LENGTH_SHORT).show();
+                }
+                else if(purp.isEmpty()){
+                    Toast.makeText(createProject, "Нет описания", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    CreateProject createProject = (CreateProject) getActivity();
+                    purp1.setText("");
+                    purp2.setText("");
+                    Toast.makeText(v.getContext(), "Цель добавлена", Toast.LENGTH_SHORT).show();
+                    createProject.setPurp(purpName, purp);
+                }
             }
         });
 

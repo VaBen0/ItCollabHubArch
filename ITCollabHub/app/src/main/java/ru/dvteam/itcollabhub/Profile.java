@@ -59,7 +59,6 @@ public class Profile extends AppCompatActivity {
         projects_lin = findViewById(R.id.linear_projects);
         rating_lin = findViewById(R.id.linear_rating);
         friends_lin = findViewById(R.id.linear_friends);
-        projects_lin.setBackgroundColor(Color.BLUE);
         View fragment = findViewById(R.id.nav_host_fragment);
         LinearLayout projectMenu = findViewById(R.id.project_menu);
         LinearLayout profileMenu = findViewById(R.id.profile_menu);
@@ -73,7 +72,7 @@ public class Profile extends AppCompatActivity {
             userCircle.setBackgroundResource(R.drawable.circle_blue);
             UserScore.setTextColor(Color.parseColor("#B20000FF"));
             selectedColor = Color.parseColor("#B20000FF");
-            projects_lin.setBackgroundResource(R.drawable.blue_line);
+            rating_lin.setBackgroundResource(R.drawable.blue_line);
             getWindow().setStatusBarColor(ContextCompat.getColor(Profile.this,R.color.blue));
         }
         else if(score < 300){
@@ -81,7 +80,7 @@ public class Profile extends AppCompatActivity {
             userCircle.setBackgroundResource(R.drawable.circle_green);
             UserScore.setTextColor(Color.parseColor("#B21AFF00"));
             selectedColor = Color.parseColor("#B21AFF00");
-            projects_lin.setBackgroundResource(R.drawable.green_line);
+            rating_lin.setBackgroundResource(R.drawable.green_line);
             getWindow().setStatusBarColor(ContextCompat.getColor(Profile.this,R.color.green));
         }
         else if(score < 1000){
@@ -89,7 +88,7 @@ public class Profile extends AppCompatActivity {
             userCircle.setBackgroundResource(R.drawable.circle_brown);
             UserScore.setTextColor(Color.parseColor("#FFCC7722"));
             selectedColor = Color.parseColor("#FFCC7722");
-            projects_lin.setBackgroundResource(R.drawable.brown_line);
+            rating_lin.setBackgroundResource(R.drawable.brown_line);
             getWindow().setStatusBarColor(ContextCompat.getColor(Profile.this,R.color.brown));
         }
         else if(score < 2500){
@@ -97,7 +96,7 @@ public class Profile extends AppCompatActivity {
             userCircle.setBackgroundResource(R.drawable.circle_light_gray);
             UserScore.setTextColor(Color.parseColor("#B2B5B5B5"));
             selectedColor = Color.parseColor("#B2B5B5B5");
-            projects_lin.setBackgroundResource(R.drawable.light_gray_line);
+            rating_lin.setBackgroundResource(R.drawable.light_gray_line);
             getWindow().setStatusBarColor(ContextCompat.getColor(Profile.this,R.color.light_gray));
         }
         else if(score < 7000){
@@ -105,7 +104,7 @@ public class Profile extends AppCompatActivity {
             userCircle.setBackgroundResource(R.drawable.circle_ohra);
             UserScore.setTextColor(Color.parseColor("#FFE8AA0E"));
             selectedColor = Color.parseColor("#FFE8AA0E");
-            projects_lin.setBackgroundResource(R.drawable.ohra_line);
+            rating_lin.setBackgroundResource(R.drawable.ohra_line);
             getWindow().setStatusBarColor(ContextCompat.getColor(Profile.this,R.color.ohra));
         }
         else if(score < 17000){
@@ -113,7 +112,7 @@ public class Profile extends AppCompatActivity {
             userCircle.setBackgroundResource(R.drawable.circle_red);
             UserScore.setTextColor(Color.parseColor("#FF0000"));
             selectedColor = Color.parseColor("#FF0000");
-            projects_lin.setBackgroundResource(R.drawable.red_line);
+            rating_lin.setBackgroundResource(R.drawable.red_line);
             getWindow().setStatusBarColor(ContextCompat.getColor(Profile.this,R.color.red));
         }
         else if(score < 30000){
@@ -121,7 +120,7 @@ public class Profile extends AppCompatActivity {
             userCircle.setBackgroundResource(R.drawable.circle_orange);
             UserScore.setTextColor(Color.parseColor("#FFCC7722"));
             selectedColor = Color.parseColor("#FFCC7722");
-            projects_lin.setBackgroundResource(R.drawable.orange_line);
+            rating_lin.setBackgroundResource(R.drawable.orange_line);
             getWindow().setStatusBarColor(ContextCompat.getColor(Profile.this,R.color.orange));
         }
         else if(score < 50000){
@@ -129,7 +128,7 @@ public class Profile extends AppCompatActivity {
             userCircle.setBackgroundResource(R.drawable.circle_violete);
             UserScore.setTextColor(Color.parseColor("#4F0070"));
             selectedColor = Color.parseColor("#4F0070");
-            projects_lin.setBackgroundResource(R.drawable.violete_line);
+            rating_lin.setBackgroundResource(R.drawable.violete_line);
             getWindow().setStatusBarColor(ContextCompat.getColor(Profile.this,R.color.violete));
         }
         else{
@@ -137,7 +136,7 @@ public class Profile extends AppCompatActivity {
             userCircle.setBackgroundResource(R.drawable.circle_blue_green);
             UserScore.setTextColor(Color.parseColor("#FF00C6A2"));
             selectedColor = Color.parseColor("#FF00C6A2");
-            projects_lin.setBackgroundResource(R.drawable.blue_green_line);
+            rating_lin.setBackgroundResource(R.drawable.blue_green_line);
             getWindow().setStatusBarColor(ContextCompat.getColor(Profile.this,R.color.main_green));
         }
 
@@ -164,7 +163,7 @@ public class Profile extends AppCompatActivity {
                     userCircle.setBackgroundResource(R.drawable.circle_blue);
                     UserScore.setTextColor(Color.parseColor("#B20000FF"));
                     selectedColor = Color.parseColor("#B20000FF");
-                    projects_lin.setBackgroundResource(R.drawable.blue_line);
+                    rating_lin.setBackgroundResource(R.drawable.blue_line);
                     getWindow().setStatusBarColor(ContextCompat.getColor(Profile.this,R.color.blue));
                 }
                 else if(score < 300){
@@ -172,7 +171,7 @@ public class Profile extends AppCompatActivity {
                     userCircle.setBackgroundResource(R.drawable.circle_green);
                     UserScore.setTextColor(Color.parseColor("#B21AFF00"));
                     selectedColor = Color.parseColor("#B21AFF00");
-                    projects_lin.setBackgroundResource(R.drawable.green_line);
+                    rating_lin.setBackgroundResource(R.drawable.green_line);
                     getWindow().setStatusBarColor(ContextCompat.getColor(Profile.this,R.color.green));
                 }
                 else if(score < 1000){
@@ -180,7 +179,7 @@ public class Profile extends AppCompatActivity {
                     userCircle.setBackgroundResource(R.drawable.circle_brown);
                     UserScore.setTextColor(Color.parseColor("#FFCC7722"));
                     selectedColor = Color.parseColor("#FFCC7722");
-                    projects_lin.setBackgroundResource(R.drawable.brown_line);
+                    rating_lin.setBackgroundResource(R.drawable.brown_line);
                     getWindow().setStatusBarColor(ContextCompat.getColor(Profile.this,R.color.brown));
                 }
                 else if(score < 2500){
@@ -188,7 +187,7 @@ public class Profile extends AppCompatActivity {
                     userCircle.setBackgroundResource(R.drawable.circle_light_gray);
                     UserScore.setTextColor(Color.parseColor("#B2B5B5B5"));
                     selectedColor = Color.parseColor("#B2B5B5B5");
-                    projects_lin.setBackgroundResource(R.drawable.light_gray_line);
+                    rating_lin.setBackgroundResource(R.drawable.light_gray_line);
                     getWindow().setStatusBarColor(ContextCompat.getColor(Profile.this,R.color.light_gray));
                 }
                 else if(score < 7000){
@@ -196,7 +195,7 @@ public class Profile extends AppCompatActivity {
                     userCircle.setBackgroundResource(R.drawable.circle_ohra);
                     UserScore.setTextColor(Color.parseColor("#FFE8AA0E"));
                     selectedColor = Color.parseColor("#FFE8AA0E");
-                    projects_lin.setBackgroundResource(R.drawable.ohra_line);
+                    rating_lin.setBackgroundResource(R.drawable.ohra_line);
                     getWindow().setStatusBarColor(ContextCompat.getColor(Profile.this,R.color.ohra));
                 }
                 else if(score < 17000){
@@ -204,7 +203,7 @@ public class Profile extends AppCompatActivity {
                     userCircle.setBackgroundResource(R.drawable.circle_red);
                     UserScore.setTextColor(Color.parseColor("#FF0000"));
                     selectedColor = Color.parseColor("#FF0000");
-                    projects_lin.setBackgroundResource(R.drawable.red_line);
+                    rating_lin.setBackgroundResource(R.drawable.red_line);
                     getWindow().setStatusBarColor(ContextCompat.getColor(Profile.this,R.color.red));
                 }
                 else if(score < 30000){
@@ -212,7 +211,7 @@ public class Profile extends AppCompatActivity {
                     userCircle.setBackgroundResource(R.drawable.circle_orange);
                     UserScore.setTextColor(Color.parseColor("#FFCC7722"));
                     selectedColor = Color.parseColor("#FFCC7722");
-                    projects_lin.setBackgroundResource(R.drawable.orange_line);
+                    rating_lin.setBackgroundResource(R.drawable.orange_line);
                     getWindow().setStatusBarColor(ContextCompat.getColor(Profile.this,R.color.orange));
                 }
                 else if(score < 50000){
@@ -220,7 +219,7 @@ public class Profile extends AppCompatActivity {
                     userCircle.setBackgroundResource(R.drawable.circle_violete);
                     UserScore.setTextColor(Color.parseColor("#4F0070"));
                     selectedColor = Color.parseColor("#4F0070");
-                    projects_lin.setBackgroundResource(R.drawable.violete_line);
+                    rating_lin.setBackgroundResource(R.drawable.violete_line);
                     getWindow().setStatusBarColor(ContextCompat.getColor(Profile.this,R.color.violete));
                 }
                 else{
@@ -228,7 +227,7 @@ public class Profile extends AppCompatActivity {
                     userCircle.setBackgroundResource(R.drawable.circle_blue_green);
                     UserScore.setTextColor(Color.parseColor("#FF00C6A2"));
                     selectedColor = Color.parseColor("#FF00C6A2");
-                    projects_lin.setBackgroundResource(R.drawable.blue_green_line);
+                    rating_lin.setBackgroundResource(R.drawable.blue_green_line);
                     getWindow().setStatusBarColor(ContextCompat.getColor(Profile.this,R.color.main_green));
                 }
 
@@ -445,6 +444,6 @@ public class Profile extends AppCompatActivity {
         Intent intent = new Intent(Profile.this, GetFriend.class);
         startActivity(intent);
     }
-
+    public int getScore(){return score;}
 
 }

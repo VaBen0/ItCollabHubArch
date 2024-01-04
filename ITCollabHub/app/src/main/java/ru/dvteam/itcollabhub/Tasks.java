@@ -56,13 +56,21 @@ public class Tasks extends Fragment {
         addTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String purpName = task1.getText().toString();
-                String purp = task2.getText().toString();
-                task1.setText("");
-                task2.setText("");
-                Toast.makeText(v.getContext(), "Задача добавлена", Toast.LENGTH_SHORT).show();
-                CreateProject createProject = (CreateProject) getActivity();
-                createProject.setTask(purpName, purp);
+                String taskName = task1.getText().toString();
+                String task = task2.getText().toString();
+                if(taskName.isEmpty()){
+                    Toast.makeText(createProject, "Нет названия", Toast.LENGTH_SHORT).show();
+                }
+                else if(task.isEmpty()){
+                    Toast.makeText(createProject, "Нет описания", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    task1.setText("");
+                    task2.setText("");
+                    Toast.makeText(v.getContext(), "Задача добавлена", Toast.LENGTH_SHORT).show();
+                    CreateProject createProject = (CreateProject) getActivity();
+                    createProject.setTask(taskName, task);
+                }
             }
         });
 

@@ -24,6 +24,7 @@ public class MyProjects extends Fragment {
 
         LinearLayout main = v.findViewById(R.id.main_layout);
         ActivityProject activityProject = (ActivityProject) getActivity();
+        assert activityProject != null;
         String mail = activityProject.getMail();
         //Toast.makeText(v.getContext(), mail, Toast.LENGTH_SHORT).show();
         PostDatas post = new PostDatas();
@@ -121,17 +122,13 @@ public class MyProjects extends Fragment {
                         loadImage.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                Intent intent = new Intent(v.getContext(), UsersProject.class);
-                                intent.putExtra("projectId", id[finalI]);
-                                startActivity(intent);
+                                activityProject.changeActivity(id[finalI]);
                             }
                         });
                         nameu.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                Intent intent = new Intent(v.getContext(), UsersProject.class);
-                                intent.putExtra("projectId", id[finalI]);
-                                startActivity(intent);
+                                activityProject.changeActivity(id[finalI]);
                             }
                         });
                         main.addView(custom);

@@ -21,6 +21,9 @@
         android:theme="@style/Theme.ITCollabHub"
         tools:targetApi="26">
         <activity
+            android:name=".ProjectRequests"
+            android:exported="false" />
+        <activity
             android:name=".ControlPanel"
             android:exported="false" />
         <activity

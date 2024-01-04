@@ -147,7 +147,7 @@ public class GetFriend extends AppCompatActivity {
                         ImageView loadImage = (ImageView) custom.findViewById(R.id.loadImg);
                         ImageView userCircle = (ImageView) custom.findViewById(R.id.user_circle);
                         TextView project1 = (TextView) custom.findViewById(R.id.projects1);
-                        ImageView plus = (ImageView) custom.findViewById(R.id.imageView2);
+                        ImageView plus = (ImageView) custom.findViewById(R.id.notban);
                         plus.setBackgroundResource(R.drawable.ad);
 
                         Glide

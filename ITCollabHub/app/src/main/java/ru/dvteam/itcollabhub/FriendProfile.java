@@ -46,7 +46,7 @@ public class FriendProfile extends AppCompatActivity {
             int score = Integer.parseInt(scoreStr);
 
             PostDatas post = new PostDatas();
-            post.postDataGetFriendLinks("GetFriendAllLinks", id, new CallBackInt4() {
+            post.postDataGetFriendLinks("GetFriendAllLinks", id, new CallBackInt5() {
                 @Override
                 public void invoke(String tg, String vk, String web) {
                     if(tg.equals("null")){

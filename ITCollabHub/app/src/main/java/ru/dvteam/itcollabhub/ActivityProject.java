@@ -38,9 +38,22 @@ public class ActivityProject extends AppCompatActivity {
         TextView endProjects = findViewById(R.id.end_projects);
         View fragment = findViewById(R.id.nav_host_fragment);
         LinearLayout projectMenu = findViewById(R.id.project_menu);
-        ImageView editProfile = findViewById(R.id.notifications);
+        ImageView notif = findViewById(R.id.notifications);
         View my_projects_lin = findViewById(R.id.linear_my_projects);
         View end_projects_lin = findViewById(R.id.linear_end_projects);
+
+        PostDatas post = new PostDatas();
+        post.postDataGetProjectReq("GRProjects", mail, new CallBackInt() {
+            @Override
+            public void invoke(String res) {
+                if(res.equals("1")){
+                    notif.setBackgroundResource(R.drawable.notification_true);
+                }
+                else{
+                    notif.setBackgroundResource(R.drawable.white_notification);
+                }
+            }
+        });
 
         if(score < 100){
             bguser.setBackgroundResource(R.drawable.gradient_blue);
@@ -125,8 +138,20 @@ public class ActivityProject extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        notif.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ActivityProject.this, ProjectRequests.class);
+                startActivity(intent);
+            }
+        });
     }
     public String getMail(){
         return mail;
+    }
+    public void changeActivity(String id){
+        Intent intent = new Intent(ActivityProject.this, UsersProject.class);
+        intent.putExtra("projectId", id);
+        startActivity(intent);
     }
 }
