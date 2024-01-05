@@ -224,7 +224,6 @@ public class CreateProject extends AppCompatActivity {
         sendProject.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Toast.makeText(CreateProject.this, purposes_name + " " + purposes + " " + tasks_name + " " + tasks + ", " + id1, Toast.LENGTH_SHORT).show();
                 if(purposes.isEmpty()){
                     Toast.makeText(CreateProject.this, "Вы не добавили ни одной цели", Toast.LENGTH_LONG).show();
                 }
@@ -237,6 +236,7 @@ public class CreateProject extends AppCompatActivity {
                     String mainId;
                     String mainDescription;
                     String mainName;
+
                     if (nameu.getText().toString().isEmpty()) {
                         mainName = "Отсутствует наименование проекта";
                     } else {
@@ -252,32 +252,27 @@ public class CreateProject extends AppCompatActivity {
                     } else {
                         mainId = id1;
                     }
-                    String[] purpose1 = purposes_name.split(",");
-                    String[] purpose2 = purposes.split(",");
-                    String[] task1 = tasks_name.split(",");
-                    String[] task2 = tasks.split(",");
-                    if (!purposes_name.isEmpty()) {
-                        for (int i = 0; i < purpose1.length; i++) {
-                            if (i != purpose1.length - 1) {
-                                purposeMain = purposeMain + purpose1[i] + "\uD83D\uDD70" + purpose2[i]  + "\uD83D\uDD70";
-                            } else {
-                                purposeMain = purposeMain + purpose1[i] + "\uD83D\uDD70" + purpose2[i];
-                            }
+
+                    String[] purpose1 = purposes_name.split("✴\uFE0F");
+                    String[] purpose2 = purposes.split("✴\uFE0F");
+                    String[] task1 = tasks_name.split("✴\uFE0F");
+                    String[] task2 = tasks.split("✴\uFE0F");
+
+                    for (int i = 0; i < purpose1.length; i++) {
+                        if (i != purpose1.length - 1) {
+                            purposeMain = purposeMain + purpose1[i] + "\uD83D\uDD70" + purpose2[i]  + "\uD83D\uDD70";
+                        } else {
+                            purposeMain = purposeMain + purpose1[i] + "\uD83D\uDD70" + purpose2[i];
                         }
-                    } else {
-                        purposeMain = "Нет";
                     }
-                    if (!tasks_name.isEmpty()) {
-                        for (int i = 0; i < task1.length; i++) {
-                            if (i != task1.length - 1) {
-                                taskMain = taskMain + task1[i] + "\uD83D\uDD70" + task2[i] + "\uD83D\uDD70";
-                            } else {
-                                taskMain = taskMain + task1[i] + "\uD83D\uDD70" + task2[i];
-                            }
+                    for (int i = 0; i < task1.length; i++) {
+                        if (i != task1.length - 1) {
+                            taskMain = taskMain + task1[i] + "\uD83D\uDD70" + task2[i] + "\uD83D\uDD70";
+                        } else {
+                            taskMain = taskMain + task1[i] + "\uD83D\uDD70" + task2[i];
                         }
-                    } else {
-                        taskMain = "Нет";
                     }
+
                     if (mediaPath.isEmpty()) {
                         PostDatas post = new PostDatas();
                         post.postDataCreateProjectWithoutImage("CreateNewProject", mainName, mail, purposeMain, taskMain,
@@ -291,21 +286,21 @@ public class CreateProject extends AppCompatActivity {
                                         }
                                     }
                                 });
-                    } else {
+                    } else{
                         File file = new File(mediaPath);
                         RequestBody requestBody = RequestBody.create(MediaType.parse("*/*"), file);
                         PostDatas post = new PostDatas();
                         post.postDataCreateProject("CreateNewProject", mainName, requestBody, mail, purposeMain, taskMain,
-                                mainDescription, mainId, new CallBackInt() {
-                                    @Override
-                                    public void invoke(String res) {
-                                        Toast.makeText(CreateProject.this, res, Toast.LENGTH_SHORT).show();
-                                        if (res.equals("Успешно")) {
-                                            Intent intent = new Intent(CreateProject.this, ActivityProject.class);
-                                            startActivity(intent);
-                                        }
+                            mainDescription, mainId, new CallBackInt() {
+                                @Override
+                                public void invoke(String res) {
+                                    Toast.makeText(CreateProject.this, res, Toast.LENGTH_SHORT).show();
+                                    if (res.equals("Успешно")) {
+                                        Intent intent = new Intent(CreateProject.this, ActivityProject.class);
+                                        startActivity(intent);
                                     }
-                                });
+                                }
+                            });
                     }
                 }
 
@@ -332,8 +327,8 @@ public class CreateProject extends AppCompatActivity {
             purposes += purp;
         }
         else{
-            purposes_name = purposes_name + "," + purpName;
-            purposes = purposes + "," + purp;
+            purposes_name = purposes_name + "✴\uFE0F" + purpName;
+            purposes = purposes + "✴\uFE0F" + purp;
         }
     }
     public void setTask(String taskName, String task){
@@ -342,8 +337,8 @@ public class CreateProject extends AppCompatActivity {
             tasks = task;
         }
         else{
-            tasks_name = tasks_name + "," + taskName;
-            tasks = tasks + "," + task;
+            tasks_name = tasks_name + "✴\uFE0F" + taskName;
+            tasks = tasks + "✴\uFE0F" + task;
         }
     }
     public void setId(String id){
@@ -380,7 +375,6 @@ public class CreateProject extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data){
         super.onActivityResult(requestCode, resultCode, data);
-        Button btn = findViewById(R.id.saveBut);
         if (requestCode == PICK_IMAGES_CODE){
 
             if (resultCode == Activity.RESULT_OK){

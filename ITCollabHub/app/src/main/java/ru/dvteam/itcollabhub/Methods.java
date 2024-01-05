@@ -77,7 +77,7 @@ public interface Methods {
 
     @FormUrlEncoded
     @POST("/")
-    Call<Model> getProjectInformation(@Field("Request")String req, @Field("ProjectId")String id);
+    Call<Model> getProjectInformation(@Field("Request")String req, @Field("ProjectId")String id, @Field("UserMail")String mail);
 
     @FormUrlEncoded
     @POST("/")
@@ -97,4 +97,45 @@ public interface Methods {
     @FormUrlEncoded
     @POST("/")
     Call<Model> answerOnProjectReq(@Field("Request")String req, @Field("UserMail")String mail, @Field("ProjectId")String id);
+
+    @FormUrlEncoded
+    @POST("/")
+    Call<Model> getPurposes(@Field("Request")String req, @Field("ProjectId")String id);
+
+    @FormUrlEncoded
+    @POST("/")
+    Call<Model> getProblems(@Field("Request")String req, @Field("ProjectId")String id);
+
+    @Multipart
+    @POST("/")
+    Call<Model> createPurpose(@Part MultipartBody.Part file, @Part("PurposeName") RequestBody name, @Part("Request") RequestBody req,
+                              @Part("ProjectId") RequestBody id, @Part("PurposeDescription") RequestBody description, @Part("UserMail") RequestBody mail);
+
+    @FormUrlEncoded
+    @POST("/")
+    Call<Model> createPurposeWithoutImage(@Field("PurposeName") String name, @Field("Request") String req,
+                                          @Field("ProjectId") String id, @Field("PurposeDescription") String description,
+                                          @Field("UserMail") String mail);
+
+    @FormUrlEncoded
+    @POST("/")
+    Call<Model> setPurposesIsEnd(@Field("Request")String req, @Field("PurposeId")String id, @Field("Project")String pid);
+
+    @FormUrlEncoded
+    @POST("/")
+    Call<Model> setProblemIsEnd(@Field("Request")String req, @Field("ProblemId")String id, @Field("Project")String pid);
+
+    @Multipart
+    @POST("/")
+    Call<Model> createProblem(@Part MultipartBody.Part file, @Part("ProblemName") RequestBody name, @Part("Request") RequestBody req,
+                              @Part("ProjectId") RequestBody id, @Part("ProblemDescription") RequestBody description,
+                              @Part("UserMail") RequestBody mail);
+
+    @FormUrlEncoded
+    @POST("/")
+    Call<Model> createProblemWithoutImage(@Field("ProblemName") String name,
+                                          @Field("Request") String req, @Field("ProjectId") String id,
+                                          @Field("ProblemDescription") String description, @Field("UserMail") String mail);
+
+
 }

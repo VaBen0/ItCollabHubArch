@@ -80,34 +80,5 @@ public class Forgot extends AppCompatActivity {
         });
     }
 
-    /*public void postData(String mail){
-        Methods methods = RetrofitClient.getRetrofitInstance().create(Methods.class);
-        Call<Model> call = methods.postCodeMail("UserLogInMail", mail);
 
-        call.enqueue(new Callback<Model>() {
-            @Override
-            public void onResponse(Call<Model> call, Response<Model> response) {
-                if(response.body().getReturn().equals("Код отправлен")) {
-                    changeToConfFor(mail, response.body().getReturn());
-                }
-                else{
-                    Toast.makeText(Forgot.this, response.body().getReturn(), Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Model> call, Throwable t) {
-                Toast.makeText(Forgot.this, "Error Occurred", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-    public void changeToConfFor(String mail, String res){
-        Toast toast = Toast.makeText(this, res, Toast.LENGTH_LONG);
-        toast.show();
-
-        Intent intent = new Intent(Forgot.this, ConfirmForgotPassword.class);
-        intent.putExtra("mail", mail);
-        startActivity(intent);
-    }*/
 }

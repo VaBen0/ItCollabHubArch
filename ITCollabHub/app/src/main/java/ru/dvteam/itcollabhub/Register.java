@@ -32,11 +32,11 @@ public class Register extends AppCompatActivity {
         TextView col = findViewById(R.id.collaborotory);
         TextView it = findViewById(R.id.it);
         TextView hub = findViewById(R.id.hub);
-        EditText tg_link = findViewById(R.id.tg_link);
-        EditText vk_link = findViewById(R.id.vk_link);
-        EditText web_link = findViewById(R.id.web_link);
+        //EditText tg_link = findViewById(R.id.tg_link);
+        //EditText vk_link = findViewById(R.id.vk_link);
+        //EditText web_link = findViewById(R.id.web_link);
 
-        if(tg_link.getText().toString().isEmpty()){
+        /*if(tg_link.getText().toString().isEmpty()){
             tg = "non";
         }else{
             tg = tg_link.getText().toString();
@@ -50,7 +50,7 @@ public class Register extends AppCompatActivity {
             web = "non";
         }else{
             web = web_link.getText().toString();
-        }
+        }*/
 
         Typeface face=Typeface.createFromAsset(getAssets(),"font/ArchitectsDaughter-Regular.ttf");
         it.setTypeface(face);
@@ -80,9 +80,9 @@ public class Register extends AppCompatActivity {
                                     Intent intent = new Intent(Register.this, ConfirmReg.class);
                                     intent.putExtra("pass", user_pass.getText().toString());
                                     intent.putExtra("mail", user_mail.getText().toString());
-                                    intent.putExtra("tg_link", tg);
-                                    intent.putExtra("vk_link", vk);
-                                    intent.putExtra("web_link", web);
+                                    intent.putExtra("tg_link", "non");
+                                    intent.putExtra("vk_link", "non");
+                                    intent.putExtra("web_link", "non");
                                     startActivity(intent);
                                 }
                             }

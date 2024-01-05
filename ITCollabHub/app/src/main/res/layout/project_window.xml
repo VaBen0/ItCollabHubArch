@@ -53,13 +53,15 @@
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginEnd="12dp"
         android:background="@drawable/progress_circle_light_gray2"
         android:indeterminate="false"
+        android:max="100"
         android:progressDrawable="@drawable/circular_progress_bar_blue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.466" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/logo"

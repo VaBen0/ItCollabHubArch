@@ -68,28 +68,13 @@
             android:layout_height="58dp"
             android:hint="Повторите пароль"/>
 
-        <EditText
-            android:id="@+id/tg_link"
-            android:layout_width="236dp"
-            android:layout_height="58dp"
-            android:hint="Ваш ник в телеграмм"/>
-        <EditText
-            android:id="@+id/vk_link"
-            android:layout_width="236dp"
-            android:layout_height="58dp"
-            android:hint="Ваш ник в Вк"/>
-        <EditText
-            android:id="@+id/web_link"
-            android:layout_width="236dp"
-            android:layout_height="58dp"
-            android:hint="Ссылка на ваш сайт"/>
-
         <Button
             android:id="@+id/Reg"
             android:layout_width="wrap_content"
             android:layout_height="74dp"
             android:backgroundTint="#00C6A2"
             android:insetTop="20dp"
+            android:textColor="@color/white"
             android:text="Зарегистрироваться"
             tools:visibility="visible" />
 

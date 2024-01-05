@@ -11,9 +11,15 @@
         <item name="android:textColorHint">@color/white</item>
         <item name="background_progress">@color/gray</item>
         <item name="background_panel">@color/dark_panel</item>
+        <item name="transperent_text_color">@color/gray1</item>
+        <item name="purpose_icon">@drawable/dart_board</item>
+        <item name="problems_icon">@drawable/problems</item>
+        <item name="tasks_icon">@drawable/tasks</item>
+        <item name="files_icon">@drawable/files</item>
+        <item name="advertisments_icon">@drawable/megaphone</item>
+        <item name="edit_project_icon">@drawable/redaktirovat</item>
+        <item name="chat_icon">@drawable/chat</item>
     </style>
-
-
 
     <style name="Theme.ITCollabHub" parent="Base.Theme.ITCollabHub">
         <item name="colorPrimary">@color/dark_theme</item>

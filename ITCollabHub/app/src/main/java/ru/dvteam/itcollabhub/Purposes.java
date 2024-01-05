@@ -14,6 +14,8 @@ import android.widget.Toast;
 
 public class Purposes extends Fragment {
 
+    private int countPurposes = 0;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -59,7 +61,10 @@ public class Purposes extends Fragment {
             public void onClick(View v) {
                 String purpName = purp1.getText().toString();
                 String purp = purp2.getText().toString();
-                if(purpName.isEmpty()){
+                if(countPurposes == 3){
+                    Toast.makeText(createProject, "Вы достигли предела", Toast.LENGTH_SHORT).show();
+                }
+                else if(purpName.isEmpty()){
                     Toast.makeText(createProject, "Нет названия", Toast.LENGTH_SHORT).show();
                 }
                 else if(purp.isEmpty()){
@@ -71,6 +76,7 @@ public class Purposes extends Fragment {
                     purp2.setText("");
                     Toast.makeText(v.getContext(), "Цель добавлена", Toast.LENGTH_SHORT).show();
                     createProject.setPurp(purpName, purp);
+                    countPurposes++;
                 }
             }
         });

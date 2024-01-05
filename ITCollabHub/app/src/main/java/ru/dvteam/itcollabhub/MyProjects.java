@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,9 +39,10 @@ public class MyProjects extends Fragment {
                     String[] names = inf[0].split(",");
                     String[] photo = inf[1].split(",");
                     String[] id = inf[2].split(",");
-                    String userName = inf[4];
-                    String userImg = inf[5];
-                    String userScore = inf[6];
+                    String[] userName = inf[4].split(",");
+                    String[] userImg = inf[5].split(",");
+                    String[] userScore = inf[6].split(",");
+                    String[] percents = inf[7].split(",");;
 
                     for (int i = 0; i < names.length; i++) {
                         View custom = inflater.inflate(R.layout.project_window, null);
@@ -49,39 +51,41 @@ public class MyProjects extends Fragment {
                         ImageView user = (ImageView) custom.findViewById(R.id.prLogo);
                         ImageView userCircle = (ImageView) custom.findViewById(R.id.user_circle);
                         TextView nameOfUser = (TextView) custom.findViewById(R.id.textView13);
+                        TextView percent = custom.findViewById(R.id.textView16);
+                        ProgressBar lvl = custom.findViewById(R.id.lvl);
+                        lvl.setProgress(Integer.parseInt(percents[i]));
+                        percent.setText(percents[i] + ".0%");
 
-                        nameOfUser.setText(userName);
+                        nameOfUser.setText(userName[i]);
 
-                        //ImageView messege = (ImageView) custom.findViewById(R.id.imageView2);
-                        //messege.setBackgroundResource(R.drawable.ad);
                         Glide
                                 .with(MyProjects.this)
-                                .load(userImg)
+                                .load(userImg[i])
                                 .into(user);
 
 
-                        if(Integer.parseInt(userScore) < 100){
+                        if(Integer.parseInt(userScore[i]) < 100){
                             userCircle.setBackgroundResource(R.drawable.circle_blue2);
                         }
-                        else if(Integer.parseInt(userScore) < 300){
+                        else if(Integer.parseInt(userScore[i]) < 300){
                             userCircle.setBackgroundResource(R.drawable.circle_green2);
                         }
-                        else if(Integer.parseInt(userScore) < 1000){
+                        else if(Integer.parseInt(userScore[i]) < 1000){
                             userCircle.setBackgroundResource(R.drawable.circle_brown2);
                         }
-                        else if(Integer.parseInt(userScore) < 2500){
+                        else if(Integer.parseInt(userScore[i]) < 2500){
                             userCircle.setBackgroundResource(R.drawable.circle_light_gray2);
                         }
-                        else if(Integer.parseInt(userScore) < 7000){
+                        else if(Integer.parseInt(userScore[i]) < 7000){
                             userCircle.setBackgroundResource(R.drawable.circle_ohra2);
                         }
-                        else if(Integer.parseInt(userScore) < 17000){
+                        else if(Integer.parseInt(userScore[i]) < 17000){
                             userCircle.setBackgroundResource(R.drawable.circle_red2);
                         }
-                        else if(Integer.parseInt(userScore) < 30000){
+                        else if(Integer.parseInt(userScore[i]) < 30000){
                             userCircle.setBackgroundResource(R.drawable.circle_orange2);
                         }
-                        else if(Integer.parseInt(userScore) < 50000){
+                        else if(Integer.parseInt(userScore[i]) < 50000){
                             userCircle.setBackgroundResource(R.drawable.circle_violete2);
                         }
                         else{
@@ -95,30 +99,6 @@ public class MyProjects extends Fragment {
                         nameu.setText(names[i]);
 
                         int finalI = i;
-                        /*loadImage.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                Intent intent = new Intent(v.getContext(), Friend.class);
-                                intent.putExtra("id", id[finalI]);
-                                intent.putExtra("name", names[finalI]);
-                                intent.putExtra("score", score[finalI]);
-                                intent.putExtra("image_url", photo[finalI]);
-                                intent.putExtra("project", project[finalI]);
-                                startActivity(intent);
-                            }
-                        });
-                        nameu.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                Intent intent = new Intent(v.getContext(), Friend.class);
-                                intent.putExtra("id", id[finalI]);
-                                intent.putExtra("name", names[finalI]);
-                                intent.putExtra("score", score[finalI]);
-                                intent.putExtra("image_url", photo[finalI]);
-                                intent.putExtra("project", project[finalI]);
-                                startActivity(intent);
-                            }
-                        });*/
                         loadImage.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {

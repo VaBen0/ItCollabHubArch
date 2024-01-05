@@ -57,6 +57,20 @@
         app:layout_constraintStart_toEndOf="@+id/logo"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="Нет напоминаний"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView14"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView12" />
+
     <LinearLayout
         android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
@@ -87,7 +101,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView29"
+                android:id="@+id/timer"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginEnd="15dp"
@@ -109,7 +123,9 @@
                 android:id="@+id/reminder_place"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:orientation="horizontal" />
+                android:orientation="horizontal" >
+
+            </LinearLayout>
 
         </HorizontalScrollView>
     </LinearLayout>
@@ -136,6 +152,7 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
 
         <LinearLayout
+            android:id="@+id/main"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -160,6 +177,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
                     android:layout_marginStart="15dp"
+                    android:max="100"
                     android:layout_marginEnd="15dp"
                     android:progressDrawable="@drawable/custom_progress_bar_vg"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -197,11 +215,12 @@
                 android:layout_marginTop="5dp">
 
                 <ProgressBar
-                    android:id="@+id/tasksProgress"
+                    android:id="@+id/problemsProgress"
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
                     android:layout_marginStart="15dp"
+                    android:max="100"
                     android:layout_marginEnd="15dp"
                     android:progressDrawable="@drawable/custom_progress_bar_vg"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -217,7 +236,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/clip_board" />
+                    app:srcCompat="@drawable/problems" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -240,11 +259,12 @@
                 android:layout_marginTop="5dp">
 
                 <ProgressBar
-                    android:id="@+id/zadaniaProgress"
+                    android:id="@+id/tasksProgress"
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
                     android:layout_marginStart="15dp"
+                    android:max="100"
                     android:layout_marginEnd="15dp"
                     android:progressDrawable="@drawable/custom_progress_bar_vg"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -266,7 +286,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:text="Задания на сегодня"
+                    android:text="Задания"
                     android:textColor="@color/white"
                     android:textSize="19sp"
                     android:textStyle="italic"
@@ -372,6 +392,7 @@
                 android:textStyle="bold|italic" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/editProjectConst"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="1dp">

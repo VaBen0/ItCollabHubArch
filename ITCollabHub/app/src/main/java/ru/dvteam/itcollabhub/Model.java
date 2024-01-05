@@ -20,9 +20,13 @@ public class Model {
     private String tg;
     private String vk;
     private String webs;
+    private String purposesids;
+    private String problemsids;
+    private String isl;
 
     public Model(String name, String urlImg, String ret, String topStatus, int topScore, String rFr, String description, String tgLink,
-                 String vkLink, String webLink, int isend, String purposes, String problems, String peoples, String time, String time1) {
+                 String vkLink, String webLink, int isend, String purposes, String problems, String peoples, String time, String time1,
+                 String purposesids, String problemsids, String isl) {
         this.name = name;
         this.ret = ret;
         this.urlImg = urlImg;
@@ -33,6 +37,9 @@ public class Model {
         this.tgLink = tgLink;
         this.vkLink = vkLink;
         this.webLink = webLink;
+        this.purposesids = purposesids;
+        this.problemsids = problemsids;
+        this.isl = isl;
     }
 
     public String getName() {
@@ -66,4 +73,7 @@ public class Model {
     public String getTime1() {return this.time1;}
     public String getVk() {return this.vk;}
     public String getWebs() {return this.webs;}
+    public String getIsl() {return isl;}
+    public String getProblemsids() {return problemsids;}
+    public String getPurposesids() {return purposesids;}
 }

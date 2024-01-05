@@ -1,9 +1,12 @@
 package ru.dvteam.itcollabhub;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.WindowCompat;
 
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.app.ActionBar;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,6 +15,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,12 +26,14 @@ import ru.dvteam.itcollabhub.databinding.ActivityUsersProjectBinding;
 public class UsersProject extends AppCompatActivity {
 
     ActivityUsersProjectBinding binding;
+    String mail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         SharedPreferences sPref = getSharedPreferences("MyPref", MODE_PRIVATE);
+        mail = sPref.getString("UserMail", "");
         int score = sPref.getInt("UserScore", 0);
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
@@ -100,10 +106,11 @@ public class UsersProject extends AppCompatActivity {
         String id = arguments.getString("projectId");
 
         PostDatas postDatas = new PostDatas();
-        postDatas.postDataGetProjectInformation("GetProjectMainInformation", id, new CallBackInt4() {
+        postDatas.postDataGetProjectInformation("GetProjectMainInformation", id, mail, new CallBackInt4() {
             @Override
             public void invoke(String name, String photoUrl, String descript, int isend, String purposes,
-                               String problems, String peoples, String time, String time1, String tg, String vk, String webs) {
+                               String problems, String peoples, String time, String time1, String tg, String vk, String webs,
+                               String purposesids, String problemsids, String isl) {
                 binding.projectName.setText(name);
                 Glide
                         .with(UsersProject.this)
@@ -111,7 +118,37 @@ public class UsersProject extends AppCompatActivity {
                         .into(binding.prLogo);
                 String percents = isend + ".0%";
                 binding.projectPercents.setText(percents);
-                binding.projectProgress.setProgress(isend);
+
+                ObjectAnimator animation = ObjectAnimator.ofInt(binding.projectProgress, "progress", 0, isend);
+                animation.setStartDelay(300);
+                animation.setDuration(1000);
+                animation.setAutoCancel(true);
+                animation.setInterpolator(new DecelerateInterpolator());
+                animation.start();
+
+                final ValueAnimator anim = ValueAnimator.ofFloat(0, isend);
+                anim.setStartDelay(300);
+                anim.setDuration(1000);
+                anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    @Override
+                    public void onAnimationUpdate(@NonNull ValueAnimator animation) {
+                        String res = anim.getAnimatedValue().toString();
+                        if(res.length() >= 4){
+                            res = res.substring(0, 4) + "%";
+                        }
+                        else if(res.length() == 3){
+                            res = res.substring(0, 3) + "%";
+                        }
+                        else{
+                            res = res.substring(0, 2) + "0%";
+                        }
+
+                        binding.projectPercents.setText(res);
+                    }
+                });
+                anim.setInterpolator(new DecelerateInterpolator());
+                anim.start();
+
                 binding.description.setText(descript);
                 String purpose = "Выполненных целей: " + purposes;
                 String problem = "Выполненных задач: " + problems;

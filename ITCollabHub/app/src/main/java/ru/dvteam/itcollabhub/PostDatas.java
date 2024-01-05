@@ -307,9 +307,9 @@ public class PostDatas {
         });
     }
 
-    public void postDataGetProjectInformation(String req, String id, CallBackInt4 result){
+    public void postDataGetProjectInformation(String req, String id, String mail, CallBackInt4 result){
         Methods methods = RetrofitClient.getRetrofitInstance().create(Methods.class);
-        Call<Model> call = methods.getProjectInformation(req, id);
+        Call<Model> call = methods.getProjectInformation(req, id, mail);
 
         call.enqueue(new Callback<Model>() {
             @Override
@@ -318,7 +318,7 @@ public class PostDatas {
                 result.invoke(response.body().getName(), response.body().getUrlImg(), response.body().getDescription(),
                         response.body().getIsend(), response.body().getPurposes(), response.body().getProblems(), response.body().getPeoples(),
                         response.body().getTime(), response.body().getTime1(), response.body().getTg(), response.body().getVk(),
-                        response.body().getWebs());
+                        response.body().getWebs(),response.body().getPurposesids(), response.body().getProblemsids(), response.body().getIsl());
             }
 
             @Override
@@ -412,4 +412,163 @@ public class PostDatas {
             }
         });
     }
+
+    public void postDataGetPurpose(String req, String id, CallBackInt result){
+        Methods methods = RetrofitClient.getRetrofitInstance().create(Methods.class);
+        Call<Model> call = methods.getPurposes(req, id);
+
+        call.enqueue(new Callback<Model>() {
+            @Override
+            public void onResponse(Call<Model> call, retrofit2.Response<Model> response) {
+                result.invoke(response.body().getReturn());
+            }
+
+            @Override
+            public void onFailure(Call<Model> call, Throwable t) {
+                //result.invoke("lol");
+            }
+        });
+    }
+
+    public void postDataGetProblems(String req, String id, CallBackInt result){
+        Methods methods = RetrofitClient.getRetrofitInstance().create(Methods.class);
+        Call<Model> call = methods.getProblems(req, id);
+
+        call.enqueue(new Callback<Model>() {
+            @Override
+            public void onResponse(Call<Model> call, retrofit2.Response<Model> response) {
+                result.invoke(response.body().getReturn());
+            }
+
+            @Override
+            public void onFailure(Call<Model> call, Throwable t) {
+                //result.invoke("lol");
+            }
+        });
+    }
+
+    public void postDataCreatePurpose(String req, String name, RequestBody requestFile, String description,
+                                      String mail, String id, CallBackInt result){
+
+        MultipartBody.Part fileToUpload = MultipartBody.Part.createFormData("file", "lol", requestFile);
+        RequestBody requestName = RequestBody.create(MediaType.parse("text/plain"), name);
+        RequestBody requestReq = RequestBody.create(MediaType.parse("text/plain"), req);
+        RequestBody requestDes = RequestBody.create(MediaType.parse("text/plain"), description);
+        RequestBody requestId = RequestBody.create(MediaType.parse("text/plain"), id);
+        RequestBody requestMail = RequestBody.create(MediaType.parse("text/plain"), mail);
+
+        Methods methods = RetrofitClient.getRetrofitInstance().create(Methods.class);
+        Call<Model> call = methods.createPurpose(fileToUpload, requestName, requestReq, requestId, requestDes, requestMail);
+        call.enqueue(new Callback<Model>() {
+            @Override
+            public void onResponse(Call<Model> call, retrofit2.Response<Model> response) {
+                assert response.body() != null;
+                result.invoke(response.body().getReturn());
+            }
+
+            @Override
+            public void onFailure(Call<Model> call, Throwable t) {
+                result.invoke("All bad");
+            }
+        });
+    }
+
+    public void postDataCreatePurposeWithoutImage(String req, String name, String description, String id, String mail, CallBackInt result){
+        Methods methods = RetrofitClient.getRetrofitInstance().create(Methods.class);
+        Call<Model> call = methods.createPurposeWithoutImage(name, req, id, description, mail);
+
+        call.enqueue(new Callback<Model>() {
+            @Override
+            public void onResponse(Call<Model> call, retrofit2.Response<Model> response) {
+                assert response.body() != null;
+                result.invoke(response.body().getReturn());
+            }
+
+            @Override
+            public void onFailure(Call<Model> call, Throwable t) {
+                //result.invoke("lol");
+            }
+        });
+    }
+
+    public void postDataCreateProblem(String req, String name, RequestBody requestFile, String description, String id, String mail, CallBackInt result){
+
+        MultipartBody.Part fileToUpload = MultipartBody.Part.createFormData("file", "lol", requestFile);
+        RequestBody requestName = RequestBody.create(MediaType.parse("text/plain"), name);
+        RequestBody requestReq = RequestBody.create(MediaType.parse("text/plain"), req);
+        RequestBody requestDes = RequestBody.create(MediaType.parse("text/plain"), description);
+        RequestBody requestId = RequestBody.create(MediaType.parse("text/plain"), id);
+        RequestBody requestMail = RequestBody.create(MediaType.parse("text/plain"), mail);
+
+        Methods methods = RetrofitClient.getRetrofitInstance().create(Methods.class);
+        Call<Model> call = methods.createProblem(fileToUpload, requestName, requestReq, requestId, requestDes, requestMail);
+        call.enqueue(new Callback<Model>() {
+            @Override
+            public void onResponse(Call<Model> call, retrofit2.Response<Model> response) {
+                assert response.body() != null;
+                result.invoke(response.body().getReturn());
+            }
+
+            @Override
+            public void onFailure(Call<Model> call, Throwable t) {
+                result.invoke("All bad");
+            }
+        });
+    }
+
+    public void postDataCreateProblemWithoutImage(String req, String name, String description, String id, String mail, CallBackInt result){
+        Methods methods = RetrofitClient.getRetrofitInstance().create(Methods.class);
+        Call<Model> call = methods.createProblemWithoutImage(name, req, id, description, mail);
+
+        call.enqueue(new Callback<Model>() {
+            @Override
+            public void onResponse(Call<Model> call, retrofit2.Response<Model> response) {
+                assert response.body() != null;
+                result.invoke(response.body().getReturn());
+            }
+
+            @Override
+            public void onFailure(Call<Model> call, Throwable t) {
+                //result.invoke("lol");
+            }
+        });
+    }
+
+    public void setPurposeIsEnd(String req, String id, String pid, CallBackInt result){
+        Methods methods = RetrofitClient.getRetrofitInstance().create(Methods.class);
+        Call<Model> call = methods.setPurposesIsEnd(req, id, pid);
+
+        call.enqueue(new Callback<Model>() {
+            @Override
+            public void onResponse(Call<Model> call, retrofit2.Response<Model> response) {
+                assert response.body() != null;
+                result.invoke(response.body().getReturn());
+            }
+
+            @Override
+            public void onFailure(Call<Model> call, Throwable t) {
+                //result.invoke("lol");
+            }
+        });
+    }
+
+    public void setProblemIsEnd(String req, String id, String pid, CallBackInt result){
+        Methods methods = RetrofitClient.getRetrofitInstance().create(Methods.class);
+        Call<Model> call = methods.setProblemIsEnd(req, id, pid);
+
+        call.enqueue(new Callback<Model>() {
+            @Override
+            public void onResponse(Call<Model> call, retrofit2.Response<Model> response) {
+                assert response.body() != null;
+                result.invoke(response.body().getReturn());
+            }
+
+            @Override
+            public void onFailure(Call<Model> call, Throwable t) {
+                //result.invoke("lol");
+            }
+        });
+    }
+
+
 }

@@ -20,6 +20,11 @@
         • могут быть измерены по объему, качеству или стоимости;\n
         • могут быть распределены по этапам или фазам.
     </string>
+    <string name="description_purpose">Цели проекта - это определённый результат, к которому нужно прийти при выполнении проека</string>
+    <string name="description_purpose1">После добавления цели её удаление не будет возможно</string>
+    <string name="description_purpose2">Последняя цель будет отмечена выполненной после заверщения проекта</string>
+    <string name="description_problem">Задачи проекта - это конкретные действия или шаги, которые нужно выполнить для достижения цели проекта</string>
+    <string name="description_problem1">Последняя задачу будет отмечена выполненной после завершения проекта</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"
 

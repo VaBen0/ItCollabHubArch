@@ -21,6 +21,18 @@
         android:theme="@style/Theme.ITCollabHub"
         tools:targetApi="26">
         <activity
+            android:name=".ProblemsParticip"
+            android:exported="false" />
+        <activity
+            android:name=".PurposeParticipiant"
+            android:exported="false" />
+        <activity
+            android:name=".Problems"
+            android:exported="false" />
+        <activity
+            android:name=".Purpose"
+            android:exported="false" />
+        <activity
             android:name=".ProjectRequests"
             android:exported="false" />
         <activity

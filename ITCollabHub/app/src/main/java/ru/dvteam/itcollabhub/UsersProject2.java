@@ -16,12 +16,14 @@ import ru.dvteam.itcollabhub.databinding.ActivityUsersProjectBinding;
 public class UsersProject2 extends AppCompatActivity {
 
     ActivityUsersProjectBinding binding;
+    String mail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         SharedPreferences sPref = getSharedPreferences("MyPref", MODE_PRIVATE);
+        mail = sPref.getString("UserMail", "");
         int score = sPref.getInt("UserScore", 0);
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
@@ -86,10 +88,11 @@ public class UsersProject2 extends AppCompatActivity {
         String id = arguments.getString("projectId");
 
         PostDatas postDatas = new PostDatas();
-        postDatas.postDataGetProjectInformation("GetProjectMainInformation", id, new CallBackInt4() {
+        postDatas.postDataGetProjectInformation("GetProjectMainInformation", id, mail, new CallBackInt4() {
             @Override
             public void invoke(String name, String photoUrl, String descript, int isend, String purposes,
-                               String problems, String peoples, String time, String time1, String tg, String vk, String webs) {
+                               String problems, String peoples, String time, String time1, String tg, String vk, String webs,
+                               String purposesids, String problemsids, String isl) {
                 binding.projectName.setText(name);
                 Glide
                         .with(UsersProject2.this)

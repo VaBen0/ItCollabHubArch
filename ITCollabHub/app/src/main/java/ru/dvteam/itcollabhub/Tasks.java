@@ -13,6 +13,8 @@ import android.widget.Toast;
 
 public class Tasks extends Fragment {
 
+    private int countTasks = 0;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -58,6 +60,9 @@ public class Tasks extends Fragment {
             public void onClick(View v) {
                 String taskName = task1.getText().toString();
                 String task = task2.getText().toString();
+                if(countTasks == 30){
+                    Toast.makeText(createProject, "Вы достигли предела", Toast.LENGTH_SHORT).show();
+                }
                 if(taskName.isEmpty()){
                     Toast.makeText(createProject, "Нет названия", Toast.LENGTH_SHORT).show();
                 }
@@ -70,6 +75,7 @@ public class Tasks extends Fragment {
                     Toast.makeText(v.getContext(), "Задача добавлена", Toast.LENGTH_SHORT).show();
                     CreateProject createProject = (CreateProject) getActivity();
                     createProject.setTask(taskName, task);
+                    countTasks++;
                 }
             }
         });

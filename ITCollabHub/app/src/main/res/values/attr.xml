@@ -2,4 +2,12 @@
 <resources>
     <attr name="background_progress" format="color"/>
     <attr name="background_panel" format="color"/>
+    <attr name="transperent_text_color" format="color"/>
+    <attr name="purpose_icon" format="reference"/>
+    <attr name="problems_icon" format="reference"/>
+    <attr name="tasks_icon" format="reference"/>
+    <attr name="files_icon" format="reference"/>
+    <attr name="advertisments_icon" format="reference"/>
+    <attr name="edit_project_icon" format="reference"/>
+    <attr name="chat_icon" format="reference"/>
 </resources>

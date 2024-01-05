@@ -4,6 +4,14 @@
         <item name="android:textColorHint">@color/black</item>
         <item name="background_progress">@color/gray1</item>
         <item name="background_panel">@color/dark_panel1</item>
+        <item name="transperent_text_color">@color/light_black</item>
+        <item name="purpose_icon">@drawable/day_purp</item>
+        <item name="problems_icon">@drawable/day_problem</item>
+        <item name="tasks_icon">@drawable/day_task</item>
+        <item name="files_icon">@drawable/day_property</item>
+        <item name="advertisments_icon">@drawable/day_megaphone</item>
+        <item name="edit_project_icon">@drawable/day_edit</item>
+        <item name="chat_icon">@drawable/day_chat</item>
     </style>
 
     <style name="Theme.ITCollabHub.New" parent="Base.Theme.ITCollabHub">
@@ -40,6 +48,16 @@
     </style>
     <style name="Theme.ITCollabHub.Green1" parent="Base.Theme.ITCollabHub">
         <item name="colorPrimary">@color/main_green</item>
+    </style>
+    <style name="CornerCut" parent="">
+        <item name="cornerFamilyTopLeft">rounded</item>
+        <item name="cornerFamilyTopRight">rounded</item>
+        <item name="cornerFamilyBottomLeft">rounded</item>
+        <item name="cornerFamilyBottomRight">rounded</item>
+        <item name="cornerSizeTopLeft">20dp</item>
+        <item name="cornerSizeTopRight">20dp</item>
+        <item name="cornerSizeBottomLeft">20dp</item>
+        <item name="cornerSizeBottomRight">20dp</item>
     </style>
 
 </resources>
