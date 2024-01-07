@@ -73,7 +73,7 @@
             android:textSize="9sp" />
 
         <Button
-            android:id="@+id/addPurp"
+            android:id="@+id/addProblem"
             android:layout_width="50dp"
             android:layout_height="30dp"
             android:layout_marginStart="10dp"

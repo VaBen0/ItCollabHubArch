@@ -62,7 +62,7 @@ public class YesOrNo extends Fragment {
         View v = inflater.inflate(R.layout.fragment_yes_or_no, container, false);
 
         Purpose purpose = (Purpose) getActivity();
-        Button yes = v.findViewById(R.id.addPurp);
+        Button yes = v.findViewById(R.id.addProblem);
         yes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

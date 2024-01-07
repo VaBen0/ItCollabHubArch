@@ -10,8 +10,9 @@
         android:id="@+id/bguser"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginBottom="280dp"
         android:background="@drawable/gradient_blue"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView12"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -43,16 +44,15 @@
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="10dp"
-        android:layout_marginBottom="5dp"
-        android:text="Название проекта"
-        android:gravity="center|left"
-        android:autoSizeMinTextSize="19sp"
         android:autoSizeMaxTextSize="28sp"
+        android:autoSizeMinTextSize="19sp"
         android:autoSizeTextType="uniform"
+        android:gravity="center|left"
+        android:text="Название проекта"
         android:textColor="@color/white"
         android:textStyle="bold|italic"
-        app:layout_constraintBottom_toTopOf="@+id/imageView12"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/logo"
         app:layout_constraintTop_toTopOf="parent" />
@@ -91,10 +91,10 @@
                 android:id="@+id/timer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="10dp"
                 android:gravity="center|left"
-                android:text="Максимальное количество целей - 20"
-                android:textColor="?transperent_text_color"
+                android:text="Максимальное количество целей - 30"
+                android:textColor="@color/s_gray"
                 android:textSize="11sp"
                 android:textStyle="bold|italic"
                 app:layout_constraintStart_toStartOf="parent"
@@ -127,16 +127,7 @@
         </ScrollView>
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/imageView14"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/shadow5"
-        android:layout_marginTop="-20dp"
-        android:rotation="180"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
+
 
     <ScrollView
         android:id="@+id/scrollView2"
@@ -178,8 +169,8 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="10dp"
                     android:gravity="center|left"
+                    android:textColor="@color/s_gray"
                     android:text="@string/description_problem"
-                    android:textColor="?transperent_text_color"
                     android:textSize="11sp"
                     android:textStyle="bold|italic"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -202,14 +193,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp">
 
-
-
                 <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/imagePurp"
                     android:layout_width="0dp"
                     android:layout_height="160dp"
-                    android:layout_marginStart="25dp"
-                    android:layout_marginEnd="25dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp"
                     android:scaleType="centerCrop"
                     android:src="@drawable/logo_second_type"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -222,8 +211,8 @@
                     android:id="@+id/view8"
                     android:layout_width="0dp"
                     android:layout_height="160dp"
-                    android:layout_marginStart="25dp"
-                    android:layout_marginEnd="25dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp"
                     android:background="@drawable/progress_panel_background"
                     android:scaleType="fitXY"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -255,7 +244,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:layout_marginTop="-5dp"
-                    android:text="Описание цели:"
+                    android:text="Описание задачи:"
                     android:textSize="14sp"
                     android:textColor="@color/white"
                     android:textStyle="bold|italic"
@@ -298,7 +287,7 @@
                     app:layout_constraintStart_toStartOf="@+id/imagePurp" />
 
                 <Button
-                    android:id="@+id/addPurp"
+                    android:id="@+id/addProblem"
                     android:layout_width="90dp"
                     android:layout_height="40dp"
                     android:layout_marginStart="10dp"
@@ -319,21 +308,12 @@
                 android:id="@+id/textView21"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/s_gray"
                 android:text="@string/description_problem1"
-                android:layout_marginStart="5dp"
+                android:layout_marginStart="10dp"
                 android:textSize="12sp"
                 android:textStyle="bold|italic"/>
         </LinearLayout>
     </ScrollView>
-
-    <ImageView
-        android:id="@+id/imageView12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="-20dp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/shadow5" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

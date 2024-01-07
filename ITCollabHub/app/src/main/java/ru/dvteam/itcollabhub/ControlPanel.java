@@ -10,6 +10,7 @@ import android.service.controls.Control;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,6 +32,8 @@ import java.util.Locale;
 import ru.dvteam.itcollabhub.databinding.ActivityControlPanelBinding;
 
 public class ControlPanel extends AppCompatActivity {
+
+    private static final String TAG = "MyApp";
 
     ActivityControlPanelBinding binding;
     String title, urlPhoto;
@@ -59,10 +62,12 @@ public class ControlPanel extends AppCompatActivity {
             Drawable progressDrawable = getResources().getDrawable(R.drawable.custom_progress_bar_bg);
             binding.purpProgress.setBackgroundResource(R.drawable.custom_progress_bar_bg);
             binding.purpProgress.setProgressDrawable(progressDrawable);
-            binding.tasksProgress.setBackgroundResource(R.drawable.custom_progress_bar_bg);
-            binding.tasksProgress.setProgressDrawable(progressDrawable);
-            binding.tasksProgress.setBackgroundResource(R.drawable.custom_progress_bar_bg);
-            binding.tasksProgress.setProgressDrawable(progressDrawable);
+            Drawable progressDrawable1 = getResources().getDrawable(R.drawable.custom_progress_bar_bg);
+            binding.problemsProgress.setBackgroundResource(R.drawable.custom_progress_bar_bg);
+            binding.problemsProgress.setProgressDrawable(progressDrawable1);
+            Drawable progressDrawable2 = getResources().getDrawable(R.drawable.custom_progress_bar_bg);
+            binding.progressOfTasks.setBackgroundResource(R.drawable.custom_progress_bar_bg);
+            binding.progressOfTasks.setProgressDrawable(progressDrawable2);
         }
         else if(score < 300){
             binding.bguser.setBackgroundResource(R.drawable.gradient_green);
@@ -74,10 +79,12 @@ public class ControlPanel extends AppCompatActivity {
             Drawable progressDrawable = getResources().getDrawable(R.drawable.custom_progress_bar_gg);
             binding.purpProgress.setBackgroundResource(R.drawable.custom_progress_bar_gg);
             binding.purpProgress.setProgressDrawable(progressDrawable);
-            binding.tasksProgress.setBackgroundResource(R.drawable.custom_progress_bar_gg);
-            binding.tasksProgress.setProgressDrawable(progressDrawable);
-            binding.tasksProgress.setBackgroundResource(R.drawable.custom_progress_bar_gg);
-            binding.tasksProgress.setProgressDrawable(progressDrawable);
+            Drawable progressDrawable1 = getResources().getDrawable(R.drawable.custom_progress_bar_gg);
+            binding.problemsProgress.setBackgroundResource(R.drawable.custom_progress_bar_gg);
+            binding.problemsProgress.setProgressDrawable(progressDrawable1);
+            Drawable progressDrawable2 = getResources().getDrawable(R.drawable.custom_progress_bar_gg);
+            binding.progressOfTasks.setBackgroundResource(R.drawable.custom_progress_bar_gg);
+            binding.progressOfTasks.setProgressDrawable(progressDrawable2);
         }
         else if(score < 1000){
             binding.bguser.setBackgroundResource(R.drawable.gradient_brown);
@@ -89,10 +96,12 @@ public class ControlPanel extends AppCompatActivity {
             Drawable progressDrawable = getResources().getDrawable(R.drawable.custom_progress_bar_brg);
             binding.purpProgress.setBackgroundResource(R.drawable.custom_progress_bar_brg);
             binding.purpProgress.setProgressDrawable(progressDrawable);
-            binding.tasksProgress.setBackgroundResource(R.drawable.custom_progress_bar_brg);
-            binding.tasksProgress.setProgressDrawable(progressDrawable);
-            binding.tasksProgress.setBackgroundResource(R.drawable.custom_progress_bar_brg);
-            binding.tasksProgress.setProgressDrawable(progressDrawable);
+            Drawable progressDrawable1 = getResources().getDrawable(R.drawable.custom_progress_bar_brg);
+            binding.problemsProgress.setBackgroundResource(R.drawable.custom_progress_bar_brg);
+            binding.problemsProgress.setProgressDrawable(progressDrawable1);
+            Drawable progressDrawable2 = getResources().getDrawable(R.drawable.custom_progress_bar_brg);
+            binding.progressOfTasks.setBackgroundResource(R.drawable.custom_progress_bar_brg);
+            binding.progressOfTasks.setProgressDrawable(progressDrawable2);
         }
         else if(score < 2500){
             binding.bguser.setBackgroundResource(R.drawable.gradient_light_gray);
@@ -104,10 +113,12 @@ public class ControlPanel extends AppCompatActivity {
             Drawable progressDrawable = getResources().getDrawable(R.drawable.custom_progress_bar_lgg);
             binding.purpProgress.setBackgroundResource(R.drawable.custom_progress_bar_lgg);
             binding.purpProgress.setProgressDrawable(progressDrawable);
-            binding.tasksProgress.setBackgroundResource(R.drawable.custom_progress_bar_lgg);
-            binding.tasksProgress.setProgressDrawable(progressDrawable);
-            binding.tasksProgress.setBackgroundResource(R.drawable.custom_progress_bar_lgg);
-            binding.tasksProgress.setProgressDrawable(progressDrawable);
+            Drawable progressDrawable1 = getResources().getDrawable(R.drawable.custom_progress_bar_lgg);
+            binding.problemsProgress.setBackgroundResource(R.drawable.custom_progress_bar_lgg);
+            binding.problemsProgress.setProgressDrawable(progressDrawable1);
+            Drawable progressDrawable2 = getResources().getDrawable(R.drawable.custom_progress_bar_lgg);
+            binding.progressOfTasks.setBackgroundResource(R.drawable.custom_progress_bar_lgg);
+            binding.progressOfTasks.setProgressDrawable(progressDrawable2);
         }
         else if(score < 7000){
             binding.bguser.setBackgroundResource(R.drawable.gradient_ohra);
@@ -119,10 +130,12 @@ public class ControlPanel extends AppCompatActivity {
             Drawable progressDrawable = getResources().getDrawable(R.drawable.custom_progress_bar_ohg);
             binding.purpProgress.setBackgroundResource(R.drawable.custom_progress_bar_ohg);
             binding.purpProgress.setProgressDrawable(progressDrawable);
-            binding.tasksProgress.setBackgroundResource(R.drawable.custom_progress_bar_ohg);
-            binding.tasksProgress.setProgressDrawable(progressDrawable);
-            binding.tasksProgress.setBackgroundResource(R.drawable.custom_progress_bar_ohg);
-            binding.tasksProgress.setProgressDrawable(progressDrawable);
+            Drawable progressDrawable1 = getResources().getDrawable(R.drawable.custom_progress_bar_ohg);
+            binding.problemsProgress.setBackgroundResource(R.drawable.custom_progress_bar_ohg);
+            binding.problemsProgress.setProgressDrawable(progressDrawable1);
+            Drawable progressDrawable2 = getResources().getDrawable(R.drawable.custom_progress_bar_ohg);
+            binding.progressOfTasks.setBackgroundResource(R.drawable.custom_progress_bar_ohg);
+            binding.progressOfTasks.setProgressDrawable(progressDrawable2);
         }
         else if(score < 17000){
             binding.bguser.setBackgroundResource(R.drawable.gradient_red);
@@ -134,10 +147,12 @@ public class ControlPanel extends AppCompatActivity {
             Drawable progressDrawable = getResources().getDrawable(R.drawable.custom_progress_bar_rg);
             binding.purpProgress.setBackgroundResource(R.drawable.custom_progress_bar_rg);
             binding.purpProgress.setProgressDrawable(progressDrawable);
-            binding.tasksProgress.setBackgroundResource(R.drawable.custom_progress_bar_rg);
-            binding.tasksProgress.setProgressDrawable(progressDrawable);
-            binding.tasksProgress.setBackgroundResource(R.drawable.custom_progress_bar_rg);
-            binding.tasksProgress.setProgressDrawable(progressDrawable);
+            Drawable progressDrawable1 = getResources().getDrawable(R.drawable.custom_progress_bar_rg);
+            binding.problemsProgress.setBackgroundResource(R.drawable.custom_progress_bar_rg);
+            binding.problemsProgress.setProgressDrawable(progressDrawable1);
+            Drawable progressDrawable2 = getResources().getDrawable(R.drawable.custom_progress_bar_rg);
+            binding.progressOfTasks.setBackgroundResource(R.drawable.custom_progress_bar_rg);
+            binding.progressOfTasks.setProgressDrawable(progressDrawable2);
         }
         else if(score < 30000){
             binding.bguser.setBackgroundResource(R.drawable.gradient_orange);
@@ -149,10 +164,12 @@ public class ControlPanel extends AppCompatActivity {
             Drawable progressDrawable = getResources().getDrawable(R.drawable.custom_progress_bar_og);
             binding.purpProgress.setBackgroundResource(R.drawable.custom_progress_bar_og);
             binding.purpProgress.setProgressDrawable(progressDrawable);
-            binding.tasksProgress.setBackgroundResource(R.drawable.custom_progress_bar_og);
-            binding.tasksProgress.setProgressDrawable(progressDrawable);
-            binding.tasksProgress.setBackgroundResource(R.drawable.custom_progress_bar_og);
-            binding.tasksProgress.setProgressDrawable(progressDrawable);
+            Drawable progressDrawable1 = getResources().getDrawable(R.drawable.custom_progress_bar_og);
+            binding.problemsProgress.setBackgroundResource(R.drawable.custom_progress_bar_og);
+            binding.problemsProgress.setProgressDrawable(progressDrawable1);
+            Drawable progressDrawable2 = getResources().getDrawable(R.drawable.custom_progress_bar_og);
+            binding.progressOfTasks.setBackgroundResource(R.drawable.custom_progress_bar_og);
+            binding.progressOfTasks.setProgressDrawable(progressDrawable2);
         }
         else if(score < 50000){
             binding.bguser.setBackgroundResource(R.drawable.gradient_violete);
@@ -164,10 +181,12 @@ public class ControlPanel extends AppCompatActivity {
             Drawable progressDrawable = getResources().getDrawable(R.drawable.custom_progress_bar_vg);
             binding.purpProgress.setBackgroundResource(R.drawable.custom_progress_bar_vg);
             binding.purpProgress.setProgressDrawable(progressDrawable);
-            binding.tasksProgress.setBackgroundResource(R.drawable.custom_progress_bar_vg);
-            binding.tasksProgress.setProgressDrawable(progressDrawable);
-            binding.tasksProgress.setBackgroundResource(R.drawable.custom_progress_bar_vg);
-            binding.tasksProgress.setProgressDrawable(progressDrawable);
+            Drawable progressDrawable1 = getResources().getDrawable(R.drawable.custom_progress_bar_vg);
+            binding.problemsProgress.setBackgroundResource(R.drawable.custom_progress_bar_vg);
+            binding.problemsProgress.setProgressDrawable(progressDrawable1);
+            Drawable progressDrawable2 = getResources().getDrawable(R.drawable.custom_progress_bar_vg);
+            binding.progressOfTasks.setBackgroundResource(R.drawable.custom_progress_bar_vg);
+            binding.progressOfTasks.setProgressDrawable(progressDrawable2);
         }
         else{
             binding.bguser.setBackgroundResource(R.drawable.gradient_blue_green);
@@ -179,10 +198,12 @@ public class ControlPanel extends AppCompatActivity {
             Drawable progressDrawable = getResources().getDrawable(R.drawable.custom_progress_bar_mgg);
             binding.purpProgress.setBackgroundResource(R.drawable.custom_progress_bar_mgg);
             binding.purpProgress.setProgressDrawable(progressDrawable);
-            binding.tasksProgress.setBackgroundResource(R.drawable.custom_progress_bar_mgg);
-            binding.tasksProgress.setProgressDrawable(progressDrawable);
-            binding.tasksProgress.setBackgroundResource(R.drawable.custom_progress_bar_mgg);
-            binding.tasksProgress.setProgressDrawable(progressDrawable);
+            Drawable progressDrawable1 = getResources().getDrawable(R.drawable.custom_progress_bar_mgg);
+            binding.problemsProgress.setBackgroundResource(R.drawable.custom_progress_bar_mgg);
+            binding.problemsProgress.setProgressDrawable(progressDrawable1);
+            Drawable progressDrawable2 = getResources().getDrawable(R.drawable.custom_progress_bar_mgg);
+            binding.progressOfTasks.setBackgroundResource(R.drawable.custom_progress_bar_mgg);
+            binding.progressOfTasks.setProgressDrawable(progressDrawable2);
         }
 
         Bundle arguments = getIntent().getExtras();
@@ -193,7 +214,7 @@ public class ControlPanel extends AppCompatActivity {
         PostDatas postDatas = new PostDatas();
         postDatas.postDataGetProjectInformation("GetProjectMainInformation", id, mail, new CallBackInt4() {
             @Override
-            public void invoke(String name, String photoUrl, String descript, int isend, String purposes,
+            public void invoke(String name, String photoUrl, String descript, double isend, String purposes,
                                String problems, String peoples, String time, String time1, String tg, String vk, String webs, String purposesids,
                                String problemsids, String isl) {
                 title = name;
@@ -222,14 +243,19 @@ public class ControlPanel extends AppCompatActivity {
                     binding.main.removeView(binding.editProjectConst);
                 }
 
-                ObjectAnimator animation = ObjectAnimator.ofInt(binding.purpProgress, "progress", 0, (int)(parse(purposes) * 100));
+                ProgressBar purposesProgress = findViewById(R.id.purp_progress);
+                ProgressBar problemsProgress = findViewById(R.id.problems_progress);
+                purposesProgress.setMax(100);
+                problemsProgress.setMax(100);
+
+                ObjectAnimator animation = ObjectAnimator.ofInt(purposesProgress, "progress", 0, (int)(parse(purposes) * 100));
                 animation.setStartDelay(300);
                 animation.setDuration(1000);
                 animation.setAutoCancel(true);
                 animation.setInterpolator(new DecelerateInterpolator());
                 animation.start();
 
-                ObjectAnimator anim = ObjectAnimator.ofInt(binding.problemsProgress, "progress", 0, (int)(parse(problems) * 100));
+                ObjectAnimator anim = ObjectAnimator.ofInt(problemsProgress, "progress", 0, (int)(parse(problems) * 100));
                 anim.setStartDelay(300);
                 anim.setDuration(1000);
                 anim.setAutoCancel(true);
@@ -282,7 +308,6 @@ public class ControlPanel extends AppCompatActivity {
                     intent.putExtra("projectUrlPhoto", urlPhoto);
                     intent.putExtra("projectId", purposesidss);
                     intent.putExtra("projectId1", id);
-                    intent.putExtra("leader", islead);
                     startActivity(intent);
                 }
                 else {
@@ -291,7 +316,6 @@ public class ControlPanel extends AppCompatActivity {
                     intent.putExtra("projectUrlPhoto", urlPhoto);
                     intent.putExtra("projectId", purposesidss);
                     intent.putExtra("projectId1", id);
-                    intent.putExtra("leader", islead);
                     startActivity(intent);
                 }
             }

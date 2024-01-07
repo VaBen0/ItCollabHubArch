@@ -172,12 +172,11 @@
                 android:layout_marginTop="5dp">
 
                 <ProgressBar
-                    android:id="@+id/purpProgress"
+                    android:id="@+id/purp_progress"
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
                     android:layout_marginStart="15dp"
-                    android:max="100"
                     android:layout_marginEnd="15dp"
                     android:progressDrawable="@drawable/custom_progress_bar_vg"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -215,12 +214,11 @@
                 android:layout_marginTop="5dp">
 
                 <ProgressBar
-                    android:id="@+id/problemsProgress"
+                    android:id="@+id/problems_progress"
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
                     android:layout_marginStart="15dp"
-                    android:max="100"
                     android:layout_marginEnd="15dp"
                     android:progressDrawable="@drawable/custom_progress_bar_vg"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -259,12 +257,11 @@
                 android:layout_marginTop="5dp">
 
                 <ProgressBar
-                    android:id="@+id/tasksProgress"
+                    android:id="@+id/progress_of_tasks"
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
                     android:layout_marginStart="15dp"
-                    android:max="100"
                     android:layout_marginEnd="15dp"
                     android:progressDrawable="@drawable/custom_progress_bar_vg"
                     app:layout_constraintBottom_toBottomOf="parent"

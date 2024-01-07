@@ -24,6 +24,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,21 +39,20 @@ import ru.dvteam.itcollabhub.databinding.ActivityProblemsBinding;
 public class Problems extends AppCompatActivity {
 
     ActivityProblemsBinding binding;
-    int countProblems = 0;
-    private NavController navController;
-    private EditText description;
+    int countProblems = 0, countTicked = 0;
     private static final int PICK_IMAGES_CODE = 0;
     private String mediaPath = "";
-    private Boolean acces = false;
+    private Boolean acces = false, clicked = false;
     private static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 1;
     ActivityResultLauncher<Intent> resultLauncher;
 
+    String projectTitle, photoProject, prId, mail;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         SharedPreferences sPref = getSharedPreferences("MyPref", MODE_PRIVATE);
-        String mail = sPref.getString("UserMail", "");
+        mail = sPref.getString("UserMail", "");
         int score = sPref.getInt("UserScore", 0);
 
         binding = ActivityProblemsBinding.inflate(getLayoutInflater());
@@ -106,9 +106,11 @@ public class Problems extends AppCompatActivity {
 
         assert arguments != null;
         String id = arguments.getString("projectId");
-        String prId = arguments.getString("projectId1");
-        String projectTitle = arguments.getString("projectTitle");
-        String photoProject = arguments.getString("projectUrlPhoto");
+        prId = arguments.getString("projectId1");
+        projectTitle = arguments.getString("projectTitle");
+        photoProject = arguments.getString("projectUrlPhoto");
+
+        postProblems();
 
         binding.nameProject.setText(projectTitle);
         Glide
@@ -120,35 +122,8 @@ public class Problems extends AppCompatActivity {
                 .load(photoProject)
                 .into(binding.imagePurp);
 
-        PostDatas post = new PostDatas();
-        post.postDataGetProblems("GetProblems", id, new CallBackInt() {
-            @Override
-            public void invoke(String res) {
-                String[] inf = res.split("\uD83D\uDD70");
-                //Toast.makeText(Problems.this, res, Toast.LENGTH_SHORT).show();
-                for(int i = 0; i < inf.length; i += 4){
-                    View custom = getLayoutInflater().inflate(R.layout.problem_panel, null);
-                    ImageView loadImg = custom.findViewById(R.id.imagePurp);
-                    TextView name = custom.findViewById(R.id.name);
-                    TextView descr = custom.findViewById(R.id.description1);
-                    View back = custom.findViewById(R.id.view8);
 
-                    if(inf[i + 2].equals("1")){
-                        back.setBackgroundResource(R.drawable.green_transperent);
-                    }
-
-                    name.setText(inf[i]);
-                    descr.setText(inf[i+1]);
-                    Glide
-                            .with(Problems.this)
-                            .load(inf[i+3])
-                            .into(loadImg);
-                    countProblems++;
-                    binding.reminderPlace.addView(custom);
-                }
-            }
-        });
-        binding.addPurp.setOnClickListener(new View.OnClickListener() {
+        binding.addProblem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(countProblems == 30){
@@ -168,6 +143,8 @@ public class Problems extends AppCompatActivity {
                                 public void invoke(String res) {
                                     binding.name.setText("");
                                     binding.description1.setText("");
+                                    binding.reminderPlace.removeAllViews();
+                                    postProblems();
                                 }
                             });
                 } else{
@@ -178,9 +155,14 @@ public class Problems extends AppCompatActivity {
                         binding.description1.getText().toString(), prId, mail, new CallBackInt() {
                             @Override
                             public void invoke(String res) {
-                                binding.imagePurp.setImageResource(R.drawable.logo_second_type);
+                                Glide
+                                        .with(Problems.this)
+                                        .load(photoProject)
+                                        .into(binding.imagePurp);
                                 binding.name.setText("");
                                 binding.description1.setText("");
+                                binding.reminderPlace.removeAllViews();
+                                postProblems();
                             }
                         });
                 }
@@ -264,7 +246,7 @@ public class Problems extends AppCompatActivity {
                         try{
                             Uri imageUri = result.getData().getData();
                             String[] filePathColumn = {MediaStore.Images.Media.DATA};
-
+                            //imageUri.getPath();
                             Cursor cursor = getContentResolver().query(imageUri, filePathColumn, null, null, null);
                             assert cursor != null;
                             cursor.moveToFirst();
@@ -280,5 +262,123 @@ public class Problems extends AppCompatActivity {
                     }
                 }
         );
+    }
+
+
+
+    public void getProblems(String id3){
+        PostDatas post = new PostDatas();
+        post.postDataGetProblems("GetProblems", id3, new CallBackInt() {
+            @Override
+            public void invoke(String res) {
+                String[] inf = res.split("\uD83D\uDD70");
+                assert id3 != null;
+                String[] idm = id3.split(",");
+                for(int i = 0; i < inf.length; i += 4){
+                    View custom = getLayoutInflater().inflate(R.layout.problem_panel, null);
+                    ImageView loadImg = custom.findViewById(R.id.imagePurp);
+                    TextView name = custom.findViewById(R.id.name);
+                    TextView descr = custom.findViewById(R.id.description1);
+                    TextView title = custom.findViewById(R.id.problemTitlePanel);
+                    View back = custom.findViewById(R.id.view8);
+                    LinearLayout yesOrNo = custom.findViewById(R.id.yes_or_no);
+                    LinearLayout descript = custom.findViewById(R.id.description_purpose);
+                    Button yes = custom.findViewById(R.id.yes);
+                    Button no = custom.findViewById(R.id.no);
+                    ImageView editBut = custom.findViewById(R.id.editProblem);
+
+                    if(inf[i + 2].equals("1")){
+                        back.setBackgroundResource(R.drawable.green_transperent);
+                        countTicked += 1;
+                    }
+                    int finalI = i;
+
+                    title.setText(inf[i]);
+                    name.setText(inf[i]);
+                    descr.setText(inf[i+1]);
+                    Glide
+                            .with(Problems.this)
+                            .load(inf[i+3])
+                            .into(loadImg);
+
+                    custom.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if(countTicked == (inf.length / 4) - 1 && inf[finalI + 2].equals("0")){
+                                Toast.makeText(Problems.this, "Эту задачу нельзя отметить выполненной", Toast.LENGTH_SHORT).show();
+                            }
+                            else if(!clicked && inf[finalI + 2].equals("0")) {
+                                back.setBackgroundResource(R.drawable.progress_panel_background2);
+                                descript.setVisibility(View.GONE);
+                                yesOrNo.setVisibility(View.VISIBLE);
+                                clicked = true;
+                            }
+                        }
+                    });
+
+                    yes.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            post.postDatasetProblemIsEnd("SetProblemComplete", idm[finalI / 4], prId, mail, new CallBackInt() {
+                                @Override
+                                public void invoke(String res) {
+                                    back.setBackgroundResource(R.drawable.progress_panel_background);
+                                    descript.setVisibility(View.VISIBLE);
+                                    yesOrNo.setVisibility(View.GONE);
+                                    clicked = false;
+                                    back.setBackgroundResource(R.drawable.green_transperent);
+                                    inf[finalI + 2] = "1";
+                                }
+                            });
+                        }
+                    });
+
+                    no.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            back.setBackgroundResource(R.drawable.progress_panel_background);
+                            descript.setVisibility(View.VISIBLE);
+                            yesOrNo.setVisibility(View.GONE);
+                            clicked = false;
+                        }
+                    });
+
+                    editBut.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(Problems.this, EditProblem.class);
+                            intent.putExtra("problemPhoto", inf[finalI+3]);
+                            intent.putExtra("projectTitle", projectTitle);
+                            intent.putExtra("projectUrlPhoto", photoProject);
+                            intent.putExtra("projectId1", prId);
+                            intent.putExtra("problemName", inf[finalI]);
+                            intent.putExtra("problemDescription", inf[finalI + 1]);
+                            intent.putExtra("problemId", idm[finalI / 4]);
+                            startActivity(intent);
+                        }
+                    });
+
+                    countProblems++;
+                    binding.reminderPlace.addView(custom);
+                }
+            }
+        });
+    }
+
+    private void postProblems(){
+        PostDatas postDatas = new PostDatas();
+        postDatas.postDataGetProjectProblems("GetProjectProblemsIDs", prId, new CallBackInt() {
+            @Override
+            public void invoke(String res) {
+                getProblems(res);
+            }
+        });
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        binding.reminderPlace.removeAllViews();
+        postProblems();
     }
 }

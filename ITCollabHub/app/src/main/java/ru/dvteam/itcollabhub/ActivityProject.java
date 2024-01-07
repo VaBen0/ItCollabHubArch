@@ -16,7 +16,7 @@ import android.widget.TextView;
 
 public class ActivityProject extends AppCompatActivity {
 
-    int selectedColor;
+    int selectedColor, score;
     private NavController navController;
     String mail;
 
@@ -24,7 +24,7 @@ public class ActivityProject extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         SharedPreferences sPref = getSharedPreferences("MyPref", MODE_PRIVATE);
         mail = sPref.getString("UserMail", "");
-        int score = sPref.getInt("UserScore", 0);
+        score = sPref.getInt("UserScore", 0);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_project);
@@ -149,9 +149,13 @@ public class ActivityProject extends AppCompatActivity {
     public String getMail(){
         return mail;
     }
+    public int getScore(){
+        return score;
+    }
     public void changeActivity(String id){
         Intent intent = new Intent(ActivityProject.this, UsersProject.class);
         intent.putExtra("projectId", id);
         startActivity(intent);
     }
+
 }

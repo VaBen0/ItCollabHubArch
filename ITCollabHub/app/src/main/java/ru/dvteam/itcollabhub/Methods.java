@@ -119,11 +119,11 @@ public interface Methods {
 
     @FormUrlEncoded
     @POST("/")
-    Call<Model> setPurposesIsEnd(@Field("Request")String req, @Field("PurposeId")String id, @Field("Project")String pid);
+    Call<Model> setPurposesIsEnd(@Field("Request")String req, @Field("PurposeId")String id, @Field("ProjectId")String pid, @Field("UserMail")String mail);
 
     @FormUrlEncoded
     @POST("/")
-    Call<Model> setProblemIsEnd(@Field("Request")String req, @Field("ProblemId")String id, @Field("Project")String pid);
+    Call<Model> setProblemIsEnd(@Field("Request")String req, @Field("ProblemId")String id, @Field("ProjectId")String pid, @Field("UserMail")String mail);
 
     @Multipart
     @POST("/")
@@ -137,5 +137,35 @@ public interface Methods {
                                           @Field("Request") String req, @Field("ProjectId") String id,
                                           @Field("ProblemDescription") String description, @Field("UserMail") String mail);
 
+    @FormUrlEncoded
+    @POST("/")
+    Call<Model> deleteProblem(@Field("Request")String req, @Field("ProblemId") String problemId,
+                                          @Field("UserMail") String mail, @Field("ProjectId") String projectId);
+
+
+    @FormUrlEncoded
+    @POST("/")
+    Call<Model> changeProblemWithoutImage(@Field("ProblemName") String name,
+                                          @Field("Request") String req, @Field("ProjectId") String id,
+                                          @Field("ProblemDescription") String description, @Field("UserMail") String mail,
+                                          @Field("ProblemId") String problemId);
+
+    @Multipart
+    @POST("/")
+    Call<Model> changeProblem(@Part MultipartBody.Part file, @Part("ProblemName") RequestBody name, @Part("Request") RequestBody req,
+                              @Part("ProjectId") RequestBody id, @Part("ProblemDescription") RequestBody description,
+                              @Part("UserMail") RequestBody mail, @Part("ProblemId") RequestBody problemId);
+
+    @FormUrlEncoded
+    @POST("/")
+    Call<Model> getProjectProblemIds(@Field("Request") String req, @Field("ProjectId") String id);
+
+    @FormUrlEncoded
+    @POST("/")
+    Call<Model> getProjectPurposeIds(@Field("Request") String req, @Field("ProjectId") String id);
+
+    @Multipart
+    @POST("/test_file_upload/")
+    Call<Model> uploadFile(@Part MultipartBody.Part file, @Part("TIP") RequestBody tip);
 
 }

@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,6 +46,7 @@ public class Purpose extends AppCompatActivity {
 
     private NavController navController;
     private EditText description;
+    private boolean clicked = false;
     private static final int PICK_IMAGES_CODE = 0;
     private String mediaPath = "";
     private Boolean acces = false;
@@ -52,14 +54,16 @@ public class Purpose extends AppCompatActivity {
     ActivityResultLauncher<Intent> resultLauncher;
     int score;
 
-    int countPurposes = 0;
+    String prId, mail;
+
+    int countPurposes = 0, countTicked = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         SharedPreferences sPref = getSharedPreferences("MyPref", MODE_PRIVATE);
-        String mail = sPref.getString("UserMail", "");
+        mail = sPref.getString("UserMail", "");
         int score = sPref.getInt("UserScore", 0);
 
         binding = ActivityPurposeLeadBinding.inflate(getLayoutInflater());
@@ -108,9 +112,11 @@ public class Purpose extends AppCompatActivity {
 
         assert arguments != null;
         String id = arguments.getString("projectId");
-        String prId = arguments.getString("projectId1");
+        prId = arguments.getString("projectId1");
         String projectTitle = arguments.getString("projectTitle");
         String photoProject = arguments.getString("projectUrlPhoto");
+
+        postPurpose();
 
         binding.nameProject.setText(projectTitle);
         Glide
@@ -121,44 +127,6 @@ public class Purpose extends AppCompatActivity {
                 .with(Purpose.this)
                 .load(photoProject)
                 .into(binding.imagePurp);
-
-        PostDatas post = new PostDatas();
-        post.postDataGetPurpose("GetPurposes", id, new CallBackInt() {
-            @Override
-            public void invoke(String res) {
-                String[] inf = res.split("\uD83d\uDD70");
-                //Toast.makeText(Purpose.this, inf[3], Toast.LENGTH_SHORT).show();
-                for(int i = 0; i < inf.length; i += 4){
-                    View custom = getLayoutInflater().inflate(R.layout.purpose_panel, null);
-                    ImageView loadImg = custom.findViewById(R.id.imagePurp);
-                    TextView name = custom.findViewById(R.id.name);
-                    TextView descr = custom.findViewById(R.id.description1);
-                    View back = custom.findViewById(R.id.view8);
-
-                    if(inf[i + 2].equals("1")){
-                        back.setBackgroundResource(R.drawable.green_transperent);
-                    }
-                    custom.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Fragment newFragment = new YesOrNo();
-                            transaction = getSupportFragmentManager().beginTransaction();
-                            transaction.add(R.id.fragmentContainerView, newFragment);
-                            transaction.commit();
-                        }
-                    });
-
-                    name.setText(inf[i]);
-                    descr.setText(inf[i+1]);
-                    Glide
-                            .with(Purpose.this)
-                            .load(inf[i+3])
-                            .into(loadImg);
-                    binding.reminderPlace.addView(custom);
-                    countPurposes++;
-                }
-            }
-        });
 
         binding.addPurp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -173,7 +141,6 @@ public class Purpose extends AppCompatActivity {
                     Toast.makeText(Purpose.this, "Нет описания", Toast.LENGTH_SHORT).show();
                 }
                 else if (mediaPath.isEmpty()) {
-                    Toast.makeText(Purpose.this,  binding.name.getText().toString(), Toast.LENGTH_SHORT).show();
                     PostDatas post = new PostDatas();
                     post.postDataCreatePurposeWithoutImage("CreatePurposeWithoutImage", binding.name.getText().toString(),
                         binding.description1.getText().toString(), prId, mail, new CallBackInt() {
@@ -181,6 +148,8 @@ public class Purpose extends AppCompatActivity {
                             public void invoke(String res) {
                                 binding.name.setText("");
                                 binding.description1.setText("");
+                                binding.reminderPlace.removeAllViews();
+                                postPurpose();
                             }
                         });
                 } else{
@@ -191,9 +160,14 @@ public class Purpose extends AppCompatActivity {
                         binding.description1.getText().toString(), mail, prId, new CallBackInt() {
                             @Override
                             public void invoke(String res) {
-                                binding.imagePurp.setImageResource(R.drawable.logo_second_type);
+                                Glide
+                                        .with(Purpose.this)
+                                        .load(photoProject)
+                                        .into(binding.imagePurp);
                                 binding.name.setText("");
                                 binding.description1.setText("");
+                                binding.reminderPlace.removeAllViews();
+                                postPurpose();
                             }
                         });
                 }
@@ -295,9 +269,96 @@ public class Purpose extends AppCompatActivity {
         );
     }
     public void removeFragment(){
-        Fragment newFragment = new YesOrNo2();
+        Fragment newFragment = new YesOrNo();
         transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.fragmentContainerView, newFragment);
+        transaction.remove(newFragment);
         transaction.commit();
     }
+
+    public void getPurposes(String id){
+        PostDatas post = new PostDatas();
+        post.postDataGetPurpose("GetPurposes", id, new CallBackInt() {
+            @Override
+            public void invoke(String res) {
+                String[] inf = res.split("\uD83d\uDD70");
+                assert id != null;
+                String[] idm = id.split(",");
+                for(int i = 0; i < inf.length; i += 4){
+                    View custom = getLayoutInflater().inflate(R.layout.purpose_panel, null);
+                    ImageView loadImg = custom.findViewById(R.id.imagePurp);
+                    TextView name = custom.findViewById(R.id.name);
+                    TextView descr = custom.findViewById(R.id.description1);
+                    TextView title = custom.findViewById(R.id.problemTitlePanel);
+                    View back = custom.findViewById(R.id.view8);
+                    LinearLayout yesOrNo = custom.findViewById(R.id.yes_or_no);
+                    LinearLayout descript = custom.findViewById(R.id.description_purpose);
+                    Button yes = custom.findViewById(R.id.yes);
+                    Button no = custom.findViewById(R.id.no);
+
+                    if(inf[i + 2].equals("1")){
+                        back.setBackgroundResource(R.drawable.green_transperent);
+                        countTicked += 1;
+                    }
+                    int finalI = i;
+                    custom.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if(countTicked == (inf.length / 4) - 1 && inf[finalI + 2].equals("0")){
+                                Toast.makeText(Purpose.this, "Эту цель нельзя отметить выполненной", Toast.LENGTH_SHORT).show();
+                            }
+                            else if(!clicked && inf[finalI + 2].equals("0")) {
+                                back.setBackgroundResource(R.drawable.progress_panel_background2);
+                                descript.setVisibility(View.GONE);
+                                yesOrNo.setVisibility(View.VISIBLE);
+                                clicked = true;
+                            }
+                        }
+                    });
+                    yes.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            post.postDatasetPurposeIsEnd("SetPurposeComplete", idm[finalI / 4], prId, mail, new CallBackInt() {
+                                @Override
+                                public void invoke(String res) {
+                                    back.setBackgroundResource(R.drawable.green_transperent);
+                                    descript.setVisibility(View.VISIBLE);
+                                    yesOrNo.setVisibility(View.GONE);
+                                    clicked = false;
+                                }
+                            });
+                        }
+                    });
+                    no.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            back.setBackgroundResource(R.drawable.progress_panel_background);
+                            descript.setVisibility(View.VISIBLE);
+                            yesOrNo.setVisibility(View.GONE);
+                            clicked = false;
+                        }
+                    });
+
+                    title.setText(inf[i]);
+                    name.setText(inf[i]);
+                    descr.setText(inf[i+1]);
+                    Glide
+                            .with(Purpose.this)
+                            .load(inf[i+3])
+                            .into(loadImg);
+                    binding.reminderPlace.addView(custom);
+                    countPurposes++;
+                }
+            }
+        });
+    }
+    private void postPurpose(){
+        PostDatas postDatas = new PostDatas();
+        postDatas.postDataGetProjectPurposes("GetProjectPurposesIDs", prId, new CallBackInt() {
+            @Override
+            public void invoke(String res) {
+                getPurposes(res);
+            }
+        });
+    }
+
 }

@@ -108,7 +108,7 @@ public class UsersProject extends AppCompatActivity {
         PostDatas postDatas = new PostDatas();
         postDatas.postDataGetProjectInformation("GetProjectMainInformation", id, mail, new CallBackInt4() {
             @Override
-            public void invoke(String name, String photoUrl, String descript, int isend, String purposes,
+            public void invoke(String name, String photoUrl, String descript, double isend, String purposes,
                                String problems, String peoples, String time, String time1, String tg, String vk, String webs,
                                String purposesids, String problemsids, String isl) {
                 binding.projectName.setText(name);
@@ -116,17 +116,17 @@ public class UsersProject extends AppCompatActivity {
                         .with(UsersProject.this)
                         .load(photoUrl)
                         .into(binding.prLogo);
-                String percents = isend + ".0%";
+                String percents = (int) isend + ".0%";
                 binding.projectPercents.setText(percents);
 
-                ObjectAnimator animation = ObjectAnimator.ofInt(binding.projectProgress, "progress", 0, isend);
+                ObjectAnimator animation = ObjectAnimator.ofInt(binding.projectProgress, "progress", 0, (int) isend);
                 animation.setStartDelay(300);
                 animation.setDuration(1000);
                 animation.setAutoCancel(true);
                 animation.setInterpolator(new DecelerateInterpolator());
                 animation.start();
 
-                final ValueAnimator anim = ValueAnimator.ofFloat(0, isend);
+                final ValueAnimator anim = ValueAnimator.ofFloat(0, (int) isend);
                 anim.setStartDelay(300);
                 anim.setDuration(1000);
                 anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {

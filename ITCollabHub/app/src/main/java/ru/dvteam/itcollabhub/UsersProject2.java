@@ -90,7 +90,7 @@ public class UsersProject2 extends AppCompatActivity {
         PostDatas postDatas = new PostDatas();
         postDatas.postDataGetProjectInformation("GetProjectMainInformation", id, mail, new CallBackInt4() {
             @Override
-            public void invoke(String name, String photoUrl, String descript, int isend, String purposes,
+            public void invoke(String name, String photoUrl, String descript, double isend, String purposes,
                                String problems, String peoples, String time, String time1, String tg, String vk, String webs,
                                String purposesids, String problemsids, String isl) {
                 binding.projectName.setText(name);
