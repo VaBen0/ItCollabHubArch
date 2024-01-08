@@ -10,8 +10,6 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
 
-
-
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -22,7 +20,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ITCollabHub"
         tools:targetApi="26">
-
+        <activity
+            android:name=".EditFile"
+            android:exported="false" />
+        <activity
+            android:name=".ProjectFiles"
+            android:exported="false" />
         <activity
             android:name=".EditProblem"
             android:exported="false" />

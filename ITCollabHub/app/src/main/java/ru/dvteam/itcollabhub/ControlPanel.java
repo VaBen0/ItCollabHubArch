@@ -345,6 +345,17 @@ public class ControlPanel extends AppCompatActivity {
             }
         });
 
+        binding.projectFiles.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ControlPanel.this, ProjectFiles.class);
+                intent.putExtra("projectTitle", title);
+                intent.putExtra("projectUrlPhoto", urlPhoto);
+                intent.putExtra("projectId1", id);
+                startActivity(intent);
+            }
+        });
+
         /*for (int i = 0; i < 5; i++) {
             View custom = getLayoutInflater().inflate(R.layout.reminder, null);
 
@@ -358,5 +369,11 @@ public class ControlPanel extends AppCompatActivity {
         } else {
             return Double.parseDouble(ratio);
         }
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+
     }
 }

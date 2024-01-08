@@ -691,4 +691,182 @@ public class PostDatas {
             }
         });
     }
+
+    public void postDataCreateFile(String req, String name, RequestBody requestFile, String link, String id, String mail, CallBackInt result){
+
+        MultipartBody.Part fileToUpload = MultipartBody.Part.createFormData("file", "lol", requestFile);
+        RequestBody requestName = RequestBody.create(MediaType.parse("text/plain"), name);
+        RequestBody requestReq = RequestBody.create(MediaType.parse("text/plain"), req);
+        RequestBody requestLink = RequestBody.create(MediaType.parse("text/plain"), link);
+        RequestBody requestId = RequestBody.create(MediaType.parse("text/plain"), id);
+        RequestBody requestMail = RequestBody.create(MediaType.parse("text/plain"), mail);
+
+        Methods methods = RetrofitClient.getRetrofitInstance().create(Methods.class);
+        Call<Model> call = methods.createFile(fileToUpload, requestName, requestReq, requestLink, requestId, requestMail);
+        call.enqueue(new Callback<Model>() {
+            @Override
+            public void onResponse(Call<Model> call, retrofit2.Response<Model> response) {
+                assert response.body() != null;
+                result.invoke(response.body().getReturn());
+            }
+
+            @Override
+            public void onFailure(Call<Model> call, Throwable t) {
+                result.invoke("All bad");
+            }
+        });
+    }
+
+    public void postDataCreateFileWithoutImage(String req, String name, String link, String id, String mail, CallBackInt result){
+        Methods methods = RetrofitClient.getRetrofitInstance().create(Methods.class);
+        Call<Model> call = methods.createFileWithoutImage(name, req, id, link, mail);
+
+        call.enqueue(new Callback<Model>() {
+            @Override
+            public void onResponse(Call<Model> call, retrofit2.Response<Model> response) {
+                assert response.body() != null;
+                result.invoke(response.body().getReturn());
+            }
+
+            @Override
+            public void onFailure(Call<Model> call, Throwable t) {
+                //result.invoke("lol");
+            }
+        });
+    }
+
+    public void postDataChangeFile(String req, String name, RequestBody requestFile, String link, String id, String mail,
+                                   String fileId, CallBackInt result){
+
+        MultipartBody.Part fileToUpload = MultipartBody.Part.createFormData("file", "lol", requestFile);
+        RequestBody requestName = RequestBody.create(MediaType.parse("text/plain"), name);
+        RequestBody requestReq = RequestBody.create(MediaType.parse("text/plain"), req);
+        RequestBody requestLink = RequestBody.create(MediaType.parse("text/plain"), link);
+        RequestBody requestId = RequestBody.create(MediaType.parse("text/plain"), id);
+        RequestBody requestMail = RequestBody.create(MediaType.parse("text/plain"), mail);
+        RequestBody requestFileId = RequestBody.create(MediaType.parse("text/plain"), fileId);
+
+        Methods methods = RetrofitClient.getRetrofitInstance().create(Methods.class);
+        Call<Model> call = methods.changeFile(fileToUpload, requestName, requestReq, requestLink, requestId, requestMail, requestFileId);
+        call.enqueue(new Callback<Model>() {
+            @Override
+            public void onResponse(Call<Model> call, retrofit2.Response<Model> response) {
+                assert response.body() != null;
+                result.invoke(response.body().getReturn());
+            }
+
+            @Override
+            public void onFailure(Call<Model> call, Throwable t) {
+                result.invoke("All bad");
+            }
+        });
+    }
+
+    public void postDataChangeFileWithoutImage(String req, String name, String link, String id, String mail, String fileId, CallBackInt result){
+        Methods methods = RetrofitClient.getRetrofitInstance().create(Methods.class);
+        Call<Model> call = methods.changeFileWithoutImage(name, req, id, link, mail, fileId);
+
+        call.enqueue(new Callback<Model>() {
+            @Override
+            public void onResponse(Call<Model> call, retrofit2.Response<Model> response) {
+                assert response.body() != null;
+                result.invoke(response.body().getReturn());
+            }
+
+            @Override
+            public void onFailure(Call<Model> call, Throwable t) {
+                //result.invoke("lol");
+            }
+        });
+    }
+
+    public void postDataFixFile(String req, String id, String mail, String fileId, CallBackInt result){
+        Methods methods = RetrofitClient.getRetrofitInstance().create(Methods.class);
+        Call<Model> call = methods.fixFile(req, fileId, mail, id);
+
+        call.enqueue(new Callback<Model>() {
+            @Override
+            public void onResponse(Call<Model> call, retrofit2.Response<Model> response) {
+                assert response.body() != null;
+                result.invoke(response.body().getReturn());
+            }
+
+            @Override
+            public void onFailure(Call<Model> call, Throwable t) {
+                //result.invoke("lol");
+            }
+        });
+    }
+
+    public void postDataDetachFile(String req, String id, String mail, String fileId, CallBackInt result){
+        Methods methods = RetrofitClient.getRetrofitInstance().create(Methods.class);
+        Call<Model> call = methods.detachFile(req, fileId, mail, id);
+
+        call.enqueue(new Callback<Model>() {
+            @Override
+            public void onResponse(Call<Model> call, retrofit2.Response<Model> response) {
+                assert response.body() != null;
+                result.invoke(response.body().getReturn());
+            }
+
+            @Override
+            public void onFailure(Call<Model> call, Throwable t) {
+                //result.invoke("lol");
+            }
+        });
+    }
+
+    public void postDataDeleteFile(String req, String id, String mail, String fileId, CallBackInt result){
+        Methods methods = RetrofitClient.getRetrofitInstance().create(Methods.class);
+        Call<Model> call = methods.deleteFile(req, fileId, mail, id);
+
+        call.enqueue(new Callback<Model>() {
+            @Override
+            public void onResponse(Call<Model> call, retrofit2.Response<Model> response) {
+                assert response.body() != null;
+                result.invoke(response.body().getReturn());
+            }
+
+            @Override
+            public void onFailure(Call<Model> call, Throwable t) {
+                //result.invoke("lol");
+            }
+        });
+    }
+
+    public void postDataGetProjectFilesIds(String req, String id, CallBackInt result){
+        Methods methods = RetrofitClient.getRetrofitInstance().create(Methods.class);
+        Call<Model> call = methods.getProjectFilesIds(req, id);
+
+        call.enqueue(new Callback<Model>() {
+            @Override
+            public void onResponse(Call<Model> call, retrofit2.Response<Model> response) {
+                assert response.body() != null;
+                result.invoke(response.body().getReturn());
+            }
+
+            @Override
+            public void onFailure(Call<Model> call, Throwable t) {
+                //result.invoke("lol");
+            }
+        });
+    }
+
+    public void postDataGetProjectFiles(String req, String fileId, CallBackInt result){
+        Methods methods = RetrofitClient.getRetrofitInstance().create(Methods.class);
+        Call<Model> call = methods.getProjectFiles(req, fileId);
+
+        call.enqueue(new Callback<Model>() {
+            @Override
+            public void onResponse(Call<Model> call, retrofit2.Response<Model> response) {
+                assert response.body() != null;
+                result.invoke(response.body().getReturn());
+            }
+
+            @Override
+            public void onFailure(Call<Model> call, Throwable t) {
+                //result.invoke("lol");
+            }
+        });
+    }
 }

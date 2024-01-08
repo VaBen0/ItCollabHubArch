@@ -10,8 +10,9 @@
         android:id="@+id/bguser"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginBottom="200dp"
         android:background="@drawable/gradient_blue"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView12"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -44,15 +45,13 @@
         android:layout_height="60dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
-        android:layout_marginBottom="5dp"
-        android:text="Название проекта"
-        android:gravity="center|left"
-        android:autoSizeMinTextSize="19sp"
         android:autoSizeMaxTextSize="28sp"
+        android:autoSizeMinTextSize="19sp"
         android:autoSizeTextType="uniform"
+        android:gravity="center|left"
+        android:text="Название проекта"
         android:textColor="@color/white"
         android:textStyle="bold|italic"
-        app:layout_constraintBottom_toTopOf="@+id/imageView12"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/logo"
         app:layout_constraintTop_toTopOf="parent" />
@@ -66,10 +65,10 @@
         android:gravity="center"
         android:text="Нет напоминаний"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView14"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView12" />
+        app:layout_constraintTop_toBottomOf="@+id/bguser" />
 
     <LinearLayout
         android:id="@+id/linearLayout3"
@@ -129,17 +128,6 @@
 
         </HorizontalScrollView>
     </LinearLayout>
-
-    <ImageView
-        android:id="@+id/imageView14"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/shadow1"
-        android:layout_marginTop="-20dp"
-        android:rotation="180"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
 
     <ScrollView
         android:id="@+id/scrollView2"
@@ -479,15 +467,5 @@
 
         </LinearLayout>
     </ScrollView>
-
-    <ImageView
-        android:id="@+id/imageView12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="-20dp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/shadow1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

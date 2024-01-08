@@ -168,4 +168,48 @@ public interface Methods {
     @POST("/test_file_upload/")
     Call<Model> uploadFile(@Part MultipartBody.Part file, @Part("TIP") RequestBody tip);
 
+    @Multipart
+    @POST("/")
+    Call<Model> createFile(@Part MultipartBody.Part file, @Part("FileName") RequestBody name, @Part("Request") RequestBody req,
+                              @Part("FileLink") RequestBody link, @Part("ProjectId") RequestBody id,
+                              @Part("UserMail") RequestBody mail);
+
+    @FormUrlEncoded
+    @POST("/")
+    Call<Model> createFileWithoutImage(@Field("FileName") String name,
+                                          @Field("Request") String req, @Field("ProjectId") String id,
+                                          @Field("FileLink") String link, @Field("UserMail") String mail);
+
+    @Multipart
+    @POST("/")
+    Call<Model> changeFile(@Part MultipartBody.Part file, @Part("FileName") RequestBody name, @Part("Request") RequestBody req,
+                           @Part("FileLink") RequestBody link, @Part("ProjectId") RequestBody id,
+                           @Part("UserMail") RequestBody mail, @Part("FileId") RequestBody fileId);
+
+    @FormUrlEncoded
+    @POST("/")
+    Call<Model> changeFileWithoutImage(@Field("FileName") String name,
+                                       @Field("Request") String req, @Field("ProjectId") String id,
+                                       @Field("FileLink") String link, @Field("UserMail") String mail, @Field("FileId") String fileId);
+
+    @FormUrlEncoded
+    @POST("/")
+    Call<Model> getProjectFilesIds(@Field("Request") String req, @Field("ProjectId") String id);
+
+    @FormUrlEncoded
+    @POST("/")
+    Call<Model> getProjectFiles(@Field("Request") String req, @Field("FilesId") String id);
+
+    @FormUrlEncoded
+    @POST("/")
+    Call<Model> fixFile(@Field("Request") String req, @Field("FileId") String id, @Field("UserMail") String mail, @Field("ProjectId") String projectId);
+
+    @FormUrlEncoded
+    @POST("/")
+    Call<Model> detachFile(@Field("Request") String req, @Field("FileId") String id, @Field("UserMail") String mail, @Field("ProjectId") String projectId);
+
+    @FormUrlEncoded
+    @POST("/")
+    Call<Model> deleteFile(@Field("Request") String req, @Field("FileId") String id, @Field("UserMail") String mail, @Field("ProjectId") String projectId);
+
 }
