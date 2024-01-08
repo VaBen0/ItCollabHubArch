@@ -6,6 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".ProjectFiles">
 
+    <ImageView
+        android:id="@+id/bguser"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/gradient_blue"
+        app:layout_constraintBottom_toBottomOf="@+id/textView36"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.cardview.widget.CardView
         android:id="@+id/logo"
         android:layout_width="60dp"
@@ -150,8 +160,8 @@
 
         <ImageView
             android:id="@+id/addFile"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
             android:layout_marginEnd="15dp"
             android:src="@drawable/violete_add"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -160,8 +170,8 @@
 
         <Button
             android:id="@+id/addPhoto"
-            android:layout_width="50dp"
-            android:layout_height="35dp"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
             android:layout_marginEnd="10dp"
             android:backgroundTint="@color/violete"
             android:paddingStart="-1dp"
@@ -170,7 +180,7 @@
             android:paddingBottom="-1dp"
             android:text="Добавить фото"
             android:textColor="@color/white"
-            android:textSize="8sp"
+            android:textSize="9sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/addFile"
             app:layout_constraintTop_toTopOf="parent" />

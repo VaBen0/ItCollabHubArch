@@ -374,6 +374,5 @@ public class ControlPanel extends AppCompatActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
-
     }
 }

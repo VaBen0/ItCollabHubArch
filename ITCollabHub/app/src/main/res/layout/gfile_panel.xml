@@ -54,8 +54,8 @@
 
     <ImageView
         android:id="@+id/deleteBut"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="27dp"
+        android:layout_height="27dp"
         android:layout_marginEnd="15dp"
         android:src="@drawable/delete_icon"
         app:layout_constraintBottom_toBottomOf="@+id/fileName"
@@ -64,8 +64,8 @@
 
     <ImageView
         android:id="@+id/editBut"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="27dp"
+        android:layout_height="27dp"
         android:layout_marginEnd="5dp"
         app:layout_constraintBottom_toBottomOf="@+id/fileName"
         app:layout_constraintEnd_toStartOf="@+id/deleteBut"
@@ -74,9 +74,21 @@
 
     <ImageView
         android:id="@+id/zakrepBut"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:rotation="45"
+        android:layout_width="27dp"
+        android:layout_height="27dp"
         android:layout_marginEnd="5dp"
+        app:layout_constraintBottom_toBottomOf="@+id/fileName"
+        app:layout_constraintEnd_toStartOf="@+id/editBut"
+        app:layout_constraintTop_toTopOf="@+id/fileName"
+        app:srcCompat="@drawable/zakrep_icon1" />
+
+    <ImageView
+        android:id="@+id/zakrepBut1"
+        android:layout_width="27dp"
+        android:layout_height="27dp"
+        android:layout_marginEnd="5dp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/fileName"
         app:layout_constraintEnd_toStartOf="@+id/editBut"
         app:layout_constraintTop_toTopOf="@+id/fileName"

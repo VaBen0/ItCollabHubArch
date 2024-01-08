@@ -53,6 +53,7 @@ public class EditFile extends AppCompatActivity {
         int score = sPref.getInt("UserScore", 0);
 
         binding = ActivityEditFileBinding.inflate(getLayoutInflater());
+        setActivityFormat(score);
 
         setContentView(binding.getRoot());
         registerResult();
@@ -214,5 +215,44 @@ public class EditFile extends AppCompatActivity {
                     }
                 }
         );
+    }
+
+    private void setActivityFormat(int score){
+        if(score < 100){
+            binding.bguser.setBackgroundResource(R.drawable.gradient_blue);
+            getWindow().setStatusBarColor(ContextCompat.getColor(EditFile.this,R.color.blue));
+        }
+        else if(score < 300){
+            binding.bguser.setBackgroundResource(R.drawable.gradient_green);
+            getWindow().setStatusBarColor(ContextCompat.getColor(EditFile.this,R.color.green));
+        }
+        else if(score < 1000){
+            binding.bguser.setBackgroundResource(R.drawable.gradient_brown);
+            getWindow().setStatusBarColor(ContextCompat.getColor(EditFile.this,R.color.brown));
+        }
+        else if(score < 2500){
+            binding.bguser.setBackgroundResource(R.drawable.gradient_light_gray);
+            getWindow().setStatusBarColor(ContextCompat.getColor(EditFile.this,R.color.light_gray));
+        }
+        else if(score < 7000){
+            binding.bguser.setBackgroundResource(R.drawable.gradient_ohra);
+            getWindow().setStatusBarColor(ContextCompat.getColor(EditFile.this,R.color.ohra));
+        }
+        else if(score < 17000){
+            binding.bguser.setBackgroundResource(R.drawable.gradient_red);
+            getWindow().setStatusBarColor(ContextCompat.getColor(EditFile.this,R.color.red));
+        }
+        else if(score < 30000){
+            binding.bguser.setBackgroundResource(R.drawable.gradient_orange);
+            getWindow().setStatusBarColor(ContextCompat.getColor(EditFile.this,R.color.orange));
+        }
+        else if(score < 50000){
+            binding.bguser.setBackgroundResource(R.drawable.gradient_violete);
+            getWindow().setStatusBarColor(ContextCompat.getColor(EditFile.this,R.color.violete));
+        }
+        else{
+            binding.bguser.setBackgroundResource(R.drawable.gradient_blue_green);
+            getWindow().setStatusBarColor(ContextCompat.getColor(EditFile.this,R.color.main_green));
+        }
     }
 }

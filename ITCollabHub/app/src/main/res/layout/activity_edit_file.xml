@@ -6,6 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".EditFile">
 
+    <ImageView
+        android:id="@+id/bguser"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/gradient_blue"
+        app:layout_constraintBottom_toBottomOf="@+id/textView36"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.cardview.widget.CardView
         android:id="@+id/logo"
         android:layout_width="60dp"
@@ -150,15 +160,15 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginEnd="15dp"
-            android:src="@drawable/violete_add"
+            android:src="@drawable/notban"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/imagePurp"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/changePhoto1"
-            android:layout_width="50dp"
-            android:layout_height="35dp"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
             android:layout_marginEnd="10dp"
             android:backgroundTint="@color/violete"
             android:paddingStart="-1dp"
@@ -167,7 +177,7 @@
             android:paddingBottom="-1dp"
             android:text="Изменить фото"
             android:textColor="@color/white"
-            android:textSize="8sp"
+            android:textSize="9sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/saveChanges1"
             app:layout_constraintTop_toTopOf="parent" />
@@ -178,7 +188,7 @@
         android:id="@+id/imageView11"
         android:layout_width="300dp"
         android:layout_height="300dp"
-        android:src="@drawable/app_logo"
+        android:src="?logo_type"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

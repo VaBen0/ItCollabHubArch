@@ -15,6 +15,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -46,6 +47,7 @@ public class ProjectFiles extends AppCompatActivity {
     ActivityProjectFilesBinding binding;
     private String prId, projectTitle, photoProject, mail;
 
+    Drawable fixed;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +57,9 @@ public class ProjectFiles extends AppCompatActivity {
         mail = sPref.getString("UserMail", "");
         int score = sPref.getInt("UserScore", 0);
 
+
         binding = ActivityProjectFilesBinding.inflate(getLayoutInflater());
+        setActivityFormat(score);
 
         setContentView(binding.getRoot());
         registerResult();
@@ -108,8 +112,8 @@ public class ProjectFiles extends AppCompatActivity {
                             binding.fileLink.getText().toString(), prId, mail, new CallBackInt() {
                                 @Override
                                 public void invoke(String res) {
-                                    binding.fileName.setHint("");
-                                    binding.fileLink.setHint("");
+                                    binding.fileName.setText("");
+                                    binding.fileLink.setText("");
                                     Glide
                                             .with(ProjectFiles.this)
                                             .load(photoProject)
@@ -235,8 +239,9 @@ public class ProjectFiles extends AppCompatActivity {
                     ImageView editBut = custom.findViewById(R.id.editBut);
                     ImageView deleteBut = custom.findViewById(R.id.deleteBut);
                     ImageView zakrepBut = custom.findViewById(R.id.zakrepBut);
+                    ImageView zakrepBut1 = custom.findViewById(R.id.zakrepBut1);
                     //ImageView editBut = custom.findViewById(R.id.editProblem);
-
+                    int place = i / 4;
                     name.setText(inf[i]);
 
                     Glide
@@ -245,7 +250,9 @@ public class ProjectFiles extends AppCompatActivity {
                             .into(loadImg);
 
                     if(inf[i + 2].equals("1")){
-                        back.setBackgroundResource(R.drawable.violete_transperent);
+                        back.setBackground(fixed);
+                        zakrepBut.setVisibility(View.GONE);
+                        zakrepBut1.setVisibility(View.VISIBLE);
                     }
                     int finalI = i;
 
@@ -256,27 +263,38 @@ public class ProjectFiles extends AppCompatActivity {
                         }
                     });
 
+                    zakrepBut1.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            PostDatas postDatas = new PostDatas();
+                                postDatas.postDataDetachFile("DetachedFile", prId, mail, idm[finalI / 4], new CallBackInt() {
+                                    @Override
+                                    public void invoke(String res) {
+                                        binding.filesPlace.removeView(custom);
+                                        back.setBackgroundResource(R.drawable.progress_panel_background);
+                                        zakrepBut1.setVisibility(View.GONE);
+                                        zakrepBut.setVisibility(View.VISIBLE);
+                                        binding.filesPlace.addView(custom, place);
+                                        inf[finalI + 2] = "0";
+                                    }
+                                });
+                        }
+                    });
                     zakrepBut.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             PostDatas postDatas = new PostDatas();
-                            if(inf[finalI + 2].equals("1")){
-                                postDatas.postDataDetachFile("DetachedFile", prId, mail, idm[finalI / 4], new CallBackInt() {
-                                    @Override
-                                    public void invoke(String res) {
-                                        back.setBackgroundResource(R.drawable.progress_panel_background);
-                                    }
-                                });
-                            } else{
-                                postDatas.postDataFixFile("FixFile", prId, mail, idm[finalI / 4], new CallBackInt() {
-                                    @Override
-                                    public void invoke(String res) {
-                                        binding.filesPlace.removeView(custom);
-                                        back.setBackgroundResource(R.drawable.violete_transperent);
-                                        binding.filesPlace.addView(custom, 0);
-                                    }
-                                });
-                            }
+                            postDatas.postDataFixFile("FixFile", prId, mail, idm[finalI / 4], new CallBackInt() {
+                                @Override
+                                public void invoke(String res) {
+                                    binding.filesPlace.removeView(custom);
+                                    zakrepBut.setVisibility(View.GONE);
+                                    zakrepBut1.setVisibility(View.VISIBLE);
+                                    back.setBackground(fixed);
+                                    binding.filesPlace.addView(custom, 0);
+                                    inf[finalI + 2] = "1";
+                                }
+                            });
                         }
                     });
 
@@ -339,5 +357,53 @@ public class ProjectFiles extends AppCompatActivity {
         super.onRestart();
         binding.filesPlace.removeAllViews();
         getIds();
+    }
+
+    private void setActivityFormat(int score){
+        if(score < 100){
+            binding.bguser.setBackgroundResource(R.drawable.gradient_blue);
+            getWindow().setStatusBarColor(ContextCompat.getColor(ProjectFiles.this,R.color.blue));
+            fixed = getResources().getDrawable(R.drawable.blue_transperent);
+        }
+        else if(score < 300){
+            binding.bguser.setBackgroundResource(R.drawable.gradient_green);
+            getWindow().setStatusBarColor(ContextCompat.getColor(ProjectFiles.this,R.color.green));
+            fixed = getResources().getDrawable(R.drawable.green_transperent);
+        }
+        else if(score < 1000){
+            binding.bguser.setBackgroundResource(R.drawable.gradient_brown);
+            getWindow().setStatusBarColor(ContextCompat.getColor(ProjectFiles.this,R.color.brown));
+            fixed = getResources().getDrawable(R.drawable.brown_transperent);
+        }
+        else if(score < 2500){
+            binding.bguser.setBackgroundResource(R.drawable.gradient_light_gray);
+            getWindow().setStatusBarColor(ContextCompat.getColor(ProjectFiles.this,R.color.light_gray));
+            fixed = getResources().getDrawable(R.drawable.light_gray_transperent);
+        }
+        else if(score < 7000){
+            binding.bguser.setBackgroundResource(R.drawable.gradient_ohra);
+            getWindow().setStatusBarColor(ContextCompat.getColor(ProjectFiles.this,R.color.ohra));
+            fixed = getResources().getDrawable(R.drawable.ohra_transperent);
+        }
+        else if(score < 17000){
+            binding.bguser.setBackgroundResource(R.drawable.gradient_red);
+            getWindow().setStatusBarColor(ContextCompat.getColor(ProjectFiles.this,R.color.red));
+            fixed = getResources().getDrawable(R.drawable.red_transperent);
+        }
+        else if(score < 30000){
+            binding.bguser.setBackgroundResource(R.drawable.gradient_orange);
+            getWindow().setStatusBarColor(ContextCompat.getColor(ProjectFiles.this,R.color.orange));
+            fixed = getResources().getDrawable(R.drawable.orange_transperent);
+        }
+        else if(score < 50000){
+            binding.bguser.setBackgroundResource(R.drawable.gradient_violete);
+            getWindow().setStatusBarColor(ContextCompat.getColor(ProjectFiles.this,R.color.violete));
+            fixed = getResources().getDrawable(R.drawable.violete_transperent);
+        }
+        else{
+            binding.bguser.setBackgroundResource(R.drawable.gradient_blue_green);
+            getWindow().setStatusBarColor(ContextCompat.getColor(ProjectFiles.this,R.color.main_green));
+            fixed = getResources().getDrawable(R.drawable.main_green_transperent);
+        }
     }
 }

@@ -19,6 +19,7 @@
         <item name="advertisments_icon">@drawable/megaphone</item>
         <item name="edit_project_icon">@drawable/redaktirovat</item>
         <item name="chat_icon">@drawable/chat</item>
+        <item name="logo_type">@drawable/app_logo</item>
     </style>
 
     <style name="Theme.ITCollabHub" parent="Base.Theme.ITCollabHub">

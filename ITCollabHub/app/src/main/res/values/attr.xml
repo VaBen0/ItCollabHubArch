@@ -10,4 +10,5 @@
     <attr name="advertisments_icon" format="reference"/>
     <attr name="edit_project_icon" format="reference"/>
     <attr name="chat_icon" format="reference"/>
+    <attr name="logo_type" format="reference"/>
 </resources>
