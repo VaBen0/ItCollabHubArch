@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 
     <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/fileImage"
+        android:id="@+id/advertismentImage"
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:layout_marginStart="15dp"
@@ -31,26 +31,26 @@
         android:layout_height="60dp"
         android:background="@drawable/progress_panel_background"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/fileImage"
-        app:layout_constraintStart_toStartOf="@+id/fileImage"/>
+        app:layout_constraintEnd_toEndOf="@+id/advertismentImage"
+        app:layout_constraintStart_toStartOf="@+id/advertismentImage"/>
 
-        <TextView
-            android:id="@+id/fileName"
-            android:layout_width="0dp"
-            android:layout_height="35dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="10dp"
-            android:backgroundTint="@color/transparent"
-            android:gravity="center_vertical"
-            android:hint="Новый файла"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
-            android:textSize="15sp"
-            android:textStyle="bold|italic"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/zakrepBut"
-            app:layout_constraintStart_toStartOf="@+id/fileImage"
-            app:layout_constraintTop_toTopOf="@+id/fileImage" />
+    <TextView
+        android:id="@+id/fileName"
+        android:layout_width="0dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="10dp"
+        android:backgroundTint="@color/transparent"
+        android:gravity="center_vertical"
+        android:hint="Название объявления"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textSize="15sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/editBut"
+        app:layout_constraintStart_toStartOf="@+id/advertismentImage"
+        app:layout_constraintTop_toTopOf="@+id/advertismentImage" />
 
     <ImageView
         android:id="@+id/deleteBut"
@@ -59,7 +59,7 @@
         android:layout_marginEnd="15dp"
         android:src="@drawable/delete_icon"
         app:layout_constraintBottom_toBottomOf="@+id/fileName"
-        app:layout_constraintEnd_toEndOf="@+id/fileImage"
+        app:layout_constraintEnd_toEndOf="@+id/advertismentImage"
         app:layout_constraintTop_toTopOf="@+id/fileName" />
 
     <ImageView
@@ -71,17 +71,6 @@
         app:layout_constraintEnd_toStartOf="@+id/deleteBut"
         app:layout_constraintTop_toTopOf="@+id/fileName"
         app:srcCompat="@drawable/pen" />
-
-    <ImageView
-        android:id="@+id/zakrepBut"
-        android:rotation="45"
-        android:layout_width="27dp"
-        android:layout_height="27dp"
-        android:layout_marginEnd="5dp"
-        app:layout_constraintBottom_toBottomOf="@+id/fileName"
-        app:layout_constraintEnd_toStartOf="@+id/editBut"
-        app:layout_constraintTop_toTopOf="@+id/fileName"
-        app:srcCompat="@drawable/zakrep_icon1" />
 
     <ImageView
         android:id="@+id/zakrepBut1"

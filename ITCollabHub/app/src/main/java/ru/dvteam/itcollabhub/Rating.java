@@ -39,12 +39,19 @@ public class Rating extends Fragment {
         TextView statusView = v.findViewById(R.id.status);
         TextView nextScore = v.findViewById(R.id.nextScore);
         TextView nextStatus = v.findViewById(R.id.nextstatus);
+        TextView activeProjects = v.findViewById(R.id.activeProjects);
+        TextView archivProjects = v.findViewById(R.id.endProjects);
 
         Profile profile = (Profile) getActivity();
 
         assert profile != null;
         int score = profile.getScore();
+        int activePr = profile.getActiveProjects();
+        int archivePr = profile.getArchiveProjects();
         String chast;
+
+        activeProjects.setText("Активных проектов: " + activePr);
+        archivProjects.setText("Завершённых проектов: " + archivePr);
 
         String status;
 
@@ -127,7 +134,7 @@ public class Rating extends Fragment {
             status = "Гранд-пользователь I";
         }
         else if(score < 30000){
-            selectedColor = Color.parseColor("#4F0070");
+            selectedColor = Color.parseColor("#9000CC");
             nextScore.setTextColor(selectedColor);
             nextStatus.setText("Следующая цель: Гранд-пользователь III");
             nextStatus.setTextColor(selectedColor);

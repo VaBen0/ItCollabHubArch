@@ -6,6 +6,7 @@
     android:layout_height="200dp">
 
 
+
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/loadImg"
         android:layout_width="130dp"
@@ -20,7 +21,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:shapeAppearance="@style/CornerCut"/>
+        app:shapeAppearance="@style/CornerCut2" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/imageView9"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="@+id/loadImg"
+        app:layout_constraintEnd_toEndOf="@+id/loadImg"
+        app:layout_constraintStart_toStartOf="@+id/loadImg"
+        app:shapeAppearance="@style/CornerCut2"
+        app:srcCompat="@drawable/new_shadow1" />
 
     <TextView
         android:id="@+id/textView32"
@@ -45,6 +57,8 @@
         android:textSize="11sp"
         app:layout_constraintBottom_toTopOf="@+id/textView32"
         app:layout_constraintStart_toStartOf="parent" />
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

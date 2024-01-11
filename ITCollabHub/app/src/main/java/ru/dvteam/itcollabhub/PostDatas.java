@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.loader.content.CursorLoader;
 
 import java.io.File;
+import java.io.IOException;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -125,12 +126,13 @@ public class PostDatas {
             public void onResponse(Call<Model> call, retrofit2.Response<Model> response) {
                 assert response.body() != null;
                 result.invoke(response.body().getName(), response.body().getUrlImg(),
-                        response.body().getTopScore(), response.body().getTopStatus(), response.body().getrFr());
+                        response.body().getTopScore(), response.body().getTopStatus(), response.body().getrFr(),
+                        response.body().getActivityProjects(), response.body().getArchiveProjects());
             }
 
             @Override
             public void onFailure(Call<Model> call, Throwable t) {
-                result.invoke("","", 0, "", "");
+                result.invoke("","", 0, "", "", 0, 0);
             }
         });
     }
@@ -855,6 +857,166 @@ public class PostDatas {
     public void postDataGetProjectFiles(String req, String fileId, CallBackInt result){
         Methods methods = RetrofitClient.getRetrofitInstance().create(Methods.class);
         Call<Model> call = methods.getProjectFiles(req, fileId);
+
+        call.enqueue(new Callback<Model>() {
+            @Override
+            public void onResponse(Call<Model> call, retrofit2.Response<Model> response) {
+                assert response.body() != null;
+                result.invoke(response.body().getReturn());
+            }
+
+            @Override
+            public void onFailure(Call<Model> call, Throwable t) {
+                //result.invoke("lol");
+            }
+        });
+    }
+
+    public void postDataGetProjectAdverts(String req, String id, CallBackInt result){
+        Methods methods = RetrofitClient.getRetrofitInstance().create(Methods.class);
+        Call<Model> call = methods.getProjectPurposeIds(req, id);
+
+        call.enqueue(new Callback<Model>() {
+            @Override
+            public void onResponse(Call<Model> call, retrofit2.Response<Model> response) {
+                assert response.body() != null;
+                result.invoke(response.body().getPurposesids());
+            }
+
+            @Override
+            public void onFailure(Call<Model> call, Throwable t) {
+                //result.invoke("lol");
+            }
+        });
+    }
+
+    public void postDataCreateAdvert(String req, String name, RequestBody requestFile, String advertisment, String id, String mail, CallBackInt result){
+
+        MultipartBody.Part fileToUpload = MultipartBody.Part.createFormData("file", "lol", requestFile);
+        RequestBody requestName = RequestBody.create(MediaType.parse("text/plain"), name);
+        RequestBody requestReq = RequestBody.create(MediaType.parse("text/plain"), req);
+        RequestBody requestLink = RequestBody.create(MediaType.parse("text/plain"), advertisment);
+        RequestBody requestId = RequestBody.create(MediaType.parse("text/plain"), id);
+        RequestBody requestMail = RequestBody.create(MediaType.parse("text/plain"), mail);
+
+        Methods methods = RetrofitClient.getRetrofitInstance().create(Methods.class);
+        Call<Model> call = methods.createAdvert(fileToUpload, requestName, requestReq, requestLink, requestId, requestMail);
+        call.enqueue(new Callback<Model>() {
+            @Override
+            public void onResponse(Call<Model> call, retrofit2.Response<Model> response) {
+                assert response.body() != null;
+                result.invoke(response.body().getReturn());
+            }
+
+            @Override
+            public void onFailure(Call<Model> call, Throwable t) {
+                result.invoke("All bad");
+            }
+        });
+    }
+
+    public void postDataCreateAdvertWithoutImage(String req, String name, String advertisment, String id, String mail, CallBackInt result){
+        Methods methods = RetrofitClient.getRetrofitInstance().create(Methods.class);
+        Call<Model> call = methods.createAdvertWithoutImage(req, id, name, advertisment, mail);
+
+        call.enqueue(new Callback<Model>() {
+            @Override
+            public void onResponse(Call<Model> call, retrofit2.Response<Model> response) {
+                assert response.body() != null;
+                result.invoke(response.body().getReturn());
+            }
+
+            @Override
+            public void onFailure(Call<Model> call, Throwable t) {
+                Log.e("Trowble",t.toString());
+            }
+        });
+    }
+
+    public void postDataChangeAdvert(String req, String name, RequestBody requestFile, String advertisment, String id, String mail,
+                                   String fileId, CallBackInt result){
+
+        MultipartBody.Part fileToUpload = MultipartBody.Part.createFormData("file", "lol", requestFile);
+        RequestBody requestName = RequestBody.create(MediaType.parse("text/plain"), name);
+        RequestBody requestReq = RequestBody.create(MediaType.parse("text/plain"), req);
+        RequestBody requestLink = RequestBody.create(MediaType.parse("text/plain"), advertisment);
+        RequestBody requestId = RequestBody.create(MediaType.parse("text/plain"), id);
+        RequestBody requestMail = RequestBody.create(MediaType.parse("text/plain"), mail);
+        RequestBody requestFileId = RequestBody.create(MediaType.parse("text/plain"), fileId);
+
+        Methods methods = RetrofitClient.getRetrofitInstance().create(Methods.class);
+        Call<Model> call = methods.changeAdvert(fileToUpload, requestName, requestReq, requestLink, requestId, requestMail, requestFileId);
+        call.enqueue(new Callback<Model>() {
+            @Override
+            public void onResponse(Call<Model> call, retrofit2.Response<Model> response) {
+                assert response.body() != null;
+                result.invoke(response.body().getReturn());
+            }
+
+            @Override
+            public void onFailure(Call<Model> call, Throwable t) {
+                result.invoke("All bad");
+            }
+        });
+    }
+
+    public void postDataChangeAdvertWithoutImage(String req, String name, String advertisment, String id, String mail, String fileId, CallBackInt result){
+        Methods methods = RetrofitClient.getRetrofitInstance().create(Methods.class);
+        Call<Model> call = methods.changeAdvertWithoutImage(name, req, id, advertisment, mail, fileId);
+
+        call.enqueue(new Callback<Model>() {
+            @Override
+            public void onResponse(Call<Model> call, retrofit2.Response<Model> response) {
+                assert response.body() != null;
+                result.invoke(response.body().getReturn());
+            }
+
+            @Override
+            public void onFailure(Call<Model> call, Throwable t) {
+                //result.invoke("lol");
+            }
+        });
+    }
+
+    public void postDataGetProjectAds(String req, String adsId, CallBackInt result){
+        Methods methods = RetrofitClient.getRetrofitInstance().create(Methods.class);
+        Call<Model> call = methods.getProjectAds(req, adsId);
+
+        call.enqueue(new Callback<Model>() {
+            @Override
+            public void onResponse(Call<Model> call, retrofit2.Response<Model> response) {
+                assert response.body() != null;
+                result.invoke(response.body().getReturn());
+            }
+
+            @Override
+            public void onFailure(Call<Model> call, Throwable t) {
+                //result.invoke("lol");
+            }
+        });
+    }
+
+    public void postDataGetProjectAdsIds(String req, String prId, CallBackInt result){
+        Methods methods = RetrofitClient.getRetrofitInstance().create(Methods.class);
+        Call<Model> call = methods.getProjectAdvertsIds(req, prId);
+
+        call.enqueue(new Callback<Model>() {
+            @Override
+            public void onResponse(Call<Model> call, retrofit2.Response<Model> response) {
+                assert response.body() != null;
+                result.invoke(response.body().getReturn());
+            }
+
+            @Override
+            public void onFailure(Call<Model> call, Throwable t) {
+                //result.invoke("lol");
+            }
+        });
+    }
+
+    public void postDataDeleteAd(String req, String id, String mail, String adId, CallBackInt result){
+        Methods methods = RetrofitClient.getRetrofitInstance().create(Methods.class);
+        Call<Model> call = methods.deleteAd(req, adId, mail, id);
 
         call.enqueue(new Callback<Model>() {
             @Override

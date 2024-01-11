@@ -32,19 +32,20 @@ import java.io.File;
 
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
-import ru.dvteam.itcollabhub.databinding.ActivityProblemsBinding;
+import ru.dvteam.itcollabhub.databinding.ActivityProjectAdvertismentsBinding;
 
-public class Problems extends AppCompatActivity {
+public class ProjectAdvertisments extends AppCompatActivity {
 
-    ActivityProblemsBinding binding;
-    int countProblems = 0, countTicked = 0;
+    ActivityProjectAdvertismentsBinding binding;
+
     private static final int PICK_IMAGES_CODE = 0;
     private String mediaPath = "";
     private Boolean acces = false, clicked = false;
     private static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 1;
     ActivityResultLauncher<Intent> resultLauncher;
 
-    String projectTitle, photoProject, prId, mail;
+    private String projectTitle, photoProject, prId, mail;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,46 +54,46 @@ public class Problems extends AppCompatActivity {
         mail = sPref.getString("UserMail", "");
         int score = sPref.getInt("UserScore", 0);
 
-        binding = ActivityProblemsBinding.inflate(getLayoutInflater());
+        binding = ActivityProjectAdvertismentsBinding.inflate(getLayoutInflater());
 
         setContentView(binding.getRoot());
         registerResult();
 
         if(score < 100){
             binding.bguser.setBackgroundResource(R.drawable.gradient_blue);
-            getWindow().setStatusBarColor(ContextCompat.getColor(Problems.this,R.color.blue));
+            getWindow().setStatusBarColor(ContextCompat.getColor(ProjectAdvertisments.this,R.color.blue));
         }
         else if(score < 300){
             binding.bguser.setBackgroundResource(R.drawable.gradient_green);
-            getWindow().setStatusBarColor(ContextCompat.getColor(Problems.this,R.color.green));
+            getWindow().setStatusBarColor(ContextCompat.getColor(ProjectAdvertisments.this,R.color.green));
         }
         else if(score < 1000){
             binding.bguser.setBackgroundResource(R.drawable.gradient_brown);
-            getWindow().setStatusBarColor(ContextCompat.getColor(Problems.this,R.color.brown));
+            getWindow().setStatusBarColor(ContextCompat.getColor(ProjectAdvertisments.this,R.color.brown));
         }
         else if(score < 2500){
             binding.bguser.setBackgroundResource(R.drawable.gradient_light_gray);
-            getWindow().setStatusBarColor(ContextCompat.getColor(Problems.this,R.color.light_gray));
+            getWindow().setStatusBarColor(ContextCompat.getColor(ProjectAdvertisments.this,R.color.light_gray));
         }
         else if(score < 7000){
             binding.bguser.setBackgroundResource(R.drawable.gradient_ohra);
-            getWindow().setStatusBarColor(ContextCompat.getColor(Problems.this,R.color.ohra));
+            getWindow().setStatusBarColor(ContextCompat.getColor(ProjectAdvertisments.this,R.color.ohra));
         }
         else if(score < 17000){
             binding.bguser.setBackgroundResource(R.drawable.gradient_red);
-            getWindow().setStatusBarColor(ContextCompat.getColor(Problems.this,R.color.red));
+            getWindow().setStatusBarColor(ContextCompat.getColor(ProjectAdvertisments.this,R.color.red));
         }
         else if(score < 30000){
             binding.bguser.setBackgroundResource(R.drawable.gradient_orange);
-            getWindow().setStatusBarColor(ContextCompat.getColor(Problems.this,R.color.orange));
+            getWindow().setStatusBarColor(ContextCompat.getColor(ProjectAdvertisments.this,R.color.orange));
         }
         else if(score < 50000){
             binding.bguser.setBackgroundResource(R.drawable.gradient_violete);
-            getWindow().setStatusBarColor(ContextCompat.getColor(Problems.this,R.color.violete));
+            getWindow().setStatusBarColor(ContextCompat.getColor(ProjectAdvertisments.this,R.color.violete));
         }
         else{
             binding.bguser.setBackgroundResource(R.drawable.gradient_blue_green);
-            getWindow().setStatusBarColor(ContextCompat.getColor(Problems.this,R.color.main_green));
+            getWindow().setStatusBarColor(ContextCompat.getColor(ProjectAdvertisments.this,R.color.main_green));
         }
 
 
@@ -108,61 +109,60 @@ public class Problems extends AppCompatActivity {
         projectTitle = arguments.getString("projectTitle");
         photoProject = arguments.getString("projectUrlPhoto");
 
-        postProblems();
+
 
         binding.nameProject.setText(projectTitle);
         Glide
-                .with(Problems.this)
+                .with(ProjectAdvertisments.this)
                 .load(photoProject)
                 .into(binding.prLogo);
         Glide
-                .with(Problems.this)
+                .with(ProjectAdvertisments.this)
                 .load(photoProject)
-                .into(binding.problemImage);
+                .into(binding.fileImage);
 
+        getAdvertIds();
 
-        binding.addProblem.setOnClickListener(new View.OnClickListener() {
+        binding.addAdvert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(countProblems == 30){
-                    Toast.makeText(Problems.this, "Вы достигли предела", Toast.LENGTH_SHORT).show();
+                if(binding.advertName.getText().toString().isEmpty()){
+                    Toast.makeText(ProjectAdvertisments.this, "Нет названия", Toast.LENGTH_SHORT).show();
                 }
-                else if(binding.name.getText().toString().isEmpty()){
-                    Toast.makeText(Problems.this, "Нет названия", Toast.LENGTH_SHORT).show();
+                else if(binding.advert.getText().toString().isEmpty()){
+                    Toast.makeText(ProjectAdvertisments.this, "Нет описания", Toast.LENGTH_SHORT).show();
                 }
-                else if(binding.description1.getText().toString().isEmpty()){
-                    Toast.makeText(Problems.this, "Нет описания", Toast.LENGTH_SHORT).show();
-                }
-                else if (mediaPath.isEmpty()) {
+                if(mediaPath.isEmpty()){
                     PostDatas post = new PostDatas();
-                    post.postDataCreateProblemWithoutImage("CreateProblemWithoutImage", binding.name.getText().toString(),
-                            binding.description1.getText().toString(), prId, mail, new CallBackInt() {
+                    post.postDataCreateAdvertWithoutImage("CreateAdWithoutImage", binding.advertName.getText().toString(),
+                            binding.advert.getText().toString(), prId, mail, new CallBackInt() {
                                 @Override
                                 public void invoke(String res) {
-                                    binding.name.setText("");
-                                    binding.description1.setText("");
-                                    binding.reminderPlace.removeAllViews();
-                                    postProblems();
+                                    binding.advertName.setText("");
+                                    binding.advert.setText("");
+                                    binding.advertsPlace.removeAllViews();
+                                    getAdvertIds();
                                 }
                             });
-                } else{
+                }
+                else{
+                    PostDatas post = new PostDatas();
                     File file = new File(mediaPath);
                     RequestBody requestBody = RequestBody.create(MediaType.parse("*/*"), file);
-                    PostDatas post = new PostDatas();
-                    post.postDataCreateProblem("CreateProblem", binding.name.getText().toString(), requestBody,
-                        binding.description1.getText().toString(), prId, mail, new CallBackInt() {
-                            @Override
-                            public void invoke(String res) {
-                                Glide
-                                        .with(Problems.this)
-                                        .load(photoProject)
-                                        .into(binding.problemImage);
-                                binding.name.setText("");
-                                binding.description1.setText("");
-                                binding.reminderPlace.removeAllViews();
-                                postProblems();
-                            }
-                        });
+                    post.postDataCreateAdvert("CreateAd", binding.advertName.getText().toString(), requestBody,
+                            binding.advert.getText().toString(), prId, mail, new CallBackInt() {
+                                @Override
+                                public void invoke(String res) {
+                                    binding.advertName.setText("");
+                                    binding.advert.setText("");
+                                    Glide
+                                            .with(ProjectAdvertisments.this)
+                                            .load(photoProject)
+                                            .into(binding.fileImage);
+                                    binding.advertsPlace.removeAllViews();
+                                    getAdvertIds();
+                                }
+                            });
                 }
             }
         });
@@ -174,9 +174,9 @@ public class Problems extends AppCompatActivity {
             binding.addPhoto.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (ContextCompat.checkSelfPermission(Problems.this, android.Manifest.permission.READ_EXTERNAL_STORAGE)
+                    if (ContextCompat.checkSelfPermission(ProjectAdvertisments.this, android.Manifest.permission.READ_EXTERNAL_STORAGE)
                             != PackageManager.PERMISSION_GRANTED) {
-                        ActivityCompat.requestPermissions(Problems.this,
+                        ActivityCompat.requestPermissions(ProjectAdvertisments.this,
                                 new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
                                 MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
                     } else {
@@ -207,7 +207,7 @@ public class Problems extends AppCompatActivity {
                 intent.setAction(Intent.ACTION_PICK);
                 startActivityForResult(Intent.createChooser(intent, "Select Image(s)"), PICK_IMAGES_CODE);
             } else {
-                Toast.makeText(Problems.this, "You loser", Toast.LENGTH_LONG).show();
+                Toast.makeText(ProjectAdvertisments.this, "You loser", Toast.LENGTH_LONG).show();
             }
         }
     }
@@ -227,7 +227,7 @@ public class Problems extends AppCompatActivity {
 
                 int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
                 mediaPath = cursor.getString(columnIndex);
-                binding.problemImage.setImageURI(imageUri);
+                binding.fileImage.setImageURI(imageUri);
                 cursor.close();
                 acces = true;
             }
@@ -251,124 +251,152 @@ public class Problems extends AppCompatActivity {
 
                             int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
                             mediaPath = cursor.getString(columnIndex);
-                            binding.problemImage.setImageURI(imageUri);
+                            binding.fileImage.setImageURI(imageUri);
                             cursor.close();
                             acces = true;
                         }catch (Exception e){
-                            Toast.makeText(Problems.this, "LOSER", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ProjectAdvertisments.this, "LOSER", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }
         );
     }
 
-
-
-    public void getProblems(String id3){
+    public void getAdverts(String id1, String id2){
         PostDatas post = new PostDatas();
-        post.postDataGetProblems("GetProblems", id3, new CallBackInt() {
+        post.postDataGetProjectAds("GetProjectAds", id1, new CallBackInt() {
             @Override
             public void invoke(String res) {
                 String[] inf = res.split("\uD83D\uDD70");
-                assert id3 != null;
-                String[] idm = id3.split(",");
-                for(int i = 0; i < inf.length; i += 4){
-                    View custom = getLayoutInflater().inflate(R.layout.problem_panel, null);
-                    ImageView loadImg = custom.findViewById(R.id.problemImage);
-                    TextView name = custom.findViewById(R.id.problemName);
-                    TextView descr = custom.findViewById(R.id.problemDescription);
-                    TextView title = custom.findViewById(R.id.problemTitlePanel);
-                    View back = custom.findViewById(R.id.view8);
-                    LinearLayout yesOrNo = custom.findViewById(R.id.yes_or_no);
-                    LinearLayout descript = custom.findViewById(R.id.description_purpose);
-                    Button yes = custom.findViewById(R.id.yes);
-                    Button no = custom.findViewById(R.id.no);
-                    ImageView editBut = custom.findViewById(R.id.editProblem);
+                String[] idm = id1.split(",");
+                for(int i = 0; i < inf.length; i += 3){
+                    View custom = getLayoutInflater().inflate(R.layout.advertisment_panel, null);
+                    ImageView loadImg = custom.findViewById(R.id.advertismentImage);
+                    TextView name = custom.findViewById(R.id.fileName);
+                    ImageView editBut = custom.findViewById(R.id.editBut);
+                    ImageView deleteBut = custom.findViewById(R.id.deleteBut);
 
-                    if(inf[i + 2].equals("1")){
-                        back.setBackgroundResource(R.drawable.green_transperent);
-                        countTicked += 1;
-                    }
                     int finalI = i;
 
-                    title.setText(inf[i]);
                     name.setText(inf[i]);
-                    descr.setText(inf[i+1]);
                     Glide
-                            .with(Problems.this)
-                            .load(inf[i+3])
+                            .with(ProjectAdvertisments.this)
+                            .load(inf[i+2])
                             .into(loadImg);
 
                     custom.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            if(countTicked == (inf.length / 4) - 1 && inf[finalI + 2].equals("0")){
-                                Toast.makeText(Problems.this, "Эту задачу нельзя отметить выполненной", Toast.LENGTH_SHORT).show();
-                            }
-                            else if(!clicked && inf[finalI + 2].equals("0")) {
-                                back.setBackgroundResource(R.drawable.progress_panel_background2);
-                                descript.setVisibility(View.GONE);
-                                yesOrNo.setVisibility(View.VISIBLE);
-                                clicked = true;
-                            }
-                        }
-                    });
 
-                    yes.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            post.postDatasetProblemIsEnd("SetProblemComplete", idm[finalI / 4], prId, mail, new CallBackInt() {
-                                @Override
-                                public void invoke(String res) {
-                                    back.setBackgroundResource(R.drawable.progress_panel_background);
-                                    descript.setVisibility(View.VISIBLE);
-                                    yesOrNo.setVisibility(View.GONE);
-                                    clicked = false;
-                                    back.setBackgroundResource(R.drawable.green_transperent);
-                                    inf[finalI + 2] = "1";
-                                }
-                            });
-                        }
-                    });
-
-                    no.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            back.setBackgroundResource(R.drawable.progress_panel_background);
-                            descript.setVisibility(View.VISIBLE);
-                            yesOrNo.setVisibility(View.GONE);
-                            clicked = false;
                         }
                     });
 
                     editBut.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            Intent intent = new Intent(Problems.this, EditProblem.class);
-                            intent.putExtra("problemPhoto", inf[finalI+3]);
+                            Intent intent = new Intent(ProjectAdvertisments.this, EditAdvertisment.class);
+                            intent.putExtra("problemPhoto", inf[finalI+2]);
                             intent.putExtra("projectTitle", projectTitle);
                             intent.putExtra("projectUrlPhoto", photoProject);
                             intent.putExtra("projectId1", prId);
                             intent.putExtra("problemName", inf[finalI]);
                             intent.putExtra("problemDescription", inf[finalI + 1]);
-                            intent.putExtra("problemId", idm[finalI / 4]);
+                            intent.putExtra("problemId", idm[finalI / 3]);
+                            //Toast.makeText(ProjectAdvertisments.this, idm[finalI / 3] + " " + prId, Toast.LENGTH_SHORT).show();
                             startActivity(intent);
                         }
                     });
 
-                    countProblems++;
-                    binding.reminderPlace.addView(custom);
+                    deleteBut.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            PostDatas post = new PostDatas();
+                            post.postDataDeleteAd("DeleteAd", prId, mail, idm[finalI / 3], new CallBackInt() {
+                                @Override
+                                public void invoke(String res) {
+                                    binding.advertsPlace.removeView(custom);
+                                }
+                            });
+                        }
+                    });
+
+                    binding.advertsPlace.addView(custom);
+                }
+            }
+        });
+        post.postDataGetProjectAds("GetProjectAds", id2, new CallBackInt() {
+            @Override
+            public void invoke(String res) {
+                String[] inf = res.split("\uD83D\uDD70");
+                String[] idm = id2.split(",");
+                for(int i = 0; i < inf.length; i += 3){
+                    View custom = getLayoutInflater().inflate(R.layout.advertisment_panel, null);
+                    ImageView loadImg = custom.findViewById(R.id.advertismentImage);
+                    TextView name = custom.findViewById(R.id.fileName);
+                    ImageView editBut = custom.findViewById(R.id.editBut);
+                    ImageView deleteBut = custom.findViewById(R.id.deleteBut);
+
+                    int finalI = i;
+
+                    name.setText(inf[i]);
+                    Glide
+                            .with(ProjectAdvertisments.this)
+                            .load(inf[i+2])
+                            .into(loadImg);
+
+                    custom.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                        }
+                    });
+
+                    editBut.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(ProjectAdvertisments.this, EditAdvertisment.class);
+                            intent.putExtra("problemPhoto", inf[finalI+2]);
+                            intent.putExtra("projectTitle", projectTitle);
+                            intent.putExtra("projectUrlPhoto", photoProject);
+                            intent.putExtra("projectId1", prId);
+                            intent.putExtra("problemName", inf[finalI]);
+                            intent.putExtra("problemDescription", inf[finalI + 1]);
+                            intent.putExtra("problemId", idm[finalI / 3]);
+                            //Toast.makeText(ProjectAdvertisments.this, idm[finalI / 3] + " " + prId, Toast.LENGTH_SHORT).show();
+                            startActivity(intent);
+                        }
+                    });
+
+                    deleteBut.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            PostDatas post = new PostDatas();
+                            post.postDataDeleteAd("DeleteAd", prId, mail, idm[finalI / 3], new CallBackInt() {
+                                @Override
+                                public void invoke(String res) {
+                                    binding.advertsPlace.removeView(custom);
+                                }
+                            });
+                        }
+                    });
+
+                    binding.advertsPlace.addView(custom);
                 }
             }
         });
     }
 
-    private void postProblems(){
-        PostDatas postDatas = new PostDatas();
-        postDatas.postDataGetProjectProblems("GetProjectProblemsIDs", prId, new CallBackInt() {
+    public void getAdvertIds(){
+        PostDatas post = new PostDatas();
+        post.postDataGetProjectAdsIds("GetProjectAdsIds", prId, new CallBackInt() {
             @Override
             public void invoke(String res) {
-                getProblems(res);
+                post.postDataGetProjectAdsIds("GetProjectAdsIds2", prId, new CallBackInt() {
+                    @Override
+                    public void invoke(String res2) {
+                        getAdverts(res, res2);
+                    }
+                });
             }
         });
     }
@@ -376,7 +404,7 @@ public class Problems extends AppCompatActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
-        binding.reminderPlace.removeAllViews();
-        postProblems();
+        binding.advertsPlace.removeAllViews();
+        getAdvertIds();
     }
 }

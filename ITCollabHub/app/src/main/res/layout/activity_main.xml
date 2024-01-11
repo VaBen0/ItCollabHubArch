@@ -45,7 +45,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/logo"/>
+            android:src="?logo_type"/>
     </androidx.cardview.widget.CardView>
 
     <LinearLayout

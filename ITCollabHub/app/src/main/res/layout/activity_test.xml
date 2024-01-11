@@ -5,36 +5,13 @@
     android:layout_height="match_parent"
     tools:context=".Test">
 
-    <Button
-        android:id="@+id/choose_file_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/violete"
-        android:layout_centerInParent="true"
-        android:text="Choose File" />
-
-    <TextView
-        android:id="@+id/file_path_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/choose_file_button"
+    <LinearLayout
+        android:id="@+id/remPlace"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:gravity="center"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="20dp"
-        android:textColor="@android:color/black" />
-
-    <Button
-        android:id="@+id/button5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/violete"
-        android:layout_above="@+id/choose_file_button"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="247dp"
-        android:layout_marginBottom="47dp"
-        android:text="Button" />
-
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical"></LinearLayout>
 </RelativeLayout>

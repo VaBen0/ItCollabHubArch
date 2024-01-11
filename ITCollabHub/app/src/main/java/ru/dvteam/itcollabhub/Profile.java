@@ -13,6 +13,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
@@ -29,6 +31,7 @@ public class Profile extends AppCompatActivity {
     private int min, color;
     private String status, mail;
     private boolean rFr;
+    private int archivPr, ativePr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +67,7 @@ public class Profile extends AppCompatActivity {
         LinearLayout profileMenu = findViewById(R.id.profile_menu);
         LinearLayout forumMenu = findViewById(R.id.forum_menu);
         ImageView editProfile = findViewById(R.id.notifications);
+
         UserName.setText(name);
         UserScore.setText(s);
 
@@ -72,7 +76,6 @@ public class Profile extends AppCompatActivity {
             userCircle.setBackgroundResource(R.drawable.circle_blue);
             UserScore.setTextColor(Color.parseColor("#B20000FF"));
             selectedColor = Color.parseColor("#B20000FF");
-            rating_lin.setBackgroundResource(R.drawable.blue_line);
             getWindow().setStatusBarColor(ContextCompat.getColor(Profile.this,R.color.blue));
         }
         else if(score < 300){
@@ -80,7 +83,6 @@ public class Profile extends AppCompatActivity {
             userCircle.setBackgroundResource(R.drawable.circle_green);
             UserScore.setTextColor(Color.parseColor("#B21AFF00"));
             selectedColor = Color.parseColor("#B21AFF00");
-            rating_lin.setBackgroundResource(R.drawable.green_line);
             getWindow().setStatusBarColor(ContextCompat.getColor(Profile.this,R.color.green));
         }
         else if(score < 1000){
@@ -88,7 +90,6 @@ public class Profile extends AppCompatActivity {
             userCircle.setBackgroundResource(R.drawable.circle_brown);
             UserScore.setTextColor(Color.parseColor("#FFCC7722"));
             selectedColor = Color.parseColor("#FFCC7722");
-            rating_lin.setBackgroundResource(R.drawable.brown_line);
             getWindow().setStatusBarColor(ContextCompat.getColor(Profile.this,R.color.brown));
         }
         else if(score < 2500){
@@ -96,7 +97,6 @@ public class Profile extends AppCompatActivity {
             userCircle.setBackgroundResource(R.drawable.circle_light_gray);
             UserScore.setTextColor(Color.parseColor("#B2B5B5B5"));
             selectedColor = Color.parseColor("#B2B5B5B5");
-            rating_lin.setBackgroundResource(R.drawable.light_gray_line);
             getWindow().setStatusBarColor(ContextCompat.getColor(Profile.this,R.color.light_gray));
         }
         else if(score < 7000){
@@ -104,7 +104,6 @@ public class Profile extends AppCompatActivity {
             userCircle.setBackgroundResource(R.drawable.circle_ohra);
             UserScore.setTextColor(Color.parseColor("#FFE8AA0E"));
             selectedColor = Color.parseColor("#FFE8AA0E");
-            rating_lin.setBackgroundResource(R.drawable.ohra_line);
             getWindow().setStatusBarColor(ContextCompat.getColor(Profile.this,R.color.ohra));
         }
         else if(score < 17000){
@@ -112,7 +111,6 @@ public class Profile extends AppCompatActivity {
             userCircle.setBackgroundResource(R.drawable.circle_red);
             UserScore.setTextColor(Color.parseColor("#FF0000"));
             selectedColor = Color.parseColor("#FF0000");
-            rating_lin.setBackgroundResource(R.drawable.red_line);
             getWindow().setStatusBarColor(ContextCompat.getColor(Profile.this,R.color.red));
         }
         else if(score < 30000){
@@ -120,7 +118,6 @@ public class Profile extends AppCompatActivity {
             userCircle.setBackgroundResource(R.drawable.circle_orange);
             UserScore.setTextColor(Color.parseColor("#FFCC7722"));
             selectedColor = Color.parseColor("#FFCC7722");
-            rating_lin.setBackgroundResource(R.drawable.orange_line);
             getWindow().setStatusBarColor(ContextCompat.getColor(Profile.this,R.color.orange));
         }
         else if(score < 50000){
@@ -128,7 +125,6 @@ public class Profile extends AppCompatActivity {
             userCircle.setBackgroundResource(R.drawable.circle_violete);
             UserScore.setTextColor(Color.parseColor("#4F0070"));
             selectedColor = Color.parseColor("#4F0070");
-            rating_lin.setBackgroundResource(R.drawable.violete_line);
             getWindow().setStatusBarColor(ContextCompat.getColor(Profile.this,R.color.violete));
         }
         else{
@@ -136,24 +132,29 @@ public class Profile extends AppCompatActivity {
             userCircle.setBackgroundResource(R.drawable.circle_blue_green);
             UserScore.setTextColor(Color.parseColor("#FF00C6A2"));
             selectedColor = Color.parseColor("#FF00C6A2");
-            rating_lin.setBackgroundResource(R.drawable.blue_green_line);
             getWindow().setStatusBarColor(ContextCompat.getColor(Profile.this,R.color.main_green));
         }
 
+        navController = Navigation.findNavController(this, R.id.nav_host_fragment);
 
         PostDatas post = new PostDatas();
         post.postDataGetUserData(mail, new CallBackInt2() {
             @Override
-            public void invoke(String name, String urlImage, int topScore, String topStatus, String rfr) {
+            public void invoke(String name, String urlImage, int topScore, String topStatus, String rfr, int activityProjects, int archiveProjects) {
                 String s = "Ваши очки: " + topScore;
                 score = topScore;
                 status = topStatus;
+                ativePr = activityProjects;
+                archivPr = archiveProjects;
                 UserName.setText(name);
                 UserScore.setText(s);
                 Glide
                         .with(Profile.this)
                         .load(urlImage)
                         .into(loadedImg);
+
+
+                navController.navigate(R.id.rating);
 
                 if(rfr.equals("0")){rFr = false;}
                 else{rFr = true;}
@@ -217,7 +218,7 @@ public class Profile extends AppCompatActivity {
                 else if(score < 50000){
                     bguser.setBackgroundResource(R.drawable.gradient_violete);
                     userCircle.setBackgroundResource(R.drawable.circle_violete);
-                    UserScore.setTextColor(Color.parseColor("#4F0070"));
+                    UserScore.setTextColor(Color.parseColor("#9000CC"));
                     selectedColor = Color.parseColor("#4F0070");
                     rating_lin.setBackgroundResource(R.drawable.violete_line);
                     getWindow().setStatusBarColor(ContextCompat.getColor(Profile.this,R.color.violete));
@@ -239,7 +240,7 @@ public class Profile extends AppCompatActivity {
             }
         });
 
-        navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+
 
         projects.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -445,5 +446,7 @@ public class Profile extends AppCompatActivity {
         startActivity(intent);
     }
     public int getScore(){return score;}
+    public int getActiveProjects(){return ativePr;}
+    public int getArchiveProjects(){return archivPr;}
 
 }

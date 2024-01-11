@@ -146,8 +146,30 @@ public class UsersProject extends AppCompatActivity {
                         binding.projectPercents.setText(res);
                     }
                 });
+
                 anim.setInterpolator(new DecelerateInterpolator());
                 anim.start();
+                if(isl.equals("1")){
+                    binding.controlPanelMove.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(UsersProject.this, ControlPanel.class);
+                            intent.putExtra("projectId", id);
+                            startActivity(intent);
+                        }
+                    });
+                }
+
+                else{
+                    binding.controlPanelMove.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(UsersProject.this, ControlPanel2.class);
+                            intent.putExtra("projectId", id);
+                            startActivity(intent);
+                        }
+                    });
+                }
 
                 binding.description.setText(descript);
                 String purpose = "Выполненных целей: " + purposes;
@@ -179,14 +201,7 @@ public class UsersProject extends AppCompatActivity {
             }
         });
 
-        binding.controlPanelMove.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(UsersProject.this, ControlPanel.class);
-                intent.putExtra("projectId", id);
-                startActivity(intent);
-            }
-        });
+
     }
 
 }

@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
@@ -92,9 +91,9 @@ public class ProblemsParticip extends AppCompatActivity {
                 //Toast.makeText(ProblemsParticip.this, inf[3], Toast.LENGTH_SHORT).show();
                 for(int i = 0; i < inf.length; i += 4){
                     View custom = getLayoutInflater().inflate(R.layout.problem_panel2, null);
-                    ImageView loadImg = custom.findViewById(R.id.imagePurp);
-                    TextView name = custom.findViewById(R.id.name);
-                    TextView descr = custom.findViewById(R.id.description1);
+                    ImageView loadImg = custom.findViewById(R.id.problemImage);
+                    TextView name = custom.findViewById(R.id.problemName);
+                    TextView descr = custom.findViewById(R.id.problemDescription);
                     View back = custom.findViewById(R.id.view8);
 
                     if(inf[i + 2].equals("1")){

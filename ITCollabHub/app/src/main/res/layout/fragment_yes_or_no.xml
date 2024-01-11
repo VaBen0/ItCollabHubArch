@@ -7,7 +7,7 @@
     tools:context=".YesOrNo">
 
     <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/imagePurp"
+        android:id="@+id/fileImage"
         android:layout_width="match_parent"
         android:layout_height="125dp"
         android:scaleType="centerCrop"

@@ -50,6 +50,7 @@ public class EditProblem extends AppCompatActivity {
         int score = sPref.getInt("UserScore", 0);
 
         binding = ActivityEditProblemBinding.inflate(getLayoutInflater());
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 
         setContentView(binding.getRoot());
 
@@ -81,17 +82,10 @@ public class EditProblem extends AppCompatActivity {
         binding.deleteProblem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Toast.makeText(EditProblem.this, problemId, Toast.LENGTH_SHORT).show();
                 post.postDataDeleteProblem("DeleteProblem", problemId, mail, projectId, new CallBackInt() {
                     @Override
                     public void invoke(String res) {
                         if(res.equals("Okey")){
-                            /*Intent intent = new Intent(EditProblem.this, Problems.class);
-                            intent.putExtra("projectTitle", projectTitle);
-                            intent.putExtra("projectUrlPhoto", projectPhoto);
-                            intent.putExtra("projectId1", projectId);
-                            intent.putExtra("projectId", "1,2");
-                            startActivity(intent);*/
                             finish();
                         }
                     }
@@ -120,12 +114,6 @@ public class EditProblem extends AppCompatActivity {
                             problemId, new CallBackInt() {
                                 @Override
                                 public void invoke(String res) {
-                                    /*Intent intent = new Intent(EditProblem.this, Problems.class);
-                                    intent.putExtra("projectTitle", projectTitle);
-                                    intent.putExtra("projectUrlPhoto", projectPhoto);
-                                    intent.putExtra("projectId1", projectId);
-                                    intent.putExtra("projectId", "1,2");
-                                    startActivity(intent);*/
                                     finish();
                                 }
                             });
@@ -136,13 +124,8 @@ public class EditProblem extends AppCompatActivity {
                             problemId, new CallBackInt() {
                                 @Override
                                 public void invoke(String res) {
-                                        /*Intent intent = new Intent(EditProblem.this, Problems.class);
-                                        intent.putExtra("projectTitle", projectTitle);
-                                        intent.putExtra("projectUrlPhoto", projectPhoto);
-                                        intent.putExtra("projectId1", projectId);
-                                        intent.putExtra("projectId", "1,2");
-                                        startActivity(intent);*/
-                                        finish();
+                                    Toast.makeText(EditProblem.this, "Изменения скоро вступят в силу", Toast.LENGTH_SHORT).show();
+                                    finish();
                                 }
                             });
                 }

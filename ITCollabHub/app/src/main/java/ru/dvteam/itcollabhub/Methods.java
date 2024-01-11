@@ -212,4 +212,41 @@ public interface Methods {
     @POST("/")
     Call<Model> deleteFile(@Field("Request") String req, @Field("FileId") String id, @Field("UserMail") String mail, @Field("ProjectId") String projectId);
 
+
+    @FormUrlEncoded
+    @POST("/")
+    Call<Model> getProjectAdvertsIds(@Field("Request") String req, @Field("ProjectId") String id);
+
+    @FormUrlEncoded
+    @POST("/")
+    Call<Model> getProjectAds(@Field("Request") String req, @Field("AdsId") String id);
+
+    @FormUrlEncoded
+    @POST("/")
+    Call<Model> deleteAd(@Field("Request") String req, @Field("AdId") String id, @Field("UserMail") String mail, @Field("ProjectId") String projectId);
+
+    @Multipart
+    @POST("/")
+    Call<Model> createAdvert(@Part MultipartBody.Part file, @Part("AdName") RequestBody name, @Part("Request") RequestBody req,
+                           @Part("Advertisement") RequestBody advertisement, @Part("ProjectId") RequestBody id,
+                           @Part("UserMail") RequestBody mail);
+
+    @FormUrlEncoded
+    @POST("/")
+    Call<Model> createAdvertWithoutImage(@Field("Request") String req, @Field("ProjectId") String id, @Field("AdName") String name,
+                                         @Field("Advertisement") String advertisement, @Field("UserMail") String mail);
+
+    @Multipart
+    @POST("/")
+    Call<Model> changeAdvert(@Part MultipartBody.Part file, @Part("AdName") RequestBody name, @Part("Request") RequestBody req,
+                           @Part("Advertisement") RequestBody advertisement, @Part("ProjectId") RequestBody id,
+                           @Part("UserMail") RequestBody mail, @Part("AdId") RequestBody adId);
+
+    @FormUrlEncoded
+    @POST("/")
+    Call<Model> changeAdvertWithoutImage(@Field("AdName") String name,
+                                       @Field("Request") String req, @Field("ProjectId") String id,
+                                       @Field("Advertisement") String advertisement, @Field("UserMail") String mail, @Field("AdId") String adId);
+
+
 }

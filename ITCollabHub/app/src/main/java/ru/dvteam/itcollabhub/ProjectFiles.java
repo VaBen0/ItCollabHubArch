@@ -21,9 +21,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,6 +44,7 @@ public class ProjectFiles extends AppCompatActivity {
 
     ActivityProjectFilesBinding binding;
     private String prId, projectTitle, photoProject, mail;
+    private int fixedFiles = 0;
 
     Drawable fixed;
 
@@ -81,7 +80,7 @@ public class ProjectFiles extends AppCompatActivity {
         Glide
                 .with(ProjectFiles.this)
                 .load(photoProject)
-                .into(binding.imagePurp);
+                .into(binding.fileImage);
 
         PostDatas post = new PostDatas();
 
@@ -117,7 +116,7 @@ public class ProjectFiles extends AppCompatActivity {
                                     Glide
                                             .with(ProjectFiles.this)
                                             .load(photoProject)
-                                            .into(binding.imagePurp);
+                                            .into(binding.fileImage);
                                     binding.filesPlace.removeAllViews();
                                     getIds();
                                 }
@@ -188,7 +187,7 @@ public class ProjectFiles extends AppCompatActivity {
 
                 int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
                 mediaPath = cursor.getString(columnIndex);
-                binding.imagePurp.setImageURI(imageUri);
+                binding.fileImage.setImageURI(imageUri);
                 cursor.close();
                 acces = true;
             }
@@ -212,7 +211,7 @@ public class ProjectFiles extends AppCompatActivity {
 
                             int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
                             mediaPath = cursor.getString(columnIndex);
-                            binding.imagePurp.setImageURI(imageUri);
+                            binding.fileImage.setImageURI(imageUri);
                             cursor.close();
                             acces = true;
                         }catch (Exception e){
@@ -233,7 +232,7 @@ public class ProjectFiles extends AppCompatActivity {
                 for(int i = 0; i < inf.length; i += 4){
                     //Toast.makeText(ProjectFiles.this, inf[i] + " " + inf[i + 2] + " " + inf[i + 3], Toast.LENGTH_SHORT).show();
                     View custom = getLayoutInflater().inflate(R.layout.gfile_panel, null);
-                    ImageView loadImg = custom.findViewById(R.id.imagePurp);
+                    ImageView loadImg = custom.findViewById(R.id.fileImage);
                     TextView name = custom.findViewById(R.id.fileName);
                     View back = custom.findViewById(R.id.backGround);
                     ImageView editBut = custom.findViewById(R.id.editBut);
@@ -253,6 +252,7 @@ public class ProjectFiles extends AppCompatActivity {
                         back.setBackground(fixed);
                         zakrepBut.setVisibility(View.GONE);
                         zakrepBut1.setVisibility(View.VISIBLE);
+                        fixedFiles += 1;
                     }
                     int finalI = i;
 
@@ -274,7 +274,9 @@ public class ProjectFiles extends AppCompatActivity {
                                         back.setBackgroundResource(R.drawable.progress_panel_background);
                                         zakrepBut1.setVisibility(View.GONE);
                                         zakrepBut.setVisibility(View.VISIBLE);
-                                        binding.filesPlace.addView(custom, place);
+                                        fixedFiles -= 1;
+                                        binding.filesPlace.addView(custom, fixedFiles);
+
                                         inf[finalI + 2] = "0";
                                     }
                                 });
@@ -291,6 +293,7 @@ public class ProjectFiles extends AppCompatActivity {
                                     zakrepBut.setVisibility(View.GONE);
                                     zakrepBut1.setVisibility(View.VISIBLE);
                                     back.setBackground(fixed);
+                                    fixedFiles += 1;
                                     binding.filesPlace.addView(custom, 0);
                                     inf[finalI + 2] = "1";
                                 }

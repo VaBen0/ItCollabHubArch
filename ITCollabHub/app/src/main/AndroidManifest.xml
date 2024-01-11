@@ -21,6 +21,18 @@
         android:theme="@style/Theme.ITCollabHub"
         tools:targetApi="26">
         <activity
+            android:name=".Advertisment"
+            android:exported="false" />
+        <activity
+            android:name=".EditAdvertisment"
+            android:exported="false" />
+        <activity
+            android:name=".ProjectAdvertisments"
+            android:exported="false" />
+        <activity
+            android:name=".ControlPanel2"
+            android:exported="false" />
+        <activity
             android:name=".EditFile"
             android:exported="false" />
         <activity

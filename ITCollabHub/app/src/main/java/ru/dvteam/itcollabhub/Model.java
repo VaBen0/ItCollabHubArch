@@ -24,9 +24,11 @@ public class Model {
     private String problemsids;
     private String isl;
 
+    private int activityProjects, archiveProjects;
+
     public Model(String name, String urlImg, String ret, String topStatus, int topScore, String rFr, String description, String tgLink,
                  String vkLink, String webLink, double isend, String purposes, String problems, String peoples, String time, String time1,
-                 String purposesids, String problemsids, String isl) {
+                 String purposesids, String problemsids, String isl, int activityProjects, int archiveProjects) {
         this.name = name;
         this.ret = ret;
         this.urlImg = urlImg;
@@ -40,6 +42,8 @@ public class Model {
         this.purposesids = purposesids;
         this.problemsids = problemsids;
         this.isl = isl;
+        this.activityProjects = activityProjects;
+        this.archiveProjects = archiveProjects;
     }
 
     public String getName() {
@@ -76,4 +80,7 @@ public class Model {
     public String getIsl() {return isl;}
     public String getProblemsids() {return problemsids;}
     public String getPurposesids() {return purposesids;}
+
+    public int getActivityProjects() {return activityProjects;}
+    public int getArchiveProjects() {return archiveProjects;}
 }

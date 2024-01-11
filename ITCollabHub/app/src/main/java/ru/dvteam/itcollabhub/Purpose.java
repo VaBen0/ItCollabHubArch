@@ -126,7 +126,7 @@ public class Purpose extends AppCompatActivity {
         Glide
                 .with(Purpose.this)
                 .load(photoProject)
-                .into(binding.imagePurp);
+                .into(binding.mainImagePurp);
 
         binding.addPurp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -163,7 +163,7 @@ public class Purpose extends AppCompatActivity {
                                 Glide
                                         .with(Purpose.this)
                                         .load(photoProject)
-                                        .into(binding.imagePurp);
+                                        .into(binding.mainImagePurp);
                                 binding.name.setText("");
                                 binding.description1.setText("");
                                 binding.reminderPlace.removeAllViews();
@@ -234,7 +234,7 @@ public class Purpose extends AppCompatActivity {
 
                 int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
                 mediaPath = cursor.getString(columnIndex);
-                binding.imagePurp.setImageURI(imageUri);
+                binding.mainImagePurp.setImageURI(imageUri);
                 cursor.close();
                 acces = true;
             }
@@ -258,7 +258,7 @@ public class Purpose extends AppCompatActivity {
 
                             int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
                             mediaPath = cursor.getString(columnIndex);
-                            binding.imagePurp.setImageURI(imageUri);
+                            binding.mainImagePurp.setImageURI(imageUri);
                             cursor.close();
                             acces = true;
                         }catch (Exception e){
