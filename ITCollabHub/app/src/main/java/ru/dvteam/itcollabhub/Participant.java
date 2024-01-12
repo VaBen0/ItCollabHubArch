@@ -24,6 +24,7 @@ public class Participant extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_participant, container, false);
 
+        assert getArguments() != null;
         String mail = getArguments().getString("mail");
 
         ImageView find_but = v.findViewById(R.id.find);
@@ -118,7 +119,7 @@ public class Participant extends Fragment {
                                     messege.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
-                                            CreateProject createProject = (CreateProject) getActivity();
+                                            CreateProject2 createProject = (CreateProject2) getActivity();
                                             createProject.setId(id[finalI]);
                                             main.removeView(custom);
                                         }

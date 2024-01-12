@@ -111,6 +111,7 @@ public class ProjectFiles extends AppCompatActivity {
                             binding.fileLink.getText().toString(), prId, mail, new CallBackInt() {
                                 @Override
                                 public void invoke(String res) {
+                                    mediaPath = "";
                                     binding.fileName.setText("");
                                     binding.fileLink.setText("");
                                     Glide

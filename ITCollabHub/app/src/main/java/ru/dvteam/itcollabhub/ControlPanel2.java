@@ -67,7 +67,6 @@ public class ControlPanel2 extends AppCompatActivity {
             binding.bguser.setBackgroundResource(R.drawable.gradient_blue);
             getWindow().setStatusBarColor(ContextCompat.getColor(ControlPanel2.this,R.color.blue));
             binding.projectFiles.setBackgroundTintList(ContextCompat.getColorStateList(ControlPanel2.this, R.color.blue));
-            binding.advertisments.setBackgroundTintList(ContextCompat.getColorStateList(ControlPanel2.this, R.color.blue));
             binding.projectChat.setBackgroundTintList(ContextCompat.getColorStateList(ControlPanel2.this, R.color.blue));
             Drawable progressDrawable = getResources().getDrawable(R.drawable.custom_progress_bar_bg);
             binding.purpProgress.setBackgroundResource(R.drawable.custom_progress_bar_bg);
@@ -83,7 +82,6 @@ public class ControlPanel2 extends AppCompatActivity {
             binding.bguser.setBackgroundResource(R.drawable.gradient_green);
             getWindow().setStatusBarColor(ContextCompat.getColor(ControlPanel2.this,R.color.green));
             binding.projectFiles.setBackgroundTintList(ContextCompat.getColorStateList(ControlPanel2.this, R.color.green));
-            binding.advertisments.setBackgroundTintList(ContextCompat.getColorStateList(ControlPanel2.this, R.color.green));
             binding.projectChat.setBackgroundTintList(ContextCompat.getColorStateList(ControlPanel2.this, R.color.green));
             Drawable progressDrawable = getResources().getDrawable(R.drawable.custom_progress_bar_gg);
             binding.purpProgress.setBackgroundResource(R.drawable.custom_progress_bar_gg);
@@ -99,7 +97,6 @@ public class ControlPanel2 extends AppCompatActivity {
             binding.bguser.setBackgroundResource(R.drawable.gradient_brown);
             getWindow().setStatusBarColor(ContextCompat.getColor(ControlPanel2.this,R.color.brown));
             binding.projectFiles.setBackgroundTintList(ContextCompat.getColorStateList(ControlPanel2.this, R.color.brown));
-            binding.advertisments.setBackgroundTintList(ContextCompat.getColorStateList(ControlPanel2.this, R.color.brown));
             binding.projectChat.setBackgroundTintList(ContextCompat.getColorStateList(ControlPanel2.this, R.color.brown));
             Drawable progressDrawable = getResources().getDrawable(R.drawable.custom_progress_bar_brg);
             binding.purpProgress.setBackgroundResource(R.drawable.custom_progress_bar_brg);
@@ -115,7 +112,6 @@ public class ControlPanel2 extends AppCompatActivity {
             binding.bguser.setBackgroundResource(R.drawable.gradient_light_gray);
             getWindow().setStatusBarColor(ContextCompat.getColor(ControlPanel2.this,R.color.light_gray));
             binding.projectFiles.setBackgroundTintList(ContextCompat.getColorStateList(ControlPanel2.this, R.color.light_gray));
-            binding.advertisments.setBackgroundTintList(ContextCompat.getColorStateList(ControlPanel2.this, R.color.light_gray));
             binding.projectChat.setBackgroundTintList(ContextCompat.getColorStateList(ControlPanel2.this, R.color.light_gray));
             Drawable progressDrawable = getResources().getDrawable(R.drawable.custom_progress_bar_lgg);
             binding.purpProgress.setBackgroundResource(R.drawable.custom_progress_bar_lgg);
@@ -131,7 +127,6 @@ public class ControlPanel2 extends AppCompatActivity {
             binding.bguser.setBackgroundResource(R.drawable.gradient_ohra);
             getWindow().setStatusBarColor(ContextCompat.getColor(ControlPanel2.this,R.color.ohra));
             binding.projectFiles.setBackgroundTintList(ContextCompat.getColorStateList(ControlPanel2.this, R.color.ohra));
-            binding.advertisments.setBackgroundTintList(ContextCompat.getColorStateList(ControlPanel2.this, R.color.ohra));
             binding.projectChat.setBackgroundTintList(ContextCompat.getColorStateList(ControlPanel2.this, R.color.ohra));
             Drawable progressDrawable = getResources().getDrawable(R.drawable.custom_progress_bar_ohg);
             binding.purpProgress.setBackgroundResource(R.drawable.custom_progress_bar_ohg);
@@ -147,7 +142,6 @@ public class ControlPanel2 extends AppCompatActivity {
             binding.bguser.setBackgroundResource(R.drawable.gradient_red);
             getWindow().setStatusBarColor(ContextCompat.getColor(ControlPanel2.this,R.color.red));
             binding.projectFiles.setBackgroundTintList(ContextCompat.getColorStateList(ControlPanel2.this, R.color.red));
-            binding.advertisments.setBackgroundTintList(ContextCompat.getColorStateList(ControlPanel2.this, R.color.red));
             binding.projectChat.setBackgroundTintList(ContextCompat.getColorStateList(ControlPanel2.this, R.color.red));
             Drawable progressDrawable = getResources().getDrawable(R.drawable.custom_progress_bar_rg);
             binding.purpProgress.setBackgroundResource(R.drawable.custom_progress_bar_rg);
@@ -163,7 +157,6 @@ public class ControlPanel2 extends AppCompatActivity {
             binding.bguser.setBackgroundResource(R.drawable.gradient_orange);
             getWindow().setStatusBarColor(ContextCompat.getColor(ControlPanel2.this,R.color.orange));
             binding.projectFiles.setBackgroundTintList(ContextCompat.getColorStateList(ControlPanel2.this, R.color.orange));
-            binding.advertisments.setBackgroundTintList(ContextCompat.getColorStateList(ControlPanel2.this, R.color.orange));
             binding.projectChat.setBackgroundTintList(ContextCompat.getColorStateList(ControlPanel2.this, R.color.orange));
             Drawable progressDrawable = getResources().getDrawable(R.drawable.custom_progress_bar_og);
             binding.purpProgress.setBackgroundResource(R.drawable.custom_progress_bar_og);
@@ -179,7 +172,6 @@ public class ControlPanel2 extends AppCompatActivity {
             binding.bguser.setBackgroundResource(R.drawable.gradient_violete);
             getWindow().setStatusBarColor(ContextCompat.getColor(ControlPanel2.this,R.color.violete));
             binding.projectFiles.setBackgroundTintList(ContextCompat.getColorStateList(ControlPanel2.this, R.color.violete));
-            binding.advertisments.setBackgroundTintList(ContextCompat.getColorStateList(ControlPanel2.this, R.color.violete));
             binding.projectChat.setBackgroundTintList(ContextCompat.getColorStateList(ControlPanel2.this, R.color.violete));
             Drawable progressDrawable = getResources().getDrawable(R.drawable.custom_progress_bar_vg);
             binding.purpProgress.setBackgroundResource(R.drawable.custom_progress_bar_vg);
@@ -195,7 +187,6 @@ public class ControlPanel2 extends AppCompatActivity {
             binding.bguser.setBackgroundResource(R.drawable.gradient_blue_green);
             getWindow().setStatusBarColor(ContextCompat.getColor(ControlPanel2.this,R.color.main_green));
             binding.projectFiles.setBackgroundTintList(ContextCompat.getColorStateList(ControlPanel2.this, R.color.main_green));
-            binding.advertisments.setBackgroundTintList(ContextCompat.getColorStateList(ControlPanel2.this, R.color.main_green));
             binding.projectChat.setBackgroundTintList(ContextCompat.getColorStateList(ControlPanel2.this, R.color.main_green));
             Drawable progressDrawable = getResources().getDrawable(R.drawable.custom_progress_bar_mgg);
             binding.purpProgress.setBackgroundResource(R.drawable.custom_progress_bar_mgg);
@@ -398,7 +389,7 @@ public class ControlPanel2 extends AppCompatActivity {
                         String itog = "";
                         for(int j = 0; j < nameArr.length; j++){
                             len += nameArr[j].length();
-                            if(len + 2 < 22){
+                            if(len + 3 < 22){
                                 if(j == 0){
                                     itog += nameArr[j];
                                 }
@@ -428,7 +419,7 @@ public class ControlPanel2 extends AppCompatActivity {
                             }
                         });
 
-                        name.setText(inf[i]);
+                        name.setText(itog);
                         Glide
                                 .with(ControlPanel2.this)
                                 .load(inf[i+2])
@@ -458,7 +449,7 @@ public class ControlPanel2 extends AppCompatActivity {
                 @Override
                 public void invoke(String res) {
                     String[] inf = res.split("\uD83D\uDD70");
-                    String[] idm = id1.split(",");
+                    String[] idm = id2.split(",");
                     for(int i = 0; i < inf.length; i += 3){
                         View custom = getLayoutInflater().inflate(R.layout.reminder, null);
                         ImageView loadImg = custom.findViewById(R.id.loadImg);
@@ -473,7 +464,7 @@ public class ControlPanel2 extends AppCompatActivity {
                         String itog = "";
                         for(int j = 0; j < nameArr.length; j++){
                             len += nameArr[j].length();
-                            if(len + 2 < 22){
+                            if(len + 3 < 22){
                                 if(j == 0){
                                     itog += nameArr[j];
                                 }
@@ -503,7 +494,7 @@ public class ControlPanel2 extends AppCompatActivity {
                             }
                         });
 
-                        name.setText(inf[i]);
+                        name.setText(itog);
                         Glide
                                 .with(ControlPanel2.this)
                                 .load(inf[i+2])

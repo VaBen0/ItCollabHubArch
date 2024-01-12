@@ -93,7 +93,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:gravity="center|left"
-                android:text="Максимальное количество целей - 30"
+                android:text="Максимальное количество задач - 30"
                 android:textColor="@color/s_gray"
                 android:textSize="11sp"
                 android:textStyle="bold|italic"

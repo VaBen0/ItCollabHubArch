@@ -19,9 +19,6 @@ import org.w3c.dom.Text;
 
 public class DifferentActivity extends Fragment {
 
-    private NavController navController;
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -33,7 +30,7 @@ public class DifferentActivity extends Fragment {
         View tas = v.findViewById(R.id.linear_rating);
         View dead = v.findViewById(R.id.linear_friends);
 
-        CreateProject createProject = (CreateProject) getActivity();
+        CreateProject2 createProject = (CreateProject2) getActivity();
         int score = createProject.getScore();
 
         if(score < 100){
@@ -113,7 +110,7 @@ public class DifferentActivity extends Fragment {
                     tas.setBackgroundResource(R.drawable.blue_green_line);
                 }
 
-                CreateProject createProject = (CreateProject) getActivity();
+                CreateProject2 createProject = (CreateProject2) getActivity();
                 createProject.taskSet();
             }
         });
@@ -166,7 +163,7 @@ public class DifferentActivity extends Fragment {
                     pur.setBackgroundResource(R.drawable.blue_green_line);
                 }
 
-                CreateProject createProject = (CreateProject) getActivity();
+                CreateProject2 createProject = (CreateProject2) getActivity();
                 createProject.purpose();
             }
         });
@@ -219,7 +216,7 @@ public class DifferentActivity extends Fragment {
                     dead.setBackgroundResource(R.drawable.blue_green_line);
                 }
 
-                CreateProject createProject = (CreateProject) getActivity();
+                CreateProject2 createProject = (CreateProject2) getActivity();
                 createProject.deadlineSet();
             }
         });

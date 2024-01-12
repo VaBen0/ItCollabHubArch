@@ -12,7 +12,6 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import android.Manifest;
-import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -27,7 +26,6 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,7 +41,7 @@ public class CreateProject extends AppCompatActivity {
     private static final int PICK_IMAGES_CODE = 0;
     private String purposes_name = "", purposes = "", tasks_name = "", tasks = "";
     private String id1 = "";
-    private String mediaPath = "";
+    private String mediaPath = "", uriPath = "";
     private Boolean acces = false;
     private static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 1;
     ActivityResultLauncher<Intent> resultLauncher;
@@ -57,21 +55,21 @@ public class CreateProject extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
-        setContentView(R.layout.activity_create_project);
+        setContentView(R.layout.activity_create_project1);
         registerResult();
 
         //LinearLayout profileMenu = findViewById(R.id.profile_menu);
         //LinearLayout forumMenu = findViewById(R.id.forum_menu);
-        TextView adParticip = findViewById(R.id.ad_participiant);
-        TextView adActivity = findViewById(R.id.ad_activity);
+        //TextView adParticip = findViewById(R.id.ad_participiant);
+        //TextView adActivity = findViewById(R.id.ad_activity);
         Img = findViewById(R.id.pr_logo);
         EditText nameu = findViewById(R.id.projectName);
         EditText description  = findViewById(R.id.description);
         Button sendProject = findViewById(R.id.send);
-        View activity_line = findViewById(R.id.linear_projects);
-        View particip_line = findViewById(R.id.linear_friends);
+        //View activity_line = findViewById(R.id.linear_projects);
+        //View particip_line = findViewById(R.id.linear_friends);
 
-        if(score < 100){
+        /*if(score < 100){
             activity_line.setBackgroundResource(R.drawable.blue_line);
             sendProject.setBackgroundTintList(ContextCompat.getColorStateList(CreateProject.this, R.color.blue));
         }
@@ -106,11 +104,11 @@ public class CreateProject extends AppCompatActivity {
         else{
             activity_line.setBackgroundResource(R.drawable.blue_green_line);
             sendProject.setBackgroundTintList(ContextCompat.getColorStateList(CreateProject.this, R.color.main_green));
-        }
+        }*/
 
-        navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        //navController = Navigation.findNavController(this, R.id.nav_host_fragment);
 
-        adParticip.setOnClickListener(new View.OnClickListener() {
+        /*adParticip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -198,7 +196,7 @@ public class CreateProject extends AppCompatActivity {
                 }
                 navController.navigate(R.id.differentActivity);
             }
-        });
+        });*/
 
         if(Build.VERSION.SDK_INT >= 33) {
             Img.setOnClickListener(view -> pickImage());
@@ -224,7 +222,26 @@ public class CreateProject extends AppCompatActivity {
         sendProject.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(purposes.isEmpty()){
+                String mainDescription;
+                String mainName;
+
+                if (nameu.getText().toString().isEmpty()) {
+                    mainName = "Отсутствует наименование проекта";
+                } else {
+                    mainName = nameu.getText().toString();
+                }
+                if (description.getText().toString().isEmpty()) {
+                    mainDescription = "Без названия";
+                } else {
+                    mainDescription = description.getText().toString();
+                }
+                Intent intent = new Intent(CreateProject.this, CreateProject2.class);
+                intent.putExtra("uriPath", uriPath);
+                intent.putExtra("mediaPath", mediaPath);
+                intent.putExtra("title", mainName);
+                intent.putExtra("prDescription", mainDescription);
+                startActivity(intent);
+                /*if(purposes.isEmpty()){
                     Toast.makeText(CreateProject.this, "Вы не добавили ни одной цели", Toast.LENGTH_LONG).show();
                 }
                 else if(tasks.isEmpty()){
@@ -287,9 +304,9 @@ public class CreateProject extends AppCompatActivity {
                                     }
                                 });
                     } else{
-                        File file = new File(mediaPath);
-                        RequestBody requestBody = RequestBody.create(MediaType.parse("*/*"), file);
-                        PostDatas post = new PostDatas();
+                        File file = new File(mediaPath);*/
+                        //RequestBody requestBody = RequestBody.create(MediaType.parse("*/*"), file);
+                        /*PostDatas post = new PostDatas();
                         post.postDataCreateProject("CreateNewProject", mainName, requestBody, mail, purposeMain, taskMain,
                             mainDescription, mainId, new CallBackInt() {
                                 @Override
@@ -302,7 +319,7 @@ public class CreateProject extends AppCompatActivity {
                                 }
                             });
                     }
-                }
+                }*/
 
             }
         });
@@ -319,35 +336,6 @@ public class CreateProject extends AppCompatActivity {
     public void purpose(){
         NavController navController2 = Navigation.findNavController(this, R.id.nav_host_fragment2);
         navController2.navigate(R.id.clop1);
-    }
-
-    public void setPurp(String purpName, String purp){
-        if(purposes_name.isEmpty()){
-            purposes_name += purpName;
-            purposes += purp;
-        }
-        else{
-            purposes_name = purposes_name + "✴\uFE0F" + purpName;
-            purposes = purposes + "✴\uFE0F" + purp;
-        }
-    }
-    public void setTask(String taskName, String task){
-        if(tasks_name.isEmpty()){
-            tasks_name += taskName;
-            tasks = task;
-        }
-        else{
-            tasks_name = tasks_name + "✴\uFE0F" + taskName;
-            tasks = tasks + "✴\uFE0F" + task;
-        }
-    }
-    public void setId(String id){
-        if(id1.isEmpty()){
-            id1 = id;
-        }
-        else{
-            id1 = id1 + "," + id;
-        }
     }
 
     private void pickImage(){
@@ -379,6 +367,7 @@ public class CreateProject extends AppCompatActivity {
 
             if (resultCode == Activity.RESULT_OK){
                 Uri imageUri = data.getData();
+                uriPath = imageUri.toString();
                 String[] filePathColumn = {MediaStore.Images.Media.DATA};
 
                 Cursor cursor = getContentResolver().query(imageUri, filePathColumn, null, null, null);

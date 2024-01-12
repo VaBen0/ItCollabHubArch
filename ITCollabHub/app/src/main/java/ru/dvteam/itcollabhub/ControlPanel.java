@@ -425,7 +425,7 @@ public class ControlPanel extends AppCompatActivity {
                         String itog = "";
                         for(int j = 0; j < nameArr.length; j++){
                             len += nameArr[j].length();
-                            if(len + 2 < 22){
+                            if(len + 3 < 22){
                                 if(j == 0){
                                     itog += nameArr[j];
                                 }
@@ -501,8 +501,8 @@ public class ControlPanel extends AppCompatActivity {
                         String itog = "";
                         for(int j = 0; j < nameArr.length; j++){
                             len += nameArr[j].length();
-                            if(len + 2 < 22){
-                                if(i == 0){
+                            if(len + 3 < 22){
+                                if(j == 0){
                                     itog += nameArr[j];
                                 }
                                 else{

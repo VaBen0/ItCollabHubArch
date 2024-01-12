@@ -139,6 +139,7 @@ public class Problems extends AppCompatActivity {
                             binding.description1.getText().toString(), prId, mail, new CallBackInt() {
                                 @Override
                                 public void invoke(String res) {
+                                    countTicked = 0;
                                     binding.name.setText("");
                                     binding.description1.setText("");
                                     binding.reminderPlace.removeAllViews();
@@ -153,6 +154,7 @@ public class Problems extends AppCompatActivity {
                         binding.description1.getText().toString(), prId, mail, new CallBackInt() {
                             @Override
                             public void invoke(String res) {
+                                mediaPath = "";
                                 Glide
                                         .with(Problems.this)
                                         .load(photoProject)
@@ -160,6 +162,7 @@ public class Problems extends AppCompatActivity {
                                 binding.name.setText("");
                                 binding.description1.setText("");
                                 binding.reminderPlace.removeAllViews();
+                                countTicked = 0;
                                 postProblems();
                             }
                         });
@@ -302,7 +305,7 @@ public class Problems extends AppCompatActivity {
                     custom.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            if(countTicked == (inf.length / 4) - 1 && inf[finalI + 2].equals("0")){
+                            if(countTicked >= idm.length - 1 && inf[finalI + 2].equals("0")){
                                 Toast.makeText(Problems.this, "Эту задачу нельзя отметить выполненной", Toast.LENGTH_SHORT).show();
                             }
                             else if(!clicked && inf[finalI + 2].equals("0")) {
@@ -326,6 +329,7 @@ public class Problems extends AppCompatActivity {
                                     clicked = false;
                                     back.setBackgroundResource(R.drawable.green_transperent);
                                     inf[finalI + 2] = "1";
+                                    countTicked += 1;
                                 }
                             });
                         }

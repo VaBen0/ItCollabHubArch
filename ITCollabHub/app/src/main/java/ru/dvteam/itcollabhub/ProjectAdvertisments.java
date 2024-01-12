@@ -153,6 +153,7 @@ public class ProjectAdvertisments extends AppCompatActivity {
                             binding.advert.getText().toString(), prId, mail, new CallBackInt() {
                                 @Override
                                 public void invoke(String res) {
+                                    mediaPath = "";
                                     binding.advertName.setText("");
                                     binding.advert.setText("");
                                     Glide

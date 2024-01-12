@@ -131,7 +131,7 @@ public class Purpose extends AppCompatActivity {
         binding.addPurp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(countPurposes == 3){
+                if(countPurposes >= 3){
                     Toast.makeText(Purpose.this, "Вы достигли предела", Toast.LENGTH_SHORT).show();
                 }
                 else if(binding.name.getText().toString().isEmpty()){
@@ -142,12 +142,14 @@ public class Purpose extends AppCompatActivity {
                 }
                 else if (mediaPath.isEmpty()) {
                     PostDatas post = new PostDatas();
+                    countPurposes += 1;
                     post.postDataCreatePurposeWithoutImage("CreatePurposeWithoutImage", binding.name.getText().toString(),
                         binding.description1.getText().toString(), prId, mail, new CallBackInt() {
                             @Override
                             public void invoke(String res) {
                                 binding.name.setText("");
                                 binding.description1.setText("");
+                                countTicked = 0;
                                 binding.reminderPlace.removeAllViews();
                                 postPurpose();
                             }
@@ -160,6 +162,8 @@ public class Purpose extends AppCompatActivity {
                         binding.description1.getText().toString(), mail, prId, new CallBackInt() {
                             @Override
                             public void invoke(String res) {
+                                mediaPath = "";
+                                countTicked = 0;
                                 Glide
                                         .with(Purpose.this)
                                         .load(photoProject)
@@ -283,6 +287,7 @@ public class Purpose extends AppCompatActivity {
                 String[] inf = res.split("\uD83d\uDD70");
                 assert id != null;
                 String[] idm = id.split(",");
+                countPurposes = idm.length;
                 for(int i = 0; i < inf.length; i += 4){
                     View custom = getLayoutInflater().inflate(R.layout.purpose_panel, null);
                     ImageView loadImg = custom.findViewById(R.id.imagePurp);
@@ -303,7 +308,7 @@ public class Purpose extends AppCompatActivity {
                     custom.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            if(countTicked == (inf.length / 4) - 1 && inf[finalI + 2].equals("0")){
+                            if(countTicked >= idm.length - 1 && inf[finalI + 2].equals("0")){
                                 Toast.makeText(Purpose.this, "Эту цель нельзя отметить выполненной", Toast.LENGTH_SHORT).show();
                             }
                             else if(!clicked && inf[finalI + 2].equals("0")) {
@@ -324,6 +329,7 @@ public class Purpose extends AppCompatActivity {
                                     descript.setVisibility(View.VISIBLE);
                                     yesOrNo.setVisibility(View.GONE);
                                     clicked = false;
+                                    countTicked += 1;
                                 }
                             });
                         }
@@ -346,7 +352,6 @@ public class Purpose extends AppCompatActivity {
                             .load(inf[i+3])
                             .into(loadImg);
                     binding.reminderPlace.addView(custom);
-                    countPurposes++;
                 }
             }
         });
