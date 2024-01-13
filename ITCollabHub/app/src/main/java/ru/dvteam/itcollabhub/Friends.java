@@ -120,6 +120,14 @@ public class Friends extends Fragment {
                                 startActivity(intent);
                             }
                         });
+                        messege.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Profile profile = (Profile) getActivity();
+                                assert profile != null;
+                                profile.error();
+                            }
+                        });
                         main.addView(custom);
                     }
                     View empty = inflater.inflate(R.layout.emty_obj, null);

@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -32,6 +33,9 @@ public class Profile extends AppCompatActivity {
     private String status, mail;
     private boolean rFr;
     private int archivPr, ativePr;
+    private String[] wow = {"Хренос 2", "Кина не будет - электричество кончилось", "Ой, сломалось", "Караул!"};
+    View back;
+    ImageView dontWork;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +61,7 @@ public class Profile extends AppCompatActivity {
         TextView rating = findViewById(R.id.rating);
         TextView UserName = findViewById(R.id.nameu);
         TextView UserScore = findViewById(R.id.score);
-        ImageView loadedImg = findViewById(R.id.loadImg);
+        ImageView loadedImg = findViewById(R.id.log);
         ImageView restartLine = findViewById(R.id.restart);
         projects_lin = findViewById(R.id.linear_projects);
         rating_lin = findViewById(R.id.linear_rating);
@@ -67,6 +71,8 @@ public class Profile extends AppCompatActivity {
         LinearLayout profileMenu = findViewById(R.id.profile_menu);
         LinearLayout forumMenu = findViewById(R.id.forum_menu);
         ImageView editProfile = findViewById(R.id.notifications);
+        back = findViewById(R.id.view3);
+        dontWork = findViewById(R.id.imageView12);
 
         UserName.setText(name);
         UserScore.setText(s);
@@ -245,7 +251,8 @@ public class Profile extends AppCompatActivity {
         projects.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(score < 100){
+                error();
+                /*if(score < 100){
                     friends_lin.setBackgroundColor(0);
                     rating_lin.setBackgroundColor(0);
                     projects_lin.setBackgroundResource(R.drawable.blue_line);
@@ -289,8 +296,8 @@ public class Profile extends AppCompatActivity {
                     friends_lin.setBackgroundColor(0);
                     rating_lin.setBackgroundColor(0);
                     projects_lin.setBackgroundResource(R.drawable.blue_green_line);
-                }
-                navController.navigate(R.id.projects);
+                }*/
+                //navController.navigate(R.id.projects);
             }
         });
 
@@ -426,7 +433,7 @@ public class Profile extends AppCompatActivity {
         forumMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                error();
             }
         });
         editProfile.setOnClickListener(new View.OnClickListener() {
@@ -437,9 +444,7 @@ public class Profile extends AppCompatActivity {
             }
         });
     }
-    public int sendColor(){
-        return color;
-    }
+
     public String getMail(){return mail;}
     public void changeActivity(){
         Intent intent = new Intent(Profile.this, GetFriend.class);
@@ -448,5 +453,29 @@ public class Profile extends AppCompatActivity {
     public int getScore(){return score;}
     public int getActiveProjects(){return ativePr;}
     public int getArchiveProjects(){return archivPr;}
+
+    public void error(){
+        back.setVisibility(View.VISIBLE);
+        dontWork.setVisibility(View.VISIBLE);
+        Toast.makeText(Profile.this, wow[(int) (Math.random() * 4)], Toast.LENGTH_SHORT).show();
+        Thread thread = new Thread() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(3000);
+                } catch (InterruptedException e) {
+                }
+
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        back.setVisibility(View.GONE);
+                        dontWork.setVisibility(View.GONE);
+                    }
+                });
+            }
+        };
+        thread.start();
+    }
 
 }

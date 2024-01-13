@@ -49,10 +49,14 @@ public class EditProfile extends AppCompatActivity {
     ActivityResultLauncher<Intent> resultLauncher;
     private NavController navController;
     private String mail;
+    private String[] wow = {"Хренос 2", "Кина не будет - электричество кончилось", "Ой, сломалось", "Караул!"};
+    View back;
+    ImageView dontWork;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         SharedPreferences sPref = getSharedPreferences("MyPref", MODE_PRIVATE);
+
         mail = sPref.getString("UserMail", "");
         String name = sPref.getString("UserName", "");
         score = sPref.getInt("UserScore", 0);
@@ -80,6 +84,8 @@ public class EditProfile extends AppCompatActivity {
         View link = findViewById(R.id.linear_projects);
         UserName.setHint(name);
         UserScore.setText(s);
+        back = findViewById(R.id.view3);
+        dontWork = findViewById(R.id.imageView12);
 
         Glide
                 .with(EditProfile.this)
@@ -185,13 +191,15 @@ public class EditProfile extends AppCompatActivity {
         forumMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                error();
             }
         });
         quitProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(EditProfile.this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 SharedPreferences sPref = getSharedPreferences("MyPref", MODE_PRIVATE);
                 SharedPreferences.Editor ed = sPref.edit();
                 ed.putString("UserReg", "false");
@@ -200,6 +208,7 @@ public class EditProfile extends AppCompatActivity {
                 ed.putString("UrlImg", "");
                 ed.apply();
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -317,6 +326,7 @@ public class EditProfile extends AppCompatActivity {
                     about.setBackgroundColor(0);
                     link.setBackgroundResource(R.drawable.blue_green_line);
                 }
+                btn.setVisibility(View.VISIBLE);
                 navController = Navigation.findNavController(EditProfile.this, R.id.nav_host_fragment);
                 navController.navigate(R.id.accountLinks);
             }
@@ -361,6 +371,7 @@ public class EditProfile extends AppCompatActivity {
                     link.setBackgroundColor(0);
                     about.setBackgroundResource(R.drawable.blue_green_line);
                 }
+                btn.setVisibility(View.GONE);
                 navController = Navigation.findNavController(EditProfile.this, R.id.nav_host_fragment);
                 navController.navigate(R.id.aboutApp);
             }
@@ -443,5 +454,28 @@ public class EditProfile extends AppCompatActivity {
     }
     public int getScore(){
         return score;
+    }
+    public void error(){
+        back.setVisibility(View.VISIBLE);
+        dontWork.setVisibility(View.VISIBLE);
+        Toast.makeText(EditProfile.this, wow[(int) (Math.random() * 4)], Toast.LENGTH_SHORT).show();
+        Thread thread = new Thread() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(3000);
+                } catch (InterruptedException e) {
+                }
+
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        back.setVisibility(View.GONE);
+                        dontWork.setVisibility(View.GONE);
+                    }
+                });
+            }
+        };
+        thread.start();
     }
 }

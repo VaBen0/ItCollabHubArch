@@ -1,6 +1,7 @@
 package ru.dvteam.itcollabhub;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -91,8 +92,16 @@ public class Tasks extends Fragment {
 
                     View custom = inflater.inflate(R.layout.problem_panel, null);
                     TextView name = custom.findViewById(R.id.problemName);
+                    TextView main = custom.findViewById(R.id.textView20);
                     TextView descr = custom.findViewById(R.id.problemDescription);
                     ImageView edit = custom.findViewById(R.id.editProblem);
+                    ImageView main1 = custom.findViewById(R.id.problemImage);
+
+                    Uri uri = Uri.parse(createProject.getUriPath());
+
+                    main1.setImageURI(uri);
+
+                    main.setText("Описание задачи");
 
                     descr.setText(task);
 
@@ -102,6 +111,8 @@ public class Tasks extends Fragment {
                             Intent i = new Intent(getActivity(), EditProblemPurpose.class);
                             i.putExtra("names", createProject.getTasks_name());
                             i.putExtra("descriptions", createProject.getTasks());
+                            i.putExtra("uriPath", createProject.getUriPath());
+                            i.putExtra("prTitle", createProject.getPrName());
                             i.putExtra("id", countTasks - 1);
                             startActivityForResult(i, 1);
                         }
@@ -131,6 +142,7 @@ public class Tasks extends Fragment {
             CreateProject2 createProject2 = (CreateProject2) getActivity();
             createProject2.setEdit2(tasks_name, tasks);
             problemPlace.removeAllViews();
+            countTasks = 0;
             create();
         }
     }
@@ -145,7 +157,12 @@ public class Tasks extends Fragment {
                 TextView name = custom.findViewById(R.id.problemName);
                 TextView descr = custom.findViewById(R.id.problemDescription);
                 ImageView edit = custom.findViewById(R.id.editProblem);
+                ImageView main = custom.findViewById(R.id.problemImage);
                 countTasks += 1;
+
+                Uri uri = Uri.parse(createProject.getUriPath());
+
+                main.setImageURI(uri);
 
                 descr.setText(purps[i]);
 
@@ -155,18 +172,14 @@ public class Tasks extends Fragment {
                         Intent i = new Intent(getActivity(), EditProblemPurpose.class);
                         i.putExtra("names", createProject.getTasks_name());
                         i.putExtra("descriptions", createProject.getTasks());
+                        i.putExtra("uriPath", createProject.getUriPath());
+                        i.putExtra("prTitle", createProject.getPrName());
                         i.putExtra("id", countTasks - 1);
                         startActivityForResult(i, 1);
                     }
                 });
 
                 name.setText(purpName[i]);
-
-                Transition t = null;
-                t = new Fade(Visibility.MODE_IN);
-                t.setDuration(200);
-
-                TransitionManager.beginDelayedTransition(problemPlace, t);
 
                 problemPlace.addView(custom);
             }

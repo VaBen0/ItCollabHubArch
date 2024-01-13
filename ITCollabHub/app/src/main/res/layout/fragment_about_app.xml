@@ -12,7 +12,7 @@
         android:id="@+id/imageView3"
         android:layout_width="170dp"
         android:layout_height="170dp"
-        android:src="@drawable/itch"
+        android:src="?logo_type"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -58,7 +58,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
-        android:text="itcollabhub.dv-team.ru"
+        android:text="itcollabhub.ru"
         android:textColor="@color/blue"
         android:textSize="11sp"
         android:textStyle="bold|italic"

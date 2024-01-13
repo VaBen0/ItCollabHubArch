@@ -55,7 +55,8 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.cardview.widget.CardView
+
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/log"
         android:layout_width="140dp"
         android:layout_height="140dp"
@@ -64,18 +65,9 @@
         app:cardCornerRadius="200dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:id="@+id/loadImg"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            tools:ignore="SpeakableTextPresentCheck" />
-
-    </androidx.cardview.widget.CardView>
-
-
+        app:layout_constraintTop_toTopOf="parent"
+        android:scaleType="centerCrop"
+        app:shapeAppearance="@style/CornerCut3"/>
 
     <ImageView
         android:id="@+id/userCircle"
@@ -302,6 +294,27 @@
 
     </LinearLayout>
 
+    <View
+        android:id="@+id/view3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black_transperent3"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <ImageView
+        android:id="@+id/imageView12"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:visibility="gone"
+        android:src="@drawable/dont_work"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

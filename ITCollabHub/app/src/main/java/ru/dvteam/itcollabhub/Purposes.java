@@ -1,6 +1,7 @@
 package ru.dvteam.itcollabhub;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -97,8 +98,16 @@ public class Purposes extends Fragment {
 
                     View custom = inflater.inflate(R.layout.problem_panel, null);
                     TextView name = custom.findViewById(R.id.problemName);
+                    TextView main = custom.findViewById(R.id.textView20);
                     TextView descr = custom.findViewById(R.id.problemDescription);
                     ImageView edit = custom.findViewById(R.id.editProblem);
+                    ImageView mainv = custom.findViewById(R.id.problemImage);
+
+                    Uri uri = Uri.parse(createProject.getUriPath());
+
+                    mainv.setImageURI(uri);
+
+                    main.setText("Описание цели");
 
                     descr.setText(purp);
 
@@ -108,6 +117,8 @@ public class Purposes extends Fragment {
                             Intent i = new Intent(getActivity(), EditProblemPurpose.class);
                             i.putExtra("names", createProject.getPurposes_name());
                             i.putExtra("descriptions", createProject.getPurposes());
+                            i.putExtra("uriPath", createProject.getUriPath());
+                            i.putExtra("prTitle", createProject.getPrName());
                             i.putExtra("id", countPurposes - 1);
                             startActivityForResult(i, 1);
                         }
@@ -138,6 +149,8 @@ public class Purposes extends Fragment {
             CreateProject2 createProject2 = (CreateProject2) getActivity();
             createProject2.setEdit1(purp_name, purp);
             purposePanel.removeAllViews();
+            countPurposes = 0;
+            Toast.makeText(createProject2, purp + " | " + purp_name, Toast.LENGTH_SHORT).show();
             create();
         }
     }
@@ -152,8 +165,12 @@ public class Purposes extends Fragment {
                 TextView name = custom.findViewById(R.id.problemName);
                 TextView descr = custom.findViewById(R.id.problemDescription);
                 ImageView edit = custom.findViewById(R.id.editProblem);
+                ImageView main = custom.findViewById(R.id.problemImage);
                 countPurposes += 1;
 
+                Uri uri = Uri.parse(createProject.getUriPath());
+
+                main.setImageURI(uri);
                 descr.setText(purps[i]);
 
                 edit.setOnClickListener(new View.OnClickListener() {
@@ -162,18 +179,14 @@ public class Purposes extends Fragment {
                         Intent i = new Intent(getActivity(), EditProblemPurpose.class);
                         i.putExtra("names", createProject.getPurposes_name());
                         i.putExtra("descriptions", createProject.getPurposes());
+                        i.putExtra("uriPath", createProject.getUriPath());
+                        i.putExtra("prTitle", createProject.getPrName());
                         i.putExtra("id", countPurposes - 1);
                         startActivityForResult(i, 1);
                     }
                 });
 
                 name.setText(purpName[i]);
-
-                Transition t = null;
-                t = new Fade(Visibility.MODE_IN);
-                t.setDuration(200);
-
-                TransitionManager.beginDelayedTransition(purposePanel, t);
 
                 purposePanel.addView(custom);
             }

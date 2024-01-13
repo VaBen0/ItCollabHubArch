@@ -72,4 +72,15 @@
         <item name="cornerSizeBottomRight">15dp</item>
     </style>
 
+    <style name="CornerCut3" parent="">
+        <item name="cornerFamilyTopLeft">rounded</item>
+        <item name="cornerFamilyTopRight">rounded</item>
+        <item name="cornerFamilyBottomLeft">rounded</item>
+        <item name="cornerFamilyBottomRight">rounded</item>
+        <item name="cornerSizeTopLeft">70dp</item>
+        <item name="cornerSizeTopRight">70dp</item>
+        <item name="cornerSizeBottomLeft">70dp</item>
+        <item name="cornerSizeBottomRight">70dp</item>
+    </style>
+
 </resources>

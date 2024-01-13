@@ -50,6 +50,7 @@ public class CreateProject2 extends AppCompatActivity {
     private static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 1;
     ActivityResultLauncher<Intent> resultLauncher;
     int score;
+    String title, description1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,13 +70,15 @@ public class CreateProject2 extends AppCompatActivity {
         assert arguments != null;
         mediaPath = arguments.getString("mediaPath");
         uriPath = arguments.getString("uriPath");
-        String title = arguments.getString("title");
-        String description1 = arguments.getString("prDescription");
+        title = arguments.getString("title");
+        description1 = arguments.getString("prDescription");
 
-        Uri uri = Uri.parse(uriPath);
-
+        if(!uriPath.isEmpty()){
+            Uri uri = Uri.parse(uriPath);
+            binding.prLogo.setImageURI(uri);
+        }
+        
         binding.nameProject.setText(title);
-        binding.prLogo.setImageURI(uri);
 
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
 
@@ -185,9 +188,9 @@ public class CreateProject2 extends AppCompatActivity {
                 } else {
                     mainId = id1;
                 }
-                if (purpose1.length == 0) {
+                if (purposes_name.isEmpty()) {
                     Toast.makeText(CreateProject2.this, "Нет целей", Toast.LENGTH_SHORT).show();
-                } else if (task1.length == 0) {
+                } else if (tasks_name.isEmpty()) {
                     Toast.makeText(CreateProject2.this, "Нет задач", Toast.LENGTH_SHORT).show();
                 } else {
                     for (int i = 0; i < purpose1.length; i++) {
@@ -245,46 +248,55 @@ public class CreateProject2 extends AppCompatActivity {
             binding.bguser.setBackgroundResource(R.drawable.gradient_blue);
             getWindow().setStatusBarColor(ContextCompat.getColor(CreateProject2.this,R.color.blue));
             binding.linearProjects.setBackgroundResource(R.drawable.blue_line);
+            binding.send.setBackgroundTintList(ContextCompat.getColorStateList(CreateProject2.this, R.color.blue));
         }
         else if(score < 300){
             binding.bguser.setBackgroundResource(R.drawable.gradient_green);
             getWindow().setStatusBarColor(ContextCompat.getColor(CreateProject2.this,R.color.green));
             binding.linearProjects.setBackgroundResource(R.drawable.green_line);
+            binding.send.setBackgroundTintList(ContextCompat.getColorStateList(CreateProject2.this, R.color.green));
         }
         else if(score < 1000){
             binding.bguser.setBackgroundResource(R.drawable.gradient_brown);
             getWindow().setStatusBarColor(ContextCompat.getColor(CreateProject2.this,R.color.brown));
             binding.linearProjects.setBackgroundResource(R.drawable.brown_line);
+            binding.send.setBackgroundTintList(ContextCompat.getColorStateList(CreateProject2.this, R.color.brown));
         }
         else if(score < 2500){
             binding.bguser.setBackgroundResource(R.drawable.gradient_light_gray);
             getWindow().setStatusBarColor(ContextCompat.getColor(CreateProject2.this,R.color.light_gray));
             binding.linearProjects.setBackgroundResource(R.drawable.light_gray_line);
+            binding.send.setBackgroundTintList(ContextCompat.getColorStateList(CreateProject2.this, R.color.light_gray));
         }
         else if(score < 7000){
             binding.bguser.setBackgroundResource(R.drawable.gradient_ohra);
             getWindow().setStatusBarColor(ContextCompat.getColor(CreateProject2.this,R.color.ohra));
             binding.linearProjects.setBackgroundResource(R.drawable.ohra_line);
+            binding.send.setBackgroundTintList(ContextCompat.getColorStateList(CreateProject2.this, R.color.ohra));
         }
         else if(score < 17000){
             binding.bguser.setBackgroundResource(R.drawable.gradient_red);
             getWindow().setStatusBarColor(ContextCompat.getColor(CreateProject2.this,R.color.red));
             binding.linearProjects.setBackgroundResource(R.drawable.red_line);
+            binding.send.setBackgroundTintList(ContextCompat.getColorStateList(CreateProject2.this, R.color.red));
         }
         else if(score < 30000){
             binding.bguser.setBackgroundResource(R.drawable.gradient_orange);
             getWindow().setStatusBarColor(ContextCompat.getColor(CreateProject2.this,R.color.orange));
             binding.linearProjects.setBackgroundResource(R.drawable.orange_line);
+            binding.send.setBackgroundTintList(ContextCompat.getColorStateList(CreateProject2.this, R.color.orange));
         }
         else if(score < 50000){
             binding.bguser.setBackgroundResource(R.drawable.gradient_violete);
             getWindow().setStatusBarColor(ContextCompat.getColor(CreateProject2.this,R.color.violete));
             binding.linearProjects.setBackgroundResource(R.drawable.violete_line);
+            binding.send.setBackgroundTintList(ContextCompat.getColorStateList(CreateProject2.this, R.color.violete));
         }
         else{
             binding.bguser.setBackgroundResource(R.drawable.gradient_blue_green);
             getWindow().setStatusBarColor(ContextCompat.getColor(CreateProject2.this,R.color.main_green));
             binding.linearProjects.setBackgroundResource(R.drawable.blue_green_line);
+            binding.send.setBackgroundTintList(ContextCompat.getColorStateList(CreateProject2.this, R.color.main_green));
         }
     }
 
@@ -348,6 +360,14 @@ public class CreateProject2 extends AppCompatActivity {
     public void setEdit1(String name, String purp){
         purposes_name = name;
         purposes = purp;
+    }
+
+    public String getUriPath(){
+        return uriPath;
+    }
+
+    public String getPrName(){
+        return title;
     }
 
     public void setEdit2(String name, String problem){

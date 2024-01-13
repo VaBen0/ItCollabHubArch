@@ -22,93 +22,123 @@
         tools:targetApi="26">
         <activity
             android:name=".EditProblemPurpose"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".CreateProject2"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".Advertisment"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".EditAdvertisment"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".ProjectAdvertisments"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".ControlPanel2"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".EditFile"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".ProjectFiles"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".EditProblem"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".ProblemsParticip"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".PurposeParticipiant"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".Problems"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".Purpose"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".ProjectRequests"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".ControlPanel"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".EditProject"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".UsersProject"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".EditProfile"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".CreateProject"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".ActivityProject"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".GetFriend"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".FriendProfile"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".Test"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".CreateAccount"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".ConfirmForgotPassword"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".Forgot"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".LogIn"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".Profile"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".ConfirmReg"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".Register"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <meta-data

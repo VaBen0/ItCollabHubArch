@@ -14,6 +14,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.File;
 
@@ -22,6 +23,10 @@ public class ActivityProject extends AppCompatActivity {
     int selectedColor, score;
     private NavController navController;
     String mail;
+
+    private String[] wow = {"Хренос 2", "Кина не будет - электричество кончилось", "Ой, сломалось", "Караул!"};
+    View back;
+    ImageView dontWork;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +51,8 @@ public class ActivityProject extends AppCompatActivity {
         ImageView notif = findViewById(R.id.notifications);
         View my_projects_lin = findViewById(R.id.linear_my_projects);
         View end_projects_lin = findViewById(R.id.linear_end_projects);
+        back = findViewById(R.id.view3);
+        dontWork = findViewById(R.id.imageView12);
 
         PostDatas post = new PostDatas();
         post.postDataGetProjectReq("GRProjects", mail, new CallBackInt() {
@@ -123,6 +130,13 @@ public class ActivityProject extends AppCompatActivity {
             plus.setBackgroundResource(R.drawable.blue_green_add);
         }
 
+        endProjects.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                error();
+            }
+        });
+
         profileMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -133,7 +147,7 @@ public class ActivityProject extends AppCompatActivity {
         forumMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                error();
             }
         });
         plus.setOnClickListener(new View.OnClickListener() {
@@ -185,5 +199,29 @@ public class ActivityProject extends AppCompatActivity {
         } else {
             return false;
         }
+    }
+
+    public void error(){
+        back.setVisibility(View.VISIBLE);
+        dontWork.setVisibility(View.VISIBLE);
+        Toast.makeText(ActivityProject.this, wow[(int) (Math.random() * 4)], Toast.LENGTH_SHORT).show();
+        Thread thread = new Thread() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(3000);
+                } catch (InterruptedException e) {
+                }
+
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        back.setVisibility(View.GONE);
+                        dontWork.setVisibility(View.GONE);
+                    }
+                });
+            }
+        };
+        thread.start();
     }
 }

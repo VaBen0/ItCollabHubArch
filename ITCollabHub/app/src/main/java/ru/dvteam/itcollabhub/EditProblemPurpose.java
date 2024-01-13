@@ -3,6 +3,7 @@ package ru.dvteam.itcollabhub;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
@@ -14,7 +15,7 @@ public class EditProblemPurpose extends AppCompatActivity {
 
     ActivityEditProblemPurposeBinding binding;
 
-    String descriptions, names;
+    String descriptions, names, title, uriPath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,10 +36,22 @@ public class EditProblemPurpose extends AppCompatActivity {
         assert arguments != null;
         descriptions = arguments.getString("descriptions");
         names = arguments.getString("names");
+        title = arguments.getString("prTitle");
+        uriPath = arguments.getString("uriPath");
         int id = arguments.getInt("id");
+
+        binding.nameProject.setText(title);
+        if(!uriPath.isEmpty()){
+            Uri uri = Uri.parse(uriPath);
+            binding.prLogo.setImageURI(uri);
+            binding.problemPhoto.setImageURI(uri);
+        }
 
         String[] pNames = names.split("✴\uFE0F");
         String[] p = descriptions.split("✴\uFE0F");
+
+        binding.problemTitle.setHint(pNames[id]);
+        binding.problemDescription.setHint(p[id]);
 
         binding.saveChanges.setOnClickListener(new View.OnClickListener() {
             @Override
