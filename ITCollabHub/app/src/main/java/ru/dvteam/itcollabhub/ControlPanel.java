@@ -49,7 +49,7 @@ public class ControlPanel extends AppCompatActivity {
     ActivityControlPanelBinding binding;
     String title, urlPhoto;
     String mail, islead;
-    String purposesidss, problemss, id;
+    String purposesidss, problemss, id, description;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,8 +60,6 @@ public class ControlPanel extends AppCompatActivity {
         int score = sPref.getInt("UserScore", 0);
 
         binding = ActivityControlPanelBinding.inflate(getLayoutInflater());
-
-
 
         setContentView(binding.getRoot());
 
@@ -234,6 +232,7 @@ public class ControlPanel extends AppCompatActivity {
                                String problemsids, String isl) {
                 title = name;
                 urlPhoto = photoUrl;
+                description = descript;
                 binding.nameProject.setText(name);
                 Glide
                         .with(ControlPanel.this)
@@ -339,24 +338,19 @@ public class ControlPanel extends AppCompatActivity {
         binding.problemsProgress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent;
                 if(islead.equals("0")){
-                    Intent intent = new Intent(ControlPanel.this, ProblemsParticip.class);
-                    intent.putExtra("projectTitle", title);
-                    intent.putExtra("projectUrlPhoto", urlPhoto);
-                    intent.putExtra("projectId1", id);
-                    intent.putExtra("projectId", problemss);
-                    intent.putExtra("leader", islead);
-                    startActivity(intent);
+                    intent = new Intent(ControlPanel.this, ProblemsParticip.class);
                 }
                 else {
-                    Intent intent = new Intent(ControlPanel.this, Problems.class);
-                    intent.putExtra("projectTitle", title);
-                    intent.putExtra("projectUrlPhoto", urlPhoto);
-                    intent.putExtra("projectId1", id);
-                    intent.putExtra("projectId", problemss);
-                    intent.putExtra("leader", islead);
-                    startActivity(intent);
+                    intent = new Intent(ControlPanel.this, Problems.class);
                 }
+                intent.putExtra("projectTitle", title);
+                intent.putExtra("projectUrlPhoto", urlPhoto);
+                intent.putExtra("projectId1", id);
+                intent.putExtra("projectId", problemss);
+                intent.putExtra("leader", islead);
+                startActivity(intent);
             }
         });
 
@@ -379,6 +373,18 @@ public class ControlPanel extends AppCompatActivity {
                 intent.putExtra("projectTitle", title);
                 intent.putExtra("projectUrlPhoto", urlPhoto);
                 intent.putExtra("projectId1", id);
+                startActivity(intent);
+            }
+        });
+
+        binding.editProject.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ControlPanel.this, EditProject.class);
+                intent.putExtra("projectTitle", title);
+                intent.putExtra("projectUrlPhoto", urlPhoto);
+                intent.putExtra("projectId", id);
+                intent.putExtra("projectDescription", description);
                 startActivity(intent);
             }
         });

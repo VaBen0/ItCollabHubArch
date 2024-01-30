@@ -8,14 +8,14 @@
 
     <ImageView
         android:id="@+id/pr_logo"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="300dp"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo_second_type" />
+        android:src="@drawable/logo_second_type" />
 
     <ImageView
         android:id="@+id/imageView6"

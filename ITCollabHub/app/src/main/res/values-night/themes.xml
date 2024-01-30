@@ -20,6 +20,7 @@
         <item name="edit_project_icon">@drawable/redaktirovat</item>
         <item name="chat_icon">@drawable/chat</item>
         <item name="logo_type">@drawable/app_logo</item>
+        <item name="time_icon">@drawable/time_white</item>
     </style>
 
     <style name="Theme.ITCollabHub" parent="Base.Theme.ITCollabHub">

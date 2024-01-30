@@ -70,42 +70,33 @@ public class CreateProject extends AppCompatActivity {
         //View activity_line = findViewById(R.id.linear_projects);
         //View particip_line = findViewById(R.id.linear_friends);
 
-        /*if(score < 100){
-            activity_line.setBackgroundResource(R.drawable.blue_line);
+        if(score < 100){
             sendProject.setBackgroundTintList(ContextCompat.getColorStateList(CreateProject.this, R.color.blue));
         }
         else if(score < 300){
-            activity_line.setBackgroundResource(R.drawable.green_line);
             sendProject.setBackgroundTintList(ContextCompat.getColorStateList(CreateProject.this, R.color.green));
         }
         else if(score < 1000){
-            activity_line.setBackgroundResource(R.drawable.brown_line);
             sendProject.setBackgroundTintList(ContextCompat.getColorStateList(CreateProject.this, R.color.brown));
         }
         else if(score < 2500){
-            activity_line.setBackgroundResource(R.drawable.light_gray_line);
             sendProject.setBackgroundTintList(ContextCompat.getColorStateList(CreateProject.this, R.color.light_gray));
         }
         else if(score < 7000){
-            activity_line.setBackgroundResource(R.drawable.ohra_line);
             sendProject.setBackgroundTintList(ContextCompat.getColorStateList(CreateProject.this, R.color.ohra));
         }
         else if(score < 17000){
-            activity_line.setBackgroundResource(R.drawable.red_line);
             sendProject.setBackgroundTintList(ContextCompat.getColorStateList(CreateProject.this, R.color.red));
         }
         else if(score < 30000){
-            activity_line.setBackgroundResource(R.drawable.orange_line);
             sendProject.setBackgroundTintList(ContextCompat.getColorStateList(CreateProject.this, R.color.orange));
         }
         else if(score < 50000){
-            activity_line.setBackgroundResource(R.drawable.violete_line);
             sendProject.setBackgroundTintList(ContextCompat.getColorStateList(CreateProject.this, R.color.violete));
         }
         else{
-            activity_line.setBackgroundResource(R.drawable.blue_green_line);
             sendProject.setBackgroundTintList(ContextCompat.getColorStateList(CreateProject.this, R.color.main_green));
-        }*/
+        }
 
         //navController = Navigation.findNavController(this, R.id.nav_host_fragment);
 

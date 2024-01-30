@@ -30,6 +30,6 @@
             android:id="@+id/imageView7"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:src="@drawable/time" />
+            android:src="?time_icon" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
