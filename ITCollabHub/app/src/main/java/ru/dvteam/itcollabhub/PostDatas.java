@@ -1031,4 +1031,89 @@ public class PostDatas {
             }
         });
     }
+
+    public void postDataChangeProject(String req, String name, RequestBody requestFile, String id, String mail,
+                                     String description, String tg, String vk, String web, CallBackInt result){
+
+        MultipartBody.Part fileToUpload = MultipartBody.Part.createFormData("file", "lol", requestFile);
+        RequestBody requestName = RequestBody.create(MediaType.parse("text/plain"), name);
+        RequestBody requestReq = RequestBody.create(MediaType.parse("text/plain"), req);
+        RequestBody requestId = RequestBody.create(MediaType.parse("text/plain"), id);
+        RequestBody requestMail = RequestBody.create(MediaType.parse("text/plain"), mail);
+        RequestBody requestDescription = RequestBody.create(MediaType.parse("text/plain"), description);
+        RequestBody requestTg = RequestBody.create(MediaType.parse("text/plain"), tg);
+        RequestBody requestVk = RequestBody.create(MediaType.parse("text/plain"), vk);
+        RequestBody requestWeb = RequestBody.create(MediaType.parse("text/plain"), web);
+
+        Methods methods = RetrofitClient.getRetrofitInstance().create(Methods.class);
+        Call<Model> call = methods.editProject(fileToUpload, requestName, requestReq, requestDescription, requestId, requestMail,
+                requestTg, requestVk, requestWeb);
+        call.enqueue(new Callback<Model>() {
+            @Override
+            public void onResponse(Call<Model> call, retrofit2.Response<Model> response) {
+                assert response.body() != null;
+                result.invoke(response.body().getReturn());
+            }
+
+            @Override
+            public void onFailure(Call<Model> call, Throwable t) {
+                result.invoke("All bad");
+            }
+        });
+    }
+
+    public void postDataChangeProjectWithoutImage(String req, String name, String description, String id, String mail, String tg,
+                                                  String vk, String web, CallBackInt result){
+        Methods methods = RetrofitClient.getRetrofitInstance().create(Methods.class);
+        Call<Model> call = methods.editProjectWithoutImage(name, req, id, description, mail, tg, vk, web);
+
+        call.enqueue(new Callback<Model>() {
+            @Override
+            public void onResponse(Call<Model> call, retrofit2.Response<Model> response) {
+                assert response.body() != null;
+                result.invoke(response.body().getReturn());
+            }
+
+            @Override
+            public void onFailure(Call<Model> call, Throwable t) {
+                //result.invoke("lol");
+            }
+        });
+    }
+
+    public void postDataSetProjectStatus(String req, String id, String mail, CallBackInt result){
+        Methods methods = RetrofitClient.getRetrofitInstance().create(Methods.class);
+        Call<Model> call = methods.setProjectStatus(req, id, mail);
+
+        call.enqueue(new Callback<Model>() {
+            @Override
+            public void onResponse(Call<Model> call, retrofit2.Response<Model> response) {
+                assert response.body() != null;
+                result.invoke(response.body().getReturn());
+            }
+
+            @Override
+            public void onFailure(Call<Model> call, Throwable t) {
+                //result.invoke("lol");
+            }
+        });
+    }
+
+    public void postDataGetProjectParticipant(String req, String id, String mail, CallBackInt result){
+        Methods methods = RetrofitClient.getRetrofitInstance().create(Methods.class);
+        Call<Model> call = methods.getProjectPartisipant(req, id, mail);
+
+        call.enqueue(new Callback<Model>() {
+            @Override
+            public void onResponse(Call<Model> call, retrofit2.Response<Model> response) {
+                assert response.body() != null;
+                result.invoke(response.body().getReturn());
+            }
+
+            @Override
+            public void onFailure(Call<Model> call, Throwable t) {
+                //result.invoke("lol");
+            }
+        });
+    }
 }

@@ -11,6 +11,7 @@
         <item name="android:textColorHint">@color/white</item>
         <item name="background_progress">@color/gray</item>
         <item name="background_panel">@color/dark_panel</item>
+        <item name="background_panel2">@color/dark_panel2</item>
         <item name="transperent_text_color">@color/gray1</item>
         <item name="purpose_icon">@drawable/dart_board</item>
         <item name="problems_icon">@drawable/problems</item>

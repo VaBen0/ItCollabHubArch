@@ -14,18 +14,35 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <View
+            android:id="@+id/view9"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="15dp"
+            android:elevation="2dp"
+            android:layout_marginTop="13dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="13dp"
+            android:background="@drawable/project_friend_background"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentStart="true"
-            android:layout_marginStart="25dp"
+            android:layout_marginStart="10dp"
+            android:elevation="2dp"
             android:gravity="center"
-            android:textColor="@color/black"
             android:text="Найти друга"
+            android:textColor="@color/black"
             android:textSize="9sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/view9"
             app:layout_constraintTop_toTopOf="parent" />
 
 
@@ -34,6 +51,7 @@
             android:layout_width="2dp"
             android:layout_height="30dp"
             android:layout_alignParentTop="true"
+            android:elevation="2dp"
             android:layout_alignParentBottom="true"
             android:layout_marginStart="5dp"
             android:layout_toEndOf="@+id/textView"
@@ -51,6 +69,7 @@
             android:layout_marginStart="5dp"
             android:layout_toEndOf="@+id/line"
             android:background="@color/transparent"
+            android:elevation="2dp"
             android:inputType="text"
             android:textColor="@color/black"
             android:textSize="11sp"
@@ -68,6 +87,7 @@
             android:layout_alignParentBottom="true"
             android:layout_marginEnd="10dp"
             android:layout_toEndOf="@+id/name_friend"
+            android:elevation="2dp"
             android:clickable="true"
             android:focusable="true"
             android:src="@drawable/find"
@@ -83,13 +103,14 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginEnd="30dp"
+            android:layout_marginEnd="10dp"
+            android:elevation="2dp"
             android:layout_toEndOf="@+id/find"
+            android:background="@drawable/notification_false"
             android:clickable="true"
             android:focusable="true"
-            android:background="@drawable/notification_false"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/view9"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
     </androidx.constraintlayout.widget.ConstraintLayout>

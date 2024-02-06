@@ -248,5 +248,25 @@ public interface Methods {
                                        @Field("Request") String req, @Field("ProjectId") String id,
                                        @Field("Advertisement") String advertisement, @Field("UserMail") String mail, @Field("AdId") String adId);
 
+    @Multipart
+    @POST("/")
+    Call<Model> editProject(@Part MultipartBody.Part file, @Part("ProjectName") RequestBody name, @Part("Request") RequestBody req,
+                             @Part("Description") RequestBody description, @Part("ProjectId") RequestBody id,
+                             @Part("UserMail") RequestBody mail, @Part("TgLink") RequestBody tg, @Part("VkLink") RequestBody vk,
+                            @Part("WebLink") RequestBody web);
 
+    @FormUrlEncoded
+    @POST("/")
+    Call<Model> editProjectWithoutImage(@Field("ProjectName") String name,
+                                         @Field("Request") String req, @Field("ProjectId") String id,
+                                         @Field("Description") String description, @Field("UserMail") String mail,
+                                        @Field("TgLink") String tg, @Field("VkLink") String vk, @Field("WebLink") String web);
+
+    @FormUrlEncoded
+    @POST("/")
+    Call<Model> getProjectPartisipant(@Field("Request")String req, @Field("ProjectId")String id, @Field("UserMail") String mail);
+
+    @FormUrlEncoded
+    @POST("/")
+    Call<Model> setProjectStatus(@Field("Request") String req, @Field("ProjectId") String id, @Field("UserMail") String mail);
 }

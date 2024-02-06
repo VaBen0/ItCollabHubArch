@@ -47,7 +47,7 @@ public class Profile extends AppCompatActivity {
         score = sPref.getInt("UserScore", 0);
 
         TypedValue typedValue = new TypedValue();
-        getTheme().resolveAttribute(androidx.appcompat.R.attr.colorPrimary, typedValue, true);
+        //getTheme().resolveAttribute(androidx.appcompat.attr.colorPrimary, typedValue, true);
         color = typedValue.data;
 
         super.onCreate(savedInstanceState);

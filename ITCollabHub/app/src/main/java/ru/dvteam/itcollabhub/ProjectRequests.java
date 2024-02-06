@@ -95,7 +95,7 @@ public class ProjectRequests extends AppCompatActivity {
                     for (int i = 0; i < names.length; i++) {
                         View custom = getLayoutInflater().inflate(R.layout.project_request_window, null);
                         TextView nameu = (TextView) custom.findViewById(R.id.textView3);
-                        ImageView loadImage = (ImageView) custom.findViewById(R.id.loadImg);
+                        ImageView loadImage = (ImageView) custom.findViewById(R.id.log);
                         ImageView notban = (ImageView) custom.findViewById(R.id.notban);
                         ImageView ban = (ImageView) custom.findViewById(R.id.ban);
 

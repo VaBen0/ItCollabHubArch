@@ -51,8 +51,8 @@ public class MyProjects extends Fragment {
                     for (int i = 0; i < names.length; i++) {
                         View custom = inflater.inflate(R.layout.project_window, null);
                         TextView nameu = (TextView) custom.findViewById(R.id.textView3);
-                        ImageView loadImage = (ImageView) custom.findViewById(R.id.loadImg);
-                        ImageView user = (ImageView) custom.findViewById(R.id.prLogo);
+                        ImageView loadImage = (ImageView) custom.findViewById(R.id.log);
+                        ImageView user = (ImageView) custom.findViewById(R.id.logo);
                         ImageView userCircle = (ImageView) custom.findViewById(R.id.user_circle);
                         TextView nameOfUser = (TextView) custom.findViewById(R.id.textView13);
                         TextView percent = custom.findViewById(R.id.textView16);
